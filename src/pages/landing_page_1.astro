@@ -1,0 +1,136 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Fix My Furnace Detroit | Same-Day Furnace Repair">
+    <!-- 🧊 Hero / Form Section -->
+    <section
+      class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-28 pb-12"
+    >
+                  <h1 class="text-4xl md:text-5xl font-bold mb-3">
+                    No Heat? We’ll Fix Your Furnace Today.
+                  </h1>
+                  <p class="text-lg text-gray-600 mb-6 max-w-md">
+                    Same-day furnace repair from licensed, local technicians serving Metro Detroit.
+                  </p>
+      <!-- 🧾 Lead Form -->
+      <form
+        id="leadForm"
+        class="bg-white p-6 rounded-xl shadow-lg w-full max-w-md text-left"
+      >
+        <!-- Step 1 -->
+        <div id="step1">
+          <label
+            for="zip"
+            class="block font-medium text-gray-700 mb-2 text-sm"
+            >Enter Your ZIP Code</label
+          >
+          <input
+            type="text"
+            id="zip"
+            maxlength="5"
+            placeholder="e.g. 48226"
+            class="w-full border border-gray-300 rounded-md p-3 mb-4 focus:ring-2 focus:ring-red-500"
+          />
+          <button
+            type="button"
+            id="nextStep"
+            class="w-full bg-red-600 text-white font-semibold py-3 rounded-md hover:bg-red-700 transition"
+          >
+            Check Availability
+          </button>
+        </div>
+
+        <!-- Step 2 -->
+        <div id="step2" class="hidden">
+          <label class="block font-medium text-gray-700 mb-2 text-sm"
+            >What’s happening with your furnace?</label
+          >
+          <select
+            id="issue"
+            class="w-full border border-gray-300 rounded-md p-3 mb-4 text-sm"
+          >
+            <option value="">Select an issue...</option>
+            <option>It won't turn on</option>
+            <option>It's blowing cold air</option>
+            <option>Strange noises</option>
+            <option>Old or unreliable</option>
+            <option>Not sure</option>
+          </select>
+
+          <label class="block font-medium text-gray-700 mb-2 text-sm"
+            >When do you need service?</label
+          >
+          <select
+            id="urgency"
+            class="w-full border border-gray-300 rounded-md p-3 mb-4 text-sm"
+          >
+            <option value="">Select...</option>
+            <option>Today</option>
+            <option>Tomorrow</option>
+            <option>This week</option>
+          </select>
+
+          <input
+            type="text"
+            id="name"
+            placeholder="Full Name"
+            class="w-full border border-gray-300 rounded-md p-3 mb-3 text-sm"
+          />
+          <input
+            type="tel"
+            id="phone"
+            placeholder="Phone Number"
+            class="w-full border border-gray-300 rounded-md p-3 mb-3 text-sm"
+          />
+          <input
+            type="email"
+            id="email"
+            placeholder="Email Address"
+            class="w-full border border-gray-300 rounded-md p-3 mb-4 text-sm"
+          />
+
+          <button
+            type="submit"
+            class="w-full bg-red-600 text-white font-semibold py-3 rounded-md hover:bg-red-700 transition"
+          >
+            Get My Furnace Fixed
+          </button>
+        </div>
+      </form>
+
+      <!-- ✅ Trust Bar -->
+      <div
+        class="flex flex-wrap justify-center gap-4 mt-6 text-sm text-gray-500"
+      >
+        <span>✅ Licensed & Insured</span>
+        <span>🕒 Same-Day Service</span>
+        <span>🏠 Detroit Local</span>
+      </div>
+    </section>
+
+    <!-- ⚙️ Footer -->
+    <footer class="text-center text-gray-400 text-sm py-6">
+      <p>© 2025 Fix My Furnace Detroit. All rights reserved.</p>
+    </footer>
+</Layout>
+
+<script>
+// Simple 2-step form logic
+document.getElementById('nextStep').addEventListener('click', () => {
+    const zip = document.getElementById('zip').value.trim();
+    if (!zip || zip.length !== 5) {
+      alert('Please enter a valid ZIP code.');
+      return;
+    }
+    document.getElementById('step1').classList.add('hidden');
+    document.getElementById('step2').classList.remove('hidden');
+  });
+  
+  document.getElementById('leadForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Thanks! A local tech will reach out shortly.');
+    e.target.reset();
+    document.getElementById('step2').classList.add('hidden');
+    document.getElementById('step1').classList.remove('hidden');
+  });
+</script>
