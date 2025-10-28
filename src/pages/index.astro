@@ -1,64 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import HeroHeader from '../components/HeroHeader.Astro';
+import WhyChooseUs from "../components/WhyChooseUs.astro";
 ---
 <Layout title="Fix My Furnace | Fast, Local Furnace Repair & Installation">
-    <!-- 🦸‍♂️ Hero -->
-    <section
-      class="pt-32 pb-20 text-center px-6 bg-gradient-to-b from-gray-100 to-white"
-    >
-      <h2 class="text-4xl sm:text-5xl font-bold mb-4">
-        Furnace Problems? We’ll Fix It Fast.
-      </h2>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-        Local, licensed HVAC experts serving Metro Detroit. Whether your
-        furnace isn’t heating, making noise, or needs replacement — we’ve got
-        you covered.
-      </p>
-      <a
-        href="/landing_page_1.html"
-        class="bg-red-600 text-white font-semibold px-8 py-4 rounded-lg text-lg hover:bg-red-700 transition"
-      >
-        Get a Free Quote
-      </a>
-    </section>
+    <HeroHeader
+    title="Detroit’s Trusted Furnace & HVAC Experts"
+    description="Fast, licensed, and local furnace repair and installation services across Metro Detroit. Call today to get your heat back on."
+    primaryBtnText="Get a Free Quote"
+    primaryBtnLink="/landing_page_1"
+    secondaryBtnText="Call Now"
+    secondaryBtnLink="tel:+13135551234"
+    imageSrc="/logo.svg"
+  />
 
     <!-- 💪 About / Why Choose Us -->
     <section class="py-20 bg-white px-6">
-      <div class="max-w-6xl mx-auto text-center">
-        <h3 class="text-3xl font-bold mb-8">Why Homeowners Choose Us</h3>
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-left"
-        >
-          <div class="p-6 rounded-xl border bg-gray-50">
-            <h4 class="font-semibold mb-2 text-lg">Same-Day Service</h4>
-            <p class="text-gray-600 text-sm">
-              We prioritize urgent furnace repairs — get your heat back the same
-              day you call.
-            </p>
-          </div>
-          <div class="p-6 rounded-xl border bg-gray-50">
-            <h4 class="font-semibold mb-2 text-lg">Licensed Technicians</h4>
-            <p class="text-gray-600 text-sm">
-              Every repair is handled by certified HVAC professionals — insured,
-              background checked, and experienced.
-            </p>
-          </div>
-          <div class="p-6 rounded-xl border bg-gray-50">
-            <h4 class="font-semibold mb-2 text-lg">Transparent Pricing</h4>
-            <p class="text-gray-600 text-sm">
-              No surprises. Get upfront estimates and honest recommendations for
-              your system.
-            </p>
-          </div>
-          <div class="p-6 rounded-xl border bg-gray-50">
-            <h4 class="font-semibold mb-2 text-lg">Trusted Locally</h4>
-            <p class="text-gray-600 text-sm">
-              Proudly serving Detroit and neighboring cities with integrity and
-              care since 2024.
-            </p>
-          </div>
-        </div>
-      </div>
+      <WhyChooseUs />
     </section>
 
     <!-- 🔧 Services -->

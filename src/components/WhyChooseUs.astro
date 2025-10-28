@@ -1,0 +1,61 @@
+---
+/**
+ * WhyChooseUs.astro
+ * Displays four feature cards with icons and text.
+ * Uses Lucide web components for Astro-native SVG icons.
+ */
+---
+
+<!-- Import Lucide web components globally -->
+<script type="module" src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+<section class="py-20 bg-white px-6">
+  <div class="max-w-6xl mx-auto text-center">
+    <h3 class="text-3xl font-bold mb-10">Why Homeowners Choose Us</h3>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-left">
+      <!-- Card 1 -->
+      <div class="p-6 rounded-xl border bg-gray-50 hover:shadow-md transition">
+        <i data-lucide="clock" class="w-8 h-8 text-red-600 mb-4"></i>
+        <h4 class="font-semibold mb-2 text-lg">Same-Day Service</h4>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          We prioritize urgent furnace repairs — get your heat back the same day you call.
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="p-6 rounded-xl border bg-gray-50 hover:shadow-md transition">
+        <i data-lucide="badge-check" class="w-8 h-8 text-red-600 mb-4"></i>
+        <h4 class="font-semibold mb-2 text-lg">Licensed Technicians</h4>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Every repair is handled by certified HVAC professionals — insured, background checked, and experienced.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="p-6 rounded-xl border bg-gray-50 hover:shadow-md transition">
+        <i data-lucide="wallet" class="w-8 h-8 text-red-600 mb-4"></i>
+        <h4 class="font-semibold mb-2 text-lg">Transparent Pricing</h4>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          No surprises. Get upfront estimates and honest recommendations for your system.
+        </p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="p-6 rounded-xl border bg-gray-50 hover:shadow-md transition">
+        <i data-lucide="map-pin" class="w-8 h-8 text-red-600 mb-4"></i>
+        <h4 class="font-semibold mb-2 text-lg">Trusted Locally</h4>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Proudly serving Detroit and neighboring cities with integrity and care since 2024.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Initialize Lucide icons after DOM load -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+    });
+  </script>
+</section>

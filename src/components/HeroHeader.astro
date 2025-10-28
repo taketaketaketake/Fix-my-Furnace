@@ -1,0 +1,59 @@
+---
+/**
+ * HeroHeader.astro
+ * Split hero layout – full-width image left, text right.
+ * Mobile: text appears above the image.
+ */
+
+ const {
+  title = "Detroit’s Trusted Furnace & HVAC Experts",
+  description = "Fast, licensed, and local furnace repair and installation services across Metro Detroit. Call today to get your heat back on.",
+  primaryBtnText = "Get a Free Quote",
+  primaryBtnLink = "/landing_page_1",
+  secondaryBtnText = "Call Now",
+  secondaryBtnLink = "tel:+13135551234",
+  imageSrc = "/images/fmf-logo.jpg" // replace with your real image
+} = Astro.props;
+---
+
+<section class="w-full bg-white">
+  <div class="flex flex-col-reverse md:grid md:grid-cols-2 min-h-[600px] lg:min-h-[700px]">
+    
+    <!-- 📝 Text Section -->
+    <div class="flex items-center justify-center px-6 md:px-12 py-16 md:py-0">
+      <div class="max-w-lg text-left">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-5 leading-tight">
+          {title}
+        </h1>
+        <p class="text-gray-600 text-base md:text-lg mb-8">
+          {description}
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={primaryBtnLink}
+            class="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition"
+          >
+            {primaryBtnText}
+          </a>
+          <a
+            href={secondaryBtnLink}
+            class="border border-gray-900 text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+          >
+            {secondaryBtnText}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🖼️ Full-height Image Section -->
+    <div class="relative w-full h-[300px] md:h-auto">
+      <img
+        src={imageSrc}
+        alt="Furnace technician at work"
+        class="absolute inset-0 w-full h-full object-cover object-center md:rounded-none"
+        loading="eager"
+      />
+    </div>
+  </div>
+</section>
