@@ -10,7 +10,7 @@
   primaryBtnText = "Get a Free Quote",
   secondaryBtnText = "Call Now",
   secondaryBtnLink = "tel:+13135551234",
-  imageSrc = "/Fix_My_Furnace_Hero_Image.png"
+  imageSrc = "/fixmyfurnacewoman.png"
 } = Astro.props;
 ---
 
@@ -50,16 +50,14 @@
     </div>
 
     <!-- 🔧 Right: Image -->
-    <div class="relative w-full h-[300px] md:h-auto">
+    <div class="relative w-full flex items-center justify-center bg-white py-6 md:py-0">
       <img
-        src={imageSrc}
-        alt="Furnace technician at work"
-        class="absolute inset-0 w-full h-full object-cover object-center"
+        src="fixmyfurnacewoman.png"
+        alt="Fix My Furnace Illustration"
+        class="w-full max-w-[700px] h-auto object-contain"
         loading="eager"
       />
-      <div class="absolute inset-0 bg-gradient-to-l from-black/20 to-transparent md:hidden"></div>
     </div>
-  </div>
 
   <!-- Decorative red bar -->
   <div class="absolute bottom-0 left-0 w-full h-2 bg-red-600"></div>
