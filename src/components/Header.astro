@@ -7,10 +7,9 @@
 ---
 
 <header id="site-header" class="fixed top-0 left-0 w-full bg-white shadow-sm z-50 transition-all">
-  <div
-    class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3"
-  >
-    <!-- Logo + Brand -->
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4">
+    
+    <!-- 🔥 Logo + Brand -->
     <a href="/" class="flex items-center space-x-3">
       <img
         src="/logo.svg"
@@ -18,30 +17,28 @@
         class="w-10 h-10 object-contain"
       />
       <span
-        class="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight whitespace-nowrap"
+        class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight whitespace-nowrap"
       >
         Fix My Furnace
       </span>
     </a>
 
-    <!-- Desktop Nav -->
-    <nav
-      class="hidden md:flex items-center space-x-6 font-medium text-gray-700"
-    >
-      <a href="/about" class="hover:text-red-600 transition">About</a>
-      <a href="/services" class="hover:text-red-600 transition">Services</a>
-      <a href="/contact" class="hover:text-red-600 transition">Contact</a>
+    <!-- 💪 Desktop Nav -->
+    <nav class="hidden md:flex items-center space-x-8 font-bold text-gray-900 text-lg tracking-tight uppercase">
+      <a href="/about" class="hover:text-red-600 transition-colors duration-200">About</a>
+      <a href="/services" class="hover:text-red-600 transition-colors duration-200">Services</a>
+      <a href="/contact" class="hover:text-red-600 transition-colors duration-200">Contact</a>
 
-      <!-- Call Button (desktop only) -->
+      <!-- Call / Text Button -->
       <a
-        href="tel:+8334948669"
-        class="bg-red-600 text-white font-semibold px-4 py-2 rounded-lg text-sm sm:text-base hover:bg-red-700 active:scale-[0.98] transition"
+        href="tel:+18334948669"
+        class="bg-red-600 text-white font-extrabold px-5 py-2.5 rounded-lg text-base hover:bg-red-700 active:scale-[0.98] shadow-md transition"
       >
         Text Us
       </a>
     </nav>
 
-    <!-- Mobile Menu Icon -->
+    <!-- 📱 Mobile Menu Icon -->
     <button
       class="md:hidden text-gray-700 focus:outline-none"
       id="mobileMenuBtn"
@@ -49,35 +46,26 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-7 w-7"
+        class="h-8 w-8"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16m-7 6h7"
-        />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
       </svg>
     </button>
   </div>
 
-  <!-- Mobile Menu -->
-  <div
-    id="mobileMenu"
-    class="hidden md:hidden bg-white border-t border-gray-200 shadow-sm"
-  >
-    <nav class="flex flex-col p-4 space-y-3 text-gray-800 font-medium">
-      <a href="/about" class="hover:text-red-600 transition">About</a>
-      <a href="/services" class="hover:text-red-600 transition">Services</a>
-      <a href="/contact" class="hover:text-red-600 transition">Contact</a>
+  <!-- 📱 Mobile Menu -->
+  <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 shadow-sm">
+    <nav class="flex flex-col p-5 space-y-4 text-gray-900 font-bold text-lg uppercase">
+      <a href="/about" class="hover:text-red-600 transition-colors">About</a>
+      <a href="/services" class="hover:text-red-600 transition-colors">Services</a>
+      <a href="/contact" class="hover:text-red-600 transition-colors">Contact</a>
 
-      <!-- Call Button (mobile only) -->
       <a
-        href="tel:+13135551234"
-        class="block text-center bg-red-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-red-700 transition mt-2"
+        href="tel:+18334948669"
+        class="block text-center bg-red-600 text-white font-extrabold px-4 py-3 rounded-lg hover:bg-red-700 transition mt-3"
       >
         Call Now
       </a>
@@ -88,10 +76,7 @@
     document.addEventListener("DOMContentLoaded", () => {
       const btn = document.getElementById("mobileMenuBtn");
       const menu = document.getElementById("mobileMenu");
-
-      btn?.addEventListener("click", () => {
-        menu.classList.toggle("hidden");
-      });
+      btn?.addEventListener("click", () => menu.classList.toggle("hidden"));
     });
   </script>
 </header>
