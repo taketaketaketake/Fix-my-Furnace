@@ -1,0 +1,27 @@
+---
+/**
+ * Footer.astro
+ * Global footer component for Fix My Furnace.
+ * Appears on all pages via Layout.astro.
+ */
+---
+
+<footer class="bg-gray-900 text-gray-300 py-10 text-center">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="text-sm sm:text-base">
+        © {new Date().getFullYear()} Fix My Furnace. All rights reserved.
+      </p>
+  
+      <div class="mt-4 flex justify-center gap-4 text-xs sm:text-sm">
+        <a href="/privacy" class="hover:text-white transition">Privacy Policy</a>
+        <a href="/terms" class="hover:text-white transition">Terms of Service</a>
+        <a
+          href="/landing_page_1"
+          class="hover:text-white font-semibold transition"
+        >
+          Book Now
+        </a>
+      </div>
+    </div>
+  </footer>
+  

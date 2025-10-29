@@ -2,13 +2,12 @@
 /**
  * HeroHeader.astro
  * Split hero layout – full-width image left, text right.
- * Mobile: text appears above the image.
+ * Includes a modal form that opens from the primary button.
  */
-const {
+ const {
   title = "Built on Trust, Speed, and Real Detroit Grit.",
   description = "We’re not a call center — we’re your local HVAC pros. When your furnace breaks, we move fast, work clean, and don’t leave you guessing. Every job is done with care, precision, and old-school Detroit craftsmanship.",
   primaryBtnText = "Get a Free Quote",
-  primaryBtnLink = "/landing_page_1",
   secondaryBtnText = "Call Now",
   secondaryBtnLink = "tel:+13135551234",
   imageSrc = "/Fix_My_Furnace_Hero_Image.png"
@@ -17,7 +16,6 @@ const {
 
 <section class="relative w-full bg-white overflow-hidden">
   <div class="flex flex-col-reverse md:grid md:grid-cols-2 min-h-[600px] lg:min-h-[700px]">
-
     <!-- 🧱 Left: Text -->
     <div class="flex items-center justify-center px-6 md:px-12 py-16 md:py-0 bg-gradient-to-br from-red-50 via-gray-50 to-white">
       <div class="max-w-lg text-left">
@@ -33,12 +31,14 @@ const {
         </p>
 
         <div class="flex flex-wrap gap-4">
-          <a
-            href={primaryBtnLink}
+          <!-- Primary button triggers modal -->
+          <button
+            id="openModalBtn"
             class="bg-red-600 text-white px-6 py-3 rounded-lg font-bold shadow hover:bg-red-700 active:scale-[0.98] transition"
           >
             {primaryBtnText}
-          </a>
+          </button>
+
           <a
             href={secondaryBtnLink}
             class="border-2 border-gray-900 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-900 hover:text-white transition"
@@ -57,11 +57,94 @@ const {
         class="absolute inset-0 w-full h-full object-cover object-center"
         loading="eager"
       />
-      <!-- subtle overlay for text balance -->
       <div class="absolute inset-0 bg-gradient-to-l from-black/20 to-transparent md:hidden"></div>
     </div>
   </div>
 
-  <!-- Decorative bar for depth -->
+  <!-- Decorative red bar -->
   <div class="absolute bottom-0 left-0 w-full h-2 bg-red-600"></div>
+
+<!-- 💬 Modal -->
+<div
+  id="quoteModal"
+  class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-[100] flex items-center justify-center p-4"
+>
+  <div class="bg-white rounded-2xl shadow-xl max-w-md w-full mx-auto p-8 relative">
+    <!-- Close button -->
+    <button
+      id="closeModalBtn"
+      class="absolute top-4 right-4 text-gray-500 hover:text-gray-900 transition"
+    >
+      ✕
+    </button>
+
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-4 text-center">
+      Request Your Free Quote
+    </h2>
+    <p class="text-gray-600 text-sm text-center mb-6">
+      Fill out the form and a local HVAC expert will contact you shortly.
+    </p>
+
+    <form class="space-y-4">
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">Name</label>
+        <input
+          type="text"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-600"
+          placeholder="John Doe"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">Phone Number</label>
+        <input
+          type="tel"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-600"
+          placeholder="(313) 555-1234"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">Message</label>
+        <textarea
+          rows="3"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-600"
+          placeholder="Briefly describe your issue..."
+        ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition"
+      >
+        Submit Request
+      </button>
+    </form>
+  </div>
+</div>
+
+  <!-- 🧠 Modal Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const modal = document.getElementById("quoteModal");
+      const openBtn = document.getElementById("openModalBtn");
+      const closeBtn = document.getElementById("closeModalBtn");
+  
+      openBtn?.addEventListener("click", () => {
+        modal.classList.remove("hidden");
+        modal.classList.add("flex"); // ensure centering
+      });
+  
+      const closeModal = () => {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      };
+  
+      closeBtn?.addEventListener("click", closeModal);
+      modal?.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+      });
+    });
+  </script>
+  
 </section>

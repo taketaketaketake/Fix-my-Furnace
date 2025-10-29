@@ -1,6 +1,7 @@
 ---
 import TopBarCTA from "../components/TopBarCTA.astro";
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
 export interface Props {
@@ -26,8 +27,32 @@ const { title } = Astro.props;
     <Header />
 
     <!-- 📄 Page Content -->
-    <main class="pt-[130px]"> <!-- adjust padding to offset header height -->
+    <main id="main-content" class="pt-[160px] transition-all duration-300">
       <slot />
     </main>
+
+    <Footer />
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const header = document.getElementById("site-header");
+        const topBar = document.querySelector("section.bg-red-600");
+        const main = document.getElementById("main-content");
+    
+        if (main) main.style.paddingTop = `${topBar.offsetHeight + header.offsetHeight}px`;
+
+        if (header && topBar) {
+          const adjustPosition = () => {
+            const topHeight = topBar.offsetHeight;
+            header.style.top = `${topHeight}px`;
+          };
+    
+          // Initial position + resize listener for mobile changes
+          adjustPosition();
+          window.addEventListener("resize", adjustPosition);
+        }
+      });
+    </script>
+    
   </body>
 </html>
