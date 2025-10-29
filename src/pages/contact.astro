@@ -1,0 +1,141 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Contact Us | Fix My Furnace">
+  <!-- 🔥 HERO -->
+  <section class="relative bg-gradient-to-br from-red-50 via-white to-orange-50 py-20 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+        Need Heat Fast? <span class="text-red-600">We’ve Got You Covered.</span>
+      </h1>
+      <p class="text-lg md:text-xl font-semibold text-gray-700 max-w-3xl mx-auto">
+        Reach out to our local team for same-day service, honest estimates, and old-school Detroit craftsmanship.
+      </p>
+    </div>
+
+    <!-- 🔧 Decorative Bar -->
+    <div class="absolute bottom-0 left-0 w-full h-2 bg-red-600"></div>
+  </section>
+
+  <!-- 🧰 CONTACT SECTION -->
+  <section class="relative bg-white py-20 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-start">
+      <!-- 🧾 Contact Form -->
+      <div class="bg-gray-50 border border-gray-200 shadow-xl rounded-2xl p-8 md:p-10">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
+        <p class="text-gray-600 mb-8 text-base">
+          Fill out the form below and we’ll get back to you fast — often within minutes during business hours.
+        </p>
+
+        <form class="space-y-5">
+          <div>
+            <label for="name" class="block text-sm font-semibold text-gray-800">Full Name</label>
+            <input
+              id="name"
+              type="text"
+              placeholder="John Doe"
+              class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition"
+              required
+            />
+          </div>
+
+          <div>
+            <label for="phone" class="block text-sm font-semibold text-gray-800">Phone Number</label>
+            <input
+              id="phone"
+              type="tel"
+              placeholder="(833) 494-8669"
+              class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition"
+              required
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-semibold text-gray-800">Email</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition"
+            />
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-semibold text-gray-800">How can we help?</label>
+            <textarea
+              id="message"
+              rows="4"
+              placeholder="Describe your issue..."
+              class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-red-600 text-white font-bold py-3 rounded-lg shadow-md hover:bg-red-700 active:scale-[0.98] transition"
+          >
+            Send Message
+          </button>
+        </form>
+
+        <p class="text-xs text-gray-500 mt-4 text-center">
+          By submitting this form, you agree to be contacted by Fix My Furnace for scheduling and service updates.
+        </p>
+      </div>
+
+      <!-- 🏙 INFO / SIDEBAR -->
+      <div class="flex flex-col justify-center md:pl-6 lg:pl-10">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+          Built on <span class="text-red-600">Trust, Speed,</span> <br /> and Real Detroit Grit.
+        </h2>
+        <p class="text-gray-700 text-lg font-semibold mb-6">
+          We’re not a faceless call center — we’re local, licensed pros. From Metro Detroit to Grand Rapids, 
+          we fix furnaces fast and treat every home like our own.
+        </p>
+
+        <ul class="space-y-4 text-gray-800 text-lg font-semibold">
+          <li class="flex items-center gap-3">
+            <i data-lucide="map-pin" class="w-5 h-5 text-red-600"></i>
+            Serving all of Michigan
+          </li>
+          <li class="flex items-center gap-3">
+            <i data-lucide="phone" class="w-5 h-5 text-red-600"></i>
+            <a href="tel:+18334948669" class="hover:text-red-600">(833) FIX-IT-NOW</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <i data-lucide="mail" class="w-5 h-5 text-red-600"></i>
+            <a href="mailto:hello@fixmyfurnace.com" class="hover:text-red-600">hello@fixmyfurnace.com</a>
+          </li>
+        </ul>
+
+        <div class="mt-10 border-t border-gray-200 pt-6">
+          <p class="text-sm text-gray-600">
+            📍 Headquarters in <strong>Detroit, MI</strong>  
+            <br />Proudly serving the entire state of Michigan.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🚀 CTA Footer Bar -->
+  <section class="bg-red-600 text-white py-16 text-center">
+    <h3 class="text-3xl font-bold mb-3">Emergency? Don’t Wait — Call Us Now.</h3>
+    <p class="mb-6 text-white/90">Same-day service available 7 days a week across Michigan.</p>
+    <a
+      href="tel:+18334948669"
+      class="bg-white text-red-600 font-semibold px-8 py-4 rounded-lg text-lg hover:bg-gray-100 transition"
+    >
+      Call (833) FIX-IT-NOW
+    </a>
+  </section>
+
+  <!-- Lucide Icons -->
+  <script type="module" src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script is:client>
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+    });
+  </script>
+</Layout>
