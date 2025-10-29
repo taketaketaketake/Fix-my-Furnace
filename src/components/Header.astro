@@ -1,8 +1,15 @@
 ---
-// src/components/Header.astro
+/**
+ * Header.astro
+ * Fixed responsive header with mobile dropdown.
+ * "Call Now" button is visible on desktop, inside dropdown on mobile.
+ */
 ---
+
 <header class="fixed top-0 left-0 w-full bg-white shadow-sm z-50">
-  <div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
+  <div
+    class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3"
+  >
     <!-- Logo + Brand -->
     <a href="/" class="flex items-center space-x-3">
       <img
@@ -10,31 +17,35 @@
         alt="Fix My Furnace Logo"
         class="w-10 h-10 object-contain"
       />
-      <span class="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+      <span
+        class="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight whitespace-nowrap"
+      >
         Fix My Furnace
       </span>
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden md:flex space-x-6 font-medium text-gray-700">
+    <nav
+      class="hidden md:flex items-center space-x-6 font-medium text-gray-700"
+    >
       <a href="/about" class="hover:text-red-600 transition">About</a>
       <a href="/services" class="hover:text-red-600 transition">Services</a>
       <a href="/contact" class="hover:text-red-600 transition">Contact</a>
-    </nav>
 
-    <!-- Call Button -->
-    <a
-      href="tel:+13135551234"
-      class="bg-red-600 text-white font-semibold px-4 py-2 rounded-lg text-sm sm:text-base hover:bg-red-700 active:scale-[0.98] transition ml-3"
-    >
-      Call Now
-    </a>
+      <!-- Call Button (desktop only) -->
+      <a
+        href="tel:+13135551234"
+        class="bg-red-600 text-white font-semibold px-4 py-2 rounded-lg text-sm sm:text-base hover:bg-red-700 active:scale-[0.98] transition"
+      >
+        Call Now
+      </a>
+    </nav>
 
     <!-- Mobile Menu Icon -->
     <button
       class="md:hidden text-gray-700 focus:outline-none"
       id="mobileMenuBtn"
-      aria-label="Open Menu"
+      aria-label="Toggle menu"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -53,21 +64,33 @@
     </button>
   </div>
 
-  <!-- Mobile Menu (hidden by default) -->
-  <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
-    <nav class="flex flex-col p-4 space-y-3 text-gray-800">
+  <!-- Mobile Menu -->
+  <div
+    id="mobileMenu"
+    class="hidden md:hidden bg-white border-t border-gray-200 shadow-sm"
+  >
+    <nav class="flex flex-col p-4 space-y-3 text-gray-800 font-medium">
       <a href="/about" class="hover:text-red-600 transition">About</a>
       <a href="/services" class="hover:text-red-600 transition">Services</a>
       <a href="/contact" class="hover:text-red-600 transition">Contact</a>
+
+      <!-- Call Button (mobile only) -->
+      <a
+        href="tel:+13135551234"
+        class="block text-center bg-red-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-red-700 transition mt-2"
+      >
+        Call Now
+      </a>
     </nav>
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const btn = document.getElementById('mobileMenuBtn');
-      const menu = document.getElementById('mobileMenu');
-      btn.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById("mobileMenuBtn");
+      const menu = document.getElementById("mobileMenu");
+
+      btn?.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
       });
     });
   </script>

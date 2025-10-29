@@ -1,23 +1,33 @@
 ---
-import Header from '../components/Header.astro';
-import '../styles/global.css';
+import TopBarCTA from "../components/TopBarCTA.astro";
+import Header from "../components/Header.astro";
+import "../styles/global.css";
+
 export interface Props {
-	title: string;
+  title: string;
 }
+
 const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-</head>
-<body>
+  </head>
+
+  <body class="antialiased text-gray-900 bg-white">
+    <!-- 🚀 Global Top CTA Bar -->
+    <TopBarCTA />
+
+    <!-- 🧭 Main Header -->
     <Header />
-    <main>
-        <slot />
+
+    <!-- 📄 Page Content -->
+    <main class="pt-[130px]"> <!-- adjust padding to offset header height -->
+      <slot />
     </main>
-</body>
+  </body>
 </html>
