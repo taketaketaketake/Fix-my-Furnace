@@ -6,20 +6,62 @@ All service pages (like **Furnace Repair**, **Boiler Installation**, etc.) are a
 
 ---
 
-## ⚙️ Folder Overview
+  Frontend Framework: Astro.js v5.15.2 (SSG/SSR)
+  Styling: TailwindCSS v4.1.16
+  Language: TypeScript (strict mode)
+  Icons: Lucide React v0.548.0
+  Build Tool: Vite (via Astro)
 
-src/
-├── data/
-│ └── services.js ← Contains all service page data
-├── pages/
-│ ├── services/
-│ │ ├── [slug].astro ← Dynamic service page template
-│ │ └── README.md ← You are here
-│ └── index.astro
-├── layouts/
-│ └── Layout.astro
-└── components/
-└── ...
+  Project Structure
+
+  fix-my-furnace/
+  ├── .astro/
+  │   ├── data-store.json
+  │   └── settings.json
+  ├── .vscode/
+  │   ├── extensions.json
+  │   └── launch.json
+  ├── dist/
+  │   └── output.css
+  ├── src/
+  │   ├── components/
+  │   │   ├── Footer.astro
+  │   │   ├── GallerySection.astro
+  │   │   ├── GetQuoteSection.astro
+  │   │   ├── Header.astro
+  │   │   ├── HeroHeader.astro
+  │   │   ├── ServiceAreasSection.astro
+  │   │   ├── TestimonialsSection.astro
+  │   │   ├── TopBarCTA.astro
+  │   │   └── WhyChooseUs.astro
+  │   ├── data/
+  │   │   └── services.js           # Service data structure
+  │   ├── layouts/
+  │   │   └── Layout.astro          # Main layout with title prop
+  │   ├── pages/
+  │   │   ├── services/
+  │   │   │   └── [slug].astro      # Dynamic service pages
+  │   │   ├── about.astro
+  │   │   ├── contact.astro
+  │   │   ├── index.astro           # Homepage
+  │   │   ├── landing_page_1.astro
+  │   │   ├── landing_page_2.astro
+  │   │   └── services.astro
+  │   ├── styles/
+  │   │   └── global.css
+  │   ├── input.css
+  │   └── script.js
+  ├── astro.config.mjs
+  ├── package.json
+  ├── tsconfig.json
+  └── README.md
+
+  Key Architecture Notes:
+  - Static site generation with component-based architecture
+  - Dynamic routing via [slug].astro for services
+  - Centralized data in src/data/services.js
+  - TypeScript strict mode enabled
+  - No existing ML/AI dependencies
 
 
 ---
@@ -124,3 +166,35 @@ astro
 Copy code
 
 import { services } from "../data/services.js";
+----
+
+it's definitely possible to set up an ML algorithm for dynamic page title generation. This is an Astro.js website
+  with static page titles currently handled through the Layout component.
+
+  Current Setup:
+  - Titles are static strings passed to src/layouts/Layout.astro:19
+  - Service pages use ${title} | Fix My Furnace Detroit pattern
+  - No existing ML dependencies
+
+  Potential ML Approaches:
+
+  1. Simple A/B Testing with Performance Tracking
+    - Rotate between title variations
+    - Track CTR, bounce rate, conversions
+    - Use basic algorithms to select best performers
+  2. NLP-Based Title Generation
+    - Use libraries like TensorFlow.js or OpenAI API
+    - Generate titles based on page content, user demographics, time/season
+    - Train on your conversion data
+  3. Real-time Personalization
+    - User behavior analysis (location, device, referrer)
+    - Time-based optimization (emergency services at night)
+    - SEO keyword integration
+
+  Data Sources Available:
+  - Page content from src/data/services.js
+  - User analytics (location: Detroit focus)
+  - Seasonal patterns (HVAC is seasonal)
+  - Search keywords, conversion metrics
+
+  Would you like me to implement a basic version starting with A/B testing or go straight to an ML-powered solution?
