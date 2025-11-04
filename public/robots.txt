@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://fixmyfurnace.com/sitemap.xml
+Sitemap: https://fixmyfurnacedetroit.com/sitemap.xml
 
 # Block common bot traps and admin areas
 Disallow: /admin/
