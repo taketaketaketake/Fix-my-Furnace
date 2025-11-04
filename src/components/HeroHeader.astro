@@ -82,13 +82,51 @@
       Fill out the form and a local HVAC expert will contact you shortly.
     </p>
 
-    <form class="space-y-4">
+    <!-- Success/Error Message Container -->
+    <div id="modalFormMessages" class="mb-6 hidden">
+      <div id="modalSuccessMessage" class="bg-green-50 border border-green-200 rounded-lg p-3 mb-4 hidden">
+        <div class="flex items-center">
+          <svg class="w-4 h-4 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          <p class="text-green-800 font-semibold text-sm">Request sent! We'll contact you shortly.</p>
+        </div>
+      </div>
+      
+      <div id="modalErrorMessage" class="bg-red-50 border border-red-200 rounded-lg p-3 mb-4 hidden">
+        <div class="flex items-center">
+          <svg class="w-4 h-4 text-red-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+          </svg>
+          <p class="text-red-800 font-semibold text-sm">Something went wrong. Please try again.</p>
+        </div>
+      </div>
+
+      <div id="modalLoadingMessage" class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4 hidden">
+        <div class="flex items-center">
+          <svg class="animate-spin w-4 h-4 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <p class="text-blue-800 font-semibold text-sm">Sending your request...</p>
+        </div>
+      </div>
+    </div>
+
+    <form class="space-y-4" name="appointment" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="appointmentForm">
+      <!-- Hidden honeypot field for spam protection -->
+      <div style="display: none;">
+        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+      </div>
+      
       <div>
         <label class="block text-sm font-semibold text-gray-700 mb-1">Name</label>
         <input
           type="text"
+          name="name"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-600"
           placeholder="John Doe"
+          required
         />
       </div>
 
@@ -96,8 +134,10 @@
         <label class="block text-sm font-semibold text-gray-700 mb-1">Phone Number</label>
         <input
           type="tel"
+          name="phone"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-600"
           placeholder="(313) 555-1234"
+          required
         />
       </div>
 
@@ -105,16 +145,26 @@
         <label class="block text-sm font-semibold text-gray-700 mb-1">Message</label>
         <textarea
           rows="3"
+          name="message"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-600"
           placeholder="Briefly describe your issue..."
+          required
         ></textarea>
       </div>
 
       <button
         type="submit"
-        class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition"
+        id="modalSubmitBtn"
+        class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Submit Request
+        <span id="modalSubmitText">Submit Request</span>
+        <span id="modalSubmitLoading" class="hidden">
+          <svg class="animate-spin inline w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Sending...
+        </span>
       </button>
     </form>
   </div>
@@ -126,7 +176,18 @@
       const modal = document.getElementById("quoteModal");
       const openBtn = document.getElementById("openModalBtn");
       const closeBtn = document.getElementById("closeModalBtn");
+      
+      // Modal form handling
+      const modalForm = document.getElementById('appointmentForm');
+      const modalSubmitBtn = document.getElementById('modalSubmitBtn');
+      const modalSubmitText = document.getElementById('modalSubmitText');
+      const modalSubmitLoading = document.getElementById('modalSubmitLoading');
+      const modalFormMessages = document.getElementById('modalFormMessages');
+      const modalSuccessMessage = document.getElementById('modalSuccessMessage');
+      const modalErrorMessage = document.getElementById('modalErrorMessage');
+      const modalLoadingMessage = document.getElementById('modalLoadingMessage');
   
+      // Modal open/close functionality
       openBtn?.addEventListener("click", () => {
         modal.classList.remove("hidden");
         modal.classList.add("flex"); // ensure centering
@@ -135,12 +196,89 @@
       const closeModal = () => {
         modal.classList.add("hidden");
         modal.classList.remove("flex");
+        // Reset form and hide messages when closing
+        hideModalMessages();
+        modalForm?.reset();
       };
   
       closeBtn?.addEventListener("click", closeModal);
       modal?.addEventListener("click", (e) => {
         if (e.target === modal) closeModal();
       });
+
+      // Form submission handling (if modal form exists)
+      if (modalForm) {
+        // Function to show specific message
+        function showModalMessage(messageType) {
+          // Hide all messages first
+          modalSuccessMessage.classList.add('hidden');
+          modalErrorMessage.classList.add('hidden');
+          modalLoadingMessage.classList.add('hidden');
+          
+          // Show container and specific message
+          modalFormMessages.classList.remove('hidden');
+          document.getElementById('modal' + messageType.charAt(0).toUpperCase() + messageType.slice(1) + 'Message').classList.remove('hidden');
+        }
+
+        // Function to hide all messages
+        function hideModalMessages() {
+          modalFormMessages.classList.add('hidden');
+          modalSuccessMessage.classList.add('hidden');
+          modalErrorMessage.classList.add('hidden');
+          modalLoadingMessage.classList.add('hidden');
+        }
+
+        // Function to set loading state
+        function setModalLoadingState(loading) {
+          modalSubmitBtn.disabled = loading;
+          if (loading) {
+            modalSubmitText.classList.add('hidden');
+            modalSubmitLoading.classList.remove('hidden');
+            showModalMessage('loading');
+          } else {
+            modalSubmitText.classList.remove('hidden');
+            modalSubmitLoading.classList.add('hidden');
+          }
+        }
+
+        // Handle form submission
+        modalForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          setModalLoadingState(true);
+          
+          try {
+            // Create FormData from form
+            const formData = new FormData(modalForm);
+            
+            // Submit to Netlify
+            const response = await fetch('/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: new URLSearchParams(formData).toString()
+            });
+
+            if (response.ok) {
+              // Success
+              setModalLoadingState(false);
+              showModalMessage('success');
+              modalForm.reset(); // Clear form
+              
+              // Close modal after 3 seconds
+              setTimeout(() => closeModal(), 3000);
+            } else {
+              throw new Error('Network response was not ok');
+            }
+          } catch (error) {
+            // Error
+            setModalLoadingState(false);
+            showModalMessage('error');
+            
+            // Hide error message after 5 seconds
+            setTimeout(() => hideModalMessages(), 5000);
+          }
+        });
+      }
     });
   </script>
   

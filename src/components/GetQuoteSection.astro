@@ -22,7 +22,43 @@
         back right away.
       </p>
 
-      <form class="space-y-4">
+      <!-- Success/Error Message Container -->
+      <div id="quoteFormMessages" class="mb-6 hidden">
+        <div id="quoteSuccessMessage" class="bg-green-50 border border-green-200 rounded-lg p-4 mb-4 hidden">
+          <div class="flex items-center">
+            <svg class="w-5 h-5 text-green-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            <p class="text-green-800 font-semibold">Quote request sent! We'll call you shortly.</p>
+          </div>
+        </div>
+        
+        <div id="quoteErrorMessage" class="bg-red-50 border border-red-200 rounded-lg p-4 mb-4 hidden">
+          <div class="flex items-center">
+            <svg class="w-5 h-5 text-red-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+            </svg>
+            <p class="text-red-800 font-semibold">Something went wrong. Please try again or call us directly.</p>
+          </div>
+        </div>
+
+        <div id="quoteLoadingMessage" class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4 hidden">
+          <div class="flex items-center">
+            <svg class="animate-spin w-5 h-5 text-blue-600 mr-3" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="text-blue-800 font-semibold">Sending your quote request...</p>
+          </div>
+        </div>
+      </div>
+
+      <form class="space-y-4" name="quote" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="quoteForm">
+        <!-- Hidden honeypot field for spam protection -->
+        <div style="display: none;">
+          <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+        </div>
+        
         <!-- 🧍 Name -->
         <div>
           <label for="name" class="block text-sm font-semibold text-gray-800">
@@ -30,9 +66,11 @@
           </label>
           <input
             id="name"
+            name="name"
             type="text"
             placeholder="John Doe"
             class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition"
+            required
           />
         </div>
 
@@ -43,9 +81,11 @@
           </label>
           <input
             id="phone"
+            name="phone"
             type="tel"
             placeholder="(313) 555-1234"
             class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition"
+            required
           />
         </div>
 
@@ -56,9 +96,11 @@
           </label>
           <input
             id="address"
+            name="address"
             type="text"
             placeholder="1234 Elm Street"
             class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition"
+            required
           />
         </div>
 
@@ -69,7 +111,9 @@
           </label>
           <select
             id="issue"
+            name="issue"
             class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition"
+            required
           >
             <option value="">Select an issue...</option>
             <option value="no-power">It won’t turn on</option>
@@ -83,9 +127,17 @@
         <!-- 🚀 Submit -->
         <button
           type="submit"
-          class="w-full bg-red-600 text-white font-bold py-3 rounded-lg shadow-md hover:bg-red-700 active:scale-[0.98] transition"
+          id="quoteSubmitBtn"
+          class="w-full bg-red-600 text-white font-bold py-3 rounded-lg shadow-md hover:bg-red-700 active:scale-[0.98] transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Get a Free Quote
+          <span id="quoteSubmitText">Get a Free Quote</span>
+          <span id="quoteSubmitLoading" class="hidden">
+            <svg class="animate-spin inline w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Sending...
+          </span>
         </button>
       </form>
 
@@ -127,3 +179,93 @@
     </div>
   </div>
 </section>
+
+<script is:client>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Quote form handling
+    const quoteForm = document.getElementById('quoteForm');
+    const quoteSubmitBtn = document.getElementById('quoteSubmitBtn');
+    const quoteSubmitText = document.getElementById('quoteSubmitText');
+    const quoteSubmitLoading = document.getElementById('quoteSubmitLoading');
+    const quoteFormMessages = document.getElementById('quoteFormMessages');
+    const quoteSuccessMessage = document.getElementById('quoteSuccessMessage');
+    const quoteErrorMessage = document.getElementById('quoteErrorMessage');
+    const quoteLoadingMessage = document.getElementById('quoteLoadingMessage');
+
+    if (!quoteForm) return; // Exit if form not found
+
+    // Function to show specific message
+    function showQuoteMessage(messageType) {
+      // Hide all messages first
+      quoteSuccessMessage.classList.add('hidden');
+      quoteErrorMessage.classList.add('hidden');
+      quoteLoadingMessage.classList.add('hidden');
+      
+      // Show container and specific message
+      quoteFormMessages.classList.remove('hidden');
+      document.getElementById('quote' + messageType.charAt(0).toUpperCase() + messageType.slice(1) + 'Message').classList.remove('hidden');
+      
+      // Scroll to message
+      quoteFormMessages.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Function to hide all messages
+    function hideQuoteMessages() {
+      quoteFormMessages.classList.add('hidden');
+      quoteSuccessMessage.classList.add('hidden');
+      quoteErrorMessage.classList.add('hidden');
+      quoteLoadingMessage.classList.add('hidden');
+    }
+
+    // Function to set loading state
+    function setQuoteLoadingState(loading) {
+      quoteSubmitBtn.disabled = loading;
+      if (loading) {
+        quoteSubmitText.classList.add('hidden');
+        quoteSubmitLoading.classList.remove('hidden');
+        showQuoteMessage('loading');
+      } else {
+        quoteSubmitText.classList.remove('hidden');
+        quoteSubmitLoading.classList.add('hidden');
+      }
+    }
+
+    // Handle form submission
+    quoteForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      setQuoteLoadingState(true);
+      
+      try {
+        // Create FormData from form
+        const formData = new FormData(quoteForm);
+        
+        // Submit to Netlify
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        });
+
+        if (response.ok) {
+          // Success
+          setQuoteLoadingState(false);
+          showQuoteMessage('success');
+          quoteForm.reset(); // Clear form
+          
+          // Hide success message after 5 seconds
+          setTimeout(() => hideQuoteMessages(), 5000);
+        } else {
+          throw new Error('Network response was not ok');
+        }
+      } catch (error) {
+        // Error
+        setQuoteLoadingState(false);
+        showQuoteMessage('error');
+        
+        // Hide error message after 7 seconds
+        setTimeout(() => hideQuoteMessages(), 7000);
+      }
+    });
+  });
+</script>
