@@ -40,7 +40,7 @@ const {
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site || 'https://fixmyfurnace.com').href} />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Fix My Furnace" />
     
@@ -49,7 +49,7 @@ const {
     <meta property="twitter:url" content={canonicalUrl} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(ogImage, Astro.site).href} />
+    <meta property="twitter:image" content={new URL(ogImage, Astro.site || 'https://fixmyfurnace.com').href} />
     
     <!-- Geo Meta Tags -->
     <meta name="geo.region" content="US-MI" />
