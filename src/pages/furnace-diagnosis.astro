@@ -84,7 +84,7 @@ import Layout from "../layouts/Layout.astro";
               id="photoInput"
               multiple 
               accept="image/*"
-              class="hidden"
+              style="position: absolute; left: -9999px; opacity: 0;"
             />
           </div>
 
@@ -261,10 +261,20 @@ import Layout from "../layouts/Layout.astro";
   // Photo upload functionality
   uploadArea.addEventListener("click", (e) => {
     console.log("Upload area clicked");
-    e.preventDefault();
-    e.stopPropagation();
-    photoInput.click();
-    console.log("File input clicked");
+    console.log("Photo input element:", photoInput);
+    console.log("Photo input type:", photoInput?.type);
+    console.log("Photo input style:", photoInput?.style.display);
+    
+    if (photoInput) {
+      try {
+        photoInput.click();
+        console.log("File input clicked successfully");
+      } catch (error) {
+        console.error("Error clicking file input:", error);
+      }
+    } else {
+      console.error("Photo input not found!");
+    }
   });
 
   uploadArea.addEventListener("dragover", (e) => {
