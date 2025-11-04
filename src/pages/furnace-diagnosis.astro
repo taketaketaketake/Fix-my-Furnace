@@ -212,7 +212,14 @@ import Layout from "../layouts/Layout.astro";
 
 <!-- 🧠 Script -->
 <script>
-  import { supabase, STORAGE_BUCKET } from '../lib/supabase.js';
+  // Import Supabase from CDN for client-side use
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+  
+  // Create Supabase client
+  const supabaseUrl = 'https://ztvsfapoeekaxztahxsv.supabase.co';
+  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0dnNmYXBvZWVrYXh6dGFoeHN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxMDUzMDIsImV4cCI6MjA3NzY4MTMwMn0.4ff8bfxwEUlJN3JQ3QGsys-xB9Xqu8zUspJSvtzL06k';
+  const supabase = createClient(supabaseUrl, supabaseAnonKey);
+  const STORAGE_BUCKET = 'Furnace Diagnosis Images';
   const nameInput = document.getElementById("name");
   const phoneInput = document.getElementById("phone");
   const addressInput = document.getElementById("address");
@@ -227,6 +234,13 @@ import Layout from "../layouts/Layout.astro";
   const photoCountSpan = document.getElementById("photoCount");
   const photoInput = document.getElementById("photoInput");
   const photoPreview = document.getElementById("photoPreview");
+  
+  // Debug: Check if elements are found
+  console.log("Elements found:", {
+    uploadArea: !!uploadArea,
+    photoInput: !!photoInput,
+    photoPreview: !!photoPreview
+  });
   
   let uploadedFiles = [];
 
@@ -245,8 +259,12 @@ import Layout from "../layouts/Layout.astro";
   });
 
   // Photo upload functionality
-  uploadArea.addEventListener("click", () => {
+  uploadArea.addEventListener("click", (e) => {
+    console.log("Upload area clicked");
+    e.preventDefault();
+    e.stopPropagation();
     photoInput.click();
+    console.log("File input clicked");
   });
 
   uploadArea.addEventListener("dragover", (e) => {
@@ -267,6 +285,7 @@ import Layout from "../layouts/Layout.astro";
   });
 
   photoInput.addEventListener("change", (e) => {
+    console.log("File input changed", e.target.files);
     handleFiles(e.target.files);
   });
 
