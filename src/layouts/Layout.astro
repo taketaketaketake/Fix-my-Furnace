@@ -6,9 +6,19 @@ import "../styles/global.css";
 
 export interface Props {
   title: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
 }
 
-const { title } = Astro.props;
+const { 
+  title, 
+  description = "Professional furnace repair, installation, and HVAC services across Michigan. Licensed technicians serving Detroit, Grand Rapids, Ann Arbor, Lansing, and all Michigan cities. 24/7 emergency service.",
+  keywords = "furnace repair Michigan, HVAC services Detroit, furnace installation Grand Rapids, boiler repair Ann Arbor, heating contractors Lansing, emergency furnace service Michigan",
+  ogImage = "/Fix_My_Furnace_Hero_Image.png",
+  canonicalUrl = Astro.url.href
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -16,7 +26,92 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Fix My Furnace" />
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Fix My Furnace" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(ogImage, Astro.site).href} />
+    
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="US-MI" />
+    <meta name="geo.placename" content="Michigan" />
+    <meta name="ICBM" content="42.3314,-84.6001" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Fix My Furnace",
+        "description": "Professional furnace repair, installation, and HVAC services across Michigan",
+        "url": "https://fixmyfurnace.com",
+        "telephone": "+1-833-494-8669",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "MI",
+          "addressCountry": "US"
+        },
+        "areaServed": [
+          {
+            "@type": "State",
+            "name": "Michigan"
+          }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 42.3314,
+            "longitude": -84.6001
+          },
+          "geoRadius": "500000"
+        },
+        "services": [
+          "Furnace Repair",
+          "Furnace Installation", 
+          "Boiler Repair",
+          "HVAC Maintenance",
+          "Emergency Heating Service"
+        ],
+        "openingHours": "Mo-Su 00:00-23:59",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "HVAC Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Emergency Furnace Repair"
+              }
+            }
+          ]
+        }
+      }
+    </script>
   </head>
 
   <body class="antialiased text-gray-900 bg-white">
