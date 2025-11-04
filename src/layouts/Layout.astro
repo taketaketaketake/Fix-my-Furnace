@@ -1,5 +1,5 @@
 ---
-import TopBarCTA from "../components/TopBarCTA.astro";
+import TopBarPhotoDiagnosis from "../components/TopBarPhotoDiagnosis.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
@@ -10,6 +10,8 @@ export interface Props {
   keywords?: string;
   ogImage?: string;
   canonicalUrl?: string;
+  hideHeader?: boolean;
+  hideTopBanner?: boolean;
 }
 
 const { 
@@ -17,7 +19,9 @@ const {
   description = "Professional furnace repair, installation, and HVAC services across Michigan. Licensed technicians serving Detroit, Grand Rapids, Ann Arbor, Lansing, and all Michigan cities. 24/7 emergency service.",
   keywords = "furnace repair Michigan, HVAC services Detroit, furnace installation Grand Rapids, boiler repair Ann Arbor, heating contractors Lansing, emergency furnace service Michigan",
   ogImage = "https://fixmyfurnacedetroit.com/fixmyfurnacewoman.png",
-  canonicalUrl = Astro.url.href
+  canonicalUrl = Astro.url.href,
+  hideHeader = false,
+  hideTopBanner = false
 } = Astro.props;
 ---
 
@@ -116,13 +120,13 @@ const {
 
   <body class="antialiased text-gray-900 bg-white">
     <!-- 🚀 Global Top CTA Bar -->
-    <TopBarCTA />
+    {!hideTopBanner && <TopBarPhotoDiagnosis />}
 
     <!-- 🧭 Main Header -->
-    <Header />
+    {!hideHeader && <Header />}
 
     <!-- 📄 Page Content -->
-    <main id="main-content" class="pt-[160px] transition-all duration-300">
+    <main id="main-content" class={`transition-all duration-300 ${hideTopBanner ? 'pt-[100px]' : 'pt-[160px]'}`}>
       <slot />
     </main>
 

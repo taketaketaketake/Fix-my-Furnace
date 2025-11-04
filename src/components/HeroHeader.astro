@@ -113,7 +113,7 @@
       </div>
     </div>
 
-    <form class="space-y-4" name="appointment" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="appointmentForm">
+    <form class="space-y-4" id="appointmentForm">
       <!-- Hidden honeypot field for spam protection -->
       <div style="display: none;">
         <label>Don't fill this out if you're human: <input name="bot-field" /></label>
@@ -171,8 +171,15 @@
 </div>
 
   <!-- 🧠 Modal Script -->
-  <script>
+  <script type="module">
+    // Import Supabase from CDN for client-side use
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+    
     document.addEventListener("DOMContentLoaded", () => {
+      // Supabase configuration
+      const supabaseUrl = 'https://ztvsfapoeekaxztahxsv.supabase.co';
+      const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0dnNmYXBvZWVrYXh6dGFoeHN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxMDUzMDIsImV4cCI6MjA3NzY4MTMwMn0.4ff8bfxwEUlJN3JQ3QGsys-xB9Xqu8zUspJSvtzL06k';
+      const supabase = createClient(supabaseUrl, supabaseAnonKey);
       const modal = document.getElementById("quoteModal");
       const openBtn = document.getElementById("openModalBtn");
       const closeBtn = document.getElementById("closeModalBtn");
@@ -248,29 +255,47 @@
           setModalLoadingState(true);
           
           try {
-            // Create FormData from form
+            // Get form data
             const formData = new FormData(modalForm);
+            const name = formData.get('name')?.trim();
+            const phone = formData.get('phone')?.trim();
+            const message = formData.get('message')?.trim();
             
-            // Submit to Netlify
-            const response = await fetch('/', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-              body: new URLSearchParams(formData).toString()
-            });
-
-            if (response.ok) {
-              // Success
-              setModalLoadingState(false);
-              showModalMessage('success');
-              modalForm.reset(); // Clear form
-              
-              // Close modal after 3 seconds
-              setTimeout(() => closeModal(), 3000);
-            } else {
-              throw new Error('Network response was not ok');
+            // Basic validation
+            if (!name || !phone || !message) {
+              throw new Error('Please fill in all required fields');
             }
+            
+            // Save to Supabase database
+            const { data, error } = await supabase
+              .from('form_submissions')
+              .insert([
+                {
+                  full_name: name,
+                  phone_number: phone,
+                  service_address: '',
+                  furnace_issue: message,
+                  photo_count: 0,
+                  photo_urls: [],
+                  form_source: 'hero_modal'
+                }
+              ]);
+            
+            if (error) {
+              console.error('Error saving form:', error);
+              throw new Error('Failed to submit form');
+            }
+            
+            // Success
+            setModalLoadingState(false);
+            showModalMessage('success');
+            modalForm.reset(); // Clear form
+            
+            // Close modal after 3 seconds
+            setTimeout(() => closeModal(), 3000);
+            
           } catch (error) {
-            // Error
+            console.error('Submission error:', error);
             setModalLoadingState(false);
             showModalMessage('error');
             
