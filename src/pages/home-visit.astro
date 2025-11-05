@@ -664,6 +664,7 @@ import Layout from "../layouts/Layout.astro";
     function showMessage(messageType) {
       successMessage.classList.add('hidden');
       errorMessage.classList.add('hidden');
+      formMessages.classList.remove('hidden');
       document.getElementById(messageType + 'Message').classList.remove('hidden');
       document.getElementById(messageType + 'Message').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
