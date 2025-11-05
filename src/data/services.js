@@ -19,7 +19,7 @@ export const services = [
       subtitle: "Expert Installs Done Right.",
       description:
         "We don’t just drop off a unit — we handle every detail, from sizing to setup, ensuring your home heats evenly and efficiently all winter long.",
-      heroImage: "/furnace-installation.jpg",
+      heroImage: "/furnace_installation_michigan.png",
       features: [
         { icon: "settings", title: "Precision Setup", text: "Installed and calibrated by experienced techs." },
         { icon: "thermometer-sun", title: "Energy Efficient", text: "Save money and stay comfortable with top brands." },
@@ -33,7 +33,7 @@ export const services = [
       subtitle: "Heat That Never Quits.",
       description:
         "From Detroit to Traverse City, we fix boilers fast — restoring steady, reliable heat and keeping Michigan families comfortable through every cold front.",
-      heroImage: "/boiler-repair.jpg",
+      heroImage: "/repair.png",
       features: [
         { icon: "flame", title: "Steam & Water Systems", text: "Full expertise in all major boiler types." },
         { icon: "tools", title: "Precision Diagnostics", text: "We identify and fix issues fast." },

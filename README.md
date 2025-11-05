@@ -198,3 +198,13 @@ it's definitely possible to set up an ML algorithm for dynamic page title genera
   - Search keywords, conversion metrics
 
   Would you like me to implement a basic version starting with A/B testing or go straight to an ML-powered solution?
+
+
+Some options:
+  - "Fix Your Furnace the Right Way"
+  - "Get Your Furnace Running Again"
+  - "Expert Furnace Repair You Can Trust"
+  - "Stop Freezing - Fix Your Furnace"
+  - "Professional Furnace Repair Service"
+  - "Get Your Heating Back On Track"
+  - "Reliable Furnace Repair Service"
