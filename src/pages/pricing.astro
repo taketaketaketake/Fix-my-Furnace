@@ -458,29 +458,102 @@ import Layout from "../layouts/Layout.astro";
   </section>
 
   <!-- CTA -->
-  <section class="py-20 px-6 md:px-10 bg-white text-center">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">
-        Ready for Honest Pricing?
-      </h2>
-      <p class="text-xl text-gray-700 mb-8">
-        Get a free, no-pressure evaluation. We'll explain exactly what's wrong and give you options that fit your budget.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="/home-visit"
-          class="bg-red-600 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:bg-red-700 hover:scale-[1.02] transition-all"
-        >
-          Schedule $125 Home Visit
-        </a>
-        <a
-          href="tel:+18334948669"
-          class="border-2 border-gray-300 text-gray-800 font-bold px-8 py-4 rounded-xl text-lg hover:border-red-600 hover:text-red-600 transition-all"
-        >
-          Call (833) FIX-IT-NOW
-        </a>
+  <section class="py-20 px-6 md:px-10 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+          Ready for Honest Pricing?
+        </h2>
+        <p class="text-xl text-gray-700">
+          Get a free, no-pressure evaluation. We'll explain exactly what's wrong and give you options that fit your budget.
+        </p>
       </div>
-      <p class="text-sm text-gray-500 mt-6">
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Option 1: $125 Diagnosis Visit -->
+        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-xl hover:border-red-300 transition-all duration-300">
+          <div class="text-center mb-6">
+            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Professional Home Visit</h3>
+            <p class="text-lg font-semibold text-red-600 mb-4">$125 Diagnosis</p>
+          </div>
+
+          <ul class="space-y-3 text-gray-700 mb-6">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Licensed technician comes to your home</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Complete system analysis</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Written assessment & recommendations</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Transparent pricing for repairs</span>
+            </li>
+          </ul>
+
+          <div class="space-y-3">
+            <a
+              href="/home-visit"
+              class="block w-full bg-red-600 text-white font-bold px-6 py-4 rounded-xl text-lg text-center shadow-lg hover:bg-red-700 hover:scale-[1.02] transition-all"
+            >
+              Schedule Home Visit
+            </a>
+          </div>
+        </div>
+
+        <!-- Option 2: Upload Images & Talk to Tech -->
+        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-xl hover:border-red-300 transition-all duration-300">
+          <div class="text-center mb-6">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Quick Assessment</h3>
+            <p class="text-lg font-semibold text-blue-600 mb-4">Upload Images & Chat</p>
+          </div>
+
+          <ul class="space-y-3 text-gray-700 mb-6">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Upload photos of your system</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Talk directly with HVAC technician</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Get preliminary assessment</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Fast response within hours</span>
+            </li>
+          </ul>
+
+          <div class="space-y-3">
+            <a
+              href="/furnace-diagnosis"
+              class="block w-full bg-blue-600 text-white font-bold px-6 py-4 rounded-xl text-lg text-center shadow-lg hover:bg-blue-700 hover:scale-[1.02] transition-all"
+            >
+              Upload Images & Chat
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-sm text-gray-500 mt-8 text-center">
         Licensed, insured, and serving all of Michigan since day one.
       </p>
     </div>
