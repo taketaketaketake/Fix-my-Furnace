@@ -110,19 +110,86 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </section>
 
-  <!-- OUR APPROACH -->
-  <section class="py-20 px-6 md:px-10 bg-red-600 text-white text-center">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-8">Our Approach: You Choose the Level of Service</h2>
-      <div class="bg-white/10 rounded-2xl p-8 backdrop-blur-md shadow-lg">
-        <p class="text-xl md:text-2xl leading-relaxed mb-6">
-          We send out a licensed service technician and provide <strong>exactly the level of service you want.</strong>
-        </p>
-        <p class="text-lg leading-relaxed text-red-100">
-          Need emergency repairs to get heat back fast? We can work like Option A.<br />
-          Want premium equipment with financing options? We can work like Option B.<br />
-          <strong>You decide. We adapt.</strong>
-        </p>
+  <!-- HOW WE'RE DIFFERENT -->
+  <section class="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-6 md:px-10">
+      <div class="text-center mb-12">
+            <div class="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              How We're Different
+            </div>
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
+              We Match You with the <span class="text-red-400">Right Service Provider</span>
+            </h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Unlike traditional HVAC companies, we don't push what works best for us. We prioritize what works best for you.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <!-- Step 1 -->
+            <div class="text-center">
+              <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-2xl font-bold text-white">1</span>
+              </div>
+              <h3 class="text-xl font-bold mb-3">$125 Professional Diagnosis</h3>
+              <p class="text-gray-300 leading-relaxed">
+                We send out a licensed service technician to diagnose exactly what's wrong with your system.
+              </p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="text-center">
+              <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-2xl font-bold text-white">2</span>
+              </div>
+              <h3 class="text-xl font-bold mb-3">Match You with the Right Provider</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Based on your needs and budget, we connect you with the appropriate service provider from our network.
+              </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="text-center">
+              <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-2xl font-bold text-white">3</span>
+              </div>
+              <h3 class="text-xl font-bold mb-3">You Choose Your Experience</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Whether you want budget-friendly repairs or premium service, we recommend what's truly best for you.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-white/10 rounded-2xl p-6 backdrop-blur">
+            <div class="flex items-start gap-4">
+              <svg class="w-8 h-8 text-red-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+              <div>
+                <h4 class="text-xl font-bold mb-2">Our Rich Network of Service Providers</h4>
+                <p class="text-gray-300 leading-relaxed">
+                  We work with independent specialists, full-service companies, and everything in between. 
+                  This means we can match you with exactly the right fit for your situation and budget — 
+                  not just whoever pays us the highest commission.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        <div class="text-center mt-8">
+          <a 
+            href="/home-visit" 
+            class="inline-flex items-center gap-2 bg-red-600 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:bg-red-700 hover:scale-[1.02] transition-all"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+            Schedule Your $125 Diagnosis
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -182,4 +249,29 @@ import Layout from "../layouts/Layout.astro";
   <!-- CTA -->
   <section class="py-20 px-6 md:px-10 bg-white text-center">
     <div class="max-w-4xl mx-auto">
-      <h2
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">
+        Ready for Honest Pricing?
+      </h2>
+      <p class="text-xl text-gray-700 mb-8">
+        Get a free, no-pressure evaluation. We'll explain exactly what's wrong and give you options that fit your budget.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/home-visit"
+          class="bg-red-600 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:bg-red-700 hover:scale-[1.02] transition-all"
+        >
+          Schedule $125 Home Visit
+        </a>
+        <a
+          href="tel:+18334948669"
+          class="border-2 border-gray-300 text-gray-800 font-bold px-8 py-4 rounded-xl text-lg hover:border-red-600 hover:text-red-600 transition-all"
+        >
+          Call (833) FIX-IT-NOW
+        </a>
+      </div>
+      <p class="text-sm text-gray-500 mt-6">
+        Licensed, insured, and serving all of Michigan since day one.
+      </p>
+    </div>
+  </section>
+</Layout>
