@@ -8,9 +8,10 @@ import Layout from "../layouts/Layout.astro";
 >
   <!-- 🔥 Hero / Lead Form Section -->
   <section
-    class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-red-50 via-white to-gray-50 text-center px-6 pt-16 pb-16"
+    class="min-h-screen bg-gradient-to-br from-red-50 via-white to-gray-50 px-6 pt-16 pb-16"
   >
-    <div class="max-w-3xl mx-auto">
+    <!-- Header -->
+    <div class="max-w-6xl mx-auto text-center mb-12">
       <h1
         id="heroTitle"
         class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight"
@@ -21,13 +22,18 @@ import Layout from "../layouts/Layout.astro";
 
       <p
         id="heroSubtitle"
-        class="text-lg md:text-xl text-gray-700 font-semibold mb-10 max-w-2xl mx-auto"
+        class="text-lg md:text-xl text-gray-700 font-semibold mb-10 max-w-3xl mx-auto"
       >
         Upload photos of your furnace and our expert technicians will diagnose the problem and provide a free estimate - no house call needed.
       </p>
     </div>
 
-    <!-- 🧾 Lead Form -->
+    <!-- Two Column Layout -->
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+      
+      <!-- Left Column: Form -->
+      <div class="flex justify-center">
+        <!-- 🧾 Lead Form -->
     <form
       id="leadForm"
       class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md text-left border border-gray-100"
@@ -80,7 +86,7 @@ import Layout from "../layouts/Layout.astro";
                 <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
               <p class="text-sm font-medium">Click to upload photos or drag and drop</p>
-              <p class="text-xs text-gray-400 mt-1">PNG, JPG up to 10MB each</p>
+              <p class="text-xs text-gray-400 mt-1">PNG, JPG up to 8MB each</p>
             </div>
             <input 
               type="file" 
@@ -191,6 +197,77 @@ import Layout from "../layouts/Layout.astro";
         </div>
       </div>
     </form>
+      </div>
+
+      <!-- Right Column: Photo Guide -->
+      <div class="flex flex-col justify-center space-y-8">
+        <div class="text-center mb-6">
+          <h2 class="text-2xl font-bold text-gray-900 mb-2">How to Take Great Photos</h2>
+          <p class="text-gray-600">Follow these simple steps for the best diagnosis</p>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-2xl border border-gray-200">
+          <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+            <span class="text-xl font-bold text-red-600">1</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Find Your Furnace</h3>
+            <p class="text-gray-600 mb-3">Locate your furnace in the basement, utility room, or mechanical room. Make sure the area is well-lit.</p>
+            <div class="bg-gray-50 rounded-lg p-4 text-center">
+              <img src="/furnace-straight.png" alt="Furnace example" class="w-full h-full object-cover rounded">
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-2xl border border-gray-200">
+          <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+            <span class="text-xl font-bold text-red-600">2</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Take Clear Photos</h3>
+            <p class="text-gray-600 mb-3">Take 2-3 photos from different angles. Include the model/serial number plate if visible.</p>
+            <div class="bg-gray-50 rounded-lg p-4 text-center">
+              <img src="/furnace-closeup.png" alt="Furnace close-up photo example" class="w-full h-full object-cover rounded">
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-2xl border border-gray-200">
+          <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+            <span class="text-xl font-bold text-red-600">3</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Upload & Get Results</h3>
+            <p class="text-gray-600 mb-3">Upload your photos and we'll diagnose the issue within minutes. No house call needed!</p>
+            <div 
+              id="step3UploadArea"
+              class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-red-500 transition-colors cursor-pointer bg-white"
+            >
+              <div class="text-gray-500">
+                <svg class="mx-auto h-12 w-12 text-gray-400 mb-2" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                  <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <p class="text-sm font-medium">Click to upload photos or drag and drop</p>
+                <p class="text-xs text-gray-400 mt-1">PNG, JPG up to 8MB each</p>
+              </div>
+              <input 
+                type="file" 
+                id="step3PhotoInput"
+                multiple 
+                accept="image/*"
+                style="position: absolute; left: -9999px; opacity: 0;"
+              />
+            </div>
+            
+            <!-- Photo Preview Area for Step 3 -->
+            <div id="step3PhotoPreview" class="mt-3 grid grid-cols-2 gap-2 hidden"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ✅ Trust Bar -->
     <div
@@ -251,6 +328,9 @@ import Layout from "../layouts/Layout.astro";
   const photoCountSpan = document.getElementById("photoCount");
   const photoInput = document.getElementById("photoInput");
   const photoPreview = document.getElementById("photoPreview");
+  const step3UploadArea = document.getElementById("step3UploadArea");
+  const step3PhotoInput = document.getElementById("step3PhotoInput");
+  const step3PhotoPreview = document.getElementById("step3PhotoPreview");
   
   // Debug: Check if elements are found
   console.log("Elements found:", {
@@ -316,13 +396,52 @@ import Layout from "../layouts/Layout.astro";
     handleFiles(e.target.files);
   });
 
+  // Step 3 upload functionality
+  step3UploadArea.addEventListener("click", (e) => {
+    step3PhotoInput.click();
+  });
+
+  step3UploadArea.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    step3UploadArea.classList.add("border-red-500", "bg-red-50");
+  });
+
+  step3UploadArea.addEventListener("dragleave", (e) => {
+    e.preventDefault();
+    step3UploadArea.classList.remove("border-red-500", "bg-red-50");
+  });
+
+  step3UploadArea.addEventListener("drop", (e) => {
+    e.preventDefault();
+    step3UploadArea.classList.remove("border-red-500", "bg-red-50");
+    const files = e.dataTransfer.files;
+    handleFilesStep3(files);
+  });
+
+  step3PhotoInput.addEventListener("change", (e) => {
+    handleFilesStep3(e.target.files);
+  });
+
   function handleFiles(files) {
     Array.from(files).forEach(file => {
-      if (file.type.startsWith("image/") && file.size <= 10 * 1024 * 1024) {
+      if (file.type.startsWith("image/") && file.size <= 8 * 1024 * 1024) {
         uploadedFiles.push(file);
         createPreview(file);
+        createStep3Preview(file);
       } else {
-        alert("Please upload images under 10MB only.");
+        alert("Please upload images under 8MB only.");
+      }
+    });
+  }
+
+  function handleFilesStep3(files) {
+    Array.from(files).forEach(file => {
+      if (file.type.startsWith("image/") && file.size <= 8 * 1024 * 1024) {
+        uploadedFiles.push(file);
+        createPreview(file);
+        createStep3Preview(file);
+      } else {
+        alert("Please upload images under 8MB only.");
       }
     });
   }
@@ -334,7 +453,7 @@ import Layout from "../layouts/Layout.astro";
       preview.className = "relative group";
       preview.innerHTML = `
         <img src="${e.target.result}" class="w-full h-20 object-cover rounded-lg border">
-        <button type="button" onclick="removePhoto(this)" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center hover:bg-red-600">×</button>
+        <button type="button" onclick="removePhoto(this, 'main')" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center hover:bg-red-600">×</button>
       `;
       photoPreview.appendChild(preview);
       photoPreview.classList.remove("hidden");
@@ -342,13 +461,47 @@ import Layout from "../layouts/Layout.astro";
     reader.readAsDataURL(file);
   }
 
-  function removePhoto(button) {
+  function createStep3Preview(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const preview = document.createElement("div");
+      preview.className = "relative group";
+      preview.innerHTML = `
+        <img src="${e.target.result}" class="w-full h-20 object-cover rounded-lg border">
+        <button type="button" onclick="removePhoto(this, 'step3')" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center hover:bg-red-600">×</button>
+      `;
+      step3PhotoPreview.appendChild(preview);
+      step3PhotoPreview.classList.remove("hidden");
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function removePhoto(button, source) {
     const preview = button.parentElement;
-    const index = Array.from(photoPreview.children).indexOf(preview);
+    let index;
+    
+    if (source === 'main') {
+      index = Array.from(photoPreview.children).indexOf(preview);
+      // Remove corresponding preview from step3
+      const step3Previews = step3PhotoPreview.children;
+      if (step3Previews[index]) {
+        step3Previews[index].remove();
+      }
+    } else {
+      index = Array.from(step3PhotoPreview.children).indexOf(preview);
+      // Remove corresponding preview from main
+      const mainPreviews = photoPreview.children;
+      if (mainPreviews[index]) {
+        mainPreviews[index].remove();
+      }
+    }
+    
     uploadedFiles.splice(index, 1);
     preview.remove();
+    
     if (uploadedFiles.length === 0) {
       photoPreview.classList.add("hidden");
+      step3PhotoPreview.classList.add("hidden");
     }
   }
 
