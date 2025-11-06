@@ -353,6 +353,41 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
   
   let uploadedFiles = [];
 
+  // Phone number formatting and validation
+  function formatPhoneNumber(value) {
+    const phoneNumber = value.replace(/[^\d]/g, '');
+    const phoneNumberLength = phoneNumber.length;
+    
+    if (phoneNumberLength < 4) return phoneNumber;
+    if (phoneNumberLength < 7) {
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    }
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+  }
+
+  function validatePhoneNumber(phone) {
+    const phoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
+    return phoneRegex.test(phone) && phone.replace(/[^\d]/g, '').length === 10;
+  }
+
+  // Add phone input event listeners
+  phoneInput.addEventListener('keydown', (e) => {
+    // Allow backspace, delete, tab, escape, enter, and arrow keys
+    if ([8, 9, 27, 13, 37, 38, 39, 40, 46].includes(e.keyCode) ||
+        // Allow Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+        (e.ctrlKey && [65, 67, 86, 88].includes(e.keyCode))) {
+      return;
+    }
+    // Ensure that it's a number and stop the keypress
+    if ((e.shiftKey || e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)) {
+      e.preventDefault();
+    }
+  });
+
+  phoneInput.addEventListener('input', (e) => {
+    e.target.value = formatPhoneNumber(e.target.value);
+  });
+
   nextStep.addEventListener("click", () => {
     const issueSelected = document.getElementById("issue").value;
     if (!issueSelected) {
@@ -645,6 +680,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
     const phone = phoneInput.value.trim();
     const address = addressInput.value.trim();
     const issue = document.getElementById("issue").value;
+    const message = document.getElementById("message").value.trim();
     
     if (!name) {
       alert("Please enter your full name.");
@@ -652,6 +688,10 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
     }
     if (!phone) {
       alert("Please enter your phone number.");
+      return;
+    }
+    if (!validatePhoneNumber(phone)) {
+      alert("Please enter a valid phone number in format (123) 456-7890");
       return;
     }
     if (!address) {
@@ -701,7 +741,8 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
             name: name,
             phone: phone,
             address: address,
-            issue: issue
+            issue: issue,
+            message: message
           },
           formSource: 'furnace_diagnosis',
           photoUrls: photoUrls,
