@@ -1,0 +1,178 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Fix My Furnace Detroit | Same-Day Furnace Repair">
+  <!-- 🔥 Hero / Lead Form Section -->
+  <section
+    class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-red-50 via-white to-gray-50 text-center px-6 pt-16 pb-16"
+  >
+    <div class="max-w-3xl mx-auto">
+      <h1
+        class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight"
+      >
+        <span class="text-red-600">No Heat?</span> We’ll Fix Your Furnace
+        <span class="underline decoration-red-600">Today.</span>
+      </h1>
+
+      <p
+        class="text-lg md:text-xl text-gray-700 font-semibold mb-10 max-w-2xl mx-auto"
+      >
+        Fast, licensed, same-day furnace repair from local Metro Detroit HVAC
+        pros. Reliable. Honest. Built on Detroit grit.
+      </p>
+    </div>
+
+    <!-- 🧾 Lead Form -->
+    <form
+      id="leadForm"
+      class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md text-left border border-gray-100"
+    >
+      <!-- Step 1 -->
+      <div id="step1" class="space-y-5">
+        <div>
+          <label
+            for="zip"
+            class="block font-bold text-gray-800 mb-2 text-sm uppercase tracking-wide"
+            >Enter Your ZIP Code</label
+          >
+          <input
+            type="text"
+            id="zip"
+            maxlength="5"
+            placeholder="e.g. 48226"
+            class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-red-500 focus:border-red-500 text-base"
+          />
+        </div>
+
+        <button
+          type="button"
+          id="nextStep"
+          class="w-full bg-red-600 text-white font-bold py-3 rounded-lg shadow hover:bg-red-700 active:scale-[0.98] transition"
+        >
+          Check Availability
+        </button>
+      </div>
+
+      <!-- Step 2 -->
+      <div id="step2" class="hidden space-y-4">
+        <div>
+          <label
+            class="block font-bold text-gray-800 mb-2 text-sm uppercase tracking-wide"
+            >What’s happening with your furnace?</label
+          >
+          <select
+            id="issue"
+            class="w-full border border-gray-300 rounded-lg p-3 text-base focus:ring-2 focus:ring-red-500 focus:border-red-500"
+          >
+            <option value="">Select an issue...</option>
+            <option>It won't turn on</option>
+            <option>It's blowing cold air</option>
+            <option>Strange noises</option>
+            <option>Old or unreliable</option>
+            <option>Not sure</option>
+          </select>
+        </div>
+
+        <div>
+          <label
+            class="block font-bold text-gray-800 mb-2 text-sm uppercase tracking-wide"
+            >When do you need service?</label
+          >
+          <select
+            id="urgency"
+            class="w-full border border-gray-300 rounded-lg p-3 text-base focus:ring-2 focus:ring-red-500 focus:border-red-500"
+          >
+            <option value="">Select...</option>
+            <option>Today</option>
+            <option>Tomorrow</option>
+            <option>This week</option>
+            <option>Within the next 30 days</option>
+            <option>Within the next 90 days</option>
+            <option>Just getting quotes</option>
+          </select>
+        </div>
+
+        <input
+          type="text"
+          id="name"
+          placeholder="Full Name"
+          class="w-full border border-gray-300 rounded-lg p-3 text-base focus:ring-2 focus:ring-red-500 focus:border-red-500"
+        />
+
+        <input
+          type="tel"
+          id="phone"
+          placeholder="Phone Number"
+          class="w-full border border-gray-300 rounded-lg p-3 text-base focus:ring-2 focus:ring-red-500 focus:border-red-500"
+        />
+
+        <input
+          type="email"
+          id="email"
+          placeholder="Email Address"
+          class="w-full border border-gray-300 rounded-lg p-3 text-base focus:ring-2 focus:ring-red-500 focus:border-red-500"
+        />
+
+        <button
+          type="submit"
+          class="w-full bg-red-600 text-white font-bold py-3 rounded-lg shadow hover:bg-red-700 active:scale-[0.98] transition"
+        >
+          Get My Furnace Fixed
+        </button>
+      </div>
+    </form>
+
+    <!-- ✅ Trust Bar -->
+    <div
+      class="flex flex-wrap justify-center gap-6 mt-10 text-sm md:text-base font-semibold text-gray-700"
+    >
+      <div class="flex items-center gap-2">
+        <i class="text-red-600">🏠</i> Detroit Local
+      </div>
+      <div class="flex items-center gap-2">
+        <i class="text-red-600">🕒</i> Same-Day Service
+      </div>
+      <div class="flex items-center gap-2">
+        <i class="text-red-600">✅</i> Licensed & Insured
+      </div>
+    </div>
+
+    <!-- 🧭 Background Accent -->
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-red-50/20 via-transparent to-gray-50 pointer-events-none -z-10"
+    ></div>
+  </section>
+
+  <!-- ⚙️ Footer -->
+  <footer class="bg-gray-900 text-gray-300 text-center text-sm py-6 mt-10">
+    <p>© 2025 Fix My Furnace Detroit. All rights reserved.</p>
+  </footer>
+</Layout>
+
+<!-- 🧠 Script -->
+<script>
+  const zipInput = document.getElementById("zip");
+  const step1 = document.getElementById("step1");
+  const step2 = document.getElementById("step2");
+  const nextStep = document.getElementById("nextStep");
+  const form = document.getElementById("leadForm");
+
+  nextStep.addEventListener("click", () => {
+    const zip = zipInput.value.trim();
+    if (!zip || zip.length !== 5) {
+      alert("Please enter a valid ZIP code.");
+      return;
+    }
+    step1.classList.add("hidden");
+    step2.classList.remove("hidden");
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("Thanks! A local tech will reach out shortly.");
+    form.reset();
+    step2.classList.add("hidden");
+    step1.classList.remove("hidden");
+  });
+</script>
