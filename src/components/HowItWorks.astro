@@ -1,0 +1,110 @@
+---
+/**
+ * HowItWorks.astro
+ * Simple 3-step process to show how easy it is
+ */
+---
+
+<section class="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+  <div class="container mx-auto px-6 max-w-6xl">
+
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+        Getting Your Heat Back is <span class="text-red-600">This Simple</span>
+      </h2>
+      <p class="text-xl text-gray-600">
+        Three easy steps from cold to cozy.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="grid md:grid-cols-3 gap-12 relative">
+
+      <!-- Connecting Line (Desktop Only) -->
+      <div class="hidden md:block absolute top-24 left-0 right-0 h-1 bg-gradient-to-r from-red-200 via-red-300 to-red-200 z-0" style="width: 80%; margin: 0 10%;"></div>
+
+      <!-- Step 1 -->
+      <div class="relative z-10">
+        <div class="bg-white rounded-2xl shadow-xl p-8 border-2 border-red-100 hover:border-red-300 transition-colors">
+          <!-- Number Badge -->
+          <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-orange-600 rounded-full flex items-center justify-center text-white text-2xl font-black mb-6 mx-auto shadow-lg">
+            1
+          </div>
+
+          <!-- Icon -->
+          <div class="w-20 h-20 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <svg class="w-10 h-10 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+            </svg>
+          </div>
+
+          <h3 class="text-2xl font-bold text-gray-900 mb-3 text-center">Call or Book Online</h3>
+          <p class="text-gray-600 text-center leading-relaxed">
+            Reach out by phone or schedule your <strong>$125 home diagnosis</strong> online. We respond within minutes.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="relative z-10">
+        <div class="bg-white rounded-2xl shadow-xl p-8 border-2 border-red-100 hover:border-red-300 transition-colors">
+          <!-- Number Badge -->
+          <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-orange-600 rounded-full flex items-center justify-center text-white text-2xl font-black mb-6 mx-auto shadow-lg">
+            2
+          </div>
+
+          <!-- Icon -->
+          <div class="w-20 h-20 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <svg class="w-10 h-10 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+
+          <h3 class="text-2xl font-bold text-gray-900 mb-3 text-center">We Arrive Fast</h3>
+          <p class="text-gray-600 text-center leading-relaxed">
+            A licensed technician arrives at your home, typically <strong>within 2 hours</strong>. Same-day service available.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="relative z-10">
+        <div class="bg-white rounded-2xl shadow-xl p-8 border-2 border-red-100 hover:border-red-300 transition-colors">
+          <!-- Number Badge -->
+          <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-orange-600 rounded-full flex items-center justify-center text-white text-2xl font-black mb-6 mx-auto shadow-lg">
+            3
+          </div>
+
+          <!-- Icon -->
+          <div class="w-20 h-20 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <svg class="w-10 h-10 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+
+          <h3 class="text-2xl font-bold text-gray-900 mb-3 text-center">Fixed Right, First Time</h3>
+          <p class="text-gray-600 text-center leading-relaxed">
+            We diagnose, give you <strong>transparent pricing</strong>, and fix it right. Your heat is back on, guaranteed.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-16 text-center">
+      <a
+        href="/home-visit"
+        class="inline-flex items-center gap-3 bg-gradient-to-r from-red-600 to-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl hover:shadow-red-600/50 transform hover:scale-105 transition-all"
+      >
+        Start With $125 Diagnosis
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+      <p class="text-sm text-gray-500 mt-4">Fee credited toward repairs • No hidden charges</p>
+    </div>
+
+  </div>
+</section>

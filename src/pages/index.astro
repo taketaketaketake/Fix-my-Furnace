@@ -1,38 +1,46 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ModernHeroHeader from "../components/ModernHeroHeader.astro";
-import WhyChooseUs from "../components/WhyChooseUs.astro";
-import GetQuoteSection from "../components/GetQuoteSection.astro";
-import GallerySection from "../components/GallerySection.astro";
-import TestimonialsSection from "../components/TestimonialsSection.astro";
-import ServiceAreasSection from "../components/ServiceAreasSection.astro";
+import TrustBar from "../components/TrustBar.astro";
+import ProblemSection from "../components/ProblemSection.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import ServicesGrid from "../components/ServicesGrid.astro";
+import BenefitsSection from "../components/BenefitsSection.astro";
+import TestimonialsModern from "../components/TestimonialsModern.astro";
+import FAQSection from "../components/FAQSection.astro";
 import HomeVisitCTA from "../components/HomeVisitCTA.astro";
 ---
 
-<Layout 
+<Layout
   title="Furnace Repair Michigan | HVAC Services Detroit, Grand Rapids, Ann Arbor | Fix My Furnace"
   description="Professional furnace repair, boiler service, installation & HVAC services across Michigan. Serving Detroit, Grand Rapids, Ann Arbor, Lansing & all Michigan cities. Licensed technicians, 24/7 emergency service, free quotes."
   keywords="furnace repair Michigan, boiler repair Michigan, HVAC contractors Detroit, furnace installation Grand Rapids, boiler service Ann Arbor, heating service Lansing, emergency furnace repair Michigan, licensed HVAC technicians"
 >
-  <!-- 🦸‍♂️ Modern Hero Header -->
+  <!-- 🦸 Modern Hero with dramatic impact -->
   <ModernHeroHeader />
 
-  <!-- 🗺️ Service Areas -->
-  <ServiceAreasSection />
+  <!-- 📊 Quick trust indicators -->
+  <TrustBar />
 
-  <!-- 🏗️ Services Gallery -->
-  <GallerySection />
+  <!-- 😰 Problem/Pain Points Section -->
+  <ProblemSection />
 
-  <!-- 💪 About / Why Choose Us -->
-  <WhyChooseUs />
+  <!-- 🔧 How It Works - Simple 3-step process -->
+  <HowItWorks />
 
-  <!-- 💬 Testimonials -->
-  <TestimonialsSection />
+  <!-- 🛠️ Services Overview -->
+  <ServicesGrid />
 
-  <!-- 🧾 Get Quote section -->
-  <GetQuoteSection />
+  <!-- ⭐ Why Choose Us / Benefits -->
+  <BenefitsSection />
 
-  <!-- 🏠 Home Visit CTA -->
+  <!-- 💬 Customer Testimonials -->
+  <TestimonialsModern />
+
+  <!-- ❓ FAQ Section -->
+  <FAQSection />
+
+  <!-- 🚀 Final CTA - Home Visit Offer -->
   <HomeVisitCTA />
 
 </Layout>

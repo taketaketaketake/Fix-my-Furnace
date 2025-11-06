@@ -1,0 +1,129 @@
+---
+/**
+ * TestimonialsModern.astro
+ * Customer testimonials with ratings
+ */
+---
+
+<section class="py-20 bg-gradient-to-br from-red-50 via-white to-orange-50">
+  <div class="container mx-auto px-6 max-w-7xl">
+
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+        Real Michigan Families, <span class="text-red-600">Real Results</span>
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Don't just take our word for it — see what your neighbors are saying.
+      </p>
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div class="grid md:grid-cols-3 gap-8 mb-12">
+
+      <!-- Testimonial 1 -->
+      <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+        <!-- Stars -->
+        <div class="flex gap-1 mb-4">
+          {[...Array(5)].map(() => (
+            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+          ))}
+        </div>
+
+        <!-- Quote -->
+        <p class="text-gray-700 mb-6 leading-relaxed italic">
+          "Our furnace died at 2 AM on the coldest night of the year. They had someone here by 6 AM and fixed it in under an hour. Absolute lifesavers!"
+        </p>
+
+        <!-- Author -->
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-600 font-bold text-xl">
+            S
+          </div>
+          <div>
+            <div class="font-bold text-gray-900">Sarah M.</div>
+            <div class="text-sm text-gray-500">Detroit, MI</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+        <!-- Stars -->
+        <div class="flex gap-1 mb-4">
+          {[...Array(5)].map(() => (
+            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+          ))}
+        </div>
+
+        <!-- Quote -->
+        <p class="text-gray-700 mb-6 leading-relaxed italic">
+          "Finally, an HVAC company that doesn't try to upsell you on stuff you don't need. Honest, fair pricing and great work. We'll never call anyone else."
+        </p>
+
+        <!-- Author -->
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-600 font-bold text-xl">
+            M
+          </div>
+          <div>
+            <div class="font-bold text-gray-900">Mike & Karen T.</div>
+            <div class="text-sm text-gray-500">Grand Rapids, MI</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+        <!-- Stars -->
+        <div class="flex gap-1 mb-4">
+          {[...Array(5)].map(() => (
+            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+          ))}
+        </div>
+
+        <!-- Quote -->
+        <p class="text-gray-700 mb-6 leading-relaxed italic">
+          "The technician explained everything in plain English, showed me photos of the problem, and gave me options. Professional, respectful, and fast. Highly recommend!"
+        </p>
+
+        <!-- Author -->
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-600 font-bold text-xl">
+            J
+          </div>
+          <div>
+            <div class="font-bold text-gray-900">Jennifer L.</div>
+            <div class="text-sm text-gray-500">Ann Arbor, MI</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Trust badges -->
+    <div class="flex flex-wrap justify-center items-center gap-8 text-center">
+      <div>
+        <div class="text-3xl font-black text-red-600">1,247+</div>
+        <div class="text-sm text-gray-600 font-semibold">Five-Star Reviews</div>
+      </div>
+      <div class="h-12 w-px bg-gray-300 hidden md:block"></div>
+      <div>
+        <div class="text-3xl font-black text-red-600">98%</div>
+        <div class="text-sm text-gray-600 font-semibold">Customer Satisfaction</div>
+      </div>
+      <div class="h-12 w-px bg-gray-300 hidden md:block"></div>
+      <div>
+        <div class="text-3xl font-black text-red-600">A+</div>
+        <div class="text-sm text-gray-600 font-semibold">BBB Rating</div>
+      </div>
+    </div>
+
+  </div>
+</section>
