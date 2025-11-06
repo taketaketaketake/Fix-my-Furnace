@@ -97,7 +97,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
               id="photoInput"
               multiple 
               accept="image/*"
-              style="position: absolute; left: -9999px; opacity: 0;"
+              style="display: none;"
             />
           </div>
 
@@ -274,7 +274,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
                 id="step3PhotoInput"
                 multiple 
                 accept="image/*"
-                style="position: absolute; left: -9999px; opacity: 0;"
+                style="display: none;"
               />
             </div>
             
@@ -318,37 +318,38 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
 
 <!-- 🧠 Script -->
 <script define:vars={{ SUPABASE_URL, SUPABASE_ANON_KEY, MAPBOX_TOKEN }}>
-  // Import Supabase from CDN for client-side use
-  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-  
-  // Create Supabase client from environment variables
-  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  const STORAGE_BUCKET = 'Furnace Diagnosis Images';
-  const nameInput = document.getElementById("name");
-  const phoneInput = document.getElementById("phone");
-  const addressInput = document.getElementById("address");
-  const addressSuggestions = document.getElementById("addressSuggestions");
-  const step1 = document.getElementById("step1");
-  const step2 = document.getElementById("step2");
-  const nextStep = document.getElementById("nextStep");
-  const form = document.getElementById("leadForm");
-  const heroTitle = document.getElementById("heroTitle");
-  const heroSubtitle = document.getElementById("heroSubtitle");
-  const uploadArea = document.getElementById("uploadArea");
-  const successMessage = document.getElementById("successMessage");
-  const photoCountSpan = document.getElementById("photoCount");
-  const photoInput = document.getElementById("photoInput");
-  const photoPreview = document.getElementById("photoPreview");
-  const step3UploadArea = document.getElementById("step3UploadArea");
-  const step3PhotoInput = document.getElementById("step3PhotoInput");
-  const step3PhotoPreview = document.getElementById("step3PhotoPreview");
-  
-  // Debug: Check if elements are found
-  console.log("Elements found:", {
-    uploadArea: !!uploadArea,
-    photoInput: !!photoInput,
-    photoPreview: !!photoPreview
-  });
+  document.addEventListener('DOMContentLoaded', async () => {
+    // Import Supabase from CDN for client-side use
+    const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
+    
+    // Create Supabase client from environment variables
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const STORAGE_BUCKET = 'Furnace Diagnosis Images';
+    const nameInput = document.getElementById("name");
+    const phoneInput = document.getElementById("phone");
+    const addressInput = document.getElementById("address");
+    const addressSuggestions = document.getElementById("addressSuggestions");
+    const step1 = document.getElementById("step1");
+    const step2 = document.getElementById("step2");
+    const nextStep = document.getElementById("nextStep");
+    const form = document.getElementById("leadForm");
+    const heroTitle = document.getElementById("heroTitle");
+    const heroSubtitle = document.getElementById("heroSubtitle");
+    const uploadArea = document.getElementById("uploadArea");
+    const successMessage = document.getElementById("successMessage");
+    const photoCountSpan = document.getElementById("photoCount");
+    const photoInput = document.getElementById("photoInput");
+    const photoPreview = document.getElementById("photoPreview");
+    const step3UploadArea = document.getElementById("step3UploadArea");
+    const step3PhotoInput = document.getElementById("step3PhotoInput");
+    const step3PhotoPreview = document.getElementById("step3PhotoPreview");
+    
+    // Debug: Check if elements are found
+    console.log("Elements found:", {
+      uploadArea: !!uploadArea,
+      photoInput: !!photoInput,
+      photoPreview: !!photoPreview
+    });
   
   let uploadedFiles = [];
 
@@ -689,25 +690,34 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
         photoUrls.push(urlData.publicUrl);
       }
       
-      // Save form data to database
-      const { data, error } = await supabase
-        .from('form_submissions')
-        .insert([
-          {
-            full_name: name,
-            phone_number: phone,
-            service_address: address,
-            furnace_issue: issue,
-            photo_count: uploadedFiles.length,
-            photo_urls: photoUrls,
-            form_source: 'furnace_diagnosis'
-          }
-        ]);
+      // Submit form data to API endpoint
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formData: {
+            name: name,
+            phone: phone,
+            address: address,
+            issue: issue
+          },
+          formSource: 'furnace_diagnosis',
+          photoUrls: photoUrls,
+          photoCount: uploadedFiles.length
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to submit form');
+      }
+
+      const result = await response.json();
       
-      if (error) {
-        console.error('Error saving form:', error);
-        alert('There was an error submitting your form. Please try again.');
-        return;
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to submit form');
       }
       
       // Show success message
@@ -728,4 +738,6 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
       submitButton.disabled = false;
     }
   });
+  
+  }); // End DOMContentLoaded
 </script>

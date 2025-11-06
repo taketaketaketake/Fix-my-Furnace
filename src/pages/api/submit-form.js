@@ -48,9 +48,9 @@ export async function POST({ request, cookies }) {
     }
 
     const body = await request.json();
-    const { formData, formSource } = body;
+    const { formData, formSource, photoUrls, photoCount } = body;
 
-    console.log('Body received:', { formData, formSource });
+    console.log('Body received:', { formData, formSource, photoCount });
 
     // Validate required fields
     if (!formData || !formSource) {
@@ -86,10 +86,11 @@ export async function POST({ request, cookies }) {
       phone_number: sanitizeInput(formData.phone),
       email: sanitizeInput(formData.email || ''),
       service_address: sanitizeInput(formData.address || 'Not provided'),
-      furnace_issue: sanitizeInput(formData.issue || formData.message || 'No details provided'),
+      furnace_issue: sanitizeInput(formData.issue || ''), // Only for dropdown issue field
+      message: sanitizeInput(formData.message || ''), // For general text/textarea fields
       form_source: sanitizeInput(formSource),
-      photo_count: 0,
-      photo_urls: [],
+      photo_count: photoCount || 0,
+      photo_urls: photoUrls || [],
       status: 'pending',
       verification_status: 'pending'
     };
