@@ -220,32 +220,28 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
   </>
 )}
 
-<!-- Import the modular form handler -->
-<script>
+<!-- Pass config to global scope for the module to pick up -->
+<script is:inline define:vars={{ formId, formSource, fields, MAPBOX_TOKEN }}>
+  window[`universalFormConfig_${formId}`] = {
+    formId: formId,
+    formSource: formSource,
+    fields: fields,
+    MAPBOX_TOKEN: MAPBOX_TOKEN
+  };
+</script>
+
+<!-- Import and initialize the form handler -->
+<script type="module" data-form-id={formId}>
   import { initUniversalForm } from '../scripts/universalForm.js';
 
   document.addEventListener("DOMContentLoaded", () => {
-    // Get config from data attributes (passed from Astro)
-    const formElement = document.getElementById(document.currentScript.dataset.formId);
-    if (formElement) {
-      const config = {
-        formId: document.currentScript.dataset.formId,
-        formSource: document.currentScript.dataset.formSource,
-        fields: JSON.parse(document.currentScript.dataset.fields),
-        MAPBOX_TOKEN: document.currentScript.dataset.mapboxToken
-      };
+    const formId = document.currentScript.getAttribute('data-form-id');
+    const config = window[`universalFormConfig_${formId}`];
 
+    if (config) {
       initUniversalForm(config);
+    } else {
+      console.error(`Form config not found for form: ${formId}`);
     }
   });
-</script>
-
-<!-- Pass data to the script via data attributes -->
-<script
-  is:inline
-  data-form-id={formId}
-  data-form-source={formSource}
-  data-fields={JSON.stringify(fields)}
-  data-mapbox-token={MAPBOX_TOKEN}
->
 </script>

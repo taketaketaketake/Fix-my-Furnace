@@ -48,19 +48,40 @@ export async function POST({ request, cookies }) {
     const body = await request.json();
     const { formData, formSource, _csrf } = body;
 
+    console.log('=== submit-form API called ===');
+    console.log('Body received:', { formData, formSource, _csrf });
+
     // Verify CSRF token
     const sessionId = cookies.get('session_id')?.value;
-    if (!sessionId || !verifyCsrfToken(sessionId, _csrf)) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error: 'Security validation failed. Please refresh the page and try again.'
-        }),
-        {
-          status: 403,
-          headers: { 'Content-Type': 'application/json' }
-        }
-      );
+    console.log('Session ID from cookies:', sessionId);
+    console.log('CSRF token from request:', _csrf);
+
+    // Temporary: Skip CSRF in development if DISABLE_CSRF env var is set
+    const csrfEnabled = import.meta.env.DISABLE_CSRF !== 'true';
+
+    if (csrfEnabled) {
+      const hasSessionId = !!sessionId;
+      const hasCsrf = !!_csrf && _csrf.length > 0;
+
+      console.log('CSRF validation -', 'sessionId:', hasSessionId, '_csrf:', hasCsrf);
+
+      if (!sessionId || !_csrf || !verifyCsrfToken(sessionId, _csrf)) {
+        console.log('CSRF validation failed');
+        return new Response(
+          JSON.stringify({
+            success: false,
+            error: 'Security validation failed. Please refresh the page and try again.',
+            debug: { hasSessionId, hasCsrf, sessionId: sessionId ? 'present' : 'missing' }
+          }),
+          {
+            status: 403,
+            headers: { 'Content-Type': 'application/json' }
+          }
+        );
+      }
+      console.log('CSRF validation passed');
+    } else {
+      console.log('CSRF validation DISABLED for development');
     }
 
     // Validate required fields
