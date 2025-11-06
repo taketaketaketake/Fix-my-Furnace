@@ -1,0 +1,125 @@
+---
+/**
+ * HomeVisitCTA.astro
+ * High-converting call-to-action for $125 home visit diagnosis
+ */
+---
+
+<section class="relative bg-gradient-to-br from-red-600 via-red-700 to-orange-600 py-20 px-6 overflow-hidden">
+  <!-- Decorative background elements -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto relative">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <!-- LEFT: Content -->
+      <div class="text-white">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          Same-Day Appointments Available
+        </div>
+
+        <!-- Headline -->
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+          Not Sure What's Wrong? <br />
+          <span class="text-yellow-300">Get Expert Answers.</span>
+        </h2>
+
+        <!-- Subheadline -->
+        <p class="text-xl md:text-2xl text-red-100 mb-6 font-medium">
+          Licensed HVAC technician visits your home for only <span class="font-bold text-white text-3xl">$125</span>
+        </p>
+
+        <!-- Benefits list -->
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-yellow-300 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-lg"><strong>Complete system analysis</strong> — We inspect your entire heating system</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-yellow-300 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-lg"><strong>Written assessment report</strong> — Clear findings and transparent pricing</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-yellow-300 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-lg"><strong>$125 fee fully credited</strong> — If you proceed with our recommended repairs</span>
+          </li>
+        </ul>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="/home-visit"
+            class="group bg-white text-red-600 px-8 py-4 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl hover:bg-yellow-300 hover:text-red-700 transform hover:scale-105 transition-all duration-300 text-center flex items-center justify-center gap-2"
+          >
+            Schedule My $125 Visit
+            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a
+            href="tel:+18334948669"
+            class="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-red-600 transition-all text-center"
+          >
+            Call (833) FIX-IT-NOW
+          </a>
+        </div>
+
+        <!-- Trust signals -->
+        <div class="flex flex-wrap items-center gap-6 mt-8 text-sm text-red-100">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            Licensed & Insured
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+            </svg>
+            Same-Day Service
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+            5-Star Rated
+          </span>
+        </div>
+      </div>
+
+      <!-- RIGHT: Image with floating price badge -->
+      <div class="relative hidden md:block">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+          <img
+            src="/group_photo.png"
+            alt="Professional HVAC technician"
+            class="w-full h-auto object-cover"
+          />
+          <!-- Floating price badge -->
+          <div class="absolute top-6 left-6 bg-white rounded-2xl shadow-2xl p-6 transform hover:scale-105 transition-transform">
+            <div class="text-center">
+              <div class="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1">Only</div>
+              <div class="text-5xl font-extrabold text-red-600 mb-1">$125</div>
+              <div class="text-sm font-medium text-gray-700">Home Visit</div>
+              <div class="mt-3 pt-3 border-t border-gray-200">
+                <div class="text-xs font-bold text-green-600 uppercase">Credited Toward Repairs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
