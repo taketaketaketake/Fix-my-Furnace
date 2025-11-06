@@ -1,0 +1,251 @@
+---
+/**
+ * UniversalForm.astro
+ * Reusable form component with configurable fields
+ *
+ * Usage:
+ * <UniversalForm
+ *   formId="contact-form"
+ *   formSource="/api/submit-form"
+ *   title="Get In Touch"
+ *   description="Fill out the form below"
+ *   fields={[
+ *     { name: 'name', type: 'text', label: 'Full Name', required: true },
+ *     { name: 'phone', type: 'tel', label: 'Phone Number', required: true }
+ *   ]}
+ *   submitText="Submit"
+ * />
+ */
+
+export interface Props {
+  formId: string;
+  formSource: string;
+  title?: string;
+  description?: string;
+  fields: FormField[];
+  submitText?: string;
+  className?: string;
+}
+
+interface FormField {
+  name: string;
+  type: 'text' | 'tel' | 'email' | 'textarea' | 'select' | 'address';
+  label: string;
+  placeholder?: string;
+  required?: boolean;
+  options?: string[];
+  autoComplete?: string;
+}
+
+const {
+  formId,
+  formSource,
+  title,
+  description,
+  fields,
+  submitText = "Submit",
+  className = ""
+} = Astro.props;
+
+const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
+---
+
+<div class={`universal-form ${className}`}>
+  {title && (
+    <h3 class="text-3xl font-bold text-gray-900 mb-4">
+      {title}
+    </h3>
+  )}
+
+  {description && (
+    <p class="text-gray-600 mb-6 text-sm md:text-base">
+      {description}
+    </p>
+  )}
+
+  <!-- Success/Error Message Container -->
+  <div id={`${formId}-messages`} class="mb-6 hidden">
+    <div id={`${formId}-success`} class="bg-green-50 border border-green-200 rounded-lg p-4 mb-4 hidden">
+      <div class="flex items-center">
+        <svg class="w-5 h-5 text-green-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+        </svg>
+        <p class="text-green-800 font-semibold">Form submitted successfully! We'll contact you soon.</p>
+      </div>
+    </div>
+
+    <div id={`${formId}-error`} class="bg-red-50 border border-red-200 rounded-lg p-4 mb-4 hidden">
+      <div class="flex items-center">
+        <svg class="w-5 h-5 text-red-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+        </svg>
+        <p class="text-red-800 font-semibold">Something went wrong. Please try again.</p>
+      </div>
+    </div>
+
+    <div id={`${formId}-loading`} class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4 hidden">
+      <div class="flex items-center">
+        <svg class="animate-spin w-5 h-5 text-blue-600 mr-3" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <p class="text-blue-800 font-semibold">Submitting your form...</p>
+      </div>
+    </div>
+  </div>
+
+  <form class="space-y-4" id={formId}>
+    <!-- CSRF Token -->
+    <input type="hidden" name="_csrf" value={Astro.locals.csrfToken || ""} />
+
+    <!-- Hidden honeypot field for spam protection -->
+    <div style="display: none;">
+      <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+    </div>
+
+    {fields.map((field) => (
+      <div>
+        <label for={`${formId}-${field.name}`} class="block text-sm font-semibold text-gray-800">
+          {field.label}
+          {field.required && <span class="text-red-500 ml-1">*</span>}
+        </label>
+
+        {field.type === 'text' && (
+          <input
+            id={`${formId}-${field.name}`}
+            name={field.name}
+            type="text"
+            placeholder={field.placeholder}
+            class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition"
+            required={field.required}
+            autocomplete={field.autoComplete}
+          />
+        )}
+
+        {field.type === 'tel' && (
+          <>
+            <input
+              id={`${formId}-${field.name}`}
+              name={field.name}
+              type="tel"
+              placeholder={field.placeholder || "(313) 555-1234"}
+              maxlength="14"
+              class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition"
+              required={field.required}
+              autocomplete={field.autoComplete || "tel"}
+            />
+            <div id={`${formId}-${field.name}-error`} class="text-red-600 text-sm mt-1 hidden">Please enter a valid phone number</div>
+          </>
+        )}
+
+        {field.type === 'email' && (
+          <input
+            id={`${formId}-${field.name}`}
+            name={field.name}
+            type="email"
+            placeholder={field.placeholder}
+            class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition"
+            required={field.required}
+            autocomplete={field.autoComplete || "email"}
+          />
+        )}
+
+        {field.type === 'textarea' && (
+          <textarea
+            id={`${formId}-${field.name}`}
+            name={field.name}
+            placeholder={field.placeholder}
+            rows="4"
+            class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition resize-vertical"
+            required={field.required}
+          ></textarea>
+        )}
+
+        {field.type === 'select' && (
+          <select
+            id={`${formId}-${field.name}`}
+            name={field.name}
+            class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition"
+            required={field.required}
+          >
+            <option value="">Select an option...</option>
+            {field.options?.map((option) => (
+              <option value={option.toLowerCase().replace(/\s+/g, '-')}>{option}</option>
+            ))}
+          </select>
+        )}
+
+        {field.type === 'address' && (
+          <div class="relative">
+            <input
+              id={`${formId}-${field.name}`}
+              name={field.name}
+              type="text"
+              placeholder={field.placeholder || "Enter your full address"}
+              class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition"
+              autocomplete="off"
+              required={field.required}
+            />
+            <!-- Address suggestions dropdown -->
+            <div id={`${formId}-${field.name}-suggestions`} class="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1 hidden max-h-48 overflow-y-auto">
+            </div>
+          </div>
+        )}
+      </div>
+    ))}
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      id={`${formId}-submit`}
+      class="w-full bg-red-600 text-white font-bold py-3 rounded-lg shadow-md hover:bg-red-700 active:scale-[0.98] transition disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      <span id={`${formId}-submit-text`}>{submitText}</span>
+      <span id={`${formId}-submit-loading`} class="hidden">
+        <svg class="animate-spin inline w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Submitting...
+      </span>
+    </button>
+  </form>
+</div>
+
+<!-- Mapbox for address fields -->
+{fields.some(field => field.type === 'address') && (
+  <>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
+  </>
+)}
+
+<!-- Import the modular form handler -->
+<script>
+  import { initUniversalForm } from '../scripts/universalForm.js';
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Get config from data attributes (passed from Astro)
+    const formElement = document.getElementById(document.currentScript.dataset.formId);
+    if (formElement) {
+      const config = {
+        formId: document.currentScript.dataset.formId,
+        formSource: document.currentScript.dataset.formSource,
+        fields: JSON.parse(document.currentScript.dataset.fields),
+        MAPBOX_TOKEN: document.currentScript.dataset.mapboxToken
+      };
+
+      initUniversalForm(config);
+    }
+  });
+</script>
+
+<!-- Pass data to the script via data attributes -->
+<script
+  is:inline
+  data-form-id={formId}
+  data-form-source={formSource}
+  data-fields={JSON.stringify(fields)}
+  data-mapbox-token={MAPBOX_TOKEN}
+>
+</script>
