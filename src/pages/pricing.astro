@@ -2,560 +2,573 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout 
-  title="HVAC Pricing Guide Michigan | Transparent Furnace Repair Costs | Fix My Furnace"
-  description="Get honest HVAC pricing in Michigan. Professional furnace repair costs, transparent estimates, and flexible service options. Licensed technicians serving Detroit, Grand Rapids, Ann Arbor & all Michigan."
-  keywords="HVAC pricing Michigan, furnace repair cost, heating system prices Detroit, HVAC estimates Michigan, furnace replacement cost, heating repair pricing Grand Rapids, HVAC service rates Ann Arbor, transparent pricing HVAC, Michigan furnace costs"
+<Layout
+  title="Transparent HVAC Pricing Michigan | Fix My Furnace Cost Guide"
+  description="Honest pricing for furnace repair and HVAC services across Michigan. Compare full-service companies vs licensed independent operators. Get matched with the best provider for your needs and budget."
+  keywords="furnace repair cost Michigan, HVAC pricing Detroit, furnace installation price, heating repair cost, transparent HVAC pricing, Michigan furnace service cost"
 >
-  <!-- SEO & Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Fix My Furnace Michigan - HVAC Pricing Guide",
-    "description": "Transparent HVAC pricing and furnace repair costs in Michigan. Professional heating system estimates with flexible service options.",
-    "url": "https://fixmyfurnace.com/pricing",
-    "provider": {
-      "@type": "LocalBusiness",
-      "@id": "https://fixmyfurnace.com/#organization",
-      "name": "Fix My Furnace Michigan",
-      "image": "https://fixmyfurnace.com/save_money-michigan-furnace-repair.png",
-      "telephone": "+1-833-394-8669",
-      "priceRange": "$$",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Detroit",
-        "addressRegion": "MI",
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 42.3314,
-        "longitude": -83.0458
-      },
-      "url": "https://fixmyfurnace.com",
-      "logo": "https://fixmyfurnace.com/logo.svg",
-      "sameAs": [
-        "https://www.facebook.com/fixmyfurnacemichigan",
-        "https://www.linkedin.com/company/fixmyfurnacemichigan"
-      ],
-      "areaServed": [
-        {
-          "@type": "State",
-          "name": "Michigan"
-        },
-        {
-          "@type": "City",
-          "name": "Detroit"
-        },
-        {
-          "@type": "City", 
-          "name": "Grand Rapids"
-        },
-        {
-          "@type": "City",
-          "name": "Ann Arbor"
-        }
-      ]
-    },
-    "serviceType": "HVAC Pricing and Repair Services",
-    "category": "Home Services",
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "HVAC Pricing Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Professional Diagnosis",
-            "description": "$125 home visit with complete system analysis and transparent pricing"
-          },
-          "price": "125",
-          "priceCurrency": "USD"
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Emergency Repairs",
-            "description": "Thermostat fixes, ignition repairs, blower motor replacement"
-          },
-          "priceRange": "$100-$3000"
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "System Replacement",
-            "description": "Basic to high-efficiency furnace installation"
-          },
-          "priceRange": "$2500-$7000"
-        }
-      ]
-    },
-    "additionalType": "https://schema.org/ProfessionalService",
-    "serviceArea": {
-      "@type": "State",
-      "name": "Michigan"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "bestRating": "5",
-      "ratingCount": "247"
-    }
-  }
-  </script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "HVAC Pricing Guide Michigan",
-    "description": "Transparent HVAC pricing and furnace repair costs in Michigan with flexible service options.",
-    "url": "https://fixmyfurnace.com/pricing",
-    "mainEntity": {
-      "@type": "ProfessionalService",
-      "@id": "#hvac-pricing-service"
-    },
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://fixmyfurnace.com"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Pricing",
-          "item": "https://fixmyfurnace.com/pricing"
-        }
-      ]
-    },
-    "publisher": {
-      "@type": "Organization",
-      "@id": "https://fixmyfurnace.com/#organization"
-    }
-  }
-  </script>
+<!-- HERO SECTION -->
+<section class="relative bg-gradient-to-br from-gray-900 via-gray-800 to-red-900 text-white py-20 overflow-hidden">
+  <!-- Background pattern -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute w-full h-full" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px);"></div>
+  </div>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How much does furnace repair cost in Michigan?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Furnace repair costs in Michigan vary by issue: thermostat fixes $100-300, ignition repairs $200-500, blower motor replacement $400-800, and heat exchanger replacement $1,500-3,000. We provide upfront pricing after a $125 professional diagnosis."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What's included in the $125 home visit?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The $125 home visit includes a complete system analysis by a licensed HVAC technician, written assessment with findings and recommendations, and transparent pricing for any needed repairs. The fee is credited toward repair work if you proceed."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How much does furnace replacement cost in Michigan?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Furnace replacement costs in Michigan range from $2,500-4,500 for basic installation, $4,000-7,000 for high-efficiency systems, plus $1,000-3,000 for ductwork modifications and $2,000-5,000 for premium features."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do you serve all of Michigan?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, we serve all of Michigan including Detroit, Grand Rapids, Ann Arbor, Lansing, Flint, Kalamazoo, and surrounding areas through our network of licensed HVAC professionals."
-        }
-      }
-    ]
-  }
-  </script>
+  <div class="container mx-auto px-6 max-w-5xl relative z-10">
+    <div class="text-center">
+      <div class="inline-flex items-center gap-2 bg-yellow-400 text-gray-900 px-4 py-2 rounded-full text-sm font-bold mb-6">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        100% Transparent Pricing
+      </div>
 
-  <!-- Additional SEO Meta Tags -->
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-  <meta name="googlebot" content="index, follow">
-  <link rel="canonical" href="https://fixmyfurnace.com/pricing">
-  
-  <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="HVAC Pricing Guide Michigan | Transparent Furnace Repair Costs">
-  <meta property="og:description" content="Get honest HVAC pricing in Michigan. Professional furnace repair costs, transparent estimates, and flexible service options from licensed technicians.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://fixmyfurnace.com/pricing">
-  <meta property="og:image" content="https://fixmyfurnace.com/save_money-michigan-furnace-repair.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Professional HVAC technician providing transparent pricing consultation">
-  <meta property="og:site_name" content="Fix My Furnace Michigan">
-  <meta property="og:locale" content="en_US">
-  
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="HVAC Pricing Guide Michigan | Transparent Furnace Repair Costs">
-  <meta name="twitter:description" content="Get honest HVAC pricing in Michigan. Professional furnace repair costs, transparent estimates, and flexible service options.">
-  <meta name="twitter:image" content="https://fixmyfurnace.com/save_money-michigan-furnace-repair.png">
-  <meta name="twitter:image:alt" content="Professional HVAC technician providing transparent pricing consultation">
-  
-  <!-- Local Business Meta Tags -->
-  <meta name="geo.region" content="US-MI">
-  <meta name="geo.placename" content="Michigan">
-  <meta name="geo.position" content="42.3314;-83.0458">
-  <meta name="ICBM" content="42.3314, -83.0458">
-
-  <!-- HERO -->
-  <section class="relative bg-gradient-to-br from-red-50 via-white to-orange-50 pt-24 pb-20 px-6 md:px-10">
-    <div class="max-w-4xl mx-auto text-center">
-      <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
-        Honest <span class="text-red-600">HVAC Pricing</span><br />
-        <span class="block text-3xl md:text-4xl font-semibold text-gray-700 mt-2">
-          No Games, No Surprises
-        </span>
+      <h1 class="text-5xl md:text-6xl font-black mb-6 leading-tight">
+        No Games. <span class="text-yellow-400">No Surprises.</span><br/>
+        Just Honest Pricing.
       </h1>
-      <p class="text-xl md:text-2xl text-gray-700 leading-relaxed max-w-2xl mx-auto">
-        Before we talk numbers, let's talk about what kind of service you actually want.
+
+      <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+        We diagnose your furnace problem for <strong class="text-white">$125</strong>, then match you with the best service provider from our Michigan network — whether that's a full-service company or a licensed independent operator.
+      </p>
+
+      <a href="/home-visit" class="inline-flex items-center gap-3 bg-yellow-400 text-gray-900 px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl hover:bg-yellow-300 transform hover:scale-105 transition-all">
+        Start With $125 Diagnosis
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+
+      <p class="text-sm text-gray-400 mt-4">Fee credited toward repairs • No obligation</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW OUR NETWORK WORKS -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6 max-w-6xl">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+        How <span class="text-red-600">Fix My Furnace</span> Works
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        We're your trusted advisor, not just another contractor trying to sell you the most expensive fix.
       </p>
     </div>
-  </section>
 
-  <!-- SERVICE TYPE COMPARISON -->
-  <section class="py-20 px-6 md:px-10 bg-white">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
-          What Type of Service Provider Do You Want?
-        </h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-          In home services, there are really two different approaches. Understanding the difference helps you get exactly what you need.
+    <!-- Process Steps -->
+    <div class="grid md:grid-cols-3 gap-8 mb-16">
+      <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-8 border-2 border-red-100">
+        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white text-2xl font-black mb-6 mx-auto">
+          1
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-3 text-center">We Diagnose</h3>
+        <p class="text-gray-700 text-center leading-relaxed">
+          A licensed technician visits your home for <strong>$125</strong> to fully diagnose your furnace problem and provide a detailed assessment.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-10">
-        <!-- Option A -->
-        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-xl hover:border-red-300 transition-all duration-300">
-          <div class="text-center mb-6">
-            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-1">Option A</h3>
-            <p class="text-lg font-semibold text-red-600">Licensed Specialist - Independent Operator</p>
-          </div>
+      <div class="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl p-8 border-2 border-orange-100">
+        <div class="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center text-white text-2xl font-black mb-6 mx-auto">
+          2
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-3 text-center">We Match You</h3>
+        <p class="text-gray-700 text-center leading-relaxed">
+          Based on your needs and budget, we connect you with the <strong>best provider</strong> from our vetted Michigan network.
+        </p>
+      </div>
 
-          <ul class="space-y-3 text-gray-700">
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>Direct contact with your serviceman</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>Cash payments & flexible arrangements</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>Equipment choices based on your preference</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span><strong>Lower overhead = lower costs</strong></span>
-            </li>
-          </ul>
+      <div class="bg-gradient-to-br from-yellow-50 to-green-50 rounded-2xl p-8 border-2 border-yellow-100">
+        <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center text-white text-2xl font-black mb-6 mx-auto">
+          3
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-3 text-center">You Choose</h3>
+        <p class="text-gray-700 text-center leading-relaxed">
+          See transparent pricing from both options, then pick the <strong>right solution</strong> for your situation.
+        </p>
+      </div>
+    </div>
 
-          <div class="mt-8 bg-white rounded-xl border border-green-200 p-5 text-center">
-            <p class="text-lg font-bold text-gray-900 mb-1">Typical Investment:</p>
-            <p class="text-2xl font-extrabold text-green-600">Under $5,000</p>
-            <p class="text-sm text-gray-600 mt-1">For most heating repairs & replacements</p>
+    <!-- Value Prop -->
+    <div class="bg-gradient-to-r from-red-600 to-orange-600 rounded-2xl p-8 md:p-12 text-white text-center">
+      <h3 class="text-3xl font-bold mb-4">Why This Approach Saves You Money</h3>
+      <p class="text-xl text-red-100 max-w-3xl mx-auto">
+        Instead of one contractor giving you one option (usually the most profitable for them), you get <strong>honest diagnosis</strong> and <strong>multiple provider options</strong> matched to your actual needs.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PROVIDER COMPARISON -->
+<section class="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+  <div class="container mx-auto px-6 max-w-6xl">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+        Two Types of Providers. <span class="text-red-600">One Network.</span>
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        We work with both full-service HVAC companies and licensed independent operators — each has strengths for different situations.
+      </p>
+    </div>
+
+    <!-- Comparison Cards -->
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Full Service Company -->
+      <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-gray-200 hover:border-red-300 transition-all">
+        <div class="bg-gradient-to-r from-red-600 to-orange-600 text-white p-6 text-center">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+            </svg>
           </div>
+          <h3 class="text-2xl font-bold mb-2">Full-Service Company</h3>
+          <p class="text-red-100">Established HVAC businesses</p>
         </div>
 
-        <!-- Option B -->
-        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-xl hover:border-red-300 transition-all duration-300">
-          <div class="text-center mb-6">
-            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-1">Option B</h3>
-            <p class="text-lg font-semibold text-red-600">Full-Service Company</p>
+        <div class="p-8">
+          <!-- Best For -->
+          <div class="mb-6">
+            <h4 class="text-lg font-bold text-gray-900 mb-3">✅ Best For:</h4>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start gap-2">
+                <span class="text-green-600 mt-1">•</span>
+                <span>Complex installations and system replacements</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600 mt-1">•</span>
+                <span>Projects requiring permits and inspections</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600 mt-1">•</span>
+                <span>Warranty-backed work with extended guarantees</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600 mt-1">•</span>
+                <span>Commercial properties and large homes</span>
+              </li>
+            </ul>
           </div>
 
-          <ul class="space-y-3 text-gray-700">
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>Call center & office support</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>Financing options available</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>Preferred manufacturer relationships</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span><strong>Premium service with higher overhead</strong></span>
-            </li>
-          </ul>
+          <!-- What You Get -->
+          <div class="mb-6">
+            <h4 class="text-lg font-bold text-gray-900 mb-3">📦 What You Get:</h4>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start gap-2">
+                <span>•</span>
+                <span>Full crew and specialized equipment</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span>•</span>
+                <span>Company warranties (parts + labor)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span>•</span>
+                <span>Insurance and bonding coverage</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span>•</span>
+                <span>24/7 dispatch and emergency service</span>
+              </li>
+            </ul>
+          </div>
 
-          <div class="mt-8 bg-white rounded-xl border border-blue-200 p-5 text-center">
-            <p class="text-lg font-bold text-gray-900 mb-1">Typical Investment:</p>
-            <p class="text-2xl font-extrabold text-blue-600">$10,000+</p>
-            <p class="text-sm text-gray-600 mt-1">For comparable heating work</p>
+          <!-- Typical Cost -->
+          <div class="bg-red-50 rounded-xl p-4 border border-red-100">
+            <h4 class="text-sm font-bold text-gray-700 mb-2">TYPICAL COST RANGE:</h4>
+            <p class="text-2xl font-black text-red-600">Higher Tier</p>
+            <p class="text-sm text-gray-600 mt-1">More overhead = higher rates, but comprehensive service</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- HOW WE'RE DIFFERENT -->
-  <section class="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white relative overflow-hidden">
-    <div class="max-w-5xl mx-auto px-6 md:px-10">
-      <div class="text-center mb-12">
-            <div class="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              How We're Different
-            </div>
-            <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
-              We Match You with the <span class="text-red-400">Right Service Provider</span>
-            </h2>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Unlike traditional HVAC companies, we don't push what works best for us. We prioritize what works best for you.
+      <!-- Licensed Independent Operator -->
+      <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-gray-200 hover:border-blue-300 transition-all">
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 text-center">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-2">Licensed Independent</h3>
+          <p class="text-blue-100">Solo certified technicians</p>
+        </div>
+
+        <div class="p-8">
+          <!-- Best For -->
+          <div class="mb-6">
+            <h4 class="text-lg font-bold text-gray-900 mb-3">✅ Best For:</h4>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start gap-2">
+                <span class="text-green-600 mt-1">•</span>
+                <span>Repairs and component replacements</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600 mt-1">•</span>
+                <span>Routine maintenance and tune-ups</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600 mt-1">•</span>
+                <span>Straightforward residential work</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600 mt-1">•</span>
+                <span>Budget-conscious homeowners</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- What You Get -->
+          <div class="mb-6">
+            <h4 class="text-lg font-bold text-gray-900 mb-3">📦 What You Get:</h4>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start gap-2">
+                <span>•</span>
+                <span>Direct access to the technician (no middleman)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span>•</span>
+                <span>Parts warranties (manufacturer)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span>•</span>
+                <span>Licensed and insured professional</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span>•</span>
+                <span>Personalized, flexible scheduling</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Typical Cost -->
+          <div class="bg-blue-50 rounded-xl p-4 border border-blue-100">
+            <h4 class="text-sm font-bold text-gray-700 mb-2">TYPICAL COST RANGE:</h4>
+            <p class="text-2xl font-black text-blue-600">Lower Tier</p>
+            <p class="text-sm text-gray-600 mt-1">Less overhead = competitive rates, great for most repairs</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Note -->
+    <div class="mt-12 text-center bg-yellow-50 rounded-2xl p-8 border-2 border-yellow-200">
+      <p class="text-lg text-gray-800">
+        <strong class="text-gray-900">Important:</strong> All providers in our network are <strong>Michigan-licensed, background-checked, and vetted</strong> for quality. The difference is in business structure and overhead, not expertise.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING BY JOB TYPE -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6 max-w-7xl">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+        What You Can <span class="text-red-600">Expect to Pay</span>
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
+        Pricing varies based on the complexity of your repair and the type of provider you choose. Here's a breakdown of typical costs.
+      </p>
+      <div class="inline-flex items-center gap-2 bg-gray-100 px-6 py-3 rounded-full text-sm text-gray-700">
+        <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+        </svg>
+        All prices include the $125 diagnostic fee credit
+      </div>
+    </div>
+
+    <!-- Pricing Table -->
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="bg-gradient-to-r from-red-600 to-orange-600 text-white">
+            <th class="py-4 px-6 text-left text-lg font-bold rounded-tl-xl">Type of Service</th>
+            <th class="py-4 px-6 text-center text-lg font-bold">Licensed Independent</th>
+            <th class="py-4 px-6 text-center text-lg font-bold rounded-tr-xl">Full-Service Company</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+
+          <!-- Minor Repairs -->
+          <tr class="border-b-2 border-gray-100 hover:bg-gray-50 transition-colors">
+            <td class="py-6 px-6">
+              <div class="font-bold text-gray-900 mb-1">Minor Repairs</div>
+              <div class="text-sm text-gray-600">Filter replacement, thermostat calibration, basic maintenance</div>
+            </td>
+            <td class="py-6 px-6 text-center">
+              <div class="text-2xl font-black text-blue-600">$150 - $350</div>
+              <div class="text-xs text-gray-500 mt-1">Usually same-day fix</div>
+            </td>
+            <td class="py-6 px-6 text-center">
+              <div class="text-2xl font-black text-red-600">$200 - $500</div>
+              <div class="text-xs text-gray-500 mt-1">Includes service call premium</div>
+            </td>
+          </tr>
+
+          <!-- Moderate Repairs -->
+          <tr class="border-b-2 border-gray-100 hover:bg-gray-50 transition-colors">
+            <td class="py-6 px-6">
+              <div class="font-bold text-gray-900 mb-1">Moderate Repairs</div>
+              <div class="text-sm text-gray-600">Ignitor replacement, blower motor, gas valve, limit switch</div>
+            </td>
+            <td class="py-6 px-6 text-center">
+              <div class="text-2xl font-black text-blue-600">$400 - $1,200</div>
+              <div class="text-xs text-gray-500 mt-1">Parts + labor</div>
+            </td>
+            <td class="py-6 px-6 text-center">
+              <div class="text-2xl font-black text-red-600">$600 - $1,800</div>
+              <div class="text-xs text-gray-500 mt-1">Parts + labor + overhead</div>
+            </td>
+          </tr>
+
+          <!-- Major Repairs -->
+          <tr class="border-b-2 border-gray-100 hover:bg-gray-50 transition-colors">
+            <td class="py-6 px-6">
+              <div class="font-bold text-gray-900 mb-1">Major Repairs</div>
+              <div class="text-sm text-gray-600">Heat exchanger, full system overhaul, complex diagnostics</div>
+            </td>
+            <td class="py-6 px-6 text-center">
+              <div class="text-2xl font-black text-blue-600">$1,200 - $3,000</div>
+              <div class="text-xs text-gray-500 mt-1">May require multiple visits</div>
+            </td>
+            <td class="py-6 px-6 text-center">
+              <div class="text-2xl font-black text-red-600">$1,800 - $4,500</div>
+              <div class="text-xs text-gray-500 mt-1">Full warranty coverage</div>
+            </td>
+          </tr>
+
+          <!-- System Replacement -->
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-6 px-6 rounded-bl-xl">
+              <div class="font-bold text-gray-900 mb-1">Complete System Replacement</div>
+              <div class="text-sm text-gray-600">New furnace installation with permits and inspections</div>
+            </td>
+            <td class="py-6 px-6 text-center">
+              <div class="text-2xl font-black text-blue-600">$3,000 - $6,000</div>
+              <div class="text-xs text-gray-500 mt-1">Standard efficiency models</div>
+            </td>
+            <td class="py-6 px-6 text-center rounded-br-xl">
+              <div class="text-2xl font-black text-red-600">$4,500 - $9,000+</div>
+              <div class="text-xs text-gray-500 mt-1">High-efficiency options</div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Price Factors -->
+    <div class="mt-12 grid md:grid-cols-3 gap-6">
+      <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+        <h4 class="font-bold text-gray-900 mb-3 flex items-center gap-2">
+          <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+          </svg>
+          Why the Range?
+        </h4>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          Exact costs depend on your specific furnace model, part availability, labor hours, and urgency (emergency vs scheduled).
+        </p>
+      </div>
+
+      <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+        <h4 class="font-bold text-gray-900 mb-3 flex items-center gap-2">
+          <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          No Surprises
+        </h4>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          After your $125 diagnosis, you'll get <strong>exact quotes</strong> from both provider types before committing to any work.
+        </p>
+      </div>
+
+      <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+        <h4 class="font-bold text-gray-900 mb-3 flex items-center gap-2">
+          <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
+          </svg>
+          You Decide
+        </h4>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          Choose the provider that fits your budget and needs. No pressure, no games — just options.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY WE CAN'T QUOTE BEFORE DIAGNOSIS -->
+<section class="py-20 bg-gradient-to-br from-red-50 via-white to-orange-50">
+  <div class="container mx-auto px-6 max-w-4xl">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+        Why We Can't Give <span class="text-red-600">Flat Pricing</span> Over the Phone
+      </h2>
+      <p class="text-xl text-gray-600">
+        Anyone who quotes you a price without seeing your system is either guessing or setting you up for "surprise" charges later.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+      <div class="space-y-6">
+
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+            <span class="text-red-600 font-bold">1</span>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Every Furnace is Different</h3>
+            <p class="text-gray-700">
+              Your furnace's age, model, brand, and installation quality all affect repair complexity and costs. What takes 30 minutes on one system might take 3 hours on another.
             </p>
           </div>
+        </div>
 
-          <div class="grid md:grid-cols-3 gap-8 mb-12">
-            <!-- Step 1 -->
-            <div class="text-center">
-              <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span class="text-2xl font-bold text-white">1</span>
-              </div>
-              <h3 class="text-xl font-bold mb-3">$125 Professional Diagnosis</h3>
-              <p class="text-gray-300 leading-relaxed">
-                We send out a licensed service technician to diagnose exactly what's wrong with your system.
-              </p>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="text-center">
-              <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span class="text-2xl font-bold text-white">2</span>
-              </div>
-              <h3 class="text-xl font-bold mb-3">Match You with the Right Provider</h3>
-              <p class="text-gray-300 leading-relaxed">
-                Based on your needs and budget, we connect you with the appropriate service provider from our network.
-              </p>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="text-center">
-              <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span class="text-2xl font-bold text-white">3</span>
-              </div>
-              <h3 class="text-xl font-bold mb-3">You Choose Your Experience</h3>
-              <p class="text-gray-300 leading-relaxed">
-                Whether you want budget-friendly repairs or premium service, we recommend what's truly best for you.
-              </p>
-            </div>
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+            <span class="text-red-600 font-bold">2</span>
           </div>
-
-          <div class="bg-white/10 rounded-2xl p-6 backdrop-blur">
-            <div class="flex items-start gap-4">
-              <svg class="w-8 h-8 text-red-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
-              <div>
-                <h4 class="text-xl font-bold mb-2">Our Rich Network of Service Providers</h4>
-                <p class="text-gray-300 leading-relaxed">
-                  We work with independent specialists, full-service companies, and everything in between. 
-                  This means we can match you with exactly the right fit for your situation and budget — 
-                  not just whoever pays us the highest commission.
-                </p>
-              </div>
-            </div>
-          </div>
-
-        <div class="text-center mt-8">
-          <a 
-            href="/home-visit" 
-            class="inline-flex items-center gap-2 bg-red-600 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:bg-red-700 hover:scale-[1.02] transition-all"
-          >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-            Schedule Your $125 Diagnosis
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING FACTORS -->
-  <section class="py-20 px-6 md:px-10 bg-gray-50">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">What Affects Your Investment?</h2>
-        <p class="text-lg text-gray-600">
-          Pricing depends on what level of service you need and what's wrong with your system.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-10">
-        <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-          <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Emergency Repairs
-          </h3>
-          <p class="text-gray-700 mb-4">Just need your heat working again?</p>
-          <ul class="space-y-2 text-gray-700">
-            <li>• Thermostat fixes: $100–300</li>
-            <li>• Ignition repairs: $200–500</li>
-            <li>• Blower motor replacement: $400–800</li>
-            <li>• Heat exchanger: $1,500–3,000</li>
-          </ul>
-        </div>
-
-        <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-          <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/></svg>
-            System Replacement
-          </h3>
-          <p class="text-gray-700 mb-4">Time for a new heating system?</p>
-          <ul class="space-y-2 text-gray-700">
-            <li>• Basic furnace install: $2,500–4,500</li>
-            <li>• High-efficiency system: $4,000–7,000</li>
-            <li>• Ductwork modifications: +$1,000–3,000</li>
-            <li>• Premium brands & features: +$2,000–5,000</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="mt-12 bg-yellow-50 border border-yellow-200 rounded-xl p-6">
-        <div class="flex items-center gap-3">
-          <svg class="w-5 h-5 text-yellow-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
           <div>
-            <h4 class="font-bold text-gray-900 mb-1">Remember: These are estimates.</h4>
-            <p class="text-gray-700">Every home is different. We provide exact pricing after our technician evaluates your specific situation.</p>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Symptoms Don't Tell the Whole Story</h3>
+            <p class="text-gray-700">
+              "My furnace won't turn on" could be a $20 filter or a $2,000 heat exchanger. We need to <strong>see it, test it, and diagnose it</strong> properly.
+            </p>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- CTA -->
-  <section class="py-20 px-6 md:px-10 bg-white">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
-          Ready for Honest Pricing?
-        </h2>
-        <p class="text-xl text-gray-700">
-          Get a free, no-pressure evaluation. We'll explain exactly what's wrong and give you options that fit your budget.
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+            <span class="text-red-600 font-bold">3</span>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Hidden Issues Happen</h3>
+            <p class="text-gray-700">
+              During diagnosis, we often discover underlying problems that caused the main issue — things that wouldn't show up in a phone call.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+            <span class="text-red-600 font-bold">4</span>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">We Respect Your Intelligence</h3>
+            <p class="text-gray-700">
+              We'd rather be honest about needing a diagnosis than give you a fake "ballpark" that ends up being wildly off. You deserve better.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-10 pt-8 border-t border-gray-200 text-center">
+        <p class="text-lg font-bold text-gray-900 mb-4">That's Why the $125 Diagnosis Exists</p>
+        <p class="text-gray-700 mb-6">
+          It's not a "gotcha" — it's professional due diligence so we can give you <strong>accurate pricing</strong> and <strong>honest recommendations</strong>.
         </p>
+        <a href="/home-visit" class="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-red-700 transition-colors">
+          Book Your $125 Diagnosis
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
       </div>
-
-      <div class="grid md:grid-cols-2 gap-8">
-        <!-- Option 1: $125 Diagnosis Visit -->
-        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-xl hover:border-red-300 transition-all duration-300">
-          <div class="text-center mb-6">
-            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Professional Home Visit</h3>
-            <p class="text-lg font-semibold text-red-600 mb-4">$125 Diagnosis</p>
-          </div>
-
-          <ul class="space-y-3 text-gray-700 mb-6">
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>Licensed technician comes to your home</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>Complete system analysis</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>Written assessment & recommendations</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>Transparent pricing for repairs</span>
-            </li>
-          </ul>
-
-          <div class="space-y-3">
-            <a
-              href="/home-visit"
-              class="block w-full bg-red-600 text-white font-bold px-6 py-4 rounded-xl text-lg text-center shadow-lg hover:bg-red-700 hover:scale-[1.02] transition-all"
-            >
-              Schedule Home Visit
-            </a>
-          </div>
-        </div>
-
-        <!-- Option 2: Upload Images & Talk to Tech -->
-        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-xl hover:border-red-300 transition-all duration-300">
-          <div class="text-center mb-6">
-            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Free Quick Assessment</h3>
-            <p class="text-lg font-semibold text-blue-600 mb-4">Upload Images & Chat</p>
-          </div>
-
-          <ul class="space-y-3 text-gray-700 mb-6">
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>Upload photos of your system</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>Talk directly with HVAC technician</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>Get preliminary assessment</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>Fast response within hours</span>
-            </li>
-          </ul>
-
-          <div class="space-y-3">
-            <a
-              href="/furnace-diagnosis"
-              class="block w-full bg-blue-600 text-white font-bold px-6 py-4 rounded-xl text-lg text-center shadow-lg hover:bg-blue-700 hover:scale-[1.02] transition-all"
-            >
-              Upload Images & Chat
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <p class="text-sm text-gray-500 mt-8 text-center">
-        Licensed, insured, and serving all of Michigan since day one.
-      </p>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6 max-w-4xl">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-black text-gray-900 mb-4">
+        Pricing <span class="text-red-600">Questions</span>
+      </h2>
+    </div>
+
+    <div class="space-y-4">
+
+      <details class="group bg-gray-50 rounded-xl border border-gray-200 overflow-hidden hover:border-red-300 transition-colors">
+        <summary class="flex justify-between items-center cursor-pointer p-6 font-bold text-lg text-gray-900 list-none">
+          <span>Is the $125 diagnostic fee refundable?</span>
+          <svg class="w-5 h-5 text-red-600 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6 text-gray-700 leading-relaxed">
+          <p>If you proceed with repairs, the <strong>$125 is fully credited</strong> toward the work — meaning you only pay the repair cost. You only pay the $125 if you decline repairs, choose another contractor, or your system needs no repair.</p>
+        </div>
+      </details>
+
+      <details class="group bg-gray-50 rounded-xl border border-gray-200 overflow-hidden hover:border-red-300 transition-colors">
+        <summary class="flex justify-between items-center cursor-pointer p-6 font-bold text-lg text-gray-900 list-none">
+          <span>Can I choose which type of provider I want?</span>
+          <svg class="w-5 h-5 text-red-600 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6 text-gray-700 leading-relaxed">
+          <p>Absolutely! After diagnosis, we'll present you with options from both full-service companies and licensed independents (when applicable). You get <strong>transparent quotes from both</strong> and pick what works best for your situation and budget.</p>
+        </div>
+      </details>
+
+      <details class="group bg-gray-50 rounded-xl border border-gray-200 overflow-hidden hover:border-red-300 transition-colors">
+        <summary class="flex justify-between items-center cursor-pointer p-6 font-bold text-lg text-gray-900 list-none">
+          <span>Do you offer financing?</span>
+          <svg class="w-5 h-5 text-red-600 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6 text-gray-700 leading-relaxed">
+          <p>Yes! Many providers in our network offer flexible financing options for larger repairs and replacements. We'll discuss these options during your diagnosis visit.</p>
+        </div>
+      </details>
+
+      <details class="group bg-gray-50 rounded-xl border border-gray-200 overflow-hidden hover:border-red-300 transition-colors">
+        <summary class="flex justify-between items-center cursor-pointer p-6 font-bold text-lg text-gray-900 list-none">
+          <span>Are parts and labor guaranteed?</span>
+          <svg class="w-5 h-5 text-red-600 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6 text-gray-700 leading-relaxed">
+          <p>Yes. All parts come with <strong>manufacturer warranties</strong>. Labor warranties vary by provider type — full-service companies typically offer 1-3 year labor warranties, while independents offer 30-90 day labor guarantees. We'll clarify warranties in your quote.</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="py-20 bg-gradient-to-r from-red-600 to-orange-600 text-white">
+  <div class="container mx-auto px-6 max-w-4xl text-center">
+    <h2 class="text-4xl md:text-5xl font-black mb-6">
+      Ready for Honest, Transparent Pricing?
+    </h2>
+    <p class="text-xl md:text-2xl text-red-100 mb-10 max-w-2xl mx-auto">
+      Start with a $125 diagnosis. See your options. Choose what's right for you.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-6 justify-center">
+      <a href="/home-visit" class="bg-white text-red-600 px-10 py-5 rounded-2xl font-bold text-xl hover:bg-yellow-300 hover:text-red-700 transition-all shadow-2xl">
+        Book $125 Diagnosis
+      </a>
+      <a href="tel:+18334948669" class="border-2 border-white text-white px-10 py-5 rounded-2xl font-bold text-xl hover:bg-white/10 transition-all">
+        Call (833) FIX-IT-NOW
+      </a>
+    </div>
+
+    <p class="text-red-100 mt-8 text-sm">
+      No pressure. No games. Just honest service from Michigan's most trusted HVAC network.
+    </p>
+  </div>
+</section>
+
 </Layout>
