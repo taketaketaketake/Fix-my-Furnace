@@ -6,6 +6,8 @@
  * Used by UniversalForm component
  */
 
+export const prerender = false;
+
 import { createClient } from '@supabase/supabase-js';
 import { checkRateLimit, getClientIP } from '../../utils/rateLimit.js';
 import { verifyCsrfToken } from '../../utils/csrf.js';
@@ -25,6 +27,7 @@ if (!supabaseUrl || !supabaseKey) {
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function POST({ request, cookies }) {
+  console.log('=== submit-form API called ===');
   try {
     // Check rate limit first
     const clientIP = getClientIP(request);
@@ -48,9 +51,15 @@ export async function POST({ request, cookies }) {
     const body = await request.json();
     const { formData, formSource, _csrf } = body;
 
+    console.log('Body received:', { formData, formSource, _csrf });
+
     // Verify CSRF token
     const sessionId = cookies.get('session_id')?.value;
+    console.log('Session ID from cookies:', sessionId);
+    console.log('CSRF token from request:', _csrf);
+    
     if (!sessionId || !verifyCsrfToken(sessionId, _csrf)) {
+      console.log('CSRF validation failed - sessionId:', !!sessionId, '_csrf:', !!_csrf);
       return new Response(
         JSON.stringify({
           success: false,
@@ -139,7 +148,9 @@ export async function POST({ request, cookies }) {
     );
 
   } catch (error) {
-    console.error('Error in submit-form API:', error);
+    console.error('=== ERROR in submit-form API ===');
+    console.error('Error details:', error.message);
+    console.error('Stack trace:', error.stack);
     
     return new Response(
       JSON.stringify({ 
