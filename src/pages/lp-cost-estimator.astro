@@ -1,0 +1,513 @@
+---
+/**
+ * Landing Page 3: Cost Estimator
+ * Interactive cost calculator for furnace repairs
+ * Shows pricing ranges for different issues and provider types
+ */
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Furnace Repair Cost Estimator | Fix My Furnace - Michigan">
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 text-white py-16 px-6">
+    <div class="container mx-auto max-w-5xl text-center">
+
+      <!-- Stats Badges -->
+      <div class="flex flex-wrap justify-center gap-4 mb-8">
+        <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
+          <span class="text-sm font-semibold">💰 Real Michigan Pricing</span>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
+          <span class="text-sm font-semibold">⚡ Instant Estimates</span>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
+          <span class="text-sm font-semibold">🔍 100% Transparent</span>
+        </div>
+      </div>
+
+      <h1 class="text-5xl md:text-6xl font-black mb-6 leading-tight">
+        How Much Will Your <br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400">
+          Furnace Repair Cost?
+        </span>
+      </h1>
+
+      <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+        Select your issue below to see real Michigan pricing ranges — from both independent licensed techs and full-service companies.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Issue Selector Section -->
+  <section class="py-16 px-6 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <div class="container mx-auto max-w-5xl">
+
+      <h2 class="text-3xl md:text-4xl font-black text-center text-gray-900 mb-4">
+        What's Wrong With Your Furnace?
+      </h2>
+      <p class="text-center text-gray-600 text-lg mb-12">
+        Click on the issue that best describes your problem
+      </p>
+
+      <!-- Issue Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+
+        <!-- Issue 1: No Heat -->
+        <button
+          class="issue-card bg-white rounded-2xl p-8 border-2 border-gray-200 hover:border-red-500 hover:shadow-xl transition-all text-left group cursor-pointer"
+          data-issue="no-heat"
+          data-low-min="150"
+          data-low-max="500"
+          data-high-min="250"
+          data-high-max="800"
+        >
+          <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-red-500 group-hover:scale-110 transition-all">
+            <svg class="w-8 h-8 text-red-600 group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
+            No Heat At All
+          </h3>
+          <p class="text-gray-600 text-sm">
+            Furnace won't turn on or blows cold air
+          </p>
+        </button>
+
+        <!-- Issue 2: Strange Noises -->
+        <button
+          class="issue-card bg-white rounded-2xl p-8 border-2 border-gray-200 hover:border-red-500 hover:shadow-xl transition-all text-left group cursor-pointer"
+          data-issue="strange-noises"
+          data-low-min="100"
+          data-low-max="400"
+          data-high-min="150"
+          data-high-max="600"
+        >
+          <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange-500 group-hover:scale-110 transition-all">
+            <svg class="w-8 h-8 text-orange-600 group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
+            Strange Noises
+          </h3>
+          <p class="text-gray-600 text-sm">
+            Banging, rattling, squealing, or grinding sounds
+          </p>
+        </button>
+
+        <!-- Issue 3: Uneven Heating -->
+        <button
+          class="issue-card bg-white rounded-2xl p-8 border-2 border-gray-200 hover:border-red-500 hover:shadow-xl transition-all text-left group cursor-pointer"
+          data-issue="uneven-heating"
+          data-low-min="125"
+          data-low-max="450"
+          data-high-min="200"
+          data-high-max="700"
+        >
+          <div class="w-14 h-14 bg-yellow-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-yellow-500 group-hover:scale-110 transition-all">
+            <svg class="w-8 h-8 text-yellow-600 group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M12 1.586l-4 4v12.828l4-4V1.586zM3.707 3.293A1 1 0 002 4v10a1 1 0 00.293.707L6 18.414V5.586L3.707 3.293zM17.707 5.293L14 1.586v12.828l2.293 2.293A1 1 0 0018 16V6a1 1 0 00-.293-.707z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
+            Uneven Heating
+          </h3>
+          <p class="text-gray-600 text-sm">
+            Some rooms hot, others cold
+          </p>
+        </button>
+
+        <!-- Issue 4: High Energy Bills -->
+        <button
+          class="issue-card bg-white rounded-2xl p-8 border-2 border-gray-200 hover:border-red-500 hover:shadow-xl transition-all text-left group cursor-pointer"
+          data-issue="high-bills"
+          data-low-min="125"
+          data-low-max="350"
+          data-high-min="175"
+          data-high-max="550"
+        >
+          <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-green-500 group-hover:scale-110 transition-all">
+            <svg class="w-8 h-8 text-green-600 group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
+            High Energy Bills
+          </h3>
+          <p class="text-gray-600 text-sm">
+            Running constantly or inefficiently
+          </p>
+        </button>
+
+        <!-- Issue 5: Frequent Cycling -->
+        <button
+          class="issue-card bg-white rounded-2xl p-8 border-2 border-gray-200 hover:border-red-500 hover:shadow-xl transition-all text-left group cursor-pointer"
+          data-issue="cycling"
+          data-low-min="100"
+          data-low-max="375"
+          data-high-min="150"
+          data-high-max="575"
+        >
+          <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-500 group-hover:scale-110 transition-all">
+            <svg class="w-8 h-8 text-blue-600 group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
+            Frequent Cycling
+          </h3>
+          <p class="text-gray-600 text-sm">
+            Turning on and off repeatedly
+          </p>
+        </button>
+
+        <!-- Issue 6: Old System / Replacement -->
+        <button
+          class="issue-card bg-white rounded-2xl p-8 border-2 border-gray-200 hover:border-red-500 hover:shadow-xl transition-all text-left group cursor-pointer"
+          data-issue="replacement"
+          data-low-min="2800"
+          data-low-max="5500"
+          data-high-min="4500"
+          data-high-max="9000"
+        >
+          <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-purple-500 group-hover:scale-110 transition-all">
+            <svg class="w-8 h-8 text-purple-600 group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
+            Full Replacement
+          </h3>
+          <p class="text-gray-600 text-sm">
+            Old system needs complete replacement
+          </p>
+        </button>
+
+      </div>
+
+      <!-- Results Container (Hidden Initially) -->
+      <div id="results-container" class="hidden">
+
+        <!-- Selected Issue Display -->
+        <div class="bg-gradient-to-r from-red-600 to-orange-600 rounded-2xl p-8 text-white text-center mb-8">
+          <p class="text-sm uppercase tracking-wide mb-2 opacity-90">Estimated Cost For:</p>
+          <h3 id="selected-issue-title" class="text-3xl md:text-4xl font-black mb-2"></h3>
+          <p class="text-red-100 text-sm">Based on 7,500+ Michigan jobs completed in 2024</p>
+        </div>
+
+        <!-- Pricing Comparison -->
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+
+          <!-- Licensed Independent Tech -->
+          <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border-2 border-blue-200 relative">
+            <div class="absolute top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+              💰 BEST VALUE
+            </div>
+            <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-8 text-center">
+              <h4 class="text-2xl font-black mb-2">Licensed Independent Tech</h4>
+              <p class="text-blue-100 text-sm">Lower overhead, same expertise</p>
+            </div>
+            <div class="p-8">
+              <div class="text-center mb-6">
+                <p class="text-5xl md:text-6xl font-black text-blue-600 mb-2">
+                  $<span id="low-min">0</span> - $<span id="low-max">0</span>
+                </p>
+                <p class="text-gray-500 text-sm">Typical Range</p>
+              </div>
+              <ul class="space-y-3 text-gray-700">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Fully licensed & insured</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Decades of experience</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>No franchise fees passed to you</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Parts & labor warranty included</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Full-Service Company -->
+          <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border-2 border-gray-200">
+            <div class="bg-gradient-to-r from-red-600 to-orange-600 text-white p-8 text-center">
+              <h4 class="text-2xl font-black mb-2">Full-Service Company</h4>
+              <p class="text-red-100 text-sm">Larger operations, higher overhead</p>
+            </div>
+            <div class="p-8">
+              <div class="text-center mb-6">
+                <p class="text-5xl md:text-6xl font-black text-red-600 mb-2">
+                  $<span id="high-min">0</span> - $<span id="high-max">0</span>
+                </p>
+                <p class="text-gray-500 text-sm">Typical Range</p>
+              </div>
+              <ul class="space-y-3 text-gray-700">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Established brand presence</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>24/7 call center support</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Extended warranty options</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-yellow-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Higher overhead costs</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Savings Callout -->
+        <div class="bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl p-8 md:p-12 text-white text-center mb-12">
+          <p class="text-sm uppercase tracking-wide mb-2 opacity-90">Potential Savings</p>
+          <p class="text-4xl md:text-5xl font-black mb-4">
+            Save $<span id="savings-min">0</span> - $<span id="savings-max">0</span>
+          </p>
+          <p class="text-xl text-green-100">
+            By choosing an independent licensed tech over a full-service company
+          </p>
+        </div>
+
+        <!-- Important Notice -->
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 rounded-xl p-8 mb-12">
+          <div class="flex items-start gap-4">
+            <svg class="w-8 h-8 text-yellow-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+            </svg>
+            <div>
+              <h4 class="text-xl font-bold text-gray-900 mb-2">Why Can't We Give an Exact Price?</h4>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                Every furnace problem is unique. What looks like a simple fix might reveal deeper issues once diagnosed. Or vice versa — what sounds scary might be a $150 part replacement.
+              </p>
+              <p class="text-gray-700 leading-relaxed">
+                <strong>That's why we start with a $125 home diagnosis.</strong> Our licensed tech will examine your system, identify the exact problem, and give you transparent pricing for BOTH provider options before any work begins.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="bg-gradient-to-br from-red-600 via-red-700 to-orange-600 rounded-2xl p-8 md:p-12 text-white text-center">
+          <h3 class="text-3xl md:text-4xl font-black mb-4">
+            Ready to Get Your Exact Price?
+          </h3>
+          <p class="text-xl text-red-100 mb-8 max-w-2xl mx-auto">
+            Book your $125 home diagnosis. We'll identify the problem, give you transparent pricing for both options, and you decide which provider is right for you.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <a
+              href="/home-visit"
+              class="bg-yellow-400 text-gray-900 px-10 py-5 rounded-2xl font-black text-xl hover:bg-yellow-300 transition-all shadow-2xl hover:scale-105 inline-flex items-center justify-center gap-3"
+            >
+              Book $125 Diagnosis Now
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+            <a
+              href="tel:+18334948669"
+              class="border-2 border-white text-white px-10 py-5 rounded-2xl font-black text-xl hover:bg-white/10 transition-all inline-flex items-center justify-center gap-3"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+              </svg>
+              Call (833) FIX-IT-NOW
+            </a>
+          </div>
+
+          <!-- Trust Indicators -->
+          <div class="grid grid-cols-3 gap-6 max-w-2xl mx-auto pt-8 border-t border-white/20">
+            <div>
+              <p class="text-3xl font-black text-yellow-400 mb-1">4.9★</p>
+              <p class="text-sm text-red-100">1,200+ Reviews</p>
+            </div>
+            <div>
+              <p class="text-3xl font-black text-yellow-400 mb-1">&lt;2 Hr</p>
+              <p class="text-sm text-red-100">Avg Response</p>
+            </div>
+            <div>
+              <p class="text-3xl font-black text-yellow-400 mb-1">7,500+</p>
+              <p class="text-sm text-red-100">Jobs in 2024</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="py-16 px-6 bg-white">
+    <div class="container mx-auto max-w-5xl">
+      <h2 class="text-3xl md:text-4xl font-black text-center text-gray-900 mb-12">
+        Here's What Happens Next
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- Step 1 -->
+        <div class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-red-600 to-orange-600 rounded-full flex items-center justify-center text-white text-3xl font-black mb-6 mx-auto shadow-xl">
+            1
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Book Your Diagnosis</h3>
+          <p class="text-gray-600">
+            Schedule online or call. We'll respond within minutes and arrive within 2 hours.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-red-600 to-orange-600 rounded-full flex items-center justify-center text-white text-3xl font-black mb-6 mx-auto shadow-xl">
+            2
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Get Your Options</h3>
+          <p class="text-gray-600">
+            Our tech diagnoses the issue and presents pricing from BOTH provider types.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-red-600 to-orange-600 rounded-full flex items-center justify-center text-white text-3xl font-black mb-6 mx-auto shadow-xl">
+            3
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">You Decide</h3>
+          <p class="text-gray-600">
+            Choose the provider that fits your budget. No pressure. No games.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky Mobile CTA -->
+  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-gradient-to-r from-red-600 to-orange-600 p-4 shadow-2xl z-50 border-t-4 border-yellow-400">
+    <a href="/home-visit" class="block bg-yellow-400 text-gray-900 text-center py-4 rounded-xl font-black text-lg hover:bg-yellow-300 transition-colors shadow-xl">
+      Get My $125 Diagnosis
+    </a>
+  </div>
+
+</Layout>
+
+<script>
+  // Interactive Cost Calculator
+  const issueCards = document.querySelectorAll('.issue-card');
+  const resultsContainer = document.getElementById('results-container');
+  const selectedIssueTitle = document.getElementById('selected-issue-title');
+  const lowMinSpan = document.getElementById('low-min');
+  const lowMaxSpan = document.getElementById('low-max');
+  const highMinSpan = document.getElementById('high-min');
+  const highMaxSpan = document.getElementById('high-max');
+  const savingsMinSpan = document.getElementById('savings-min');
+  const savingsMaxSpan = document.getElementById('savings-max');
+
+  const issueLabels = {
+    'no-heat': 'No Heat At All',
+    'strange-noises': 'Strange Noises',
+    'uneven-heating': 'Uneven Heating',
+    'high-bills': 'High Energy Bills',
+    'cycling': 'Frequent Cycling',
+    'replacement': 'Full Furnace Replacement'
+  };
+
+  issueCards.forEach(card => {
+    card.addEventListener('click', () => {
+      // Get data from card
+      const issue = card.dataset.issue;
+      const lowMin = parseInt(card.dataset.lowMin);
+      const lowMax = parseInt(card.dataset.lowMax);
+      const highMin = parseInt(card.dataset.highMin);
+      const highMax = parseInt(card.dataset.highMax);
+
+      // Calculate savings
+      const savingsMin = highMin - lowMax; // Conservative estimate
+      const savingsMax = highMax - lowMin; // Optimistic estimate
+
+      // Update UI
+      selectedIssueTitle.textContent = issueLabels[issue];
+      lowMinSpan.textContent = lowMin.toLocaleString();
+      lowMaxSpan.textContent = lowMax.toLocaleString();
+      highMinSpan.textContent = highMin.toLocaleString();
+      highMaxSpan.textContent = highMax.toLocaleString();
+      savingsMinSpan.textContent = savingsMin.toLocaleString();
+      savingsMaxSpan.textContent = savingsMax.toLocaleString();
+
+      // Show results with smooth scroll
+      resultsContainer.classList.remove('hidden');
+
+      setTimeout(() => {
+        resultsContainer.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
+
+      // Visual feedback on selected card
+      issueCards.forEach(c => c.classList.remove('ring-4', 'ring-red-500'));
+      card.classList.add('ring-4', 'ring-red-500');
+    });
+  });
+</script>
+
+<style>
+  @keyframes blob {
+    0%, 100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  /* Add bottom padding to body on mobile to account for sticky CTA */
+  @media (max-width: 768px) {
+    body {
+      padding-bottom: 80px;
+    }
+  }
+</style>
