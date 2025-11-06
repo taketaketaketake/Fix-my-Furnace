@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 # phone verification implementation plan
 phone_verification_setup.md
+.env

@@ -86,9 +86,11 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
             name="phone"
             type="tel"
             placeholder="(313) 555-1234"
+            maxlength="14"
             class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition"
             required
           />
+          <div id="phoneError" class="text-red-600 text-sm mt-1 hidden">Please enter a valid phone number</div>
         </div>
 
         <!-- 📍 Address -->
@@ -193,14 +195,10 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
 
 <script type="module" define:vars={{ MAPBOX_TOKEN }}>
-  // Import Supabase from CDN for client-side use
-  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
   
   document.addEventListener("DOMContentLoaded", () => {
-    // Supabase configuration
-    const supabaseUrl = 'https://ztvsfapoeekaxztahxsv.supabase.co';
-    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0dnNmYXBvZWVrYXh6dGFoeHN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxMDUzMDIsImV4cCI6MjA3NzY4MTMwMn0.4ff8bfxwEUlJN3JQ3QGsys-xB9Xqu8zUspJSvtzL06k';
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+    // API endpoint for form submission
+    const API_ENDPOINT = '/api/send-verification';
     
     // Quote form handling
     const quoteForm = document.getElementById('quoteForm');
@@ -212,11 +210,69 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
     const quoteErrorMessage = document.getElementById('quoteErrorMessage');
     const quoteLoadingMessage = document.getElementById('quoteLoadingMessage');
     
+    // Phone input handling
+    const phoneInput = document.getElementById('phone');
+    const phoneError = document.getElementById('phoneError');
+    
     // Address autocomplete elements
     const addressInput = document.getElementById('address');
     const addressSuggestions = document.getElementById('addressSuggestions');
 
     if (!quoteForm) return; // Exit if form not found
+
+    // Phone number formatting and validation
+    function formatPhoneNumber(value) {
+      const phone = value.replace(/\D/g, '');
+      if (phone.length < 4) return phone;
+      if (phone.length < 7) return `(${phone.slice(0,3)}) ${phone.slice(3)}`;
+      return `(${phone.slice(0,3)}) ${phone.slice(3,6)}-${phone.slice(6,10)}`;
+    }
+
+    function validatePhoneNumber(phone) {
+      const digits = phone.replace(/\D/g, '');
+      return digits.length === 10;
+    }
+
+    function showPhoneError(show) {
+      if (show) {
+        phoneInput.classList.add('border-red-500');
+        phoneError.classList.remove('hidden');
+      } else {
+        phoneInput.classList.remove('border-red-500');
+        phoneError.classList.add('hidden');
+      }
+    }
+
+    // Phone input event listeners
+    if (phoneInput) {
+      phoneInput.addEventListener('input', (e) => {
+        const formatted = formatPhoneNumber(e.target.value);
+        e.target.value = formatted;
+        
+        if (formatted.length > 0) {
+          const isValid = validatePhoneNumber(formatted);
+          showPhoneError(!isValid);
+        } else {
+          showPhoneError(false);
+        }
+      });
+
+      phoneInput.addEventListener('keydown', (e) => {
+        // Allow backspace, delete, tab, escape, enter
+        if ([8, 9, 27, 13, 46].includes(e.keyCode) ||
+            // Allow Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+            (e.keyCode === 65 && e.ctrlKey) ||
+            (e.keyCode === 67 && e.ctrlKey) ||
+            (e.keyCode === 86 && e.ctrlKey) ||
+            (e.keyCode === 88 && e.ctrlKey)) {
+          return;
+        }
+        // Only allow numbers
+        if ((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)) {
+          e.preventDefault();
+        }
+      });
+    }
 
     // Function to show specific message
     function showQuoteMessage(messageType) {
@@ -373,25 +429,37 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
         if (!name || !phone || !address || !issue) {
           throw new Error('Please fill in all required fields');
         }
+
+        // Validate phone number
+        if (!validatePhoneNumber(phone)) {
+          throw new Error('Please enter a valid phone number');
+        }
         
-        // Save to Supabase database
-        const { data, error } = await supabase
-          .from('form_submissions')
-          .insert([
-            {
-              full_name: name,
-              phone_number: phone,
-              service_address: address,
-              furnace_issue: issue,
-              photo_count: 0,
-              photo_urls: [],
-              form_source: 'homepage_quote'
-            }
-          ]);
-        
-        if (error) {
-          console.error('Error saving form:', error);
-          throw new Error('Failed to submit form');
+        // Submit to API endpoint
+        const response = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            formData: {
+              name: name,
+              address: address,
+              issue: issue
+            },
+            phoneNumber: phone,
+            formSource: 'homepage_quote'
+          })
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to submit form');
+        }
+
+        const result = await response.json();
+        if (!result.success) {
+          throw new Error(result.error || 'Failed to submit form');
         }
         
         // Success

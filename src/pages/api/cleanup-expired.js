@@ -8,20 +8,50 @@
 
 import { createClient } from '@supabase/supabase-js';
 import { cleanupExpiredVerifications } from '../../utils/verification.js';
+import { checkRateLimit, getClientIP } from '../../utils/rateLimit.js';
+
+function sanitizeInput(input) {
+  return typeof input === 'string' ? input.trim().slice(0, 500) : '';
+}
 
 // Initialize Supabase client
-const supabaseUrl = import.meta.env.SUPABASE_URL || 'https://ztvsfapoeekaxztahxsv.supabase.co';
-const supabaseKey = import.meta.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0dnNmYXBvZWVrYXh6dGFoeHN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxMDUzMDIsImV4cCI6MjA3NzY4MTMwMn0.4ff8bfxwEUlJN3JQ3QGsys-xB9Xqu8zUspJSvtzL06k';
+const supabaseUrl = import.meta.env.SUPABASE_URL;
+const supabaseKey = import.meta.env.SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error('Missing required environment variables');
+}
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function POST({ request }) {
   try {
+    // Check rate limit first
+    const clientIP = getClientIP(request);
+    if (!checkRateLimit(clientIP)) {
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'Too many requests. Please try again later.',
+          retryAfter: 900
+        }),
+        { 
+          status: 429,
+          headers: { 
+            'Content-Type': 'application/json',
+            'Retry-After': '900'
+          }
+        }
+      );
+    }
+
     const body = await request.json().catch(() => ({}));
     const { hoursOld = 24, authToken } = body;
+    const sanitizedAuthToken = sanitizeInput(authToken);
 
     // Basic auth check (optional - you might want to add API key authentication)
     const expectedAuthToken = import.meta.env.CLEANUP_AUTH_TOKEN;
-    if (expectedAuthToken && authToken !== expectedAuthToken) {
+    if (expectedAuthToken && sanitizedAuthToken !== expectedAuthToken) {
       return new Response(
         JSON.stringify({ 
           success: false, 
@@ -118,8 +148,27 @@ export async function POST({ request }) {
 // GET endpoint for manual cleanup (with basic auth)
 export async function GET({ request }) {
   try {
+    // Check rate limit first
+    const clientIP = getClientIP(request);
+    if (!checkRateLimit(clientIP)) {
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'Too many requests. Please try again later.',
+          retryAfter: 900
+        }),
+        { 
+          status: 429,
+          headers: { 
+            'Content-Type': 'application/json',
+            'Retry-After': '900'
+          }
+        }
+      );
+    }
+
     const url = new URL(request.url);
-    const authToken = url.searchParams.get('auth');
+    const authToken = sanitizeInput(url.searchParams.get('auth'));
     const hoursOld = parseInt(url.searchParams.get('hours') || '24');
 
     // Basic auth check

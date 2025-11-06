@@ -7,16 +7,32 @@
 
 import { createClient } from '@supabase/supabase-js';
 import { verifyPhoneToken } from '../../utils/verification.js';
+import { checkRateLimit, getClientIP } from '../../utils/rateLimit.js';
+
+function sanitizeInput(input) {
+  return typeof input === 'string' ? input.trim().slice(0, 500) : '';
+}
 
 // Initialize Supabase client
-const supabaseUrl = import.meta.env.SUPABASE_URL || 'https://ztvsfapoeekaxztahxsv.supabase.co';
-const supabaseKey = import.meta.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0dnNmYXBvZWVrYXh6dGFoeHN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxMDUzMDIsImV4cCI6MjA3NzY4MTMwMn0.4ff8bfxwEUlJN3JQ3QGsys-xB9Xqu8zUspJSvtzL06k';
+const supabaseUrl = import.meta.env.SUPABASE_URL;
+const supabaseKey = import.meta.env.SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error('Missing required environment variables');
+}
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function GET({ request, redirect }) {
   try {
+    // Check rate limit first
+    const clientIP = getClientIP(request);
+    if (!checkRateLimit(clientIP)) {
+      return redirect('/verification-error?error=rate-limited', 302);
+    }
+
     const url = new URL(request.url);
-    const token = url.searchParams.get('token');
+    const token = sanitizeInput(url.searchParams.get('token'));
 
     // Validate token parameter
     if (!token) {

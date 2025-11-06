@@ -6,12 +6,15 @@
  */
  const {
   title = "Built on Trust, Speed, and Real Detroit Grit.",
-  description = "We’re not a call center — we’re your local HVAC pros. When the cold hits and your furnace fails, we show up fast — licensed, local, and ready to get the heat back on.",
+  description = "We're not a call center — we're your local HVAC pros. When the cold hits and your furnace fails, we show up fast — licensed, local, and ready to get the heat back on.",
   primaryBtnText = "Get a Free Quote",
   secondaryBtnText = "Call Now",
   secondaryBtnLink = "tel:+8334948669",
   imageSrc = "/fixmyfurnacewoman.png"
 } = Astro.props;
+
+const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL;
+const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 ---
 
 <section class="relative w-full bg-white overflow-hidden">
@@ -163,15 +166,13 @@
 </div>
 
   <!-- 🧠 Modal Script -->
-  <script type="module">
+  <script type="module" define:vars={{ SUPABASE_URL, SUPABASE_ANON_KEY }}>
     // Import Supabase from CDN for client-side use
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
     
     document.addEventListener("DOMContentLoaded", () => {
-      // Supabase configuration
-      const supabaseUrl = 'https://ztvsfapoeekaxztahxsv.supabase.co';
-      const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0dnNmYXBvZWVrYXh6dGFoeHN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxMDUzMDIsImV4cCI6MjA3NzY4MTMwMn0.4ff8bfxwEUlJN3JQ3QGsys-xB9Xqu8zUspJSvtzL06k';
-      const supabase = createClient(supabaseUrl, supabaseAnonKey);
+      // Supabase configuration from environment variables
+      const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       const modal = document.getElementById("quoteModal");
       const openBtn = document.getElementById("openModalBtn");
       const closeBtn = document.getElementById("closeModalBtn");

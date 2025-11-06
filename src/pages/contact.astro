@@ -1,5 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL;
+const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
 ---
 
 <Layout 
@@ -322,7 +326,7 @@ import Layout from "../layouts/Layout.astro";
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
 
-  <script type="module">
+  <script type="module" define:vars={{ SUPABASE_URL, SUPABASE_ANON_KEY, MAPBOX_TOKEN }}>
     // Import Supabase from CDN for client-side use
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
     
@@ -330,13 +334,8 @@ import Layout from "../layouts/Layout.astro";
       // Initialize Lucide icons
       if (typeof lucide !== 'undefined') lucide.createIcons();
       
-      // Supabase configuration
-      const supabaseUrl = 'https://ztvsfapoeekaxztahxsv.supabase.co';
-      const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0dnNmYXBvZWVrYXh6dGFoeHN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxMDUzMDIsImV4cCI6MjA3NzY4MTMwMn0.4ff8bfxwEUlJN3JQ3QGsys-xB9Xqu8zUspJSvtzL06k';
-      const supabase = createClient(supabaseUrl, supabaseAnonKey);
-      
-      // Mapbox configuration
-      const MAPBOX_TOKEN = 'pk.eyJ1IjoidGFrZS1kZXRyb2l0LXRlY2giLCJhIjoiY21oYms0ODh4MGZpZDJqb2FmcjVkcW1taSJ9.CIimHYrJ3F2r1bJNgREdGA';
+      // Supabase configuration from environment variables
+      const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       
       // Form submission handling
       const form = document.getElementById('contactForm');

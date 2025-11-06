@@ -13,14 +13,43 @@ import {
   generateExpirationTime 
 } from '../../utils/verification.js';
 import { telnyxService } from '../../utils/telnyx.js';
+import { checkRateLimit, getClientIP } from '../../utils/rateLimit.js';
+
+function sanitizeInput(input) {
+  return typeof input === 'string' ? input.trim().slice(0, 500) : '';
+}
 
 // Initialize Supabase client
-const supabaseUrl = import.meta.env.SUPABASE_URL || 'https://ztvsfapoeekaxztahxsv.supabase.co';
-const supabaseKey = import.meta.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0dnNmYXBvZWVrYXh6dGFoeHN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxMDUzMDIsImV4cCI6MjA3NzY4MTMwMn0.4ff8bfxwEUlJN3JQ3QGsys-xB9Xqu8zUspJSvtzL06k';
+const supabaseUrl = import.meta.env.SUPABASE_URL;
+const supabaseKey = import.meta.env.SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error('Missing required environment variables');
+}
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function POST({ request }) {
   try {
+    // Check rate limit first
+    const clientIP = getClientIP(request);
+    if (!checkRateLimit(clientIP)) {
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'Too many requests. Please try again later.',
+          retryAfter: 900
+        }),
+        { 
+          status: 429,
+          headers: { 
+            'Content-Type': 'application/json',
+            'Retry-After': '900'
+          }
+        }
+      );
+    }
+
     const body = await request.json();
     const { phoneNumber, submissionId } = body;
 
@@ -38,23 +67,11 @@ export async function POST({ request }) {
       );
     }
 
-    // Validate phone number format
-    const phoneValidation = telnyxService.validatePhoneNumber(phoneNumber);
-    if (!phoneValidation.valid) {
-      return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: phoneValidation.error 
-        }),
-        { 
-          status: 400,
-          headers: { 'Content-Type': 'application/json' }
-        }
-      );
-    }
+    // Sanitize phone number
+    const sanitizedPhoneNumber = sanitizeInput(phoneNumber);
 
     // Check if user can resend verification
-    const resendCheck = await canResendVerification(supabase, phoneValidation.formatted);
+    const resendCheck = await canResendVerification(supabase, sanitizedPhoneNumber);
     
     if (!resendCheck.canResend) {
       return new Response(
@@ -74,7 +91,7 @@ export async function POST({ request }) {
     const { data: records, error: findError } = await supabase
       .from('form_submissions')
       .select('*')
-      .eq('phone_number', phoneValidation.formatted)
+      .eq('phone_number', sanitizedPhoneNumber)
       .eq('verification_status', 'pending')
       .order('created_at', { ascending: false })
       .limit(1);
@@ -126,7 +143,7 @@ export async function POST({ request }) {
 
     // Send new verification SMS
     const smsResult = await telnyxService.sendResendVerificationSMS(
-      phoneValidation.formatted,
+      sanitizedPhoneNumber,
       record.verification_token,
       updatedRecord.verification_attempts
     );
@@ -152,7 +169,7 @@ export async function POST({ request }) {
         success: true,
         message: 'Verification SMS resent successfully',
         attemptsRemaining: Math.max(0, 3 - updatedRecord.verification_attempts),
-        phoneNumber: phoneValidation.formatted
+        phoneNumber: sanitizedPhoneNumber
       }),
       {
         status: 200,

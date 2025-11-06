@@ -1,13 +1,12 @@
 /**
- * API Route: Send Verification SMS
- * POST /api/send-verification
+ * API Route: Submit Form
+ * POST /api/submit-form
  * 
- * Handles form submission + sends verification SMS
+ * Handles all simple form submissions to form_submissions table
+ * Used by UniversalForm component
  */
 
 import { createClient } from '@supabase/supabase-js';
-import { createVerificationRecord } from '../../utils/verification.js';
-import { telnyxService } from '../../utils/telnyx.js';
 import { checkRateLimit, getClientIP } from '../../utils/rateLimit.js';
 
 function sanitizeInput(input) {
@@ -46,14 +45,14 @@ export async function POST({ request }) {
     }
 
     const body = await request.json();
-    const { formData, phoneNumber, formSource } = body;
+    const { formData, formSource } = body;
 
     // Validate required fields
-    if (!phoneNumber || !formData) {
+    if (!formData || !formSource) {
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: 'Phone number and form data are required' 
+          error: 'Form data and source are required' 
         }),
         { 
           status: 400,
@@ -62,41 +61,46 @@ export async function POST({ request }) {
       );
     }
 
-    // Sanitize phone number
-    const sanitizedPhoneNumber = sanitizeInput(phoneNumber);
-
-    // Prepare form data for database
-    const submissionData = {
-      full_name: sanitizeInput(formData.name || formData.full_name),
-      phone_number: sanitizedPhoneNumber,
-      service_address: sanitizeInput(formData.address || formData.service_address || ''),
-      furnace_issue: sanitizeInput(formData.issue || formData.message || formData.furnace_issue),
-      form_source: sanitizeInput(formSource || 'unknown'),
-      photo_count: formData.photo_count || 0,
-      photo_urls: formData.photo_urls || []
-    };
-
-    // Create verification record in database
-    const verificationRecord = await createVerificationRecord(
-      supabase, 
-      submissionData, 
-      sanitizedPhoneNumber
-    );
-
-    // Send verification SMS
-    const smsResult = await telnyxService.sendVerificationSMS(
-      sanitizedPhoneNumber,
-      verificationRecord.verification_token
-    );
-
-    if (!smsResult.success) {
-      // If SMS fails, we should probably delete the record or mark it as failed
-      console.error('Failed to send verification SMS:', smsResult.error);
-      
+    // Validate required form fields
+    if (!formData.name || !formData.phone) {
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: 'Failed to send verification SMS. Please try again.' 
+          error: 'Name and phone number are required' 
+        }),
+        { 
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
+    }
+
+    // Prepare form data for database
+    const submissionData = {
+      full_name: sanitizeInput(formData.name),
+      phone_number: sanitizeInput(formData.phone),
+      service_address: sanitizeInput(formData.address || ''),
+      furnace_issue: sanitizeInput(formData.issue || formData.message || ''),
+      form_source: sanitizeInput(formSource),
+      photo_count: 0,
+      photo_urls: [],
+      status: 'pending',
+      verification_status: 'not_required'
+    };
+
+    // Insert into database
+    const { data, error } = await supabase
+      .from('form_submissions')
+      .insert([submissionData])
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Database error:', error);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'Failed to submit form' 
         }),
         { 
           status: 500,
@@ -109,9 +113,8 @@ export async function POST({ request }) {
     return new Response(
       JSON.stringify({
         success: true,
-        message: 'Verification SMS sent successfully',
-        submissionId: verificationRecord.id,
-        phoneNumber: sanitizedPhoneNumber
+        message: 'Form submitted successfully',
+        submissionId: data.id
       }),
       {
         status: 200,
@@ -120,7 +123,7 @@ export async function POST({ request }) {
     );
 
   } catch (error) {
-    console.error('Error in send-verification API:', error);
+    console.error('Error in submit-form API:', error);
     
     return new Response(
       JSON.stringify({ 
