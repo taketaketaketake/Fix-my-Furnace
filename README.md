@@ -1,18 +1,39 @@
-# 🧰 Fix My Furnace — Service Pages Guide
+# 🧰 Fix My Furnace — Professional HVAC Website
 
-This document explains how to **add, edit, or manage service pages** for the Fix My Furnace website.
+Modern, conversion-optimized website for HVAC and furnace repair services across Michigan. Built with cutting-edge web technologies to deliver fast, reliable lead generation.
 
-All service pages (like **Furnace Repair**, **Boiler Installation**, etc.) are automatically generated from a single data file — you don’t need to manually create new `.astro` pages.
+## 🚀 Key Features
+
+- **Smart Lead Capture Forms** - Advanced form system with phone validation, address autocomplete, and spam protection
+- **Dynamic Service Pages** - Automatically generated service pages from data files
+- **Mobile-First Design** - Responsive across all devices with professional styling
+- **Performance Optimized** - Static site generation for lightning-fast load times
+- **Lead Tracking** - Built-in source tracking for marketing analytics
+
+## 🛠 Technology Stack
+
+- **Frontend Framework:** Astro.js v5.15.2 (SSG/SSR)
+- **Styling:** TailwindCSS v4.1.16
+- **Language:** TypeScript (strict mode)
+- **Icons:** Lucide React v0.548.0
+- **Build Tool:** Vite (via Astro)
+- **Database:** Supabase (PostgreSQL)
+- **Geocoding:** Mapbox API
+- **Form Processing:** Custom API endpoints with rate limiting
+
+## 📊 Form System Features
+
+### UniversalForm Component
+- **Phone Validation:** Auto-formatting with input restrictions
+- **Address Autocomplete:** Mapbox-powered Michigan-focused geocoding
+- **Spam Protection:** Honeypot fields and rate limiting
+- **Source Tracking:** Track lead generation by page/campaign
+- **Security:** Input sanitization and server-side validation
+- **Mobile Optimized:** Touch-friendly form controls
 
 ---
 
-  Frontend Framework: Astro.js v5.15.2 (SSG/SSR)
-  Styling: TailwindCSS v4.1.16
-  Language: TypeScript (strict mode)
-  Icons: Lucide React v0.548.0
-  Build Tool: Vite (via Astro)
-
-  Project Structure
+## 📁 Project Structure
 
   fix-my-furnace/
   ├── .astro/
@@ -33,12 +54,15 @@ All service pages (like **Furnace Repair**, **Boiler Installation**, etc.) are a
   │   │   ├── ServiceAreasSection.astro
   │   │   ├── TestimonialsSection.astro
   │   │   ├── TopBarCTA.astro
+  │   │   ├── UniversalForm.astro        # 🆕 Reusable form component
   │   │   └── WhyChooseUs.astro
   │   ├── data/
   │   │   └── services.js           # Service data structure
   │   ├── layouts/
   │   │   └── Layout.astro          # Main layout with title prop
   │   ├── pages/
+  │   │   ├── api/
+  │   │   │   └── submit-form.js    # 🆕 Form submission endpoint
   │   │   ├── services/
   │   │   │   └── [slug].astro      # Dynamic service pages
   │   │   ├── about.astro
@@ -46,9 +70,14 @@ All service pages (like **Furnace Repair**, **Boiler Installation**, etc.) are a
   │   │   ├── index.astro           # Homepage
   │   │   ├── landing_page_1.astro
   │   │   ├── landing_page_2.astro
-  │   │   └── services.astro
+  │   │   ├── services.astro
+  │   │   └── test-form.astro       # 🆕 Form testing page
+  │   ├── scripts/
+  │   │   └── universalForm.js      # 🆕 Form handling logic
   │   ├── styles/
   │   │   └── global.css
+  │   ├── utils/
+  │   │   └── rateLimit.js          # 🆕 Rate limiting utilities
   │   ├── input.css
   │   └── script.js
   ├── astro.config.mjs
@@ -56,33 +85,45 @@ All service pages (like **Furnace Repair**, **Boiler Installation**, etc.) are a
   ├── tsconfig.json
   └── README.md
 
-  Key Architecture Notes:
-  - Static site generation with component-based architecture
-  - Dynamic routing via [slug].astro for services
-  - Centralized data in src/data/services.js
-  - TypeScript strict mode enabled
-  - No existing ML/AI dependencies
+### Key Architecture Notes:
+- **Static site generation** with component-based architecture
+- **Dynamic routing** via [slug].astro for services
+- **Centralized data** in src/data/services.js
+- **TypeScript strict mode** enabled
+- **API endpoints** for form processing and data handling
+- **Modular form system** with reusable components
 
 
 ---
 
-## 🚀 How It Works
+## 🚀 Quick Start
 
-Astro uses a **dynamic route file** — `src/pages/services/[slug].astro` — combined with a `getStaticPaths()` function to pre-render a static page for each service defined in `src/data/services.js`.
+### Using the UniversalForm Component
 
-Each object in `services.js` defines one service page.
+```astro
+---
+import UniversalForm from '../components/UniversalForm.astro';
 
-Example route:
-
-/services/furnace-repair
-The `[slug]` field determines the page URL.
-
+const fields = [
+  { name: 'name', type: 'text', label: 'Full Name', required: true },
+  { name: 'phone', type: 'tel', label: 'Phone Number', required: true },
+  { name: 'address', type: 'address', label: 'Service Address', required: false },
+  { name: 'issue', type: 'select', label: 'Service Needed', 
+    options: ['Furnace Repair', 'Installation', 'Maintenance'], required: true }
+];
 ---
 
-## 🛠 How to Add a New Service Page
+<UniversalForm
+  formId="contact-form"
+  formSource="contact_page_form"
+  title="Get Your Free Quote"
+  description="Local HVAC experts will contact you shortly"
+  fields={fields}
+  submitText="Request Service"
+/>
+```
 
-1. **Open** `src/data/services.js`
-2. **Add** a new object to the exported `services` array:
+### Adding Service Pages
 
 ```js
 {
@@ -99,9 +140,74 @@ The `[slug]` field determines the page URL.
     { icon: "wallet", title: "Transparent Pricing", text: "No hidden fees, ever." },
   ],
 },
+```
 
-Save the file.
-That’s it — your new page will be generated automatically!
+Save the file and your new service page will be generated automatically!
+
+---
+
+## 📋 UniversalForm System (NEW)
+
+### Overview
+The UniversalForm component is a production-ready form system that replaced the original homepage form. It provides consistent functionality across all pages with advanced validation and lead tracking.
+
+### Usage Example
+```astro
+---
+import UniversalForm from '../components/UniversalForm.astro';
+
+const fields = [
+  { name: 'name', type: 'text', label: 'Full Name', required: true },
+  { name: 'phone', type: 'tel', label: 'Phone Number', required: true },
+  { name: 'address', type: 'address', label: 'Service Address', required: false },
+  { name: 'issue', type: 'select', label: 'Service Type', 
+    options: ['Furnace Repair', 'Installation', 'Maintenance'], required: true }
+];
+---
+
+<UniversalForm
+  formId="contact-form"
+  formSource="contact_page_form"
+  apiEndpoint="/api/submit-form"
+  title="Get Your Free Quote"
+  description="Local HVAC experts will contact you shortly"
+  fields={fields}
+  submitText="Request Service"
+/>
+```
+
+### Form Field Types
+- **text**: Standard text input
+- **tel**: Phone with auto-formatting and validation (prevents letters)
+- **email**: Email input with browser validation
+- **textarea**: Multi-line text input
+- **select**: Dropdown with custom options
+- **address**: Mapbox-powered address autocomplete (Michigan-focused)
+
+### Security Features
+- **Rate limiting**: 5 requests per 15-minute window per IP
+- **Input sanitization**: All inputs trimmed and limited to 500 characters
+- **Honeypot protection**: Hidden bot-catching fields
+- **Server-side validation**: Required field checking and phone validation
+- **Supabase integration**: Using service role for reliable database access
+
+### Lead Tracking
+Form submissions include source tracking in the `form_source` column:
+- Homepage: `homepage_quote_form`
+- Contact: `contact_page_form`
+- Service pages: `service_[slug]_form`
+
+### Database Schema
+Forms submit to the `form_submissions` table with these fields:
+- `full_name`, `phone_number`, `email`, `service_address`, `furnace_issue`
+- `form_source`, `status`, `verification_status`
+- `photo_count`, `photo_urls` (for future file upload features)
+
+### API Endpoint
+- **URL**: `/api/submit-form`
+- **Method**: POST
+- **Body**: `{ formData: {...}, formSource: "source_identifier" }`
+- **Response**: `{ success: true, submissionId: "uuid" }`
 
 
 🧱 File Details
