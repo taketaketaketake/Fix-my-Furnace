@@ -176,141 +176,162 @@ const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 
         <form id="photo-callback-form" class="space-y-6">
 
-          <!-- Name -->
-          <div>
-            <label for="name" class="block text-sm font-bold text-gray-800 mb-2">
-              Full Name <span class="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              placeholder="Enter your full name"
-              class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
-            />
-          </div>
-
-          <!-- Phone -->
-          <div>
-            <label for="phone" class="block text-sm font-bold text-gray-800 mb-2">
-              Phone Number <span class="text-red-500">*</span>
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              required
-              maxlength="14"
-              placeholder="(313) 555-1234"
-              class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
-            />
-            <p id="phone-error" class="text-red-600 text-sm mt-1 hidden">Please enter a valid phone number</p>
-          </div>
-
-          <!-- Email -->
-          <div>
-            <label for="email" class="block text-sm font-bold text-gray-800 mb-2">
-              Email Address (Optional)
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="your.email@example.com"
-              class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
-            />
-          </div>
-
-          <!-- Problem Description -->
-          <div>
-            <label for="message" class="block text-sm font-bold text-gray-800 mb-2">
-              Describe the Problem <span class="text-red-500">*</span>
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows="4"
-              placeholder="Tell us what's happening with your furnace... Any error codes? Strange noises? When did it start?"
-              class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition resize-vertical"
-            ></textarea>
-          </div>
-
-          <!-- Photo Upload -->
-          <div>
-            <label for="photos" class="block text-sm font-bold text-gray-800 mb-2">
-              Upload Photos <span class="text-red-500">*</span>
-            </label>
-            <p class="text-sm text-gray-600 mb-3">
-              Upload photos of your furnace, error codes, damaged parts, or problem areas. Maximum 5 photos, 10MB each.
-            </p>
-
-            <div class="relative">
-              <input
-                type="file"
-                id="photos"
-                name="photos"
-                accept="image/jpeg,image/png,image/jpg,image/heic,image/webp"
-                multiple
-                required
-                class="hidden"
-              />
-              <label
-                for="photos"
-                class="flex flex-col items-center justify-center w-full border-2 border-dashed border-gray-300 rounded-xl px-6 py-12 cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition-all"
-              >
-                <svg class="w-16 h-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
-                </svg>
-                <p class="text-gray-700 font-semibold mb-1">Click to upload photos</p>
-                <p class="text-gray-500 text-sm">or drag and drop</p>
-                <p class="text-gray-400 text-xs mt-2">JPEG, PNG, HEIC up to 10MB each</p>
+          <!-- Step 1: Problem Description & Photo Upload -->
+          <div id="step1" class="space-y-6">
+            <!-- Problem Description -->
+            <div>
+              <label for="message" class="block text-sm font-bold text-gray-800 mb-2">
+                Describe the Problem <span class="text-red-500">*</span>
               </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows="4"
+                placeholder="Tell us what's happening with your furnace... Any error codes? Strange noises? When did it start?"
+                class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition resize-vertical"
+              ></textarea>
             </div>
 
-            <!-- Photo Preview -->
-            <div id="photo-preview" class="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-4 hidden">
-              <!-- Preview thumbnails will be inserted here -->
-            </div>
-          </div>
+            <!-- Photo Upload -->
+            <div>
+              <label for="photos" class="block text-sm font-bold text-gray-800 mb-2">
+                Upload Photos <span class="text-red-500">*</span>
+              </label>
+              <p class="text-sm text-gray-600 mb-3">
+                Upload photos of your furnace, error codes, damaged parts, or problem areas. Maximum 5 photos, 10MB each.
+              </p>
 
-          <!-- Preferred Callback Time -->
-          <div>
-            <label for="preferredTime" class="block text-sm font-bold text-gray-800 mb-2">
-              Preferred Callback Time
-            </label>
-            <select
-              id="preferredTime"
-              name="preferredTime"
-              class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+              <div class="relative">
+                <input
+                  type="file"
+                  id="photos"
+                  name="photos"
+                  accept="image/jpeg,image/png,image/jpg,image/heic,image/webp"
+                  multiple
+                  required
+                  class="hidden"
+                />
+                <label
+                  for="photos"
+                  class="flex flex-col items-center justify-center w-full border-2 border-dashed border-gray-300 rounded-xl px-6 py-12 cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition-all"
+                >
+                  <svg class="w-16 h-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                  </svg>
+                  <p class="text-gray-700 font-semibold mb-1">Click to upload photos</p>
+                  <p class="text-gray-500 text-sm">or drag and drop</p>
+                  <p class="text-gray-400 text-xs mt-2">JPEG, PNG, HEIC up to 10MB each</p>
+                </label>
+              </div>
+
+              <!-- Photo Preview -->
+              <div id="photo-preview" class="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-4 hidden">
+                <!-- Preview thumbnails will be inserted here -->
+              </div>
+            </div>
+
+            <!-- Continue Button -->
+            <button
+              type="button"
+              id="next-step-btn"
+              class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-black text-xl py-5 rounded-xl shadow-xl hover:from-blue-700 hover:to-cyan-700 active:scale-[0.98] transition-all"
             >
-              <option value="">Any time works</option>
-              <option value="morning">Morning (8am - 12pm)</option>
-              <option value="afternoon">Afternoon (12pm - 5pm)</option>
-              <option value="evening">Evening (5pm - 8pm)</option>
-            </select>
+              Continue
+            </button>
           </div>
 
-          <!-- Submit Button -->
-          <button
-            type="submit"
-            id="submit-btn"
-            class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-black text-xl py-5 rounded-xl shadow-xl hover:from-blue-700 hover:to-cyan-700 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <span id="submit-text">Upload Photos & Request Callback</span>
-            <span id="submit-loading" class="hidden">
-              <svg class="animate-spin inline w-6 h-6 mr-2" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              Uploading...
-            </span>
-          </button>
+          <!-- Step 2: Contact Information -->
+          <div id="step2" class="hidden space-y-6">
+            <!-- Step 2 Header -->
+            <div class="text-center mb-6">
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Almost Done!</h3>
+              <p class="text-sm text-gray-600">Our expert technicians will review your photos and call you back within 24 hours.</p>
+            </div>
 
-          <p class="text-sm text-gray-500 text-center">
-            By submitting, you agree to receive a callback from Fix My Furnace within 24 hours.
-          </p>
+            <!-- Name -->
+            <div>
+              <label for="name" class="block text-sm font-bold text-gray-800 mb-2">
+                Full Name <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="Enter your full name"
+                class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+              />
+            </div>
+
+            <!-- Phone -->
+            <div>
+              <label for="phone" class="block text-sm font-bold text-gray-800 mb-2">
+                Phone Number <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                maxlength="14"
+                placeholder="(313) 555-1234"
+                class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+              />
+              <p id="phone-error" class="text-red-600 text-sm mt-1 hidden">Please enter a valid phone number</p>
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-sm font-bold text-gray-800 mb-2">
+                Email Address (Optional)
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="your.email@example.com"
+                class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+              />
+            </div>
+
+            <!-- Preferred Callback Time -->
+            <div>
+              <label for="preferredTime" class="block text-sm font-bold text-gray-800 mb-2">
+                Preferred Callback Time
+              </label>
+              <select
+                id="preferredTime"
+                name="preferredTime"
+                class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+              >
+                <option value="">Any time works</option>
+                <option value="morning">Morning (8am - 12pm)</option>
+                <option value="afternoon">Afternoon (12pm - 5pm)</option>
+                <option value="evening">Evening (5pm - 8pm)</option>
+              </select>
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              id="submit-btn"
+              class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-black text-xl py-5 rounded-xl shadow-xl hover:from-blue-700 hover:to-cyan-700 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <span id="submit-text">Upload Photos & Request Callback</span>
+              <span id="submit-loading" class="hidden">
+                <svg class="animate-spin inline w-6 h-6 mr-2" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Uploading...
+              </span>
+            </button>
+
+            <p class="text-sm text-gray-500 text-center">
+              By submitting, you agree to receive a callback from Fix My Furnace within 24 hours.
+            </p>
+          </div>
 
         </form>
 
@@ -485,6 +506,12 @@ const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
     const phoneInput = document.getElementById('phone');
     const phoneError = document.getElementById('phone-error');
 
+    // Step navigation elements
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const nextStepBtn = document.getElementById('next-step-btn');
+    const messageInput = document.getElementById('message');
+
     const formMessages = document.getElementById('form-messages');
     const successMessage = document.getElementById('success-message');
     const errorMessage = document.getElementById('error-message');
@@ -521,6 +548,30 @@ const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
           phoneError.classList.add('hidden');
         }
       }
+    });
+
+    // Step navigation
+    nextStepBtn.addEventListener('click', () => {
+      // Validate Step 1
+      const message = messageInput.value.trim();
+
+      if (!message) {
+        alert('Please describe the problem with your furnace.');
+        messageInput.focus();
+        return;
+      }
+
+      if (selectedFiles.length === 0) {
+        alert('Please upload at least one photo of your furnace.');
+        return;
+      }
+
+      // Move to Step 2
+      step1.classList.add('hidden');
+      step2.classList.remove('hidden');
+
+      // Scroll to top of form
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
     // Photo preview
