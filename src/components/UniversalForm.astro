@@ -20,6 +20,7 @@
 export interface Props {
   formId: string;
   formSource: string;
+  apiEndpoint?: string;
   title?: string;
   description?: string;
   fields: FormField[];
@@ -40,6 +41,7 @@ interface FormField {
 const {
   formId,
   formSource,
+  apiEndpoint = "/api/submit-form",
   title,
   description,
   fields,
@@ -95,8 +97,6 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
   </div>
 
   <form class="space-y-4" id={formId}>
-    <!-- CSRF Token -->
-    <input type="hidden" name="_csrf" value={Astro.locals.csrfToken || ""} />
 
     <!-- Hidden honeypot field for spam protection -->
     <div style="display: none;">
@@ -212,16 +212,10 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
   </form>
 </div>
 
-<!-- Mapbox for address fields -->
-{fields.some(field => field.type === 'address') && (
-  <>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
-  </>
-)}
+<!-- Note: Address autocomplete uses Mapbox Geocoding API only, no map display needed -->
 
 <!-- Initialize the form with inline script -->
-<script is:inline define:vars={{ formId, formSource, fields, MAPBOX_TOKEN }}>
+<script is:inline define:vars={{ formId, formSource, apiEndpoint, fields, MAPBOX_TOKEN }}>
   // Universal Form Handler - Inline Implementation
   document.addEventListener("DOMContentLoaded", () => {
     const config = {
@@ -437,8 +431,6 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
           }
         });
 
-        // Get CSRF token
-        const csrfToken = formData.get('_csrf');
 
         // Basic validation
         const requiredFields = fields.filter(f => f.required);
@@ -458,15 +450,14 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
         }
 
         // Submit to API
-        const response = await fetch(formSource, {
+        const response = await fetch(apiEndpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             formData: data,
-            formSource: formSource,
-            _csrf: csrfToken
+            formSource: formSource
           })
         });
 
