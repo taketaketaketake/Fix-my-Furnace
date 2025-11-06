@@ -10,21 +10,20 @@ export const prerender = false;
 
 import { createClient } from '@supabase/supabase-js';
 import { checkRateLimit, getClientIP } from '../../utils/rateLimit.js';
-import { verifyCsrfToken } from '../../utils/csrf.js';
 
 function sanitizeInput(input) {
   return typeof input === 'string' ? input.trim().slice(0, 500) : '';
 }
 
-// Initialize Supabase client
+// Initialize Supabase client with service role for server-side operations
 const supabaseUrl = import.meta.env.SUPABASE_URL;
-const supabaseKey = import.meta.env.SUPABASE_ANON_KEY;
+const supabaseServiceKey = import.meta.env.SUPABASE_SERVICE_ROLE;
 
-if (!supabaseUrl || !supabaseKey) {
+if (!supabaseUrl || !supabaseServiceKey) {
   throw new Error('Missing required environment variables');
 }
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 export async function POST({ request, cookies }) {
   console.log('=== submit-form API called ===');
@@ -49,47 +48,9 @@ export async function POST({ request, cookies }) {
     }
 
     const body = await request.json();
-    const { formData, formSource, _csrf } = body;
+    const { formData, formSource } = body;
 
-    console.log('Body received:', { formData, formSource, _csrf });
-
-    // Verify CSRF token
-    const sessionId = cookies.get('session_id')?.value;
-    console.log('Session ID from cookies:', sessionId);
-    console.log('CSRF token from request:', _csrf);
-
-    // Temporary: Skip CSRF in development if DISABLE_CSRF env var is set
-    const csrfEnabled = import.meta.env.DISABLE_CSRF !== 'true';
-    console.log('CSRF validation enabled:', csrfEnabled);
-
-    if (csrfEnabled) {
-      const hasSessionId = !!sessionId;
-      const hasCsrf = !!_csrf && _csrf.length > 0;
-
-      console.log('CSRF check - sessionId:', hasSessionId, '_csrf:', hasCsrf);
-
-      if (!sessionId || !_csrf || !verifyCsrfToken(sessionId, _csrf)) {
-        console.log('❌ CSRF validation FAILED');
-        return new Response(
-          JSON.stringify({
-            success: false,
-            error: 'Security validation failed. Please refresh the page and try again.',
-            debug: {
-              hasSessionId,
-              hasCsrf,
-              csrfLength: _csrf?.length || 0
-            }
-          }),
-          {
-            status: 403,
-            headers: { 'Content-Type': 'application/json' }
-          }
-        );
-      }
-      console.log('✓ CSRF validation passed');
-    } else {
-      console.log('⚠️  CSRF validation DISABLED for development');
-    }
+    console.log('Body received:', { formData, formSource });
 
     // Validate required fields
     if (!formData || !formSource) {
@@ -124,14 +85,20 @@ export async function POST({ request, cookies }) {
       full_name: sanitizeInput(formData.name),
       phone_number: sanitizeInput(formData.phone),
       email: sanitizeInput(formData.email || ''),
-      service_address: sanitizeInput(formData.address || ''),
-      furnace_issue: sanitizeInput(formData.issue || formData.message || ''),
+      service_address: sanitizeInput(formData.address || 'Not provided'),
+      furnace_issue: sanitizeInput(formData.issue || formData.message || 'No details provided'),
       form_source: sanitizeInput(formSource),
       photo_count: 0,
       photo_urls: [],
       status: 'pending',
-      verification_status: 'not_required'
+      verification_status: 'pending'
     };
+
+
+    // Debug: Check what user/role we're using
+    const { data: userData, error: userError } = await supabase.auth.getUser();
+    console.log('Current user:', userData?.user?.id || 'anonymous');
+    console.log('Supabase auth error:', userError?.message || 'none');
 
     // Insert into database
     const { data, error } = await supabase
@@ -154,7 +121,6 @@ export async function POST({ request, cookies }) {
       );
     }
 
-    console.log('✓ Form submitted successfully, ID:', data.id);
 
     // Success response
     return new Response(
