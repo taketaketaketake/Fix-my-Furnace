@@ -1,0 +1,459 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Is It Time for a New Furnace? Take Our Free 2-Minute Assessment"
+  description="Answer 7 quick questions to find out if your furnace needs replacement or just maintenance. Get personalized results and expert recommendations."
+  keywords="furnace replacement quiz, should I replace my furnace, furnace assessment, when to replace furnace, furnace lifespan"
+>
+
+<!-- HERO SECTION -->
+<section class="relative bg-gradient-to-br from-gray-900 via-red-900 to-orange-900 text-white py-20 md:py-32 overflow-hidden">
+  <!-- Background pattern -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute w-full h-full" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px);"></div>
+  </div>
+
+  <div class="container mx-auto px-6 max-w-4xl relative z-10">
+    <div class="text-center">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 bg-yellow-400 text-gray-900 px-5 py-2.5 rounded-full text-sm font-bold mb-6">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+        </svg>
+        FREE 2-Minute Assessment
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+        Is Your Furnace on<br/>
+        <span class="text-yellow-400">Its Last Legs?</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+        Take our quick assessment to find out if you need a replacement, major repair, or just routine maintenance.
+      </p>
+
+      <!-- Stats -->
+      <div class="flex flex-wrap justify-center gap-8 text-center mb-10">
+        <div>
+          <div class="text-3xl font-black text-yellow-400">⏱️ 2 min</div>
+          <div class="text-sm text-gray-400">Quick & Easy</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black text-yellow-400">7 ?'s</div>
+          <div class="text-sm text-gray-400">Simple Questions</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black text-yellow-400">100% Free</div>
+          <div class="text-sm text-gray-400">No Obligation</div>
+        </div>
+      </div>
+
+      <!-- Start Button -->
+      <button
+        id="startQuizBtn"
+        class="bg-yellow-400 text-gray-900 px-12 py-6 rounded-2xl font-black text-xl hover:bg-yellow-300 transform hover:scale-105 transition-all shadow-2xl"
+      >
+        Start Assessment →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ SECTION -->
+<section id="quizSection" class="py-20 bg-white hidden">
+  <div class="container mx-auto px-6 max-w-3xl">
+
+    <!-- Progress Bar -->
+    <div class="mb-12">
+      <div class="flex justify-between text-sm font-bold text-gray-600 mb-2">
+        <span>Question <span id="currentQuestion">1</span> of 7</span>
+        <span><span id="progressPercent">14</span>% Complete</span>
+      </div>
+      <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+        <div id="progressBar" class="bg-gradient-to-r from-red-600 to-orange-600 h-full transition-all duration-500" style="width: 14%"></div>
+      </div>
+    </div>
+
+    <!-- Question Container -->
+    <div id="questionContainer" class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-2 border-gray-200">
+      <!-- Questions will be injected here by JavaScript -->
+    </div>
+
+  </div>
+</section>
+
+<!-- RESULTS SECTION -->
+<section id="resultsSection" class="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 hidden">
+  <div class="container mx-auto px-6 max-w-4xl">
+
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center gap-2 bg-green-100 text-green-800 px-5 py-2.5 rounded-full text-sm font-bold mb-4">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        Assessment Complete
+      </div>
+      <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+        Your Results Are In
+      </h2>
+    </div>
+
+    <!-- Results Content (populated by JavaScript) -->
+    <div id="resultsContent" class="space-y-8">
+      <!-- Will be populated dynamically -->
+    </div>
+
+  </div>
+</section>
+
+<!-- Sticky Mobile CTA -->
+<div id="mobileCTA" class="md:hidden fixed bottom-0 left-0 right-0 bg-red-600 p-4 shadow-2xl z-50 border-t-4 border-red-700 hidden">
+  <a
+    href="/home-visit"
+    class="block bg-yellow-400 text-gray-900 text-center py-4 rounded-xl font-black text-lg shadow-lg active:scale-95 transition-transform"
+  >
+    Book $125 Diagnosis Now
+  </a>
+</div>
+
+<!-- Add padding for mobile sticky CTA -->
+<div class="md:hidden h-24"></div>
+
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Quiz data
+    const questions = [
+      {
+        id: 1,
+        question: "How old is your furnace?",
+        options: [
+          { text: "0-5 years old", value: 0 },
+          { text: "6-10 years old", value: 1 },
+          { text: "11-15 years old", value: 2 },
+          { text: "16-20 years old", value: 3 },
+          { text: "20+ years old (or don't know)", value: 4 }
+        ]
+      },
+      {
+        id: 2,
+        question: "When was your last professional service or maintenance?",
+        options: [
+          { text: "Within the past year", value: 0 },
+          { text: "1-2 years ago", value: 1 },
+          { text: "3-5 years ago", value: 2 },
+          { text: "5+ years ago", value: 3 },
+          { text: "Never (or don't remember)", value: 4 }
+        ]
+      },
+      {
+        id: 3,
+        question: "How is your furnace currently performing?",
+        options: [
+          { text: "Perfectly - no issues at all", value: 0 },
+          { text: "Minor issues occasionally", value: 1 },
+          { text: "Frequent problems that I ignore", value: 2 },
+          { text: "Major problems - barely working", value: 3 },
+          { text: "Not working at all right now", value: 4 }
+        ]
+      },
+      {
+        id: 4,
+        question: "What's your home size?",
+        options: [
+          { text: "Under 1,500 sq ft", value: 0 },
+          { text: "1,500 - 2,500 sq ft", value: 1 },
+          { text: "2,500 - 3,500 sq ft", value: 2 },
+          { text: "Over 3,500 sq ft", value: 3 }
+        ]
+      },
+      {
+        id: 5,
+        question: "How are your energy bills compared to previous years?",
+        options: [
+          { text: "About the same", value: 0 },
+          { text: "Slightly higher than usual", value: 1 },
+          { text: "Significantly higher", value: 2 },
+          { text: "Alarmingly high - way more than before", value: 3 }
+        ]
+      },
+      {
+        id: 6,
+        question: "Does your furnace make strange noises?",
+        options: [
+          { text: "No unusual noises", value: 0 },
+          { text: "Occasional banging or rattling", value: 1 },
+          { text: "Frequent loud noises", value: 2 },
+          { text: "Constant noise - sounds terrible", value: 3 }
+        ]
+      },
+      {
+        id: 7,
+        question: "Do you experience uneven heating in your home?",
+        options: [
+          { text: "No - even temperature throughout", value: 0 },
+          { text: "A few rooms are colder than others", value: 1 },
+          { text: "Many rooms don't heat properly", value: 2 },
+          { text: "Whole house struggles to heat", value: 3 }
+        ]
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+    let totalScore = 0;
+    const answers = [];
+
+    // Elements
+    const startQuizBtn = document.getElementById('startQuizBtn');
+    const quizSection = document.getElementById('quizSection');
+    const resultsSection = document.getElementById('resultsSection');
+    const questionContainer = document.getElementById('questionContainer');
+    const currentQuestionSpan = document.getElementById('currentQuestion');
+    const progressPercent = document.getElementById('progressPercent');
+    const progressBar = document.getElementById('progressBar');
+    const resultsContent = document.getElementById('resultsContent');
+    const mobileCTA = document.getElementById('mobileCTA');
+
+    // Start quiz
+    startQuizBtn?.addEventListener('click', () => {
+      document.getElementById('quizSection')?.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        quizSection?.classList.remove('hidden');
+        showQuestion(0);
+      }, 500);
+    });
+
+    // Show question
+    function showQuestion(index) {
+      const question = questions[index];
+      currentQuestionSpan.textContent = index + 1;
+      const percent = ((index + 1) / questions.length * 100).toFixed(0);
+      progressPercent.textContent = percent;
+      progressBar.style.width = percent + '%';
+
+      questionContainer.innerHTML = `
+        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8">${question.question}</h3>
+        <div class="space-y-4">
+          ${question.options.map((option, idx) => `
+            <button
+              class="quiz-option w-full text-left p-6 rounded-xl border-2 border-gray-200 hover:border-red-500 hover:bg-red-50 transition-all font-semibold text-lg text-gray-800 hover:text-gray-900"
+              data-value="${option.value}"
+            >
+              <span class="flex items-center gap-4">
+                <span class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 font-bold flex-shrink-0">${String.fromCharCode(65 + idx)}</span>
+                <span>${option.text}</span>
+              </span>
+            </button>
+          `).join('')}
+        </div>
+      `;
+
+      // Add click handlers to options
+      document.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const value = parseInt(e.currentTarget.getAttribute('data-value'));
+          handleAnswer(value);
+        });
+      });
+    }
+
+    // Handle answer
+    function handleAnswer(value) {
+      totalScore += value;
+      answers.push(value);
+      currentQuestionIndex++;
+
+      if (currentQuestionIndex < questions.length) {
+        showQuestion(currentQuestionIndex);
+      } else {
+        showResults();
+      }
+    }
+
+    // Show results
+    function showResults() {
+      quizSection?.classList.add('hidden');
+      resultsSection?.classList.remove('hidden');
+      mobileCTA?.classList.remove('hidden');
+      resultsSection?.scrollIntoView({ behavior: 'smooth' });
+
+      // Calculate result category
+      let resultData;
+
+      if (totalScore >= 18) {
+        // High urgency - likely needs replacement
+        resultData = {
+          title: "🚨 Replacement Likely Needed Soon",
+          color: "red",
+          description: "Based on your answers, your furnace is showing multiple warning signs that indicate it may be approaching the end of its useful life.",
+          details: [
+            "Your furnace age, performance issues, and efficiency concerns suggest replacement may be the most cost-effective option",
+            "Continuing with repairs on an old, failing system often costs more in the long run",
+            "A new, efficient furnace could save you 20-40% on heating costs"
+          ],
+          recommendation: "We strongly recommend scheduling a professional assessment to get exact pricing on both repair and replacement options.",
+          urgency: "high"
+        };
+      } else if (totalScore >= 10) {
+        // Medium urgency - could go either way
+        resultData = {
+          title: "⚠️ Major Decision Point",
+          color: "orange",
+          description: "Your furnace is in the 'gray area' — it might be worth repairing, or replacement could be the smarter investment.",
+          details: [
+            "Your system has some concerning signs but isn't completely failing yet",
+            "The right choice depends on specific repair costs vs. replacement costs",
+            "Age and efficiency are factors, but not dealbreakers on their own"
+          ],
+          recommendation: "A professional diagnosis will show you both options with exact pricing so you can make an informed decision.",
+          urgency: "medium"
+        };
+      } else {
+        // Low urgency - probably just maintenance
+        resultData = {
+          title: "✅ Likely Just Needs Maintenance",
+          color: "green",
+          description: "Good news! Based on your answers, your furnace appears to be in relatively good condition.",
+          details: [
+            "Your system is performing reasonably well for its age",
+            "Regular maintenance could extend its life significantly",
+            "Any issues you're experiencing are likely minor and fixable"
+          ],
+          recommendation: "A professional tune-up and inspection can catch small problems before they become expensive repairs.",
+          urgency: "low"
+        };
+      }
+
+      // Render results
+      resultsContent.innerHTML = `
+        <!-- Result Card -->
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border-2 border-${resultData.color}-200">
+          <div class="bg-gradient-to-r from-${resultData.color}-600 to-${resultData.color}-700 text-white p-8 text-center">
+            <h3 class="text-3xl md:text-4xl font-black mb-2">${resultData.title}</h3>
+            <p class="text-${resultData.color}-100 text-lg">Based on your assessment score: ${totalScore}/21</p>
+          </div>
+
+          <div class="p-8 md:p-12">
+            <p class="text-xl text-gray-800 mb-6 leading-relaxed">
+              ${resultData.description}
+            </p>
+
+            <div class="bg-gray-50 rounded-xl p-6 mb-6">
+              <h4 class="font-bold text-gray-900 mb-3 text-lg">What This Means:</h4>
+              <ul class="space-y-3">
+                ${resultData.details.map(detail => `
+                  <li class="flex items-start gap-3 text-gray-700">
+                    <span class="text-${resultData.color}-600 mt-1">•</span>
+                    <span>${detail}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+
+            <div class="bg-gradient-to-br from-${resultData.color}-50 to-${resultData.color}-100 rounded-xl p-6 border-2 border-${resultData.color}-200">
+              <h4 class="font-bold text-gray-900 mb-2 text-lg flex items-center gap-2">
+                <svg class="w-6 h-6 text-${resultData.color}-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                </svg>
+                Our Recommendation:
+              </h4>
+              <p class="text-gray-800 leading-relaxed">
+                ${resultData.recommendation}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-2 border-gray-200">
+          <h3 class="text-3xl font-bold text-gray-900 mb-6 text-center">Next Step: Get Professional Answers</h3>
+
+          <p class="text-lg text-gray-700 mb-6 text-center">
+            This assessment gives you a <strong>general idea</strong>, but every furnace and situation is unique. A professional diagnosis will give you:
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <div class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-green-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-gray-800"><strong>Exact diagnosis</strong> of what's wrong (if anything)</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-green-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-gray-800"><strong>Transparent pricing</strong> for repair vs. replacement</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-green-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-gray-800"><strong>Options from both</strong> full-service and independent providers</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-green-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-gray-800"><strong>Written assessment</strong> you can review at your own pace</span>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-red-600 to-orange-600 rounded-2xl p-8 text-white text-center">
+            <p class="text-2xl font-bold mb-4">Book Your $125 Professional Diagnosis</p>
+            <p class="text-red-100 mb-6">Fee fully credited toward any repairs or replacement you choose</p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/home-visit"
+                class="bg-yellow-400 text-gray-900 px-10 py-5 rounded-xl font-black text-xl hover:bg-yellow-300 transition-all shadow-2xl"
+              >
+                Book Diagnosis Now
+              </a>
+              <a
+                href="tel:+18334948669"
+                class="border-2 border-white text-white px-10 py-5 rounded-xl font-bold text-xl hover:bg-white/10 transition-all"
+              >
+                Call (833) FIX-IT-NOW
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Proof -->
+        <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200">
+          <p class="text-center text-gray-600 mb-6 font-semibold">Over 1,200 Michigan families trusted us with their furnace assessment:</p>
+          <div class="flex flex-wrap justify-center gap-4 text-center">
+            <div>
+              <div class="text-3xl font-black text-red-600">4.9★</div>
+              <div class="text-sm text-gray-600">Customer Rating</div>
+            </div>
+            <div class="h-12 w-px bg-gray-300 hidden sm:block"></div>
+            <div>
+              <div class="text-3xl font-black text-red-600">$2,400</div>
+              <div class="text-sm text-gray-600">Avg. Savings</div>
+            </div>
+            <div class="h-12 w-px bg-gray-300 hidden sm:block"></div>
+            <div>
+              <div class="text-3xl font-black text-red-600">&lt;2hr</div>
+              <div class="text-sm text-gray-600">Response Time</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  });
+</script>
+
+<style>
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+</style>
+
+</Layout>
