@@ -2,6 +2,9 @@
 import Layout from "../../layouts/Layout.astro";
 import { services } from "../../data/services.js";
 
+// 🔹 Enable prerendering for better performance
+export const prerender = true;
+
 // 🔹 Generate static paths for all services
 export async function getStaticPaths() {
   return services.map((service) => ({
