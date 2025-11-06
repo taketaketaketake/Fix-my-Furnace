@@ -1,13 +1,14 @@
 /**
  * API Route: Submit Form
  * POST /api/submit-form
- * 
+ *
  * Handles all simple form submissions to form_submissions table
  * Used by UniversalForm component
  */
 
 import { createClient } from '@supabase/supabase-js';
 import { checkRateLimit, getClientIP } from '../../utils/rateLimit.js';
+import { verifyCsrfToken } from '../../utils/csrf.js';
 
 function sanitizeInput(input) {
   return typeof input === 'string' ? input.trim().slice(0, 500) : '';
@@ -23,20 +24,20 @@ if (!supabaseUrl || !supabaseKey) {
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-export async function POST({ request }) {
+export async function POST({ request, cookies }) {
   try {
     // Check rate limit first
     const clientIP = getClientIP(request);
     if (!checkRateLimit(clientIP)) {
       return new Response(
-        JSON.stringify({ 
-          success: false, 
+        JSON.stringify({
+          success: false,
           error: 'Too many requests. Please try again later.',
           retryAfter: 900
         }),
-        { 
+        {
           status: 429,
-          headers: { 
+          headers: {
             'Content-Type': 'application/json',
             'Retry-After': '900'
           }
@@ -45,7 +46,22 @@ export async function POST({ request }) {
     }
 
     const body = await request.json();
-    const { formData, formSource } = body;
+    const { formData, formSource, _csrf } = body;
+
+    // Verify CSRF token
+    const sessionId = cookies.get('session_id')?.value;
+    if (!sessionId || !verifyCsrfToken(sessionId, _csrf)) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: 'Security validation failed. Please refresh the page and try again.'
+        }),
+        {
+          status: 403,
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
+    }
 
     // Validate required fields
     if (!formData || !formSource) {
