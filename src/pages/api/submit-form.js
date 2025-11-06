@@ -6,6 +6,8 @@
  * Used by UniversalForm component
  */
 
+export const prerender = false;
+
 import { createClient } from '@supabase/supabase-js';
 import { checkRateLimit, getClientIP } from '../../utils/rateLimit.js';
 import { verifyCsrfToken } from '../../utils/csrf.js';
@@ -25,6 +27,7 @@ if (!supabaseUrl || !supabaseKey) {
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function POST({ request, cookies }) {
+  console.log('=== submit-form API called ===');
   try {
     // Check rate limit first
     const clientIP = getClientIP(request);
@@ -48,7 +51,6 @@ export async function POST({ request, cookies }) {
     const body = await request.json();
     const { formData, formSource, _csrf } = body;
 
-    console.log('=== submit-form API called ===');
     console.log('Body received:', { formData, formSource, _csrf });
 
     // Verify CSRF token
@@ -58,20 +60,25 @@ export async function POST({ request, cookies }) {
 
     // Temporary: Skip CSRF in development if DISABLE_CSRF env var is set
     const csrfEnabled = import.meta.env.DISABLE_CSRF !== 'true';
+    console.log('CSRF validation enabled:', csrfEnabled);
 
     if (csrfEnabled) {
       const hasSessionId = !!sessionId;
       const hasCsrf = !!_csrf && _csrf.length > 0;
 
-      console.log('CSRF validation -', 'sessionId:', hasSessionId, '_csrf:', hasCsrf);
+      console.log('CSRF check - sessionId:', hasSessionId, '_csrf:', hasCsrf);
 
       if (!sessionId || !_csrf || !verifyCsrfToken(sessionId, _csrf)) {
-        console.log('CSRF validation failed');
+        console.log('❌ CSRF validation FAILED');
         return new Response(
           JSON.stringify({
             success: false,
             error: 'Security validation failed. Please refresh the page and try again.',
-            debug: { hasSessionId, hasCsrf, sessionId: sessionId ? 'present' : 'missing' }
+            debug: {
+              hasSessionId,
+              hasCsrf,
+              csrfLength: _csrf?.length || 0
+            }
           }),
           {
             status: 403,
@@ -79,19 +86,19 @@ export async function POST({ request, cookies }) {
           }
         );
       }
-      console.log('CSRF validation passed');
+      console.log('✓ CSRF validation passed');
     } else {
-      console.log('CSRF validation DISABLED for development');
+      console.log('⚠️  CSRF validation DISABLED for development');
     }
 
     // Validate required fields
     if (!formData || !formSource) {
       return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: 'Form data and source are required' 
+        JSON.stringify({
+          success: false,
+          error: 'Form data and source are required'
         }),
-        { 
+        {
           status: 400,
           headers: { 'Content-Type': 'application/json' }
         }
@@ -101,11 +108,11 @@ export async function POST({ request, cookies }) {
     // Validate required form fields
     if (!formData.name || !formData.phone) {
       return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: 'Name and phone number are required' 
+        JSON.stringify({
+          success: false,
+          error: 'Name and phone number are required'
         }),
-        { 
+        {
           status: 400,
           headers: { 'Content-Type': 'application/json' }
         }
@@ -116,6 +123,7 @@ export async function POST({ request, cookies }) {
     const submissionData = {
       full_name: sanitizeInput(formData.name),
       phone_number: sanitizeInput(formData.phone),
+      email: sanitizeInput(formData.email || ''),
       service_address: sanitizeInput(formData.address || ''),
       furnace_issue: sanitizeInput(formData.issue || formData.message || ''),
       form_source: sanitizeInput(formSource),
@@ -135,16 +143,18 @@ export async function POST({ request, cookies }) {
     if (error) {
       console.error('Database error:', error);
       return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: 'Failed to submit form' 
+        JSON.stringify({
+          success: false,
+          error: 'Failed to submit form'
         }),
-        { 
+        {
           status: 500,
           headers: { 'Content-Type': 'application/json' }
         }
       );
     }
+
+    console.log('✓ Form submitted successfully, ID:', data.id);
 
     // Success response
     return new Response(
@@ -161,13 +171,13 @@ export async function POST({ request, cookies }) {
 
   } catch (error) {
     console.error('Error in submit-form API:', error);
-    
+
     return new Response(
-      JSON.stringify({ 
-        success: false, 
-        error: 'Internal server error' 
+      JSON.stringify({
+        success: false,
+        error: 'Internal server error'
       }),
-      { 
+      {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
       }
@@ -179,7 +189,7 @@ export async function POST({ request, cookies }) {
 export async function GET() {
   return new Response(
     JSON.stringify({ error: 'Method not allowed' }),
-    { 
+    {
       status: 405,
       headers: { 'Content-Type': 'application/json' }
     }
