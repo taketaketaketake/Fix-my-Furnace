@@ -88,6 +88,7 @@ export async function POST({ request, cookies }) {
       service_address: sanitizeInput(formData.address || 'Not provided'),
       furnace_issue: sanitizeInput(formData.issue || ''), // Only for dropdown issue field
       message: sanitizeInput(formData.message || ''), // For general text/textarea fields
+      preferred_visit_time: sanitizeInput(formData.preferredTime || ''), // For home visit scheduling
       form_source: sanitizeInput(formSource),
       photo_count: photoCount || 0,
       photo_urls: photoUrls || [],
