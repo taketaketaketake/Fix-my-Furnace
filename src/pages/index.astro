@@ -9,6 +9,8 @@ import BenefitsSection from "../components/BenefitsSection.astro";
 import TestimonialsModern from "../components/TestimonialsModern.astro";
 import FAQSection from "../components/FAQSection.astro";
 import HomeVisitCTA from "../components/HomeVisitCTA.astro";
+import ServiceAreasSection from "../components/ServiceAreasSection.astro";
+import HeroHeader from "../components/HeroHeader.astro";
 ---
 
 <Layout
@@ -16,17 +18,19 @@ import HomeVisitCTA from "../components/HomeVisitCTA.astro";
   description="Professional furnace repair, boiler service, installation & HVAC services across Michigan. Serving Detroit, Grand Rapids, Ann Arbor, Lansing & all Michigan cities. Licensed technicians, 24/7 emergency service, free quotes."
   keywords="furnace repair Michigan, boiler repair Michigan, HVAC contractors Detroit, furnace installation Grand Rapids, boiler service Ann Arbor, heating service Lansing, emergency furnace repair Michigan, licensed HVAC technicians"
 >
-  <!-- 🦸 Modern Hero with dramatic impact -->
-  <ModernHeroHeader />
-
-  <!-- 📊 Quick trust indicators -->
-  <TrustBar />
-
-  <!-- 😰 Problem/Pain Points Section -->
-  <ProblemSection />
-
-  <!-- 🔧 How It Works - Simple 3-step process -->
-  <HowItWorks />
+    <!-- 🦸‍♂️ Hero Header -->
+    <HeroHeader
+    title="Michigan's Trusted Furnace & HVAC Experts"
+    description="Fast, licensed, and local furnace repair, boiler service, and installation services across Michigan. Serving Detroit, Grand Rapids, Ann Arbor, Lansing and all Michigan cities. Call today to get your heat back on."
+    primaryBtnText="Schedule an Appointment Now!"
+    primaryBtnLink="/landing_page_1"
+    secondaryBtnText="Text Us"
+    secondaryBtnLink="tel:+8334948669"
+    imageSrc="/Fix_My_Furnace_Hero_Image.png"
+  />
+  
+  <!-- 🗺️ Service Areas -->
+  <ServiceAreasSection />
 
   <!-- 🛠️ Services Overview -->
   <ServicesGrid />
@@ -39,8 +43,5 @@ import HomeVisitCTA from "../components/HomeVisitCTA.astro";
 
   <!-- ❓ FAQ Section -->
   <FAQSection />
-
-  <!-- 🚀 Final CTA - Home Visit Offer -->
-  <HomeVisitCTA />
 
 </Layout>

@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import HomeVisitCTA from "../components/HomeVisitCTA.astro";
 import ServiceAreasSection from "../components/ServiceAreasSection.astro";
 ---
 
@@ -98,20 +99,7 @@ import ServiceAreasSection from "../components/ServiceAreasSection.astro";
     </div>
   </section>
 
-  <!-- 🚀 CTA -->
-  <section class="bg-red-600 text-white text-center py-20 px-6">
-    <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
-      Need Service? We’ll Be There — Fast.
-    </h2>
-    <p class="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-      Our Michigan-based team is on call 24/7 for emergency furnace repair across the state. 
-      Don’t wait — get your heat back on today.
-    </p>
-    <a
-      href="/home-visit"
-      class="bg-white text-red-600 font-bold px-8 py-4 rounded-lg hover:bg-gray-100 transition text-lg"
-    >
-      Schedule an Appointment
-    </a>
-  </section>
+  <!-- 🚀 Final CTA - Home Visit Offer -->
+  <HomeVisitCTA />
+    
 </Layout>
