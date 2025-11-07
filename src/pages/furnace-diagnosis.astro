@@ -290,7 +290,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
             <img 
               src="/furnace-straight.png" 
               alt="Example of how to photograph your entire furnace from the front showing overall condition and setup"
-              class="w-full h-64 md:h-80 object-cover"
+              class="w-full h-auto object-contain"
             />
             <div class="absolute top-3 right-3">
               <span class="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold">✓ Good Example</span>
@@ -325,7 +325,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
             <img 
               src="/furnace-closeup.png" 
               alt="Example of close-up furnace photo showing model label, control panel, and important details for diagnosis"
-              class="w-full h-64 md:h-80 object-cover"
+              class="w-full h-auto object-contain"
             />
             <div class="absolute top-3 right-3">
               <span class="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold">✓ Good Example</span>
@@ -360,7 +360,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
             <img 
               src="/furnace-side-angle.png" 
               alt="Example of furnace photographed from side angle showing connections, venting, and access panels"
-              class="w-full h-64 md:h-80 object-cover"
+              class="w-full h-auto object-contain"
             />
             <div class="absolute top-3 right-3">
               <span class="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold">✓ Good Example</span>
@@ -436,17 +436,142 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
     </div>
   </section>
 
-  <!-- Sticky Mobile CTA -->
-  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-gradient-to-r from-blue-600 to-cyan-600 p-4 shadow-2xl z-50 border-t-4 border-green-400">
-    <a href="#photo-callback-form" class="block bg-white text-blue-600 text-center py-4 rounded-xl font-black text-lg shadow-xl">
-      Upload Photos Now
+  <!-- Progressive Sticky Mobile CTA -->
+  <div id="progressive-cta" class="md:hidden fixed bottom-0 left-0 right-0 bg-gradient-to-r from-blue-600 to-cyan-600 p-4 shadow-2xl z-50 border-t-4 border-green-400 transition-all duration-300">
+    <a href="#photo-callback-form" id="cta-button" class="block bg-white text-blue-600 text-center py-4 rounded-xl font-black text-lg shadow-xl transition-all duration-200 hover:scale-105">
+      <span id="cta-main-text">Get Free Analysis</span>
+      <div id="social-proof" class="text-xs text-gray-600 mt-1 font-normal">
+        <span id="social-proof-text">Join 1,200+ homeowners who saved money</span>
+      </div>
     </a>
+  </div>
+
+  <!-- Exit Intent Mobile CTA -->
+  <div id="exit-intent-cta" class="md:hidden fixed bottom-0 left-0 right-0 bg-gradient-to-r from-red-600 to-orange-600 p-4 shadow-2xl z-60 border-t-4 border-yellow-400 transform translate-y-full transition-transform duration-300">
+    <div class="bg-white rounded-xl p-4 text-center shadow-xl">
+      <div class="text-red-600 font-black text-lg mb-2">
+        <span id="exit-intent-text">Wait! Don't pay $125+ elsewhere</span>
+      </div>
+      <a href="#photo-callback-form" class="block bg-red-600 text-white py-3 rounded-lg font-bold text-base">
+        Get FREE Diagnosis Now
+      </a>
+    </div>
   </div>
 
 </Layout>
 
 <script is:inline define:vars={{ SUPABASE_URL, SUPABASE_ANON_KEY, MAPBOX_TOKEN }}>
   document.addEventListener('DOMContentLoaded', () => {
+    // Enhanced CTA System
+    const progressiveCTA = document.getElementById('progressive-cta');
+    const exitIntentCTA = document.getElementById('exit-intent-cta');
+    const ctaMainText = document.getElementById('cta-main-text');
+    const socialProofText = document.getElementById('social-proof-text');
+    const exitIntentText = document.getElementById('exit-intent-text');
+
+    // Progressive CTA Messages
+    const progressiveMessages = [
+      'Get Free Analysis',
+      'Upload 3 Photos Now',
+      'Start Your Upload',
+      'Complete Upload'
+    ];
+
+    // Social Proof Messages
+    const socialProofMessages = [
+      'Join 1,200+ homeowners who saved money',
+      'Sarah from Ann Arbor just uploaded photos',
+      'Mike from Detroit saved $150 today',
+      '324 free diagnoses completed this week',
+      'Emma from Lansing avoided a $200 fee',
+      'Join 50+ homeowners helped this week'
+    ];
+
+    // Urgency Messages
+    const urgencyMessages = [
+      'Wait! Don\'t pay $125+ elsewhere',
+      'Limited tech availability today',
+      'Only 12 slots left this week',
+      'Save money before winter rush',
+      'Avoid costly diagnostic fees'
+    ];
+
+    let currentSocialProofIndex = 0;
+    let currentUrgencyIndex = 0;
+    let lastScrollY = window.scrollY;
+    let exitIntentShown = false;
+    let scrollDirection = 'down';
+
+    // Check if exit intent was already shown today
+    const exitIntentShownToday = localStorage.getItem('exitIntentShown') === new Date().toDateString();
+
+    // Progressive CTA based on scroll position
+    function updateProgressiveCTA() {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollPercentage = scrollY / (documentHeight - windowHeight);
+
+      let messageIndex = 0;
+      if (scrollPercentage > 0.75) messageIndex = 3; // Bottom of page
+      else if (scrollPercentage > 0.5) messageIndex = 2; // Past photo guide
+      else if (scrollPercentage > 0.25) messageIndex = 1; // Past hero
+
+      ctaMainText.textContent = progressiveMessages[messageIndex];
+
+      // Track scroll direction for exit intent
+      if (scrollY < lastScrollY) {
+        scrollDirection = 'up';
+      } else {
+        scrollDirection = 'down';
+      }
+      lastScrollY = scrollY;
+    }
+
+    // Exit Intent Detection
+    function handleExitIntent() {
+      if (!exitIntentShown && !exitIntentShownToday && scrollDirection === 'up' && window.scrollY > 300) {
+        exitIntentShown = true;
+        exitIntentCTA.style.transform = 'translateY(0)';
+        progressiveCTA.style.transform = 'translateY(100%)';
+        
+        // Hide exit intent after 5 seconds
+        setTimeout(() => {
+          exitIntentCTA.style.transform = 'translateY(100%)';
+          progressiveCTA.style.transform = 'translateY(0)';
+        }, 5000);
+
+        // Mark as shown today
+        localStorage.setItem('exitIntentShown', new Date().toDateString());
+      }
+    }
+
+    // Rotate Social Proof Messages
+    function rotateSocialProof() {
+      currentSocialProofIndex = (currentSocialProofIndex + 1) % socialProofMessages.length;
+      socialProofText.textContent = socialProofMessages[currentSocialProofIndex];
+    }
+
+    // Rotate Urgency Messages
+    function rotateUrgency() {
+      currentUrgencyIndex = (currentUrgencyIndex + 1) % urgencyMessages.length;
+      exitIntentText.textContent = urgencyMessages[currentUrgencyIndex];
+    }
+
+    // Event Listeners
+    window.addEventListener('scroll', () => {
+      updateProgressiveCTA();
+      
+      // Throttled exit intent check
+      setTimeout(handleExitIntent, 100);
+    });
+
+    // Rotate messages on timers
+    setInterval(rotateSocialProof, 15000); // Every 15 seconds
+    setInterval(rotateUrgency, 30000); // Every 30 seconds
+
+    // Initial setup
+    updateProgressiveCTA();
     // Import Supabase
     const { createClient } = window.supabase;
     const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);

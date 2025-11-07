@@ -18,11 +18,26 @@
       </p>
     </div>
 
-    <!-- Testimonials Grid -->
-    <div class="grid md:grid-cols-3 gap-8 mb-12">
+    <!-- Testimonials Carousel -->
+    <div class="relative mb-12">
+      <!-- Navigation Arrows -->
+      <button id="prevBtn" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-white rounded-full shadow-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">
+        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <button id="nextBtn" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-white rounded-full shadow-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">
+        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
 
-      <!-- Testimonial 1 -->
-      <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+      <!-- Carousel Container -->
+      <div id="testimonialCarousel" class="overflow-hidden">
+        <div id="carouselTrack" class="flex transition-transform duration-500 ease-in-out gap-6">
+
+          <!-- Testimonial 1 -->
+          <div class="flex-none w-80 md:w-96 bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
         <!-- Stars -->
         <div class="flex gap-1 mb-4">
           {[...Array(5)].map(() => (
@@ -46,11 +61,11 @@
             <div class="font-bold text-gray-900">Sarah M.</div>
             <div class="text-sm text-gray-500">Detroit, MI</div>
           </div>
-        </div>
-      </div>
+          </div>
+          </div>
 
-      <!-- Testimonial 2 -->
-      <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+          <!-- Testimonial 2 -->
+          <div class="flex-none w-80 md:w-96 bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
         <!-- Stars -->
         <div class="flex gap-1 mb-4">
           {[...Array(5)].map(() => (
@@ -74,11 +89,11 @@
             <div class="font-bold text-gray-900">Mike & Karen T.</div>
             <div class="text-sm text-gray-500">Grand Rapids, MI</div>
           </div>
-        </div>
-      </div>
+          </div>
+          </div>
 
-      <!-- Testimonial 3 -->
-      <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+          <!-- Testimonial 3 -->
+          <div class="flex-none w-80 md:w-96 bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
         <!-- Stars -->
         <div class="flex gap-1 mb-4">
           {[...Array(5)].map(() => (
@@ -102,28 +117,144 @@
             <div class="font-bold text-gray-900">Jennifer L.</div>
             <div class="text-sm text-gray-500">Ann Arbor, MI</div>
           </div>
+          </div>
+          </div>
+
         </div>
       </div>
 
-    </div>
-
-    <!-- Trust badges -->
-    <div class="flex flex-wrap justify-center items-center gap-8 text-center">
-      <div>
-        <div class="text-3xl font-black text-red-600">1,247+</div>
-        <div class="text-sm text-gray-600 font-semibold">Five-Star Reviews</div>
-      </div>
-      <div class="h-12 w-px bg-gray-300 hidden md:block"></div>
-      <div>
-        <div class="text-3xl font-black text-red-600">98%</div>
-        <div class="text-sm text-gray-600 font-semibold">Customer Satisfaction</div>
-      </div>
-      <div class="h-12 w-px bg-gray-300 hidden md:block"></div>
-      <div>
-        <div class="text-3xl font-black text-red-600">A+</div>
-        <div class="text-sm text-gray-600 font-semibold">BBB Rating</div>
+      <!-- Dot Navigation -->
+      <div class="flex justify-center gap-2 mt-6">
+        <button class="carousel-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-red-400 transition-colors" data-index="0"></button>
+        <button class="carousel-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-red-400 transition-colors" data-index="1"></button>
+        <button class="carousel-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-red-400 transition-colors" data-index="2"></button>
       </div>
     </div>
-
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('carouselTrack');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dots = document.querySelectorAll('.carousel-dot');
+    
+    let currentIndex = 0;
+    const totalSlides = 3;
+    let autoAdvanceInterval;
+    
+    // Calculate slide width based on screen size
+    function getSlideWidth() {
+      const isMobile = window.innerWidth < 768;
+      return isMobile ? 320 + 24 : 384 + 24; // width + gap
+    }
+    
+    // Update carousel position
+    function updateCarousel() {
+      const slideWidth = getSlideWidth();
+      const offset = currentIndex * slideWidth;
+      track.style.transform = `translateX(-${offset}px)`;
+      
+      // Update dots
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('bg-red-500', index === currentIndex);
+        dot.classList.toggle('bg-gray-300', index !== currentIndex);
+      });
+    }
+    
+    // Go to specific slide
+    function goToSlide(index) {
+      currentIndex = index;
+      updateCarousel();
+    }
+    
+    // Next slide
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateCarousel();
+    }
+    
+    // Previous slide
+    function prevSlide() {
+      currentIndex = currentIndex === 0 ? totalSlides - 1 : currentIndex - 1;
+      updateCarousel();
+    }
+    
+    // Auto advance
+    function startAutoAdvance() {
+      autoAdvanceInterval = setInterval(nextSlide, 6000);
+    }
+    
+    function stopAutoAdvance() {
+      clearInterval(autoAdvanceInterval);
+    }
+    
+    // Event listeners
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      stopAutoAdvance();
+      setTimeout(startAutoAdvance, 10000); // Restart after 10 seconds
+    });
+    
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      stopAutoAdvance();
+      setTimeout(startAutoAdvance, 10000);
+    });
+    
+    // Dot navigation
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        goToSlide(index);
+        stopAutoAdvance();
+        setTimeout(startAutoAdvance, 10000);
+      });
+    });
+    
+    // Pause on hover
+    const carousel = document.getElementById('testimonialCarousel');
+    carousel.addEventListener('mouseenter', stopAutoAdvance);
+    carousel.addEventListener('mouseleave', startAutoAdvance);
+    
+    // Touch/swipe support for mobile
+    let startX = 0;
+    let isDragging = false;
+    
+    carousel.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+      stopAutoAdvance();
+    });
+    
+    carousel.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+    });
+    
+    carousel.addEventListener('touchend', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      
+      if (Math.abs(diff) > 50) { // Minimum swipe distance
+        if (diff > 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+      
+      setTimeout(startAutoAdvance, 10000);
+    });
+    
+    // Handle resize
+    window.addEventListener('resize', updateCarousel);
+    
+    // Initialize
+    updateCarousel();
+    startAutoAdvance();
+  });
+</script>
