@@ -8,6 +8,54 @@ import Layout from "../layouts/Layout.astro";
   keywords="furnace repair cost Michigan, HVAC pricing Detroit, furnace installation price, heating repair cost, transparent HVAC pricing, Michigan furnace service cost"
 >
 
+<!-- Pricing Structured Data -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "PriceSpecification",
+    "name": "HVAC Service Pricing",
+    "description": "Transparent pricing for furnace repair and HVAC services in Michigan",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Home Visit Diagnosis",
+        "description": "Professional HVAC diagnosis at your home",
+        "price": "125",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "LocalBusiness",
+          "name": "Fix My Furnace",
+          "url": "https://fixmyfurnacedetroit.com",
+          "telephone": "+1-833-494-8669"
+        },
+        "areaServed": {
+          "@type": "State",
+          "name": "Michigan"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Emergency Furnace Repair",
+        "description": "24/7 emergency furnace repair services",
+        "priceRange": "$200-$800",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "LocalBusiness",
+          "name": "Fix My Furnace",
+          "url": "https://fixmyfurnacedetroit.com",
+          "telephone": "+1-833-494-8669"
+        },
+        "areaServed": {
+          "@type": "State",
+          "name": "Michigan"
+        }
+      }
+    ]
+  }
+</script>
+
 <!-- HERO SECTION -->
 <section class="relative bg-gradient-to-br from-gray-900 via-gray-800 to-red-900 text-white py-20 overflow-hidden">
   <!-- Background pattern -->

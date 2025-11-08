@@ -7,6 +7,68 @@ import Layout from "../layouts/Layout.astro";
   description="Professional HVAC and furnace services across Michigan. Expert repair, installation, and maintenance in Detroit, Grand Rapids, Ann Arbor, Lansing. Licensed technicians, same-day service."
   keywords="HVAC services Michigan, furnace repair Detroit, duct cleaning Grand Rapids, furnace installation Ann Arbor, emergency HVAC Lansing, air quality solutions Michigan"
 >
+  <!-- Service Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "HVAC Services Michigan",
+      "description": "Professional furnace repair, installation, and maintenance services across Michigan",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Fix My Furnace",
+        "url": "https://fixmyfurnacedetroit.com",
+        "telephone": "+1-833-494-8669"
+      },
+      "areaServed": {
+        "@type": "State",
+        "name": "Michigan"
+      },
+      "serviceType": [
+        "Furnace Repair",
+        "Furnace Installation", 
+        "Boiler Repair",
+        "Duct Cleaning",
+        "HVAC Maintenance",
+        "Air Quality Solutions",
+        "Emergency Heating Service"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "HVAC Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Emergency Furnace Repair",
+              "description": "24/7 emergency furnace repair services"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Furnace Installation",
+              "description": "Professional furnace installation services"
+            },
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Duct Cleaning",
+              "description": "Professional duct cleaning and air quality services"
+            },
+            "availability": "https://schema.org/InStock"
+          }
+        ]
+      }
+    }
+  </script>
+
   <!-- 🔥 HERO -->
   <section class="relative bg-gradient-to-br from-red-50 via-white to-orange-50 pt-28 pb-16 px-6 md:px-12 text-center">
     <div class="max-w-5xl mx-auto">

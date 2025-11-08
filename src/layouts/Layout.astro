@@ -12,6 +12,7 @@ export interface Props {
   canonicalUrl?: string;
   hideHeader?: boolean;
   hideTopBanner?: boolean;
+  noindex?: boolean;
 }
 
 const { 
@@ -21,7 +22,8 @@ const {
   ogImage = "https://fixmyfurnacedetroit.com/fixmyfurnacewoman.png",
   canonicalUrl = Astro.url.href,
   hideHeader = false,
-  hideTopBanner = false
+  hideTopBanner = false,
+  noindex = false
 } = Astro.props;
 ---
 
@@ -35,7 +37,7 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
     <meta name="author" content="Fix My Furnace" />
     <link rel="canonical" href={canonicalUrl} />
     

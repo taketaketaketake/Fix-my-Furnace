@@ -42,4 +42,22 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://fixmyfurnacedetroit.com/pricing</loc>
+    <lastmod>2025-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fixmyfurnacedetroit.com/home-visit</loc>
+    <lastmod>2025-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fixmyfurnacedetroit.com/furnace-diagnosis</loc>
+    <lastmod>2025-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
