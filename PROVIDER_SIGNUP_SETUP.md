@@ -20,13 +20,27 @@ The service provider signup feature allows HVAC contractors to apply to join you
   - Capacity management (leads per week)
   - License and business details
 
-### 3. API Endpoint
+### 3. API Endpoints
 - **Endpoint**: `/api/submit-provider-application`
-- **Features**:
   - Rate limiting (5 requests per 15 min)
   - Email duplicate detection
   - Converts comma-separated lists to arrays
   - Sets applications to "pending" status by default
+
+- **Endpoint**: `/api/get-providers`
+  - Returns approved providers for public directory
+  - Optional filtering by service type and area
+  - 5-minute cache for performance
+
+### 4. Public Provider Directory
+- **URL**: `/partners`
+- **Features**:
+  - Shows only approved providers (`status = 'active'` and `show_in_directory = true`)
+  - Filter by service type (Furnace Repair, Installation, etc.)
+  - Filter by location (Detroit, Grand Rapids, etc.)
+  - Professional cards with business info
+  - Links to provider websites
+  - Builds trust and SEO value
 
 ## Setup Steps
 
@@ -138,11 +152,14 @@ Create admin interface to:
 - Assign leads with one click
 - Track assignment history
 
-### Phase 2C: Provider Directory (Optional)
+### Phase 2C: Provider Directory ✅ COMPLETE
 
-Create public page at `/partners` showing:
+**Already built!** Public page at `/partners` with:
 - Approved providers (where `show_in_directory = true`)
 - Filter by service type and location
+- Professional provider cards with business info
+- Real-time filtering without page reload
+- Mobile-responsive design
 - Builds trust and SEO value
 
 ### Phase 3: Email Notifications
@@ -167,6 +184,15 @@ UPDATE service_providers
 SET status = 'active',
     approved_at = NOW(),
     show_in_directory = TRUE
+WHERE id = 'provider-uuid-here';
+```
+
+**Note**: Setting `show_in_directory = TRUE` makes the provider visible on the public directory page at `/partners`. You can approve a provider for lead routing (`status = 'active'`) without showing them publicly by keeping `show_in_directory = FALSE`.
+
+### Hide Provider from Directory (but keep active for lead routing)
+```sql
+UPDATE service_providers
+SET show_in_directory = FALSE
 WHERE id = 'provider-uuid-here';
 ```
 
@@ -199,16 +225,20 @@ WHERE provider_id = 'provider-uuid'
 ```
 /home/user/Fix-my-Furnace/
 ├── supabase-schema-providers.sql          # Database schema
+├── PROVIDER_SIGNUP_SETUP.md               # This documentation file
 ├── src/
 │   ├── pages/
 │   │   ├── partners/
+│   │   │   ├── index.astro                # Public provider directory
 │   │   │   └── apply.astro                # Provider signup page
 │   │   └── api/
-│   │       └── submit-provider-application.js  # API endpoint
+│   │       ├── submit-provider-application.js  # Provider signup API
+│   │       └── get-providers.js           # Get providers for directory
 ```
 
 ## Testing Checklist
 
+### Provider Signup
 - [ ] Database schema runs without errors
 - [ ] Application form loads at `/partners/apply`
 - [ ] Form validation works (required fields)
@@ -220,6 +250,17 @@ WHERE provider_id = 'provider-uuid'
 - [ ] Duplicate email shows error message
 - [ ] Rate limiting works (test 6 submissions rapidly)
 
+### Provider Directory
+- [ ] Directory page loads at `/partners`
+- [ ] Only shows providers with `status = 'active'` and `show_in_directory = true`
+- [ ] Service filter works (Furnace Repair, Installation, etc.)
+- [ ] Area filter works (Detroit, Grand Rapids, etc.)
+- [ ] Reset filters button works
+- [ ] Provider cards display correctly
+- [ ] Website links work (if provider has website)
+- [ ] Empty state shows when no providers match filters
+- [ ] Mobile responsive design works
+
 ## Support
 
 Questions? Check:
@@ -230,5 +271,12 @@ Questions? Check:
 
 ---
 
-**Status**: ✅ Provider signup form complete and tested
-**Next**: Set up database schema in Supabase and test live
+## Features Complete
+
+✅ **Provider signup form** - `/partners/apply`
+✅ **Public provider directory** - `/partners`
+✅ **API endpoints** - Provider applications and directory data
+✅ **Database schema** - Tables and RLS policies
+
+**Status**: Ready for deployment
+**Next**: Run database schema in Supabase and test live
