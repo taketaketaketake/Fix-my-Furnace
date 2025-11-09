@@ -1,0 +1,290 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import UniversalForm from "../../components/UniversalForm.astro";
+
+const fields = [
+  {
+    name: 'business_name',
+    type: 'text',
+    label: 'Business Name',
+    placeholder: 'ABC Heating & Cooling',
+    required: true,
+  },
+  {
+    name: 'contact_name',
+    type: 'text',
+    label: 'Contact Person',
+    placeholder: 'John Smith',
+    required: true,
+    autoComplete: 'name'
+  },
+  {
+    name: 'email',
+    type: 'email',
+    label: 'Email Address',
+    placeholder: 'contact@yourbusiness.com',
+    required: true,
+    autoComplete: 'email'
+  },
+  {
+    name: 'phone',
+    type: 'tel',
+    label: 'Phone Number',
+    placeholder: '(313) 555-1234',
+    required: true,
+    autoComplete: 'tel'
+  },
+  {
+    name: 'business_address',
+    type: 'text',
+    label: 'Business Address',
+    placeholder: '123 Main St, Detroit, MI 48201',
+    required: false,
+    autoComplete: 'street-address'
+  },
+  {
+    name: 'website',
+    type: 'text',
+    label: 'Website (Optional)',
+    placeholder: 'https://yourwebsite.com',
+    required: false,
+  },
+  {
+    name: 'service_areas',
+    type: 'textarea',
+    label: 'Service Areas',
+    placeholder: 'Enter cities you serve (e.g., Detroit, Warren, Dearborn, Livonia)',
+    required: true
+  },
+  {
+    name: 'services_offered',
+    type: 'textarea',
+    label: 'Services You Offer',
+    placeholder: 'List services (e.g., Furnace Repair, Furnace Installation, Boiler Repair, Emergency HVAC)',
+    required: true
+  },
+  {
+    name: 'max_leads_per_week',
+    type: 'select',
+    label: 'How many leads can you handle per week?',
+    options: ['1-5 leads', '5-10 leads', '10-20 leads', '20+ leads'],
+    required: true
+  },
+  {
+    name: 'years_in_business',
+    type: 'text',
+    label: 'Years in Business',
+    placeholder: '10',
+    required: false
+  },
+  {
+    name: 'license_number',
+    type: 'text',
+    label: 'License Number (Optional)',
+    placeholder: 'MI-HVAC-12345',
+    required: false
+  },
+  {
+    name: 'description',
+    type: 'textarea',
+    label: 'Tell Us About Your Business',
+    placeholder: 'Brief description of your business, specialties, and what makes you stand out...',
+    required: false
+  }
+];
+---
+
+<Layout
+  title="Become a Partner | Fix My Furnace Provider Network | Michigan HVAC Professionals"
+  description="Join Fix My Furnace's trusted network of HVAC professionals across Michigan. Get qualified leads for furnace repair, installation, and HVAC services. Serving Detroit, Grand Rapids, Ann Arbor and all of Michigan."
+  keywords="HVAC contractor leads Michigan, furnace repair leads Detroit, HVAC business opportunities, Michigan heating contractor network"
+>
+  <!-- 🔥 HERO -->
+  <section class="relative bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-20 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto text-center">
+      <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-4 tracking-tight">
+        Join Michigan's <span class="text-red-600">Premier HVAC Network</span>
+      </h1>
+      <p class="text-lg md:text-xl font-semibold text-gray-700 max-w-3xl mx-auto mb-6">
+        Connect with homeowners across Michigan who need your expertise. Get qualified leads delivered directly to you.
+      </p>
+      <div class="flex flex-wrap justify-center gap-6 text-gray-800 font-semibold">
+        <div class="flex items-center gap-2">
+          <i data-lucide="check-circle" class="w-6 h-6 text-green-600"></i>
+          <span>Pre-Qualified Leads</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="map-pin" class="w-6 h-6 text-green-600"></i>
+          <span>Statewide Coverage</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="trending-up" class="w-6 h-6 text-green-600"></i>
+          <span>Grow Your Business</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🔧 Decorative Bar -->
+    <div class="absolute bottom-0 left-0 w-full h-2 bg-red-600"></div>
+  </section>
+
+  <!-- 💼 WHY PARTNER WITH US -->
+  <section class="relative bg-white py-20 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+          Why Partner With <span class="text-red-600">Fix My Furnace?</span>
+        </h2>
+        <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+          We're building Michigan's most trusted HVAC service network. Here's what you get:
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Benefit 1 -->
+        <div class="bg-gradient-to-br from-red-50 to-white border border-red-100 rounded-xl p-8 shadow-lg">
+          <div class="bg-red-600 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+            <i data-lucide="users" class="w-7 h-7 text-white"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Quality Leads</h3>
+          <p class="text-gray-700">
+            Every lead is pre-screened and verified. Homeowners reach out to us because they need help now—no cold calling required.
+          </p>
+        </div>
+
+        <!-- Benefit 2 -->
+        <div class="bg-gradient-to-br from-blue-50 to-white border border-blue-100 rounded-xl p-8 shadow-lg">
+          <div class="bg-blue-600 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+            <i data-lucide="map" class="w-7 h-7 text-white"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Local Matching</h3>
+          <p class="text-gray-700">
+            Leads are routed based on your service areas and specialties. Only get jobs that make sense for your business.
+          </p>
+        </div>
+
+        <!-- Benefit 3 -->
+        <div class="bg-gradient-to-br from-green-50 to-white border border-green-100 rounded-xl p-8 shadow-lg">
+          <div class="bg-green-600 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+            <i data-lucide="settings" class="w-7 h-7 text-white"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">You Control Volume</h3>
+          <p class="text-gray-700">
+            Set your own capacity limits. Scale up during slow months or pause when you're fully booked—totally flexible.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📝 APPLICATION FORM -->
+  <section class="relative bg-gradient-to-br from-gray-50 via-white to-gray-50 py-20 px-6 md:px-10">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+          Apply to Join Our <span class="text-red-600">Network</span>
+        </h2>
+        <p class="text-lg text-gray-700">
+          Fill out the form below and we'll review your application. We typically respond within 1-2 business days.
+        </p>
+      </div>
+
+      <div class="bg-white border border-gray-200 shadow-2xl rounded-2xl p-8 md:p-12">
+        <UniversalForm
+          formId="provider-application-form"
+          formSource="provider_application_form"
+          apiEndpoint="/api/submit-provider-application"
+          title=""
+          description=""
+          fields={fields}
+          submitText="Submit Application"
+          className=""
+        />
+
+        <div class="mt-8 pt-8 border-t border-gray-200">
+          <p class="text-sm text-gray-600 text-center">
+            <strong>Questions?</strong> Call us at
+            <a href="tel:+18334948669" class="text-red-600 hover:text-red-700 font-semibold">(833) 494-8669</a>
+            or email
+            <a href="mailto:FixMyFurnacenow@gmail.com" class="text-red-600 hover:text-red-700 font-semibold">FixMyFurnacenow@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🏢 WHO WE'RE LOOKING FOR -->
+  <section class="relative bg-white py-20 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+          Who We're <span class="text-red-600">Looking For</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="flex items-start gap-4">
+          <div class="bg-green-100 rounded-full p-3 flex-shrink-0">
+            <i data-lucide="check" class="w-6 h-6 text-green-600"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Licensed & Insured</h3>
+            <p class="text-gray-700">Proper licensing and insurance coverage for HVAC work in Michigan.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="bg-green-100 rounded-full p-3 flex-shrink-0">
+            <i data-lucide="check" class="w-6 h-6 text-green-600"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Experienced Professionals</h3>
+            <p class="text-gray-700">Proven track record of quality workmanship and customer satisfaction.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="bg-green-100 rounded-full p-3 flex-shrink-0">
+            <i data-lucide="check" class="w-6 h-6 text-green-600"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Responsive & Reliable</h3>
+            <p class="text-gray-700">Fast response times and dependable service for Michigan homeowners.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="bg-green-100 rounded-full p-3 flex-shrink-0">
+            <i data-lucide="check" class="w-6 h-6 text-green-600"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Customer-Focused</h3>
+            <p class="text-gray-700">Commitment to excellent service and fair, transparent pricing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🚀 CTA Footer Bar -->
+  <section class="bg-red-600 text-white py-16 text-center">
+    <h3 class="text-3xl font-bold mb-3">Ready to Grow Your Business?</h3>
+    <p class="mb-6 text-white/90">Join Michigan's fastest-growing HVAC service network today.</p>
+    <a
+      href="#provider-application-form"
+      class="bg-white text-red-600 font-semibold px-8 py-4 rounded-lg text-lg hover:bg-gray-100 transition inline-block"
+    >
+      Apply Now
+    </a>
+  </section>
+
+  <!-- Lucide Icons -->
+  <script type="module" src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <script>
+    // Initialize Lucide icons when page loads
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    });
+  </script>
+</Layout>
