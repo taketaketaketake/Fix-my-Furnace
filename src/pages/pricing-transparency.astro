@@ -36,30 +36,6 @@ const serviceTypes = [
     <div class="absolute bottom-0 left-0 w-full h-2 bg-red-600"></div>
   </section>
 
-  <!-- 📊 STATS SECTION -->
-  <section id="stats-section" class="relative bg-white py-12 px-6 md:px-10 border-b border-gray-200">
-    <div class="max-w-7xl mx-auto">
-      <div id="stats-container" class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <!-- Stats will be populated by JavaScript -->
-        <div class="text-center p-6 bg-gray-50 rounded-xl border border-gray-200">
-          <div id="stat-total" class="text-3xl font-bold text-red-600 mb-2">-</div>
-          <div class="text-sm text-gray-600 font-semibold">Total Contracts</div>
-        </div>
-        <div class="text-center p-6 bg-gray-50 rounded-xl border border-gray-200">
-          <div id="stat-avg" class="text-3xl font-bold text-red-600 mb-2">-</div>
-          <div class="text-sm text-gray-600 font-semibold">Average Cost</div>
-        </div>
-        <div class="text-center p-6 bg-gray-50 rounded-xl border border-gray-200">
-          <div id="stat-min" class="text-3xl font-bold text-red-600 mb-2">-</div>
-          <div class="text-sm text-gray-600 font-semibold">Lowest Cost</div>
-        </div>
-        <div class="text-center p-6 bg-gray-50 rounded-xl border border-gray-200">
-          <div id="stat-max" class="text-3xl font-bold text-red-600 mb-2">-</div>
-          <div class="text-sm text-gray-600 font-semibold">Highest Cost</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- 🔍 FILTERS SECTION -->
   <section class="relative bg-gradient-to-br from-gray-50 to-gray-100 py-8 px-6 md:px-10">
@@ -308,11 +284,6 @@ const serviceTypes = [
     const resultsCounter = document.getElementById('results-counter');
     const resultsCount = document.getElementById('results-count');
 
-    // Stats elements
-    const statTotal = document.getElementById('stat-total');
-    const statAvg = document.getElementById('stat-avg');
-    const statMin = document.getElementById('stat-min');
-    const statMax = document.getElementById('stat-max');
 
     // Fetch contracts on page load
     fetchContracts();
@@ -377,7 +348,6 @@ const serviceTypes = [
           allContracts = result.contracts;
           currentStats = result.stats;
           renderContracts();
-          updateStats();
           updateActiveFilters();
           updateResultsCounter();
         } else {
@@ -459,17 +429,6 @@ const serviceTypes = [
       emptyState.classList.add('hidden');
     }
 
-    /**
-     * Update statistics display
-     */
-    function updateStats() {
-      if (!currentStats || !statTotal || !statAvg || !statMin || !statMax) return;
-
-      statTotal.textContent = currentStats.total.toString();
-      statAvg.textContent = currentStats.total > 0 ? `$${currentStats.avgCost.toLocaleString()}` : '-';
-      statMin.textContent = currentStats.total > 0 ? `$${currentStats.minCost.toLocaleString()}` : '-';
-      statMax.textContent = currentStats.total > 0 ? `$${currentStats.maxCost.toLocaleString()}` : '-';
-    }
 
     /**
      * Show contract details in modal
