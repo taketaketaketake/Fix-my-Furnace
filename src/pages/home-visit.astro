@@ -65,9 +65,22 @@ import UniversalForm from "../components/UniversalForm.astro";
           <span class="text-gray-700">Expert Furnace Diagnosis</span>
         </h1>
 
-        <p class="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
+        <p class="text-lg md:text-xl text-gray-700 mb-6 leading-relaxed">
           A licensed HVAC technician comes to your home for a comprehensive diagnosis with clear next steps — no guesswork.
         </p>
+
+        <!-- No Payment Required Notice -->
+        <div class="bg-green-50 border-2 border-green-200 rounded-xl p-4 mb-8">
+          <div class="flex items-center gap-3">
+            <svg class="w-6 h-6 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <div>
+              <p class="font-bold text-green-800">No Payment Required to Book</p>
+              <p class="text-green-700 text-sm">Fill out the form below at no cost. You only pay the $125 at your appointment.</p>
+            </div>
+          </div>
+        </div>
 
         <div class="flex flex-col sm:flex-row gap-4 mb-8">
           <a href="#booking" class="bg-red-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-red-700 hover:scale-[1.02] transition-all text-center">
@@ -192,168 +205,6 @@ import UniversalForm from "../components/UniversalForm.astro";
   </div>
 </section>
   
-  <!-- PROVIDER COMPARISON -->
-  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
-    <div class="container mx-auto px-6 max-w-6xl">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">
-          Two Types of Providers. <span class="text-red-600">One Network.</span>
-        </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          We work with both full-service HVAC companies and licensed independent operators — each has strengths for different situations.
-        </p>
-      </div>
-  
-      <!-- Comparison Cards -->
-      <div class="grid md:grid-cols-2 gap-8">
-  
-        <!-- Full Service Company -->
-        <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-gray-200 hover:border-red-300 transition-all">
-          <div class="bg-gradient-to-r from-red-600 to-orange-600 text-white p-6 text-center">
-            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold mb-2">Full-Service Company</h3>
-            <p class="text-red-100">Established HVAC businesses</p>
-          </div>
-  
-          <div class="p-8">
-            <!-- Best For -->
-            <div class="mb-6">
-              <h4 class="text-lg font-bold text-gray-900 mb-3">✅ Best For:</h4>
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-1">•</span>
-                  <span>Complex installations and system replacements</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-1">•</span>
-                  <span>Projects requiring permits and inspections</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-1">•</span>
-                  <span>Warranty-backed work with extended guarantees</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-1">•</span>
-                  <span>Commercial properties and large homes</span>
-                </li>
-              </ul>
-            </div>
-  
-            <!-- What You Get -->
-            <div class="mb-6">
-              <h4 class="text-lg font-bold text-gray-900 mb-3">📦 What You Get:</h4>
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-start gap-2">
-                  <span>•</span>
-                  <span>Full crew and specialized equipment</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span>•</span>
-                  <span>Company warranties (parts + labor)</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span>•</span>
-                  <span>Insurance and bonding coverage</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span>•</span>
-                  <span>24/7 dispatch and emergency service</span>
-                </li>
-              </ul>
-            </div>
-  
-            <!-- Typical Cost -->
-            <div class="bg-red-50 rounded-xl p-4 border border-red-100">
-              <h4 class="text-sm font-bold text-gray-700 mb-2">TYPICAL COST RANGE:</h4>
-              <p class="text-2xl font-black text-red-600">Premium Pricing</p>
-              <p class="text-sm text-gray-600 mt-1">More overhead = higher rates, but comprehensive service</p>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Licensed Independent Operator -->
-        <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-gray-200 hover:border-blue-300 transition-all">
-          <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 text-center">
-            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold mb-2">Licensed Independent</h3>
-            <p class="text-blue-100">Solo certified technicians</p>
-          </div>
-  
-          <div class="p-8">
-            <!-- Best For -->
-            <div class="mb-6">
-              <h4 class="text-lg font-bold text-gray-900 mb-3">✅ Best For:</h4>
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-1">•</span>
-                  <span>Repairs and component replacements</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-1">•</span>
-                  <span>Routine maintenance and tune-ups</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-1">•</span>
-                  <span>Straightforward residential work</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-1">•</span>
-                  <span>Budget-conscious homeowners</span>
-                </li>
-              </ul>
-            </div>
-  
-            <!-- What You Get -->
-            <div class="mb-6">
-              <h4 class="text-lg font-bold text-gray-900 mb-3">📦 What You Get:</h4>
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-start gap-2">
-                  <span>•</span>
-                  <span>Direct access to the technician (no middleman)</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span>•</span>
-                  <span>Parts warranties (manufacturer)</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span>•</span>
-                  <span>Licensed and insured professional</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span>•</span>
-                  <span>Personalized, flexible scheduling</span>
-                </li>
-              </ul>
-            </div>
-  
-            <!-- Typical Cost -->
-            <div class="bg-blue-50 rounded-xl p-4 border border-blue-100">
-              <h4 class="text-sm font-bold text-gray-700 mb-2">TYPICAL COST RANGE:</h4>
-              <p class="text-2xl font-black text-blue-600">Value Pricing</p>
-              <p class="text-sm text-gray-600 mt-1">Less overhead = competitive rates, great for most repairs</p>
-            </div>
-          </div>
-        </div>
-  
-      </div>
-  
-      <!-- Bottom Note -->
-      <div class="mt-12 text-center bg-yellow-50 rounded-2xl p-8 border-2 border-yellow-200">
-        <p class="text-lg text-gray-800">
-          <strong class="text-gray-900">Important:</strong> All providers in our network are <strong>Michigan-licensed, background-checked, and vetted</strong> for quality. The difference is in business structure and overhead, not expertise.
-        </p>
-      </div>
-    </div>
-  </section>
-  
   
 
   <!-- BOOKING CTA -->
@@ -363,9 +214,17 @@ import UniversalForm from "../components/UniversalForm.astro";
         <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3">
           Get Your <span class="text-red-600">Expert Diagnosis</span> Started
         </h2>
-        <p class="text-gray-600 text-lg">
+        <p class="text-gray-600 text-lg mb-4">
           Tell us about your furnace issue and we'll schedule your professional assessment within 24 hours.
         </p>
+        
+        <!-- Payment Notice for Form -->
+        <div class="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          Free to Book • Pay Only at Appointment
+        </div>
       </div>
 
       <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
