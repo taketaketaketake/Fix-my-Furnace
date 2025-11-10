@@ -10,31 +10,44 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Furnace Repair Cost Estimator | Fix My Furnace - Michigan">
 
   <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 text-white py-16 px-6">
+  <section class="bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 text-white py-12 md:py-16 px-6">
     <div class="container mx-auto max-w-5xl text-center">
 
-      <!-- Stats Badges -->
-      <div class="flex flex-wrap justify-center gap-4 mb-8">
-        <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
-          <span class="text-sm font-semibold">💰 Real Michigan Pricing</span>
-        </div>
-        <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
-          <span class="text-sm font-semibold">⚡ Instant Estimates</span>
-        </div>
-        <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
-          <span class="text-sm font-semibold">🔍 100% Transparent</span>
-        </div>
+      <!-- Urgency Badge -->
+      <div class="inline-flex items-center gap-2 bg-yellow-400 text-gray-900 px-6 py-3 rounded-full font-bold mb-6 animate-pulse shadow-lg">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+        </svg>
+        Same-Day Service Available • Book Today
       </div>
 
-      <h1 class="text-5xl md:text-6xl font-black mb-6 leading-tight">
+      <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
         How Much Will Your <br/>
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400">
           Furnace Repair Cost?
         </span>
       </h1>
 
-      <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-        Select your issue below to see real Michigan pricing ranges — from both independent licensed techs and full-service companies.
+      <p class="text-lg md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+        See <strong class="text-white">real Michigan pricing</strong> instantly — know what to expect before you book.
+      </p>
+
+      <!-- Stats Badges -->
+      <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-6">
+        <div class="bg-white/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-full border border-white/20">
+          <span class="text-xs md:text-sm font-semibold">💰 Transparent Pricing</span>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-full border border-white/20">
+          <span class="text-xs md:text-sm font-semibold">⚡ Instant Estimates</span>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-full border border-white/20">
+          <span class="text-xs md:text-sm font-semibold">🔍 Licensed Techs Only</span>
+        </div>
+      </div>
+
+      <!-- Social Proof -->
+      <p class="text-yellow-400 font-bold text-sm md:text-base">
+        ★★★★★ 4.9/5 • Trusted by 1,200+ Michigan homeowners
       </p>
 
     </div>
@@ -44,12 +57,14 @@ import Layout from "../layouts/Layout.astro";
   <section class="py-16 px-6 bg-gradient-to-br from-gray-50 via-white to-gray-50">
     <div class="container mx-auto max-w-5xl">
 
-      <h2 class="text-3xl md:text-4xl font-black text-center text-gray-900 mb-4">
-        What's Wrong With Your Furnace?
-      </h2>
-      <p class="text-center text-gray-600 text-lg mb-12">
-        Click on the issue that best describes your problem
-      </p>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-4">
+          What's Wrong With Your Furnace?
+        </h2>
+        <p class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
+          Select your issue below to see <strong class="text-red-600">instant pricing estimates</strong> based on real Michigan jobs
+        </p>
+      </div>
 
       <!-- Issue Grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
@@ -58,10 +73,9 @@ import Layout from "../layouts/Layout.astro";
         <button
           class="issue-card bg-white rounded-2xl p-8 border-2 border-gray-200 hover:border-red-500 hover:shadow-xl transition-all text-left group cursor-pointer"
           data-issue="no-heat"
-          data-low-min="150"
-          data-low-max="500"
-          data-high-min="250"
-          data-high-max="800"
+          data-price-min="200"
+          data-price-max="800"
+          data-avg="450"
         >
           <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-red-500 group-hover:scale-110 transition-all">
             <svg class="w-8 h-8 text-red-600 group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -80,10 +94,9 @@ import Layout from "../layouts/Layout.astro";
         <button
           class="issue-card bg-white rounded-2xl p-8 border-2 border-gray-200 hover:border-red-500 hover:shadow-xl transition-all text-left group cursor-pointer"
           data-issue="strange-noises"
-          data-low-min="100"
-          data-low-max="400"
-          data-high-min="150"
-          data-high-max="600"
+          data-price-min="150"
+          data-price-max="600"
+          data-avg="350"
         >
           <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange-500 group-hover:scale-110 transition-all">
             <svg class="w-8 h-8 text-orange-600 group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -102,10 +115,9 @@ import Layout from "../layouts/Layout.astro";
         <button
           class="issue-card bg-white rounded-2xl p-8 border-2 border-gray-200 hover:border-red-500 hover:shadow-xl transition-all text-left group cursor-pointer"
           data-issue="uneven-heating"
-          data-low-min="125"
-          data-low-max="450"
-          data-high-min="200"
-          data-high-max="700"
+          data-price-min="200"
+          data-price-max="700"
+          data-avg="400"
         >
           <div class="w-14 h-14 bg-yellow-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-yellow-500 group-hover:scale-110 transition-all">
             <svg class="w-8 h-8 text-yellow-600 group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -124,10 +136,9 @@ import Layout from "../layouts/Layout.astro";
         <button
           class="issue-card bg-white rounded-2xl p-8 border-2 border-gray-200 hover:border-red-500 hover:shadow-xl transition-all text-left group cursor-pointer"
           data-issue="high-bills"
-          data-low-min="125"
-          data-low-max="350"
-          data-high-min="175"
-          data-high-max="550"
+          data-price-min="175"
+          data-price-max="550"
+          data-avg="325"
         >
           <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-green-500 group-hover:scale-110 transition-all">
             <svg class="w-8 h-8 text-green-600 group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -147,10 +158,9 @@ import Layout from "../layouts/Layout.astro";
         <button
           class="issue-card bg-white rounded-2xl p-8 border-2 border-gray-200 hover:border-red-500 hover:shadow-xl transition-all text-left group cursor-pointer"
           data-issue="cycling"
-          data-low-min="100"
-          data-low-max="375"
-          data-high-min="150"
-          data-high-max="575"
+          data-price-min="150"
+          data-price-max="575"
+          data-avg="325"
         >
           <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-500 group-hover:scale-110 transition-all">
             <svg class="w-8 h-8 text-blue-600 group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -169,10 +179,9 @@ import Layout from "../layouts/Layout.astro";
         <button
           class="issue-card bg-white rounded-2xl p-8 border-2 border-gray-200 hover:border-red-500 hover:shadow-xl transition-all text-left group cursor-pointer"
           data-issue="replacement"
-          data-low-min="2800"
-          data-low-max="5500"
-          data-high-min="4500"
-          data-high-max="9000"
+          data-price-min="3500"
+          data-price-max="9000"
+          data-avg="6000"
         >
           <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-purple-500 group-hover:scale-110 transition-all">
             <svg class="w-8 h-8 text-purple-600 group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -194,112 +203,110 @@ import Layout from "../layouts/Layout.astro";
 
         <!-- Selected Issue Display -->
         <div class="bg-gradient-to-r from-red-600 to-orange-600 rounded-2xl p-8 text-white text-center mb-8">
-          <p class="text-sm uppercase tracking-wide mb-2 opacity-90">Estimated Cost For:</p>
+          <p class="text-sm uppercase tracking-wide mb-2 opacity-90">Typical Michigan Cost For:</p>
           <h3 id="selected-issue-title" class="text-3xl md:text-4xl font-black mb-2"></h3>
-          <p class="text-red-100 text-sm">Based on 7,500+ Michigan jobs completed in 2024</p>
+          <p class="text-red-100 text-sm">Based on 7,500+ jobs completed across Michigan in 2024</p>
         </div>
 
-        <!-- Pricing Comparison -->
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-
-          <!-- Licensed Independent Tech -->
-          <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border-2 border-blue-200 relative">
-            <div class="absolute top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-              💰 BEST VALUE
-            </div>
-            <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-8 text-center">
-              <h4 class="text-2xl font-black mb-2">Licensed Independent Tech</h4>
-              <p class="text-blue-100 text-sm">Lower overhead, same expertise</p>
-            </div>
-            <div class="p-8">
-              <div class="text-center mb-6">
-                <p class="text-5xl md:text-6xl font-black text-blue-600 mb-2">
-                  $<span id="low-min">0</span> - $<span id="low-max">0</span>
-                </p>
-                <p class="text-gray-500 text-sm">Typical Range</p>
-              </div>
-              <ul class="space-y-3 text-gray-700">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                  </svg>
-                  <span>Fully licensed & insured</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                  </svg>
-                  <span>Decades of experience</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                  </svg>
-                  <span>No franchise fees passed to you</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                  </svg>
-                  <span>Parts & labor warranty included</span>
-                </li>
-              </ul>
-            </div>
+        <!-- Single Price Display -->
+        <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12 mb-12 border-2 border-red-100">
+          <div class="text-center mb-8">
+            <p class="text-6xl md:text-7xl font-black text-gray-900 mb-4">
+              $<span id="price-min">0</span> - $<span id="price-max">0</span>
+            </p>
+            <p class="text-xl text-gray-600">Typical Price Range in Michigan</p>
+            <p class="text-lg text-gray-500 mt-2">
+              Most customers pay around <strong class="text-red-600">$<span id="price-avg">0</span></strong>
+            </p>
           </div>
 
-          <!-- Full-Service Company -->
-          <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border-2 border-gray-200">
-            <div class="bg-gradient-to-r from-red-600 to-orange-600 text-white p-8 text-center">
-              <h4 class="text-2xl font-black mb-2">Full-Service Company</h4>
-              <p class="text-red-100 text-sm">Larger operations, higher overhead</p>
-            </div>
-            <div class="p-8">
-              <div class="text-center mb-6">
-                <p class="text-5xl md:text-6xl font-black text-red-600 mb-2">
-                  $<span id="high-min">0</span> - $<span id="high-max">0</span>
-                </p>
-                <p class="text-gray-500 text-sm">Typical Range</p>
+          <!-- What Affects Your Cost -->
+          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border-2 border-blue-200">
+            <h4 class="text-2xl font-black text-gray-900 mb-6 flex items-center gap-3">
+              <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+              </svg>
+              What Affects Your Final Cost?
+            </h4>
+
+            <div class="grid md:grid-cols-2 gap-6">
+
+              <!-- Left Column -->
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
+                  </svg>
+                  <div>
+                    <p class="font-bold text-gray-900">Parts & Labor Required</p>
+                    <p class="text-sm text-gray-600">Some issues need simple fixes, others require expensive components</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                  </svg>
+                  <div>
+                    <p class="font-bold text-gray-900">Urgency Level</p>
+                    <p class="text-sm text-gray-600">Emergency after-hours service costs more than scheduled appointments</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                  </svg>
+                  <div>
+                    <p class="font-bold text-gray-900">System Age & Complexity</p>
+                    <p class="text-sm text-gray-600">Older systems or multi-zone setups may take longer to diagnose and repair</p>
+                  </div>
+                </div>
               </div>
-              <ul class="space-y-3 text-gray-700">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+
+              <!-- Right Column -->
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
                   </svg>
-                  <span>Established brand presence</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  <div>
+                    <p class="font-bold text-gray-900">Provider Type</p>
+                    <p class="text-sm text-gray-600">Full-service companies and independent techs have different overhead structures</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                    <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"/>
                   </svg>
-                  <span>24/7 call center support</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  <div>
+                    <p class="font-bold text-gray-900">Warranty Coverage</p>
+                    <p class="text-sm text-gray-600">Extended warranties and premium service plans affect overall pricing</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd"/>
                   </svg>
-                  <span>Extended warranty options</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-yellow-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                  </svg>
-                  <span>Higher overhead costs</span>
-                </li>
-              </ul>
+                  <div>
+                    <p class="font-bold text-gray-900">Local Market Conditions</p>
+                    <p class="text-sm text-gray-600">Detroit metro vs. rural areas may have slight price variations</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="mt-8 p-6 bg-white rounded-xl border-2 border-blue-300">
+              <p class="text-center text-gray-800 leading-relaxed">
+                <strong class="text-gray-900">That's why we start with a $125 diagnosis.</strong> Our licensed tech examines your system, identifies the exact issue, and presents you with <strong class="text-red-600">transparent pricing from qualified providers</strong> that match your needs and budget.
+              </p>
             </div>
           </div>
-
-        </div>
-
-        <!-- Savings Callout -->
-        <div class="bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl p-8 md:p-12 text-white text-center mb-12">
-          <p class="text-sm uppercase tracking-wide mb-2 opacity-90">Potential Savings</p>
-          <p class="text-4xl md:text-5xl font-black mb-4">
-            Save $<span id="savings-min">0</span> - $<span id="savings-max">0</span>
-          </p>
-          <p class="text-xl text-green-100">
-            By choosing an independent licensed tech over a full-service company
-          </p>
         </div>
 
         <!-- Important Notice -->
@@ -309,45 +316,37 @@ import Layout from "../layouts/Layout.astro";
               <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
             </svg>
             <div>
-              <h4 class="text-xl font-bold text-gray-900 mb-2">Why Can't We Give an Exact Price?</h4>
+              <h4 class="text-xl font-bold text-gray-900 mb-2">Why Can't We Give an Exact Price Online?</h4>
               <p class="text-gray-700 leading-relaxed mb-4">
-                Every furnace problem is unique. What looks like a simple fix might reveal deeper issues once diagnosed. Or vice versa — what sounds scary might be a $150 part replacement.
+                Every furnace problem is unique. What looks like a simple fix might reveal deeper issues once diagnosed. Or vice versa — what sounds scary might be a quick $150 part replacement.
               </p>
               <p class="text-gray-700 leading-relaxed">
-                <strong>That's why we start with a $125 home diagnosis.</strong> Our licensed tech will examine your system, identify the exact problem, and give you transparent pricing for BOTH provider options before any work begins.
+                <strong>That's why we start with a $125 professional diagnosis.</strong> Our licensed technician will examine your system, identify the exact problem, and give you transparent pricing options before any work begins. No surprises, no pressure.
               </p>
             </div>
           </div>
         </div>
 
-        <!-- CTA Section -->
+        <!-- CTA Section - SIMPLIFIED FOR FUNNEL -->
         <div class="bg-gradient-to-br from-red-600 via-red-700 to-orange-600 rounded-2xl p-8 md:p-12 text-white text-center">
           <h3 class="text-3xl md:text-4xl font-black mb-4">
             Ready to Get Your Exact Price?
           </h3>
           <p class="text-xl text-red-100 mb-8 max-w-2xl mx-auto">
-            Book your $125 home diagnosis. We'll identify the problem, give you transparent pricing for both options, and you decide which provider is right for you.
+            Book your $125 professional diagnosis. We'll identify the exact problem and connect you with the right qualified provider for your needs.
           </p>
 
-          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <div class="max-w-md mx-auto mb-8">
             <a
-              href="/home-visit"
-              class="bg-yellow-400 text-gray-900 px-10 py-5 rounded-2xl font-black text-xl hover:bg-yellow-300 transition-all shadow-2xl hover:scale-105 inline-flex items-center justify-center gap-3"
+              href="#booking-form"
+              class="block bg-yellow-400 text-gray-900 px-10 py-6 rounded-2xl font-black text-2xl hover:bg-yellow-300 transition-all shadow-2xl hover:scale-105"
             >
-              Book $125 Diagnosis Now
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-              </svg>
+              Book My $125 Diagnosis →
             </a>
-            <a
-              href="tel:+18334948669"
-              class="border-2 border-white text-white px-10 py-5 rounded-2xl font-black text-xl hover:bg-white/10 transition-all inline-flex items-center justify-center gap-3"
-            >
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-              </svg>
-              Call (833) FIX-IT-NOW
-            </a>
+
+            <p class="text-sm text-red-100 mt-4">
+              Or call: <a href="tel:+18334948669" class="underline hover:text-white font-bold">(833) 494-8669</a>
+            </p>
           </div>
 
           <!-- Trust Indicators -->
@@ -372,56 +371,192 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </section>
 
-  <!-- How It Works Section -->
-  <section class="py-16 px-6 bg-white">
-    <div class="container mx-auto max-w-5xl">
-      <h2 class="text-3xl md:text-4xl font-black text-center text-gray-900 mb-12">
-        Here's What Happens Next
-      </h2>
+  <!-- BOOKING FORM SECTION - STREAMLINED -->
+  <section id="booking-form" class="py-20 px-6 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <div class="container mx-auto max-w-4xl">
 
-      <div class="grid md:grid-cols-3 gap-8">
-
-        <!-- Step 1 -->
-        <div class="text-center">
-          <div class="w-20 h-20 bg-gradient-to-br from-red-600 to-orange-600 rounded-full flex items-center justify-center text-white text-3xl font-black mb-6 mx-auto shadow-xl">
-            1
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Book Your Diagnosis</h3>
-          <p class="text-gray-600">
-            Schedule online or call. We'll respond within minutes and arrive within 2 hours.
-          </p>
+      <!-- Form Header -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-2 bg-green-100 text-green-800 px-6 py-3 rounded-full text-sm font-bold mb-6">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          Available Today • Same-Day Service
         </div>
 
-        <!-- Step 2 -->
-        <div class="text-center">
-          <div class="w-20 h-20 bg-gradient-to-br from-red-600 to-orange-600 rounded-full flex items-center justify-center text-white text-3xl font-black mb-6 mx-auto shadow-xl">
-            2
+        <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+          Book Your $125 Diagnosis
+        </h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Fill out the form below and we'll contact you within minutes to schedule your professional home assessment.
+        </p>
+      </div>
+
+      <!-- Two Column Layout: Form + Benefits -->
+      <div class="grid md:grid-cols-5 gap-8">
+
+        <!-- BOOKING FORM - Takes 3 columns -->
+        <div class="md:col-span-3">
+          <div class="bg-white rounded-2xl shadow-2xl p-8 border-2 border-gray-100">
+            <form id="diagnosis-booking-form" class="space-y-6">
+
+              <!-- Name -->
+              <div>
+                <label for="name" class="block text-sm font-bold text-gray-900 mb-2">Full Name *</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-red-500 focus:ring-0 text-gray-900 text-lg"
+                  placeholder="John Smith"
+                />
+              </div>
+
+              <!-- Phone -->
+              <div>
+                <label for="phone" class="block text-sm font-bold text-gray-900 mb-2">Phone Number *</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-red-500 focus:ring-0 text-gray-900 text-lg"
+                  placeholder="(313) 555-0123"
+                />
+              </div>
+
+              <!-- Address -->
+              <div>
+                <label for="address" class="block text-sm font-bold text-gray-900 mb-2">Service Address *</label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  required
+                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-red-500 focus:ring-0 text-gray-900 text-lg"
+                  placeholder="123 Main St, Detroit, MI"
+                />
+              </div>
+
+              <!-- Issue Selection -->
+              <div>
+                <label for="issue" class="block text-sm font-bold text-gray-900 mb-2">Your Furnace Issue *</label>
+                <select
+                  id="issue"
+                  name="issue"
+                  required
+                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-red-500 focus:ring-0 text-gray-900 text-lg"
+                >
+                  <option value="">Select your issue...</option>
+                  <option value="no-heat">No Heat At All</option>
+                  <option value="strange-noises">Strange Noises</option>
+                  <option value="uneven-heating">Uneven Heating</option>
+                  <option value="high-bills">High Energy Bills</option>
+                  <option value="cycling">Frequent Cycling</option>
+                  <option value="replacement">Full Replacement Needed</option>
+                </select>
+              </div>
+
+              <!-- Submit Button -->
+              <button
+                type="submit"
+                class="w-full bg-gradient-to-r from-red-600 to-orange-600 text-white px-8 py-5 rounded-2xl font-black text-xl hover:from-red-700 hover:to-orange-700 transition-all shadow-xl hover:scale-[1.02]"
+              >
+                Schedule My Diagnosis Now →
+              </button>
+
+              <p class="text-sm text-gray-500 text-center">
+                By submitting, you agree to be contacted for scheduling. <a href="/contact" class="underline">Privacy Policy</a>
+              </p>
+
+            </form>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Get Your Options</h3>
-          <p class="text-gray-600">
-            Our tech diagnoses the issue and presents pricing from BOTH provider types.
-          </p>
         </div>
 
-        <!-- Step 3 -->
-        <div class="text-center">
-          <div class="w-20 h-20 bg-gradient-to-br from-red-600 to-orange-600 rounded-full flex items-center justify-center text-white text-3xl font-black mb-6 mx-auto shadow-xl">
-            3
+        <!-- BENEFITS SIDEBAR - Takes 2 columns -->
+        <div class="md:col-span-2 space-y-6">
+
+          <!-- What Happens Next -->
+          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border-2 border-blue-200">
+            <h3 class="text-xl font-black text-gray-900 mb-4 flex items-center gap-2">
+              <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+              </svg>
+              What Happens Next
+            </h3>
+            <ol class="space-y-3">
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-7 h-7 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                <div>
+                  <p class="font-bold text-gray-900">We Call You Back</p>
+                  <p class="text-sm text-gray-600">Within minutes to confirm details</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-7 h-7 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                <div>
+                  <p class="font-bold text-gray-900">Tech Arrives</p>
+                  <p class="text-sm text-gray-600">Same-day or next-day visit</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-7 h-7 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                <div>
+                  <p class="font-bold text-gray-900">Get Pricing Options</p>
+                  <p class="text-sm text-gray-600">Both provider types, you choose</p>
+                </div>
+              </li>
+            </ol>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">You Decide</h3>
-          <p class="text-gray-600">
-            Choose the provider that fits your budget. No pressure. No games.
-          </p>
+
+          <!-- Why Choose Us -->
+          <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border-2 border-green-200">
+            <h3 class="text-xl font-black text-gray-900 mb-4 flex items-center gap-2">
+              <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Why Book With Us
+            </h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Licensed & insured technicians
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Transparent pricing, no hidden fees
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Two provider options to choose from
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                4.9★ rating from 1,200+ customers
+              </li>
+            </ul>
+          </div>
+
         </div>
 
       </div>
+
     </div>
   </section>
 
   <!-- Sticky Mobile CTA -->
   <div class="md:hidden fixed bottom-0 left-0 right-0 bg-gradient-to-r from-red-600 to-orange-600 p-4 shadow-2xl z-50 border-t-4 border-yellow-400">
-    <a href="/home-visit" class="block bg-yellow-400 text-gray-900 text-center py-4 rounded-xl font-black text-lg hover:bg-yellow-300 transition-colors shadow-xl">
-      Get My $125 Diagnosis
+    <a href="#booking-form" class="block bg-yellow-400 text-gray-900 text-center py-4 rounded-xl font-black text-lg hover:bg-yellow-300 transition-colors shadow-xl">
+      Book My $125 Diagnosis
     </a>
   </div>
 
@@ -432,12 +567,10 @@ import Layout from "../layouts/Layout.astro";
   const issueCards = document.querySelectorAll('.issue-card');
   const resultsContainer = document.getElementById('results-container');
   const selectedIssueTitle = document.getElementById('selected-issue-title');
-  const lowMinSpan = document.getElementById('low-min');
-  const lowMaxSpan = document.getElementById('low-max');
-  const highMinSpan = document.getElementById('high-min');
-  const highMaxSpan = document.getElementById('high-max');
-  const savingsMinSpan = document.getElementById('savings-min');
-  const savingsMaxSpan = document.getElementById('savings-max');
+  const priceMinSpan = document.getElementById('price-min');
+  const priceMaxSpan = document.getElementById('price-max');
+  const priceAvgSpan = document.getElementById('price-avg');
+  const issueSelectDropdown = document.getElementById('issue');
 
   const issueLabels = {
     'no-heat': 'No Heat At All',
@@ -448,27 +581,27 @@ import Layout from "../layouts/Layout.astro";
     'replacement': 'Full Furnace Replacement'
   };
 
+  let selectedIssue = '';
+
   issueCards.forEach(card => {
     card.addEventListener('click', () => {
       // Get data from card
       const issue = card.dataset.issue;
-      const lowMin = parseInt(card.dataset.lowMin);
-      const lowMax = parseInt(card.dataset.lowMax);
-      const highMin = parseInt(card.dataset.highMin);
-      const highMax = parseInt(card.dataset.highMax);
-
-      // Calculate savings
-      const savingsMin = highMin - lowMax; // Conservative estimate
-      const savingsMax = highMax - lowMin; // Optimistic estimate
+      selectedIssue = issue;
+      const priceMin = parseInt(card.dataset.priceMin);
+      const priceMax = parseInt(card.dataset.priceMax);
+      const priceAvg = parseInt(card.dataset.avg);
 
       // Update UI
       selectedIssueTitle.textContent = issueLabels[issue];
-      lowMinSpan.textContent = lowMin.toLocaleString();
-      lowMaxSpan.textContent = lowMax.toLocaleString();
-      highMinSpan.textContent = highMin.toLocaleString();
-      highMaxSpan.textContent = highMax.toLocaleString();
-      savingsMinSpan.textContent = savingsMin.toLocaleString();
-      savingsMaxSpan.textContent = savingsMax.toLocaleString();
+      priceMinSpan.textContent = priceMin.toLocaleString();
+      priceMaxSpan.textContent = priceMax.toLocaleString();
+      priceAvgSpan.textContent = priceAvg.toLocaleString();
+
+      // Pre-select the issue in the booking form
+      if (issueSelectDropdown) {
+        issueSelectDropdown.value = issue;
+      }
 
       // Show results with smooth scroll
       resultsContainer.classList.remove('hidden');
@@ -483,6 +616,82 @@ import Layout from "../layouts/Layout.astro";
       // Visual feedback on selected card
       issueCards.forEach(c => c.classList.remove('ring-4', 'ring-red-500'));
       card.classList.add('ring-4', 'ring-red-500');
+    });
+  });
+
+  // Form Submission Handler
+  const bookingForm = document.getElementById('diagnosis-booking-form');
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitButton = bookingForm.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.textContent;
+      submitButton.disabled = true;
+      submitButton.textContent = 'Submitting...';
+
+      try {
+        const formData = {
+          name: bookingForm.querySelector('#name').value,
+          phone: bookingForm.querySelector('#phone').value,
+          address: bookingForm.querySelector('#address').value,
+          issue: bookingForm.querySelector('#issue').value,
+          formSource: 'cost_estimator_landing'
+        };
+
+        const response = await fetch('/api/submit-form', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ formData, formSource: 'cost_estimator_landing' })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          // Show success message
+          bookingForm.innerHTML = `
+            <div class="text-center py-12">
+              <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-10 h-10 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <h3 class="text-3xl font-black text-gray-900 mb-3">Request Submitted!</h3>
+              <p class="text-lg text-gray-600 mb-6">
+                We'll call you within minutes to schedule your $125 diagnosis.
+              </p>
+              <p class="text-sm text-gray-500">
+                Check your phone for a call from <strong>(833) 494-8669</strong>
+              </p>
+            </div>
+          `;
+        } else {
+          throw new Error(result.error || 'Submission failed');
+        }
+
+      } catch (error) {
+        console.error('Form submission error:', error);
+        alert('There was an error submitting your request. Please call us at (833) 494-8669.');
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
+    });
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
     });
   });
 </script>
