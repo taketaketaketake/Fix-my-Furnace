@@ -1,15 +1,21 @@
 ---
+/**
+ * Landing Page: Furnace Quiz Funnel
+ * High-converting multi-step quiz with embedded lead capture
+ * Uses UniversalForm for final conversion step
+ */
 import Layout from "../layouts/Layout.astro";
+import UniversalForm from "../components/UniversalForm.astro";
 ---
 
 <Layout
-  title="Is It Time for a New Furnace? Take Our Free 2-Minute Assessment"
-  description="Answer 7 quick questions to find out if your furnace needs replacement or just maintenance. Get personalized results and expert recommendations."
-  keywords="furnace replacement quiz, should I replace my furnace, furnace assessment, when to replace furnace, furnace lifespan"
+  title="Is Your Furnace Failing? Take Our 60-Second Quiz | Fix My Furnace"
+  description="Answer 7 quick questions to discover if your furnace needs repair, replacement, or just maintenance. Get personalized recommendations from Michigan's trusted HVAC experts."
+  keywords="furnace quiz, should I replace my furnace, furnace assessment Michigan, when to replace furnace, furnace diagnosis"
 >
 
 <!-- HERO SECTION -->
-<section class="relative bg-gradient-to-br from-gray-900 via-red-900 to-orange-900 text-white py-20 md:py-32 overflow-hidden">
+<section class="relative bg-gradient-to-br from-gray-900 via-red-900 to-orange-900 text-white py-16 md:py-24 overflow-hidden">
   <!-- Background pattern -->
   <div class="absolute inset-0 opacity-10">
     <div class="absolute w-full h-full" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px);"></div>
@@ -17,70 +23,88 @@ import Layout from "../layouts/Layout.astro";
 
   <div class="container mx-auto px-6 max-w-4xl relative z-10">
     <div class="text-center">
-      <!-- Badge -->
-      <div class="inline-flex items-center gap-2 bg-yellow-400 text-gray-900 px-5 py-2.5 rounded-full text-sm font-bold mb-6">
+
+      <!-- Urgency Badge -->
+      <div class="inline-flex items-center gap-2 bg-yellow-400 text-gray-900 px-6 py-3 rounded-full font-bold mb-6 animate-pulse shadow-lg">
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
         </svg>
-        FREE 2-Minute Assessment
+        Takes Just 60 Seconds
       </div>
 
       <!-- Main Headline -->
       <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
-        Is Your Furnace on<br/>
-        <span class="text-yellow-400">Its Last Legs?</span>
+        Is Your Furnace<br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400">
+          Costing You Money?
+        </span>
       </h1>
 
       <!-- Subheadline -->
-      <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-        Take our quick assessment to find out if you need a replacement, major repair, or just routine maintenance.
+      <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+        Take our quick assessment to find out if you need a replacement, repair, or just maintenance. <strong class="text-white">Get instant personalized results.</strong>
       </p>
 
       <!-- Stats -->
-      <div class="flex flex-wrap justify-center gap-8 text-center mb-10">
-        <div>
-          <div class="text-3xl font-black text-yellow-400">⏱️ 2 min</div>
-          <div class="text-sm text-gray-400">Quick & Easy</div>
+      <div class="flex flex-wrap justify-center gap-6 md:gap-10 text-center mb-10">
+        <div class="bg-white/10 backdrop-blur-sm px-6 py-4 rounded-xl border border-white/20">
+          <div class="text-3xl font-black text-yellow-400">⏱️ 60 sec</div>
+          <div class="text-sm text-gray-300 mt-1">Quick Assessment</div>
         </div>
-        <div>
+        <div class="bg-white/10 backdrop-blur-sm px-6 py-4 rounded-xl border border-white/20">
           <div class="text-3xl font-black text-yellow-400">7 ?'s</div>
-          <div class="text-sm text-gray-400">Simple Questions</div>
+          <div class="text-sm text-gray-300 mt-1">Simple Questions</div>
         </div>
-        <div>
-          <div class="text-3xl font-black text-yellow-400">100% Free</div>
-          <div class="text-sm text-gray-400">No Obligation</div>
+        <div class="bg-white/10 backdrop-blur-sm px-6 py-4 rounded-xl border border-white/20">
+          <div class="text-3xl font-black text-yellow-400">100%</div>
+          <div class="text-sm text-gray-300 mt-1">Free · No Obligation</div>
         </div>
       </div>
 
       <!-- Start Button -->
       <button
         id="startQuizBtn"
-        class="bg-yellow-400 text-gray-900 px-12 py-6 rounded-2xl font-black text-xl hover:bg-yellow-300 transform hover:scale-105 transition-all shadow-2xl"
+        class="bg-yellow-400 text-gray-900 px-12 py-6 rounded-2xl font-black text-xl md:text-2xl hover:bg-yellow-300 transform hover:scale-105 transition-all shadow-2xl"
       >
-        Start Assessment →
+        Start Free Assessment →
       </button>
+
+      <!-- Social Proof -->
+      <p class="text-gray-400 text-sm mt-6">
+        ★★★★★ <span class="text-yellow-400 font-bold">4.9/5</span> from 1,200+ Michigan homeowners
+      </p>
     </div>
   </div>
 </section>
 
 <!-- QUIZ SECTION -->
-<section id="quizSection" class="py-20 bg-white hidden">
+<section id="quizSection" class="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 hidden min-h-screen">
   <div class="container mx-auto px-6 max-w-3xl">
 
     <!-- Progress Bar -->
     <div class="mb-12">
-      <div class="flex justify-between text-sm font-bold text-gray-600 mb-2">
+      <div class="flex justify-between text-sm font-bold text-gray-600 mb-3">
         <span>Question <span id="currentQuestion">1</span> of 7</span>
         <span><span id="progressPercent">14</span>% Complete</span>
       </div>
-      <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-        <div id="progressBar" class="bg-gradient-to-r from-red-600 to-orange-600 h-full transition-all duration-500" style="width: 14%"></div>
+      <div class="w-full bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner">
+        <div id="progressBar" class="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-500 h-full transition-all duration-500 ease-out" style="width: 14%"></div>
       </div>
     </div>
 
     <!-- Question Container -->
-    <div id="questionContainer" class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-2 border-gray-200">
+    <div id="questionContainer" class="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border-2 border-gray-100">
       <!-- Questions will be injected here by JavaScript -->
+    </div>
+
+    <!-- Back Button (hidden on first question) -->
+    <div class="mt-6 text-center">
+      <button
+        id="backBtn"
+        class="text-gray-600 hover:text-gray-900 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition-all hidden"
+      >
+        ← Back
+      </button>
     </div>
 
   </div>
@@ -88,17 +112,17 @@ import Layout from "../layouts/Layout.astro";
 
 <!-- RESULTS SECTION -->
 <section id="resultsSection" class="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 hidden">
-  <div class="container mx-auto px-6 max-w-4xl">
+  <div class="container mx-auto px-6 max-w-5xl">
 
-    <div class="text-center mb-8">
-      <div class="inline-flex items-center gap-2 bg-green-100 text-green-800 px-5 py-2.5 rounded-full text-sm font-bold mb-4">
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 bg-green-100 text-green-800 px-6 py-3 rounded-full text-sm font-bold mb-6">
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
         </svg>
         Assessment Complete
       </div>
       <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">
-        Your Results Are In
+        Your Personalized Results
       </h2>
     </div>
 
@@ -107,21 +131,119 @@ import Layout from "../layouts/Layout.astro";
       <!-- Will be populated dynamically -->
     </div>
 
+    <!-- BOOKING FORM SECTION -->
+    <div id="bookingSection" class="mt-12">
+      <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border-2 border-red-100">
+
+        <div class="text-center mb-8">
+          <h3 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+            Get Your Professional Diagnosis
+          </h3>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Book your <strong class="text-red-600">$125 professional assessment</strong> to get exact pricing and expert recommendations for your specific situation.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-5 gap-8">
+
+          <!-- FORM - Takes 3 columns -->
+          <div class="md:col-span-3">
+            <UniversalForm
+              formId="quizBookingForm"
+              formSource="quiz_funnel_results"
+              fields={[
+                { name: 'name', type: 'text', label: 'Full Name', placeholder: 'Enter your full name', required: true, autoComplete: 'name' },
+                { name: 'phone', type: 'tel', label: 'Phone Number', placeholder: '(313) 555-0123', required: true },
+                { name: 'address', type: 'address', label: 'Service Address', placeholder: 'Enter your full address', required: true },
+                {
+                  name: 'quiz_result',
+                  type: 'select',
+                  label: 'Your Quiz Result',
+                  required: true,
+                  options: [
+                    'Likely needs replacement',
+                    'Major decision point - could go either way',
+                    'Likely just needs maintenance',
+                    'Other'
+                  ]
+                }
+              ]}
+              submitText="Book My $125 Diagnosis"
+            />
+          </div>
+
+          <!-- BENEFITS SIDEBAR - Takes 2 columns -->
+          <div class="md:col-span-2 space-y-6">
+
+            <!-- What's Included -->
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200">
+              <h4 class="text-lg font-black text-gray-900 mb-4 flex items-center gap-2">
+                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                </svg>
+                What's Included
+              </h4>
+              <ul class="space-y-3 text-sm text-gray-700">
+                <li class="flex items-start gap-2">
+                  <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Complete system analysis</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Written assessment report</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Transparent pricing options</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Expert recommendations</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Trust Signals -->
+            <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border-2 border-green-200">
+              <h4 class="text-lg font-black text-gray-900 mb-4 flex items-center gap-2">
+                <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Trusted By 1,200+
+              </h4>
+              <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                  <span class="text-3xl font-black text-green-600">4.9★</span>
+                  <span class="text-sm text-gray-700">Average customer rating</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="text-3xl font-black text-green-600">&lt;2hr</span>
+                  <span class="text-sm text-gray-700">Average response time</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="text-center text-gray-500 text-sm mt-6">
+          Or call us at <a href="tel:+18334948669" class="text-red-600 font-bold underline">(833) 494-8669</a>
+        </p>
+
+      </div>
+    </div>
+
   </div>
 </section>
-
-<!-- Sticky Mobile CTA -->
-<div id="mobileCTA" class="md:hidden fixed bottom-0 left-0 right-0 bg-red-600 p-4 shadow-2xl z-50 border-t-4 border-red-700 hidden">
-  <a
-    href="/home-visit"
-    class="block bg-yellow-400 text-gray-900 text-center py-4 rounded-xl font-black text-lg shadow-lg active:scale-95 transition-transform"
-  >
-    Book $125 Diagnosis Now
-  </a>
-</div>
-
-<!-- Add padding for mobile sticky CTA -->
-<div class="md:hidden h-24"></div>
 
 </Layout>
 
@@ -132,6 +254,7 @@ import Layout from "../layouts/Layout.astro";
       {
         id: 1,
         question: "How old is your furnace?",
+        icon: "🕐",
         options: [
           { text: "0-5 years old", value: 0 },
           { text: "6-10 years old", value: 1 },
@@ -142,7 +265,8 @@ import Layout from "../layouts/Layout.astro";
       },
       {
         id: 2,
-        question: "When was your last professional service or maintenance?",
+        question: "When was your last professional service?",
+        icon: "🔧",
         options: [
           { text: "Within the past year", value: 0 },
           { text: "1-2 years ago", value: 1 },
@@ -153,11 +277,12 @@ import Layout from "../layouts/Layout.astro";
       },
       {
         id: 3,
-        question: "How is your furnace currently performing?",
+        question: "How is your furnace performing?",
+        icon: "📊",
         options: [
           { text: "Perfectly - no issues at all", value: 0 },
           { text: "Minor issues occasionally", value: 1 },
-          { text: "Frequent problems that I ignore", value: 2 },
+          { text: "Frequent problems", value: 2 },
           { text: "Major problems - barely working", value: 3 },
           { text: "Not working at all right now", value: 4 }
         ]
@@ -165,6 +290,7 @@ import Layout from "../layouts/Layout.astro";
       {
         id: 4,
         question: "What's your home size?",
+        icon: "🏠",
         options: [
           { text: "Under 1,500 sq ft", value: 0 },
           { text: "1,500 - 2,500 sq ft", value: 1 },
@@ -174,17 +300,19 @@ import Layout from "../layouts/Layout.astro";
       },
       {
         id: 5,
-        question: "How are your energy bills compared to previous years?",
+        question: "How are your energy bills?",
+        icon: "💰",
         options: [
-          { text: "About the same", value: 0 },
+          { text: "About the same as always", value: 0 },
           { text: "Slightly higher than usual", value: 1 },
           { text: "Significantly higher", value: 2 },
-          { text: "Alarmingly high - way more than before", value: 3 }
+          { text: "Alarmingly high", value: 3 }
         ]
       },
       {
         id: 6,
-        question: "Does your furnace make strange noises?",
+        question: "Any strange noises from your furnace?",
+        icon: "🔊",
         options: [
           { text: "No unusual noises", value: 0 },
           { text: "Occasional banging or rattling", value: 1 },
@@ -194,10 +322,11 @@ import Layout from "../layouts/Layout.astro";
       },
       {
         id: 7,
-        question: "Do you experience uneven heating in your home?",
+        question: "Uneven heating in your home?",
+        icon: "🌡️",
         options: [
           { text: "No - even temperature throughout", value: 0 },
-          { text: "A few rooms are colder than others", value: 1 },
+          { text: "A few rooms are colder", value: 1 },
           { text: "Many rooms don't heat properly", value: 2 },
           { text: "Whole house struggles to heat", value: 3 }
         ]
@@ -217,18 +346,28 @@ import Layout from "../layouts/Layout.astro";
     const progressPercent = document.getElementById('progressPercent');
     const progressBar = document.getElementById('progressBar');
     const resultsContent = document.getElementById('resultsContent');
-    const mobileCTA = document.getElementById('mobileCTA');
+    const backBtn = document.getElementById('backBtn');
 
     // Start quiz
     startQuizBtn?.addEventListener('click', () => {
-      document.getElementById('quizSection')?.scrollIntoView({ behavior: 'smooth' });
+      // Smooth scroll to quiz
+      quizSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       setTimeout(() => {
         quizSection?.classList.remove('hidden');
         showQuestion(0);
       }, 500);
     });
 
-    // Show question
+    // Back button
+    backBtn?.addEventListener('click', () => {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        totalScore -= answers.pop();
+        showQuestion(currentQuestionIndex);
+      }
+    });
+
+    // Show question with animation
     function showQuestion(index) {
       const question = questions[index];
       currentQuestionSpan.textContent = index + 1;
@@ -236,30 +375,52 @@ import Layout from "../layouts/Layout.astro";
       progressPercent.textContent = percent;
       progressBar.style.width = percent + '%';
 
-      questionContainer.innerHTML = `
-        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8">${question.question}</h3>
-        <div class="space-y-4">
-          ${question.options.map((option, idx) => `
-            <button
-              class="quiz-option w-full text-left p-6 rounded-xl border-2 border-gray-200 hover:border-red-500 hover:bg-red-50 transition-all font-semibold text-lg text-gray-800 hover:text-gray-900"
-              data-value="${option.value}"
-            >
-              <span class="flex items-center gap-4">
-                <span class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 font-bold flex-shrink-0">${String.fromCharCode(65 + idx)}</span>
-                <span>${option.text}</span>
-              </span>
-            </button>
-          `).join('')}
-        </div>
-      `;
+      // Show/hide back button
+      if (index > 0) {
+        backBtn?.classList.remove('hidden');
+      } else {
+        backBtn?.classList.add('hidden');
+      }
 
-      // Add click handlers to options
-      document.querySelectorAll('.quiz-option').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const value = parseInt(e.currentTarget.getAttribute('data-value'));
-          handleAnswer(value);
+      // Fade out animation
+      questionContainer.style.opacity = '0';
+      questionContainer.style.transform = 'translateY(20px)';
+
+      setTimeout(() => {
+        questionContainer.innerHTML = `
+          <div class="text-center mb-8">
+            <div class="text-6xl mb-4">${question.icon}</div>
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-900">${question.question}</h3>
+          </div>
+          <div class="space-y-3">
+            ${question.options.map((option, idx) => `
+              <button
+                class="quiz-option w-full text-left p-5 md:p-6 rounded-xl border-2 border-gray-200 hover:border-red-500 hover:bg-red-50 transition-all font-semibold text-base md:text-lg text-gray-800 hover:text-gray-900 group"
+                data-value="${option.value}"
+              >
+                <span class="flex items-center gap-4">
+                  <span class="w-10 h-10 bg-gray-100 group-hover:bg-red-500 group-hover:text-white rounded-full flex items-center justify-center text-gray-600 font-bold flex-shrink-0 transition-colors">${String.fromCharCode(65 + idx)}</span>
+                  <span>${option.text}</span>
+                </span>
+              </button>
+            `).join('')}
+          </div>
+        `;
+
+        // Fade in animation
+        setTimeout(() => {
+          questionContainer.style.opacity = '1';
+          questionContainer.style.transform = 'translateY(0)';
+        }, 50);
+
+        // Add click handlers to options
+        document.querySelectorAll('.quiz-option').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const value = parseInt(e.currentTarget.getAttribute('data-value'));
+            handleAnswer(value);
+          });
         });
-      });
+      }, 300);
     }
 
     // Handle answer
@@ -279,86 +440,102 @@ import Layout from "../layouts/Layout.astro";
     function showResults() {
       quizSection?.classList.add('hidden');
       resultsSection?.classList.remove('hidden');
-      mobileCTA?.classList.remove('hidden');
-      resultsSection?.scrollIntoView({ behavior: 'smooth' });
+      resultsSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
       // Calculate result category
       let resultData;
+      let quizResultText;
 
       if (totalScore >= 18) {
-        // High urgency - likely needs replacement
+        quizResultText = 'Likely needs replacement';
         resultData = {
-          title: "🚨 Replacement Likely Needed Soon",
+          title: "🚨 Replacement Likely Recommended",
           color: "red",
+          bgGradient: "from-red-600 to-orange-600",
           description: "Based on your answers, your furnace is showing multiple warning signs that indicate it may be approaching the end of its useful life.",
           details: [
-            "Your furnace age, performance issues, and efficiency concerns suggest replacement may be the most cost-effective option",
-            "Continuing with repairs on an old, failing system often costs more in the long run",
-            "A new, efficient furnace could save you 20-40% on heating costs"
+            "Your furnace age and performance issues suggest replacement may be the most cost-effective option",
+            "Continuing with repairs on an aging, failing system often costs more in the long run",
+            "A new, efficient furnace could reduce your heating costs by 20-40%"
           ],
-          recommendation: "We strongly recommend scheduling a professional assessment to get exact pricing on both repair and replacement options.",
+          recommendation: "We recommend scheduling a professional assessment to get exact pricing on your specific options.",
           urgency: "high"
         };
       } else if (totalScore >= 10) {
-        // Medium urgency - could go either way
+        quizResultText = 'Major decision point - could go either way';
         resultData = {
-          title: "⚠️ Major Decision Point",
+          title: "⚠️ Critical Decision Point",
           color: "orange",
-          description: "Your furnace is in the 'gray area' — it might be worth repairing, or replacement could be the smarter investment.",
+          bgGradient: "from-orange-600 to-yellow-600",
+          description: "Your furnace is in the 'gray area' — repair might work, or replacement could be the smarter long-term investment.",
           details: [
             "Your system has some concerning signs but isn't completely failing yet",
-            "The right choice depends on specific repair costs vs. replacement costs",
-            "Age and efficiency are factors, but not dealbreakers on their own"
+            "The right choice depends on specific repair costs versus replacement costs",
+            "Age and efficiency are factors, but not necessarily dealbreakers on their own"
           ],
-          recommendation: "A professional diagnosis will show you both options with exact pricing so you can make an informed decision.",
+          recommendation: "A professional diagnosis will give you both options with exact pricing so you can make an informed decision.",
           urgency: "medium"
         };
       } else {
-        // Low urgency - probably just maintenance
+        quizResultText = 'Likely just needs maintenance';
         resultData = {
-          title: "✅ Likely Just Needs Maintenance",
+          title: "✅ Maintenance Likely Sufficient",
           color: "green",
+          bgGradient: "from-green-600 to-emerald-600",
           description: "Good news! Based on your answers, your furnace appears to be in relatively good condition.",
           details: [
-            "Your system is performing reasonably well for its age",
+            "Your system is performing reasonably well for its age and condition",
             "Regular maintenance could extend its life significantly",
-            "Any issues you're experiencing are likely minor and fixable"
+            "Any issues you're experiencing are likely minor and repairable"
           ],
           recommendation: "A professional tune-up and inspection can catch small problems before they become expensive repairs.",
           urgency: "low"
         };
       }
 
+      // Pre-fill the quiz result in the form
+      const quizResultSelect = document.querySelector('[name="quiz_result"]');
+      if (quizResultSelect) {
+        quizResultSelect.value = quizResultText;
+      }
+
       // Render results
       resultsContent.innerHTML = `
         <!-- Result Card -->
         <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border-2 border-${resultData.color}-200">
-          <div class="bg-gradient-to-r from-${resultData.color}-600 to-${resultData.color}-700 text-white p-8 text-center">
-            <h3 class="text-3xl md:text-4xl font-black mb-2">${resultData.title}</h3>
-            <p class="text-${resultData.color}-100 text-lg">Based on your assessment score: ${totalScore}/21</p>
+          <div class="bg-gradient-to-r ${resultData.bgGradient} text-white p-8 md:p-12 text-center">
+            <h3 class="text-3xl md:text-4xl font-black mb-3">${resultData.title}</h3>
+            <p class="text-white/90 text-lg">Your assessment score: <strong>${totalScore}</strong> out of 21 points</p>
           </div>
 
           <div class="p-8 md:p-12">
-            <p class="text-xl text-gray-800 mb-6 leading-relaxed">
+            <p class="text-xl text-gray-800 mb-8 leading-relaxed">
               ${resultData.description}
             </p>
 
-            <div class="bg-gray-50 rounded-xl p-6 mb-6">
-              <h4 class="font-bold text-gray-900 mb-3 text-lg">What This Means:</h4>
+            <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 md:p-8 mb-8">
+              <h4 class="font-bold text-gray-900 mb-4 text-lg flex items-center gap-2">
+                <svg class="w-6 h-6 text-${resultData.color}-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                </svg>
+                What This Means For You:
+              </h4>
               <ul class="space-y-3">
                 ${resultData.details.map(detail => `
-                  <li class="flex items-start gap-3 text-gray-700">
-                    <span class="text-${resultData.color}-600 mt-1">•</span>
+                  <li class="flex items-start gap-3 text-gray-700 leading-relaxed">
+                    <svg class="w-5 h-5 text-${resultData.color}-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
                     <span>${detail}</span>
                   </li>
                 `).join('')}
               </ul>
             </div>
 
-            <div class="bg-gradient-to-br from-${resultData.color}-50 to-${resultData.color}-100 rounded-xl p-6 border-2 border-${resultData.color}-200">
-              <h4 class="font-bold text-gray-900 mb-2 text-lg flex items-center gap-2">
-                <svg class="w-6 h-6 text-${resultData.color}-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 md:p-8 border-2 border-blue-200">
+              <h4 class="font-bold text-gray-900 mb-3 text-lg flex items-center gap-2">
+                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
                 </svg>
                 Our Recommendation:
               </h4>
@@ -369,80 +546,67 @@ import Layout from "../layouts/Layout.astro";
           </div>
         </div>
 
-        <!-- Next Steps -->
+        <!-- Why Professional Diagnosis -->
         <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-2 border-gray-200">
-          <h3 class="text-3xl font-bold text-gray-900 mb-6 text-center">Next Step: Get Professional Answers</h3>
-
-          <p class="text-lg text-gray-700 mb-6 text-center">
-            This assessment gives you a <strong>general idea</strong>, but every furnace and situation is unique. A professional diagnosis will give you:
-          </p>
+          <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center">
+            Why Get a Professional Diagnosis?
+          </h3>
 
           <div class="grid md:grid-cols-2 gap-6 mb-8">
-            <div class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-green-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              <span class="text-gray-800"><strong>Exact diagnosis</strong> of what's wrong (if anything)</span>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-bold text-gray-900 mb-1">Exact Diagnosis</p>
+                <p class="text-gray-600 text-sm">Know precisely what's wrong with your system</p>
+              </div>
             </div>
-            <div class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-green-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              <span class="text-gray-800"><strong>Transparent pricing</strong> for repair vs. replacement</span>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-bold text-gray-900 mb-1">Transparent Pricing</p>
+                <p class="text-gray-600 text-sm">Get clear costs for repair vs. replacement options</p>
+              </div>
             </div>
-            <div class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-green-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              <span class="text-gray-800"><strong>Options from both</strong> full-service and independent providers</span>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-bold text-gray-900 mb-1">Provider Options</p>
+                <p class="text-gray-600 text-sm">Compare qualified providers to find the best fit</p>
+              </div>
             </div>
-            <div class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-green-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              <span class="text-gray-800"><strong>Written assessment</strong> you can review at your own pace</span>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-bold text-gray-900 mb-1">Written Report</p>
+                <p class="text-gray-600 text-sm">Take your time reviewing recommendations</p>
+              </div>
             </div>
           </div>
 
-          <div class="bg-gradient-to-r from-red-600 to-orange-600 rounded-2xl p-8 text-white text-center">
-            <p class="text-2xl font-bold mb-4">Book Your $125 Professional Diagnosis</p>
-            <p class="text-red-100 mb-6">Fee fully credited toward any repairs or replacement you choose</p>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/home-visit"
-                class="bg-yellow-400 text-gray-900 px-10 py-5 rounded-xl font-black text-xl hover:bg-yellow-300 transition-all shadow-2xl"
-              >
-                Book Diagnosis Now
-              </a>
-              <a
-                href="tel:+18334948669"
-                class="border-2 border-white text-white px-10 py-5 rounded-xl font-bold text-xl hover:bg-white/10 transition-all"
-              >
-                Call (833) FIX-IT-NOW
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Social Proof -->
-        <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200">
-          <p class="text-center text-gray-600 mb-6 font-semibold">Over 1,200 Michigan families trusted us with their furnace assessment:</p>
-          <div class="flex flex-wrap justify-center gap-4 text-center">
-            <div>
-              <div class="text-3xl font-black text-red-600">4.9★</div>
-              <div class="text-sm text-gray-600">Customer Rating</div>
-            </div>
-            <div class="h-12 w-px bg-gray-300 hidden sm:block"></div>
-            <div>
-              <div class="text-3xl font-black text-red-600">$2,400</div>
-              <div class="text-sm text-gray-600">Avg. Savings</div>
-            </div>
-            <div class="h-12 w-px bg-gray-300 hidden sm:block"></div>
-            <div>
-              <div class="text-3xl font-black text-red-600">&lt;2hr</div>
-              <div class="text-sm text-gray-600">Response Time</div>
-            </div>
+          <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-6 border-2 border-yellow-200 text-center">
+            <p class="text-gray-800 leading-relaxed">
+              <strong class="text-gray-900">This quiz gives you a general idea,</strong> but every furnace and situation is unique. A professional diagnosis gives you the exact answers you need to make the right decision.
+            </p>
           </div>
         </div>
       `;
@@ -451,8 +615,21 @@ import Layout from "../layouts/Layout.astro";
 </script>
 
 <style>
-  .animation-delay-2000 {
-    animation-delay: 2s;
+  /* Smooth transitions */
+  #questionContainer {
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  }
+
+  /* Mobile bottom padding for sticky CTA */
+  @media (max-width: 768px) {
+    body {
+      padding-bottom: 0;
+    }
+  }
+
+  /* Animation for progress bar */
+  #progressBar {
+    transition: width 0.5s cubic-bezier(0.65, 0, 0.35, 1);
   }
 </style>
 
