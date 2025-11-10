@@ -9,9 +9,10 @@ Fix My Furnace is Michigan's most trusted HVAC service network, connecting homeo
 ### 🏠 For Homeowners
 - **Free Furnace Diagnosis** - Upload photos for instant troubleshooting
 - **Vetted Contractor Network** - All providers are licensed, insured, and background-checked
-- **Transparent Pricing** - Know your costs upfront with no hidden fees
+- **Transparent Pricing** - Know your costs upfront with no hidden fees + Real contract pricing database
 - **24/7 Emergency Service** - Fast response across all Michigan cities
 - **Quality Guarantee** - Accountability through our trusted network
+- **Real Pricing Data** - View actual service contracts from other homeowners in your area
 
 ### 🔧 For HVAC Professionals
 - **Qualified Lead Generation** - Pre-screened homeowners ready for service
@@ -26,6 +27,9 @@ Fix My Furnace is Michigan's most trusted HVAC service network, connecting homeo
 - **Provider Directory** - Searchable network of verified HVAC contractors
 - **Contractor Application Portal** - Streamlined onboarding for new service providers
 - **Free Furnace Diagnosis** - Photo-based troubleshooting system
+- **Pricing Transparency System** - Real contract database where homeowners can upload and view actual service contracts
+- **Public Pricing Display** - Browse approved contracts by service type, location, and cost range
+- **Admin Moderation Portal** - Professional review system for contract submissions
 - **Dynamic Service Pages** - Automatically generated service pages from data files
 - **Mobile-First Design** - Responsive across all devices with professional styling
 - **Performance Optimized** - Static site generation for lightning-fast load times
@@ -88,7 +92,11 @@ fix-my-furnace/
 │   │   ├── api/
 │   │   │   ├── submit-form.js           # Lead capture endpoint
 │   │   │   ├── submit-provider-application.js  # 🆕 Contractor applications
-│   │   │   └── get-providers.js         # 🆕 Provider directory API
+│   │   │   ├── get-providers.js         # 🆕 Provider directory API
+│   │   │   ├── submit-contract.js       # 🆕 Contract upload endpoint
+│   │   │   ├── get-contracts.js         # 🆕 Public pricing data API
+│   │   │   ├── get-pending-contracts.js # 🆕 Admin moderation API
+│   │   │   └── moderate-contract.js     # 🆕 Contract approval/rejection API
 │   │   ├── partners/
 │   │   │   ├── index.astro              # 🆕 Contractor directory
 │   │   │   └── apply.astro              # 🆕 Contractor application portal
@@ -96,7 +104,11 @@ fix-my-furnace/
 │   │   │   └── diagnosis.astro          # 🆕 Free diagnosis system
 │   │   ├── services/
 │   │   │   └── [slug].astro             # Dynamic service pages
+│   │   ├── admin/
+│   │   │   └── moderate-contracts.astro # 🆕 Admin moderation interface
 │   │   ├── home-visit.astro             # 🆕 Professional assessment page
+│   │   ├── pricing-insights.astro       # 🆕 Contract upload form
+│   │   ├── pricing-transparency.astro   # 🆕 Public pricing display
 │   │   ├── about.astro                  # Company story and mission
 │   │   └── contact.astro                # Customer contact forms
 │   ├── data/
@@ -116,6 +128,7 @@ fix-my-furnace/
 ### Database Schema
 **Customer Leads:** `form_submissions` table with lead source tracking  
 **Provider Network:** `provider_applications` table with verification status  
+**Service Contracts:** `service_contracts` table with pricing transparency data  
 **Service Analytics:** Conversion tracking and lead quality metrics
 
 ---
@@ -126,10 +139,11 @@ fix-my-furnace/
 1. **Lead Generation Fees** - Contractors pay per qualified lead received
 2. **Professional Assessment** - $125 home visits with expert diagnosis
 3. **Premium Placement** - Enhanced visibility in provider directory
+4. **Pricing Data Access** - Premium analytics and market insights for contractors
 
 **Value Proposition:**
-- **For Homeowners:** Trusted contractors, transparent pricing, quality guarantee
-- **For Contractors:** High-quality leads, 100% revenue retention, flexible volume
+- **For Homeowners:** Trusted contractors, transparent pricing with real contract data, quality guarantee
+- **For Contractors:** High-quality leads, 100% revenue retention, flexible volume, market pricing insights
 
 **Market Position:** Michigan's most contractor-friendly HVAC network with a focus on transparency, quality, and customer satisfaction.
 
@@ -180,6 +194,50 @@ const fields = [
 ```
 
 Save the file and your new service page will be generated automatically!
+
+---
+
+## 🔍 Pricing Transparency System (NEW)
+
+### Overview
+Revolutionary pricing transparency platform where homeowners can upload actual service contracts and view real pricing data from their community. This builds trust, reduces price uncertainty, and creates a valuable data asset.
+
+### Key Features
+- **Contract Upload Portal** (`/pricing-insights`) - Secure form for homeowners to share their service contracts
+- **Public Pricing Database** (`/pricing-transparency`) - Browse real contracts by service type, location, and cost
+- **Admin Moderation System** (`/admin/moderate-contracts`) - Professional review and approval process
+- **Real-time Filtering** - Search by service type, city, cost range with live statistics
+- **Privacy Protection** - All personal information removed before public display
+- **Mobile Optimized** - Full functionality across all devices
+
+### How It Works
+1. **Upload**: Homeowners submit contracts via secure form with photo upload
+2. **Review**: Admin team reviews submissions for accuracy and privacy compliance  
+3. **Publish**: Approved contracts appear in public searchable database
+4. **Browse**: Community members can search real pricing data by location and service type
+
+### Business Value
+- **Trust Building**: Transparent pricing increases consumer confidence
+- **Lead Quality**: Informed customers make faster purchasing decisions
+- **Market Intelligence**: Rich data set for pricing trends and competitor analysis
+- **SEO Benefits**: User-generated content improves search rankings
+- **Network Effects**: More data creates more value for all users
+
+### Database Schema
+**Service Contracts Table**: Comprehensive contract data with moderation status
+```sql
+- service_type, provider_name, total_cost, service_date
+- city, zip_code, work_description, contract_image_url
+- status (pending/approved/rejected), verified boolean
+- created_at, reviewed_at, admin_notes
+```
+
+**Security Features**
+- File upload validation (images/PDFs only, 5MB limit)
+- Rate limiting (5 submissions per 15 minutes per IP)
+- Admin password protection for moderation interface
+- Supabase RLS policies for data access control
+- Input sanitization and spam protection
 
 ---
 
