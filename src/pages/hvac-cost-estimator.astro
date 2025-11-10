@@ -1,25 +1,62 @@
 ---
 /**
- * Landing Page 3: Cost Estimator
+ * HVAC Cost Estimator
  * Interactive cost calculator for furnace repairs
  * Shows pricing ranges for different issues and provider types
  */
 import Layout from "../layouts/Layout.astro";
+import UniversalForm from "../components/UniversalForm.astro";
+
+// Form fields for the HVAC cost estimator
+const hvacCostEstimatorFields = [
+  {
+    name: 'name',
+    type: 'text',
+    label: 'Full Name',
+    placeholder: 'John Smith',
+    required: true,
+    autoComplete: 'name'
+  },
+  {
+    name: 'phone',
+    type: 'tel',
+    label: 'Phone Number',
+    placeholder: '(313) 555-0123',
+    required: true,
+    autoComplete: 'tel'
+  },
+  {
+    name: 'address',
+    type: 'address',
+    label: 'Service Address',
+    placeholder: '123 Main St, Detroit, MI',
+    required: true,
+    autoComplete: 'street-address'
+  },
+  {
+    name: 'issue',
+    type: 'select',
+    label: 'Your Furnace Issue',
+    required: true,
+    options: [
+      { value: '', label: 'Select your issue...' },
+      { value: 'no-heat', label: 'No Heat At All' },
+      { value: 'strange-noises', label: 'Strange Noises' },
+      { value: 'uneven-heating', label: 'Uneven Heating' },
+      { value: 'high-bills', label: 'High Energy Bills' },
+      { value: 'cycling', label: 'Frequent Cycling' },
+      { value: 'replacement', label: 'Full Replacement Needed' }
+    ]
+  }
+];
 ---
 
-<Layout title="Furnace Repair Cost Estimator | Fix My Furnace - Michigan">
+<Layout title="HVAC Cost Estimator | Fix My Furnace - Michigan">
 
   <!-- Hero Section -->
   <section class="bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 text-white py-12 md:py-16 px-6">
     <div class="container mx-auto max-w-5xl text-center">
 
-      <!-- Urgency Badge -->
-      <div class="inline-flex items-center gap-2 bg-yellow-400 text-gray-900 px-6 py-3 rounded-full font-bold mb-6 animate-pulse shadow-lg">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-        </svg>
-        Same-Day Service Available • Book Today
-      </div>
 
       <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
         How Much Will Your <br/>
@@ -398,79 +435,21 @@ import Layout from "../layouts/Layout.astro";
         <!-- BOOKING FORM - Takes 3 columns -->
         <div class="md:col-span-3">
           <div class="bg-white rounded-2xl shadow-2xl p-8 border-2 border-gray-100">
-            <form id="diagnosis-booking-form" class="space-y-6">
-
-              <!-- Name -->
-              <div>
-                <label for="name" class="block text-sm font-bold text-gray-900 mb-2">Full Name *</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-red-500 focus:ring-0 text-gray-900 text-lg"
-                  placeholder="John Smith"
-                />
-              </div>
-
-              <!-- Phone -->
-              <div>
-                <label for="phone" class="block text-sm font-bold text-gray-900 mb-2">Phone Number *</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  required
-                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-red-500 focus:ring-0 text-gray-900 text-lg"
-                  placeholder="(313) 555-0123"
-                />
-              </div>
-
-              <!-- Address -->
-              <div>
-                <label for="address" class="block text-sm font-bold text-gray-900 mb-2">Service Address *</label>
-                <input
-                  type="text"
-                  id="address"
-                  name="address"
-                  required
-                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-red-500 focus:ring-0 text-gray-900 text-lg"
-                  placeholder="123 Main St, Detroit, MI"
-                />
-              </div>
-
-              <!-- Issue Selection -->
-              <div>
-                <label for="issue" class="block text-sm font-bold text-gray-900 mb-2">Your Furnace Issue *</label>
-                <select
-                  id="issue"
-                  name="issue"
-                  required
-                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-red-500 focus:ring-0 text-gray-900 text-lg"
-                >
-                  <option value="">Select your issue...</option>
-                  <option value="no-heat">No Heat At All</option>
-                  <option value="strange-noises">Strange Noises</option>
-                  <option value="uneven-heating">Uneven Heating</option>
-                  <option value="high-bills">High Energy Bills</option>
-                  <option value="cycling">Frequent Cycling</option>
-                  <option value="replacement">Full Replacement Needed</option>
-                </select>
-              </div>
-
-              <!-- Submit Button -->
-              <button
-                type="submit"
-                class="w-full bg-gradient-to-r from-red-600 to-orange-600 text-white px-8 py-5 rounded-2xl font-black text-xl hover:from-red-700 hover:to-orange-700 transition-all shadow-xl hover:scale-[1.02]"
-              >
-                Schedule My Diagnosis Now →
-              </button>
-
-              <p class="text-sm text-gray-500 text-center">
-                By submitting, you agree to be contacted for scheduling. <a href="/contact" class="underline">Privacy Policy</a>
-              </p>
-
-            </form>
+            <UniversalForm
+              formId="hvac-cost-estimator-form"
+              formSource="hvac_cost_estimator"
+              apiEndpoint="/api/submit-form"
+              title=""
+              description=""
+              fields={hvacCostEstimatorFields}
+              submitText="Schedule My Diagnosis Now →"
+              className="space-y-6"
+              buttonClassName="w-full bg-gradient-to-r from-red-600 to-orange-600 text-white px-8 py-5 rounded-2xl font-black text-xl hover:from-red-700 hover:to-orange-700 transition-all shadow-xl hover:scale-[1.02]"
+            />
+            
+            <p class="text-sm text-gray-500 text-center mt-6">
+              By submitting, you agree to be contacted for scheduling. <a href="/contact" class="underline">Privacy Policy</a>
+            </p>
           </div>
         </div>
 
@@ -570,7 +549,7 @@ import Layout from "../layouts/Layout.astro";
   const priceMinSpan = document.getElementById('price-min');
   const priceMaxSpan = document.getElementById('price-max');
   const priceAvgSpan = document.getElementById('price-avg');
-  const issueSelectDropdown = document.getElementById('issue');
+  const issueSelectDropdown = document.querySelector('[name="issue"]');
 
   const issueLabels = {
     'no-heat': 'No Heat At All',
@@ -619,66 +598,31 @@ import Layout from "../layouts/Layout.astro";
     });
   });
 
-  // Form Submission Handler
-  const bookingForm = document.getElementById('diagnosis-booking-form');
-  if (bookingForm) {
-    bookingForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const submitButton = bookingForm.querySelector('button[type="submit"]');
-      const originalButtonText = submitButton.textContent;
-      submitButton.disabled = true;
-      submitButton.textContent = 'Submitting...';
-
-      try {
-        const formData = {
-          name: bookingForm.querySelector('#name').value,
-          phone: bookingForm.querySelector('#phone').value,
-          address: bookingForm.querySelector('#address').value,
-          issue: bookingForm.querySelector('#issue').value,
-          formSource: 'cost_estimator_landing'
-        };
-
-        const response = await fetch('/api/submit-form', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ formData, formSource: 'cost_estimator_landing' })
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-          // Show success message
-          bookingForm.innerHTML = `
-            <div class="text-center py-12">
-              <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg class="w-10 h-10 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-              </div>
-              <h3 class="text-3xl font-black text-gray-900 mb-3">Request Submitted!</h3>
-              <p class="text-lg text-gray-600 mb-6">
-                We'll call you within minutes to schedule your $125 diagnosis.
-              </p>
-              <p class="text-sm text-gray-500">
-                Check your phone for a call from <strong>(833) 494-8669</strong>
-              </p>
+  // Listen for form submission success from UniversalForm
+  document.addEventListener('formSubmissionSuccess', (event) => {
+    if (event.detail?.formId === 'hvac-cost-estimator-form') {
+      // Show custom success message for this form
+      const formContainer = document.querySelector('#hvac-cost-estimator-form').closest('.bg-white');
+      if (formContainer) {
+        formContainer.innerHTML = `
+          <div class="text-center py-12">
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg class="w-10 h-10 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
             </div>
-          `;
-        } else {
-          throw new Error(result.error || 'Submission failed');
-        }
-
-      } catch (error) {
-        console.error('Form submission error:', error);
-        alert('There was an error submitting your request. Please call us at (833) 494-8669.');
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
+            <h3 class="text-3xl font-black text-gray-900 mb-3">Request Submitted!</h3>
+            <p class="text-lg text-gray-600 mb-6">
+              We'll call you within minutes to schedule your $125 diagnosis.
+            </p>
+            <p class="text-sm text-gray-500">
+              Check your phone for a call from <strong>(833) 494-8669</strong>
+            </p>
+          </div>
+        `;
       }
-    });
-  }
+    }
+  });
 
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {

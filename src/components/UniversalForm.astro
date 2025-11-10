@@ -169,9 +169,12 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
             required={field.required}
           >
             <option value="">Select an option...</option>
-            {field.options?.map((option) => (
-              <option value={option.toLowerCase().replace(/\s+/g, '-')}>{option}</option>
-            ))}
+            {field.options?.map((option) => {
+              // Handle both string options and object options {value, label}
+              const value = typeof option === 'string' ? option.toLowerCase().replace(/\s+/g, '-') : option.value;
+              const label = typeof option === 'string' ? option : option.label;
+              return <option value={value}>{label}</option>;
+            })}
           </select>
         )}
 
