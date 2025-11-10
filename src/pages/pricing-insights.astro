@@ -1,0 +1,398 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// Service types matching your existing services
+const serviceTypes = [
+  "Furnace Repair",
+  "Furnace Installation",
+  "Boiler Repair",
+  "Boiler Service",
+  "Duct Cleaning",
+  "HVAC Maintenance",
+  "Air Conditioning Repair",
+  "Emergency Service",
+  "Other"
+];
+---
+
+<Layout
+  title="Share Your Service Pricing | Help Other Michigan Homeowners"
+  description="Share your HVAC service contract to help other Michigan homeowners understand fair pricing. Anonymous, secure, and helps build price transparency."
+  keywords="HVAC pricing Michigan, furnace repair cost, service contract transparency, Michigan heating costs"
+>
+  <!-- 🔥 HERO -->
+  <section class="relative bg-gradient-to-br from-red-50 via-white to-orange-50 py-20 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+        Help Others <span class="text-red-600">Understand Fair Pricing</span>
+      </h1>
+      <p class="text-lg md:text-xl font-semibold text-gray-700 max-w-3xl mx-auto">
+        Share your actual service contract or invoice to help fellow Michigan homeowners make informed decisions.
+      </p>
+    </div>
+
+    <!-- 🔧 Decorative Bar -->
+    <div class="absolute bottom-0 left-0 w-full h-2 bg-red-600"></div>
+  </section>
+
+  <!-- 📋 UPLOAD FORM SECTION -->
+  <section class="relative bg-white py-20 px-6 md:px-10">
+    <div class="max-w-4xl mx-auto">
+
+      <!-- Info Box -->
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-10">
+        <div class="flex items-start gap-4">
+          <i data-lucide="info" class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1"></i>
+          <div>
+            <h3 class="font-bold text-gray-900 mb-2">Why Share Your Pricing?</h3>
+            <ul class="space-y-2 text-gray-700 text-sm">
+              <li>✓ Help others understand what services actually cost</li>
+              <li>✓ Hold providers accountable to fair pricing</li>
+              <li>✓ Build a community-driven transparency database</li>
+              <li>✓ Your submission is reviewed before publishing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload Form -->
+      <div class="bg-gray-50 border border-gray-200 shadow-xl rounded-2xl p-8 md:p-10">
+        <h2 class="text-3xl font-bold text-gray-900 mb-2">Share Your Contract</h2>
+        <p class="text-gray-600 mb-8">All submissions are reviewed before being published. Personal information will be kept private.</p>
+
+        <form id="contract-upload-form" class="space-y-6">
+
+          <!-- Service Type -->
+          <div>
+            <label for="serviceType" class="block text-sm font-semibold text-gray-800 mb-2">
+              Service Type <span class="text-red-600">*</span>
+            </label>
+            <select
+              id="serviceType"
+              name="serviceType"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+            >
+              <option value="">-- Select Service Type --</option>
+              {serviceTypes.map(type => (
+                <option value={type}>{type}</option>
+              ))}
+            </select>
+          </div>
+
+          <!-- Provider Name -->
+          <div>
+            <label for="providerName" class="block text-sm font-semibold text-gray-800 mb-2">
+              Service Provider Name <span class="text-red-600">*</span>
+            </label>
+            <input
+              type="text"
+              id="providerName"
+              name="providerName"
+              required
+              placeholder="e.g., ABC Heating & Cooling"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+            />
+          </div>
+
+          <!-- Total Cost -->
+          <div>
+            <label for="totalCost" class="block text-sm font-semibold text-gray-800 mb-2">
+              Total Cost Paid <span class="text-red-600">*</span>
+            </label>
+            <div class="relative">
+              <span class="absolute left-4 top-3 text-gray-600 font-semibold">$</span>
+              <input
+                type="number"
+                id="totalCost"
+                name="totalCost"
+                required
+                min="0"
+                step="0.01"
+                placeholder="0.00"
+                class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              />
+            </div>
+          </div>
+
+          <!-- Service Date -->
+          <div>
+            <label for="serviceDate" class="block text-sm font-semibold text-gray-800 mb-2">
+              Service Date (Optional)
+            </label>
+            <input
+              type="date"
+              id="serviceDate"
+              name="serviceDate"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+            />
+          </div>
+
+          <!-- Location -->
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label for="city" class="block text-sm font-semibold text-gray-800 mb-2">
+                City (Optional)
+              </label>
+              <input
+                type="text"
+                id="city"
+                name="city"
+                placeholder="Detroit"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label for="zipCode" class="block text-sm font-semibold text-gray-800 mb-2">
+                ZIP Code (Optional)
+              </label>
+              <input
+                type="text"
+                id="zipCode"
+                name="zipCode"
+                placeholder="48201"
+                maxlength="5"
+                pattern="[0-9]{5}"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              />
+            </div>
+          </div>
+
+          <!-- Work Description -->
+          <div>
+            <label for="workDescription" class="block text-sm font-semibold text-gray-800 mb-2">
+              What Work Was Done? (Optional)
+            </label>
+            <textarea
+              id="workDescription"
+              name="workDescription"
+              rows="3"
+              placeholder="e.g., Replaced furnace heat exchanger, cleaned burners, tested system"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+            ></textarea>
+          </div>
+
+          <!-- Contract Image Upload -->
+          <div>
+            <label for="contractImage" class="block text-sm font-semibold text-gray-800 mb-2">
+              Upload Contract/Invoice Image <span class="text-red-600">*</span>
+            </label>
+            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-red-500 transition-colors">
+              <input
+                type="file"
+                id="contractImage"
+                name="contractImage"
+                accept="image/jpeg,image/png,image/webp,application/pdf"
+                required
+                class="hidden"
+              />
+              <label for="contractImage" class="cursor-pointer">
+                <i data-lucide="upload" class="w-12 h-12 text-gray-400 mx-auto mb-3"></i>
+                <p class="text-gray-700 font-semibold mb-1">Click to upload contract image</p>
+                <p class="text-sm text-gray-500">JPG, PNG, WEBP, or PDF (max 5MB)</p>
+                <p id="file-name" class="text-sm text-red-600 font-semibold mt-2 hidden"></p>
+              </label>
+            </div>
+          </div>
+
+          <!-- Additional Notes -->
+          <div>
+            <label for="notes" class="block text-sm font-semibold text-gray-800 mb-2">
+              Additional Notes (Optional)
+            </label>
+            <textarea
+              id="notes"
+              name="notes"
+              rows="2"
+              placeholder="Any additional context or comments..."
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+            ></textarea>
+          </div>
+
+          <!-- Email (optional) -->
+          <div>
+            <label for="submitterEmail" class="block text-sm font-semibold text-gray-800 mb-2">
+              Your Email (Optional - for questions only)
+            </label>
+            <input
+              type="email"
+              id="submitterEmail"
+              name="submitterEmail"
+              placeholder="you@example.com"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+            />
+            <p class="text-xs text-gray-500 mt-1">We'll only contact you if we have questions about your submission</p>
+          </div>
+
+          <!-- Privacy Confirmation -->
+          <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                id="privacyConfirm"
+                name="privacyConfirm"
+                required
+                class="mt-1 w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+              />
+              <span class="text-sm text-gray-700">
+                I confirm this is a real service contract and I've removed or blurred any sensitive personal information (full name, address, phone number, credit card details).
+              </span>
+            </label>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="w-full bg-red-600 text-white font-bold py-4 px-6 rounded-lg hover:bg-red-700 transition-colors text-lg flex items-center justify-center gap-2"
+          >
+            <i data-lucide="send" class="w-5 h-5"></i>
+            Submit Contract for Review
+          </button>
+
+          <!-- Status Messages -->
+          <div id="status-message" class="hidden rounded-lg p-4"></div>
+
+        </form>
+
+        <p class="text-xs text-gray-500 mt-6 text-center">
+          Submissions are manually reviewed before being published to ensure quality and privacy.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 🔒 PRIVACY & TRUST SECTION -->
+  <section class="relative bg-gradient-to-br from-gray-50 to-white py-16 px-6 md:px-10">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Your Privacy Matters</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <i data-lucide="shield-check" class="w-12 h-12 text-red-600 mx-auto mb-3"></i>
+          <h3 class="font-bold text-gray-900 mb-2">Manual Review</h3>
+          <p class="text-sm text-gray-600">Every submission is reviewed by our team before publishing</p>
+        </div>
+        <div class="text-center">
+          <i data-lucide="eye-off" class="w-12 h-12 text-red-600 mx-auto mb-3"></i>
+          <h3 class="font-bold text-gray-900 mb-2">Privacy Protected</h3>
+          <p class="text-sm text-gray-600">We check for and remove any visible personal information</p>
+        </div>
+        <div class="text-center">
+          <i data-lucide="users" class="w-12 h-12 text-red-600 mx-auto mb-3"></i>
+          <h3 class="font-bold text-gray-900 mb-2">Community Driven</h3>
+          <p class="text-sm text-gray-600">Help fellow homeowners make informed decisions</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lucide Icons -->
+  <script type="module" src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <script>
+    // Initialize Lucide icons when page loads
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    });
+
+    // File input preview
+    const fileInput = document.getElementById('contractImage') as HTMLInputElement;
+    const fileName = document.getElementById('file-name');
+
+    fileInput?.addEventListener('change', (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (file && fileName) {
+        fileName.textContent = `Selected: ${file.name}`;
+        fileName.classList.remove('hidden');
+      }
+    });
+
+    // Form submission
+    const form = document.getElementById('contract-upload-form') as HTMLFormElement;
+    const statusMessage = document.getElementById('status-message');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!statusMessage) return;
+
+      // Show loading state
+      const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const originalButtonText = submitButton.innerHTML;
+      submitButton.disabled = true;
+      submitButton.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Uploading...';
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+
+      try {
+        // Prepare form data
+        const formData = new FormData(form);
+
+        // Submit to API
+        const response = await fetch('/api/submit-contract', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          // Success message
+          statusMessage.className = 'bg-green-50 border border-green-200 rounded-lg p-4 text-green-800';
+          statusMessage.innerHTML = `
+            <div class="flex items-start gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 flex-shrink-0 mt-0.5"></i>
+              <div>
+                <p class="font-semibold">Success! Thank you for sharing.</p>
+                <p class="text-sm mt-1">${result.message}</p>
+              </div>
+            </div>
+          `;
+          statusMessage.classList.remove('hidden');
+          if (typeof lucide !== 'undefined') lucide.createIcons();
+
+          // Reset form
+          form.reset();
+          if (fileName) {
+            fileName.classList.add('hidden');
+          }
+
+          // Scroll to success message
+          statusMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          // Error message
+          statusMessage.className = 'bg-red-50 border border-red-200 rounded-lg p-4 text-red-800';
+          statusMessage.innerHTML = `
+            <div class="flex items-start gap-3">
+              <i data-lucide="alert-circle" class="w-5 h-5 flex-shrink-0 mt-0.5"></i>
+              <div>
+                <p class="font-semibold">Upload Failed</p>
+                <p class="text-sm mt-1">${result.error || 'Please try again.'}</p>
+              </div>
+            </div>
+          `;
+          statusMessage.classList.remove('hidden');
+          if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+      } catch (error) {
+        console.error('Upload error:', error);
+        statusMessage.className = 'bg-red-50 border border-red-200 rounded-lg p-4 text-red-800';
+        statusMessage.innerHTML = `
+          <div class="flex items-start gap-3">
+            <i data-lucide="alert-circle" class="w-5 h-5 flex-shrink-0 mt-0.5"></i>
+            <div>
+              <p class="font-semibold">Network Error</p>
+              <p class="text-sm mt-1">Please check your connection and try again.</p>
+            </div>
+          </div>
+        `;
+        statusMessage.classList.remove('hidden');
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+      } finally {
+        // Restore button
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonText;
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+      }
+    });
+  </script>
+</Layout>
