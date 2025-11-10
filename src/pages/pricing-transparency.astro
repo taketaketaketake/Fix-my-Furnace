@@ -1,0 +1,528 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// Service types for filter dropdown
+const serviceTypes = [
+  "All Services",
+  "Furnace Repair",
+  "Furnace Installation",
+  "Boiler Repair",
+  "Boiler Service",
+  "Duct Cleaning",
+  "HVAC Maintenance",
+  "Air Conditioning Repair",
+  "Emergency Service",
+  "Other"
+];
+---
+
+<Layout
+  title="HVAC Pricing Transparency | Real Service Costs Michigan"
+  description="See real HVAC service costs from Michigan homeowners. Compare furnace repair, installation, and boiler service pricing from actual contracts across Detroit, Grand Rapids, and all of Michigan."
+  keywords="HVAC pricing Michigan, furnace repair cost, boiler service price, real service costs, Michigan heating prices"
+>
+  <!-- 🔥 HERO -->
+  <section class="relative bg-gradient-to-br from-red-50 via-white to-orange-50 py-20 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+        Real Pricing from <span class="text-red-600">Real Michigan Homeowners</span>
+      </h1>
+      <p class="text-lg md:text-xl font-semibold text-gray-700 max-w-3xl mx-auto">
+        See what others actually paid for HVAC services. No guessing, no hidden fees — just honest pricing data.
+      </p>
+    </div>
+
+    <!-- 🔧 Decorative Bar -->
+    <div class="absolute bottom-0 left-0 w-full h-2 bg-red-600"></div>
+  </section>
+
+  <!-- 📊 STATS SECTION -->
+  <section id="stats-section" class="relative bg-white py-12 px-6 md:px-10 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto">
+      <div id="stats-container" class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <!-- Stats will be populated by JavaScript -->
+        <div class="text-center p-6 bg-gray-50 rounded-xl border border-gray-200">
+          <div id="stat-total" class="text-3xl font-bold text-red-600 mb-2">-</div>
+          <div class="text-sm text-gray-600 font-semibold">Total Contracts</div>
+        </div>
+        <div class="text-center p-6 bg-gray-50 rounded-xl border border-gray-200">
+          <div id="stat-avg" class="text-3xl font-bold text-red-600 mb-2">-</div>
+          <div class="text-sm text-gray-600 font-semibold">Average Cost</div>
+        </div>
+        <div class="text-center p-6 bg-gray-50 rounded-xl border border-gray-200">
+          <div id="stat-min" class="text-3xl font-bold text-red-600 mb-2">-</div>
+          <div class="text-sm text-gray-600 font-semibold">Lowest Cost</div>
+        </div>
+        <div class="text-center p-6 bg-gray-50 rounded-xl border border-gray-200">
+          <div id="stat-max" class="text-3xl font-bold text-red-600 mb-2">-</div>
+          <div class="text-sm text-gray-600 font-semibold">Highest Cost</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔍 FILTERS SECTION -->
+  <section class="relative bg-gray-50 py-10 px-6 md:px-10 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-wrap gap-4 items-end">
+
+        <!-- Service Type Filter -->
+        <div class="flex-1 min-w-[200px]">
+          <label for="filter-service" class="block text-sm font-semibold text-gray-800 mb-2">
+            Service Type
+          </label>
+          <select
+            id="filter-service"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+          >
+            {serviceTypes.map(type => (
+              <option value={type === "All Services" ? "all" : type}>
+                {type}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <!-- City Filter -->
+        <div class="flex-1 min-w-[200px]">
+          <label for="filter-city" class="block text-sm font-semibold text-gray-800 mb-2">
+            City
+          </label>
+          <input
+            type="text"
+            id="filter-city"
+            placeholder="e.g., Detroit"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+          />
+        </div>
+
+        <!-- Cost Range -->
+        <div class="flex-1 min-w-[200px]">
+          <label for="filter-min-cost" class="block text-sm font-semibold text-gray-800 mb-2">
+            Min Cost
+          </label>
+          <div class="relative">
+            <span class="absolute left-4 top-3 text-gray-600">$</span>
+            <input
+              type="number"
+              id="filter-min-cost"
+              placeholder="0"
+              min="0"
+              class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+            />
+          </div>
+        </div>
+
+        <div class="flex-1 min-w-[200px]">
+          <label for="filter-max-cost" class="block text-sm font-semibold text-gray-800 mb-2">
+            Max Cost
+          </label>
+          <div class="relative">
+            <span class="absolute left-4 top-3 text-gray-600">$</span>
+            <input
+              type="number"
+              id="filter-max-cost"
+              placeholder="10000"
+              min="0"
+              class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+            />
+          </div>
+        </div>
+
+        <!-- Clear Filters Button -->
+        <div>
+          <button
+            id="clear-filters"
+            class="px-6 py-3 bg-gray-200 text-gray-800 font-semibold rounded-lg hover:bg-gray-300 transition-colors"
+          >
+            Clear Filters
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 📋 CONTRACTS TABLE SECTION -->
+  <section class="relative bg-white py-16 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Loading State -->
+      <div id="loading-state" class="text-center py-20">
+        <i data-lucide="loader-2" class="w-12 h-12 text-red-600 mx-auto mb-4 animate-spin"></i>
+        <p class="text-gray-600 font-semibold">Loading pricing data...</p>
+      </div>
+
+      <!-- Empty State -->
+      <div id="empty-state" class="hidden text-center py-20">
+        <i data-lucide="inbox" class="w-16 h-16 text-gray-400 mx-auto mb-4"></i>
+        <p class="text-xl font-bold text-gray-900 mb-2">No Contracts Found</p>
+        <p class="text-gray-600 mb-6">Try adjusting your filters or be the first to share pricing data!</p>
+        <a
+          href="/pricing-insights"
+          class="inline-flex items-center gap-2 bg-red-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-red-700 transition-colors"
+        >
+          <i data-lucide="upload" class="w-5 h-5"></i>
+          Share Your Contract
+        </a>
+      </div>
+
+      <!-- Contracts Table -->
+      <div id="contracts-container" class="hidden overflow-x-auto">
+        <table class="w-full border-collapse">
+          <thead>
+            <tr class="bg-gray-100 border-b-2 border-gray-300">
+              <th class="text-left py-4 px-4 font-bold text-gray-900">Service Type</th>
+              <th class="text-left py-4 px-4 font-bold text-gray-900">Provider</th>
+              <th class="text-left py-4 px-4 font-bold text-gray-900">Cost</th>
+              <th class="text-left py-4 px-4 font-bold text-gray-900">Location</th>
+              <th class="text-left py-4 px-4 font-bold text-gray-900">Date</th>
+              <th class="text-left py-4 px-4 font-bold text-gray-900">Details</th>
+            </tr>
+          </thead>
+          <tbody id="contracts-tbody">
+            <!-- Rows will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 📤 CTA TO SHARE -->
+  <section class="relative bg-gradient-to-br from-red-50 to-orange-50 py-16 px-6 md:px-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+        Help Others <span class="text-red-600">Make Informed Decisions</span>
+      </h2>
+      <p class="text-lg text-gray-700 mb-8">
+        Share your service contract to help fellow Michigan homeowners understand fair pricing.
+      </p>
+      <a
+        href="/pricing-insights"
+        class="inline-flex items-center gap-2 bg-red-600 text-white font-bold px-8 py-4 rounded-lg hover:bg-red-700 transition-colors text-lg"
+      >
+        <i data-lucide="upload" class="w-6 h-6"></i>
+        Share Your Contract
+      </a>
+    </div>
+  </section>
+
+  <!-- Contract Detail Modal -->
+  <div id="contract-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <h3 class="text-2xl font-bold text-gray-900">Contract Details</h3>
+        <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <div id="modal-content" class="p-6">
+        <!-- Content populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Lucide Icons -->
+  <script type="module" src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <script>
+    // Initialize Lucide icons
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    });
+
+    // State
+    let allContracts = [];
+    let currentStats = null;
+
+    // Elements
+    const loadingState = document.getElementById('loading-state');
+    const emptyState = document.getElementById('empty-state');
+    const contractsContainer = document.getElementById('contracts-container');
+    const contractsTbody = document.getElementById('contracts-tbody');
+    const modal = document.getElementById('contract-modal');
+    const modalContent = document.getElementById('modal-content');
+    const closeModalBtn = document.getElementById('close-modal');
+
+    // Filters
+    const filterService = document.getElementById('filter-service') as HTMLSelectElement;
+    const filterCity = document.getElementById('filter-city') as HTMLInputElement;
+    const filterMinCost = document.getElementById('filter-min-cost') as HTMLInputElement;
+    const filterMaxCost = document.getElementById('filter-max-cost') as HTMLInputElement;
+    const clearFiltersBtn = document.getElementById('clear-filters');
+
+    // Stats elements
+    const statTotal = document.getElementById('stat-total');
+    const statAvg = document.getElementById('stat-avg');
+    const statMin = document.getElementById('stat-min');
+    const statMax = document.getElementById('stat-max');
+
+    // Fetch contracts on page load
+    fetchContracts();
+
+    // Event listeners
+    filterService?.addEventListener('change', fetchContracts);
+    filterCity?.addEventListener('input', debounce(fetchContracts, 500));
+    filterMinCost?.addEventListener('input', debounce(fetchContracts, 500));
+    filterMaxCost?.addEventListener('input', debounce(fetchContracts, 500));
+    clearFiltersBtn?.addEventListener('click', clearFilters);
+    closeModalBtn?.addEventListener('click', closeModal);
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    /**
+     * Fetch contracts from API with current filters
+     */
+    async function fetchContracts() {
+      if (!loadingState || !emptyState || !contractsContainer) return;
+
+      // Show loading
+      loadingState.classList.remove('hidden');
+      emptyState.classList.add('hidden');
+      contractsContainer.classList.add('hidden');
+
+      try {
+        // Build query params
+        const params = new URLSearchParams();
+
+        const service = filterService?.value;
+        if (service && service !== 'all') {
+          params.append('service', service);
+        }
+
+        const city = filterCity?.value.trim();
+        if (city) {
+          params.append('city', city);
+        }
+
+        const minCost = filterMinCost?.value;
+        if (minCost) {
+          params.append('minCost', minCost);
+        }
+
+        const maxCost = filterMaxCost?.value;
+        if (maxCost) {
+          params.append('maxCost', maxCost);
+        }
+
+        // Fetch data
+        const response = await fetch(`/api/get-contracts?${params}`);
+        const result = await response.json();
+
+        if (result.success) {
+          allContracts = result.contracts;
+          currentStats = result.stats;
+          renderContracts();
+          updateStats();
+        } else {
+          console.error('Failed to fetch contracts:', result.error);
+          showEmptyState();
+        }
+      } catch (error) {
+        console.error('Error fetching contracts:', error);
+        showEmptyState();
+      } finally {
+        loadingState.classList.add('hidden');
+      }
+    }
+
+    /**
+     * Render contracts table
+     */
+    function renderContracts() {
+      if (!contractsTbody || !contractsContainer || !emptyState) return;
+
+      if (allContracts.length === 0) {
+        showEmptyState();
+        return;
+      }
+
+      // Clear existing rows
+      contractsTbody.innerHTML = '';
+
+      // Add rows
+      allContracts.forEach(contract => {
+        const row = document.createElement('tr');
+        row.className = 'border-b border-gray-200 hover:bg-gray-50 transition-colors';
+
+        const serviceDate = contract.service_date
+          ? new Date(contract.service_date).toLocaleDateString('en-US', { year: 'numeric', month: 'short' })
+          : 'N/A';
+
+        const location = contract.city && contract.zip_code
+          ? `${contract.city}, ${contract.zip_code}`
+          : contract.city || contract.zip_code || 'N/A';
+
+        row.innerHTML = `
+          <td class="py-4 px-4">
+            <span class="font-semibold text-gray-900">${contract.service_type}</span>
+          </td>
+          <td class="py-4 px-4 text-gray-700">${contract.provider_name}</td>
+          <td class="py-4 px-4">
+            <span class="font-bold text-red-600">$${contract.total_cost.toLocaleString()}</span>
+          </td>
+          <td class="py-4 px-4 text-gray-700">${location}</td>
+          <td class="py-4 px-4 text-gray-600 text-sm">${serviceDate}</td>
+          <td class="py-4 px-4">
+            <button
+              class="view-details-btn text-red-600 hover:text-red-700 font-semibold text-sm flex items-center gap-1"
+              data-contract-id="${contract.id}"
+            >
+              <i data-lucide="eye" class="w-4 h-4"></i>
+              View
+            </button>
+          </td>
+        `;
+
+        contractsTbody.appendChild(row);
+      });
+
+      // Re-initialize Lucide icons for the new content
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+
+      // Add click handlers to view buttons
+      document.querySelectorAll('.view-details-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const contractId = (e.currentTarget as HTMLElement).getAttribute('data-contract-id');
+          showContractDetails(contractId);
+        });
+      });
+
+      // Show table
+      contractsContainer.classList.remove('hidden');
+      emptyState.classList.add('hidden');
+    }
+
+    /**
+     * Update statistics display
+     */
+    function updateStats() {
+      if (!currentStats || !statTotal || !statAvg || !statMin || !statMax) return;
+
+      statTotal.textContent = currentStats.total.toString();
+      statAvg.textContent = currentStats.total > 0 ? `$${currentStats.avgCost.toLocaleString()}` : '-';
+      statMin.textContent = currentStats.total > 0 ? `$${currentStats.minCost.toLocaleString()}` : '-';
+      statMax.textContent = currentStats.total > 0 ? `$${currentStats.maxCost.toLocaleString()}` : '-';
+    }
+
+    /**
+     * Show contract details in modal
+     */
+    function showContractDetails(contractId: string | null) {
+      if (!contractId || !modal || !modalContent) return;
+
+      const contract = allContracts.find(c => c.id === contractId);
+      if (!contract) return;
+
+      const serviceDate = contract.service_date
+        ? new Date(contract.service_date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+        : 'Not specified';
+
+      const location = contract.city && contract.zip_code
+        ? `${contract.city}, MI ${contract.zip_code}`
+        : contract.city ? `${contract.city}, MI` : 'Not specified';
+
+      modalContent.innerHTML = `
+        <div class="space-y-6">
+          <!-- Cost -->
+          <div class="text-center bg-red-50 rounded-xl p-8 border-2 border-red-200">
+            <div class="text-sm font-semibold text-gray-600 mb-2">Total Cost Paid</div>
+            <div class="text-5xl font-bold text-red-600">$${contract.total_cost.toLocaleString()}</div>
+          </div>
+
+          <!-- Details Grid -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="text-sm font-bold text-gray-500 uppercase mb-2">Service Type</h4>
+              <p class="text-lg font-semibold text-gray-900">${contract.service_type}</p>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-gray-500 uppercase mb-2">Service Provider</h4>
+              <p class="text-lg font-semibold text-gray-900">${contract.provider_name}</p>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-gray-500 uppercase mb-2">Service Date</h4>
+              <p class="text-lg font-semibold text-gray-900">${serviceDate}</p>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-gray-500 uppercase mb-2">Location</h4>
+              <p class="text-lg font-semibold text-gray-900">${location}</p>
+            </div>
+          </div>
+
+          ${contract.work_description ? `
+            <div>
+              <h4 class="text-sm font-bold text-gray-500 uppercase mb-2">Work Performed</h4>
+              <p class="text-gray-700">${contract.work_description}</p>
+            </div>
+          ` : ''}
+
+          <!-- Contract Image -->
+          <div>
+            <h4 class="text-sm font-bold text-gray-500 uppercase mb-3">Contract/Invoice Image</h4>
+            <div class="bg-gray-100 rounded-lg overflow-hidden">
+              <img
+                src="${contract.contract_image_url}"
+                alt="Service contract"
+                class="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+            <p class="text-xs text-gray-500 mt-2 text-center">
+              Personal information has been reviewed and redacted for privacy
+            </p>
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    /**
+     * Close modal
+     */
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.add('hidden');
+    }
+
+    /**
+     * Show empty state
+     */
+    function showEmptyState() {
+      if (!emptyState || !contractsContainer) return;
+      emptyState.classList.remove('hidden');
+      contractsContainer.classList.add('hidden');
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    /**
+     * Clear all filters
+     */
+    function clearFilters() {
+      if (filterService) filterService.value = 'all';
+      if (filterCity) filterCity.value = '';
+      if (filterMinCost) filterMinCost.value = '';
+      if (filterMaxCost) filterMaxCost.value = '';
+      fetchContracts();
+    }
+
+    /**
+     * Debounce utility
+     */
+    function debounce(func: Function, wait: number) {
+      let timeout: number;
+      return function executedFunction(...args: any[]) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait) as unknown as number;
+      };
+    }
+  </script>
+</Layout>

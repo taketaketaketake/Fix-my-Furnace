@@ -1,8 +1,8 @@
 # Pricing Insights Feature - Setup Guide
 
-## Phase 1 & 2 Complete! ✅
+## Phase 1, 2 & 3 Complete! ✅
 
-You now have a working contract upload system. Here's what was implemented and what you need to do to activate it.
+You now have a fully working contract upload and public display system. Here's what was implemented and what you need to do to activate it.
 
 ---
 
@@ -33,6 +33,24 @@ You now have a working contract upload system. Here's what was implemented and w
 - Matches your existing site design
 - Real-time validation and feedback
 - Privacy-focused with confirmation checkbox
+
+### 5. Public Display API (Phase 3)
+**File:** `src/pages/api/get-contracts.js`
+- Fetches approved contracts for public viewing
+- Supports filtering by service type, provider, city, cost range
+- Calculates real-time statistics (avg, min, max costs)
+- Caches results for 5 minutes for performance
+- Only returns approved contracts (security)
+
+### 6. Public Pricing Transparency Page (Phase 3)
+**File:** `src/pages/pricing-transparency.astro`
+- Public page at `/pricing-transparency` showing all approved contracts
+- Real-time filtering (service type, city, cost range)
+- Statistics dashboard (total contracts, avg/min/max costs)
+- Sortable table with contract details
+- Modal view for full contract details and images
+- Mobile-responsive design
+- Call-to-action to encourage more submissions
 
 ---
 
@@ -101,6 +119,7 @@ npm run build
 
 ### Manual Testing Checklist
 
+**Upload Form (`/pricing-insights`):**
 - [ ] Form loads without errors
 - [ ] File upload field accepts images and PDFs
 - [ ] Form validates required fields
@@ -110,6 +129,20 @@ npm run build
 - [ ] Uploaded file appears in Supabase Storage
 - [ ] Database record created with correct data
 - [ ] Rate limiting works (try submitting 6 times quickly)
+
+**Public Display Page (`/pricing-transparency`):**
+- [ ] Page loads without errors
+- [ ] Shows "No Contracts Found" if no approved contracts
+- [ ] Shows approved contracts in table format
+- [ ] Statistics display correctly (total, avg, min, max)
+- [ ] Service type filter works
+- [ ] City filter works
+- [ ] Cost range filters work
+- [ ] "Clear Filters" button resets all filters
+- [ ] Clicking "View" button opens modal with full details
+- [ ] Contract image displays in modal
+- [ ] Modal closes when clicking X or outside
+- [ ] "Share Your Contract" CTA button works
 
 ### Test Data Example
 
@@ -123,6 +156,26 @@ ZIP Code: 48201
 Work Description: Replaced heat exchanger and cleaned burners
 Contract Image: [Upload any JPG/PNG image]
 Privacy Checkbox: ✓ Checked
+```
+
+### Approving Contracts for Testing (Until Phase 4 Admin Interface)
+
+To see contracts on the public page, you need to manually approve them:
+
+1. Go to **Supabase Dashboard** > **Table Editor**
+2. Open the `service_contracts` table
+3. Find the pending contract (status = 'pending')
+4. Edit the row and change:
+   - `status` from `pending` to `approved`
+   - Optionally set `verified` to `true`
+5. Save the changes
+6. Visit `/pricing-transparency` to see your approved contract
+
+**Quick SQL to approve all pending contracts:**
+```sql
+UPDATE service_contracts
+SET status = 'approved', verified = true
+WHERE status = 'pending';
 ```
 
 ---
@@ -164,16 +217,17 @@ Privacy Checkbox: ✓ Checked
 
 ---
 
-## 🎯 What's Next (Phase 3+)
+## 🎯 What's Next (Phase 4+)
 
-After testing the upload system, you can implement:
+After testing the current system, you can implement:
 
-1. **Phase 3:** Public display page showing approved contracts
-2. **Phase 4:** Admin moderation interface
-3. **Phase 5:** Search and filtering
-4. **Phase 6:** Analytics and pricing insights
-5. **Phase 7:** Privacy protection (auto-blur)
-6. **Phase 8:** Integration with main site navigation
+1. ✅ **Phase 1-2:** Upload system (COMPLETE)
+2. ✅ **Phase 3:** Public display page showing approved contracts (COMPLETE)
+3. **Phase 4:** Admin moderation interface to approve/reject submissions
+4. **Phase 5:** Advanced filtering and provider search
+5. **Phase 6:** Analytics dashboard and pricing trends
+6. **Phase 7:** Privacy protection (auto-blur sensitive info)
+7. **Phase 8:** Integration with main site navigation and footer
 
 ---
 
@@ -215,6 +269,15 @@ If you run into issues:
 
 ## ✨ Ready to Go!
 
-Once you complete the 4 setup steps above, your pricing insights feature will be live and accepting submissions!
+Once you complete the 4 setup steps above, your pricing insights feature will be live!
 
-Users can access it at: `https://yourdomain.com/pricing-insights`
+**Two pages are now available:**
+- **Upload Form:** `https://yourdomain.com/pricing-insights`
+- **Public Display:** `https://yourdomain.com/pricing-transparency`
+
+**Next Steps:**
+1. Upload a test contract at `/pricing-insights`
+2. Manually approve it in Supabase (see testing section above)
+3. View it on `/pricing-transparency`
+4. Add navigation links to both pages in your Header/Footer
+5. Consider implementing Phase 4 (Admin Moderation Interface)
