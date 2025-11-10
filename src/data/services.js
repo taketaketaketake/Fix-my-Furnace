@@ -7,10 +7,10 @@ export const services = [
         "Whether it’s midnight or the middle of a Michigan blizzard, our certified techs are ready to get your furnace running again — same-day service available across the state.",
       heroImage: "/Fix_My_Furnace_Hero_Image.png",
       features: [
-        { icon: "wrench", title: "Same-Day Service", text: "We respond fast — no waiting days for heat." },
-        { icon: "shield-check", title: "Licensed Experts", text: "Certified, insured, and vetted Michigan techs." },
-        { icon: "wallet", title: "Upfront Pricing", text: "Honest, transparent rates before we start work." },
-        { icon: "sparkles", title: "Guaranteed Work", text: "Every repair comes backed by our service guarantee." },
+        { icon: "search", title: "Accurate Diagnosis", text: "$125 professional assessment — no guessing or pressure tactics." },
+        { icon: "users", title: "Provider Choice", text: "Get quotes from both full-service companies and independents." },
+        { icon: "wallet", title: "Provider Comparison", text: "Compare honest quotes from multiple provider types." },
+        { icon: "shield-check", title: "Vetted Network", text: "All providers are Michigan-licensed and background-checked." },
       ],
     },
     {
@@ -21,10 +21,10 @@ export const services = [
         "We don’t just drop off a unit — we handle every detail, from sizing to setup, ensuring your home heats evenly and efficiently all winter long.",
       heroImage: "/furnace_installation_michigan.png",
       features: [
-        { icon: "settings", title: "Precision Setup", text: "Installed and calibrated by experienced techs." },
-        { icon: "thermometer-sun", title: "Energy Efficient", text: "Save money and stay comfortable with top brands." },
-        { icon: "badge-check", title: "Fully Insured", text: "All installs meet Michigan HVAC code requirements." },
-        { icon: "star", title: "Satisfaction Guaranteed", text: "We stand behind every installation." },
+        { icon: "search", title: "Proper Sizing", text: "$125 assessment ensures correct system for your home." },
+        { icon: "users", title: "Provider Options", text: "Choose between full-service companies or independent installers." },
+        { icon: "wallet", title: "Clear Quotes", text: "Compare transparent pricing from different provider types." },
+        { icon: "shield-check", title: "Code Compliant", text: "All installs meet Michigan requirements with proper permits." },
       ],
     },
     {

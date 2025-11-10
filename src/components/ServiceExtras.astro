@@ -1,0 +1,211 @@
+---
+const { slug } = Astro.props;
+
+// Efficiency Tips (Global)
+const efficiencyTips = [
+  { icon: "wind", title: "Replace Filters Monthly", text: "Keep airflow strong and indoor air clean by changing filters regularly." },
+  { icon: "vent", title: "Keep Vents Clear", text: "Avoid blocking vents with furniture or rugs to maintain balanced circulation." },
+  { icon: "home", title: "Check Insulation", text: "Proper attic and duct insulation reduce heat loss during Michigan winters." },
+  { icon: "zap", title: "Upgrade Motors", text: "Variable-speed motors adjust output and use less energy over time." },
+  { icon: "thermometer", title: "Use a Smart Thermostat", text: "Automate heating schedules and monitor energy savings remotely." },
+  { icon: "calendar", title: "Seasonal Checkups", text: "Spring and fall tune-ups keep your system efficient and reliable." },
+];
+
+// Heating System Comparison
+const heatingSystems = [
+  {
+    name: "Furnace",
+    image: "/icons/furnace.png",
+    pros: ["Heats quickly", "Common in Michigan homes", "Easier repairs"],
+    cons: ["Requires ducts", "Dry air"],
+    bestFor: "Most suburban homes with existing ductwork.",
+  },
+  {
+    name: "Boiler",
+    image: "/icons/boiler.png",
+    pros: ["Even radiant heat", "Quiet operation", "No ducts needed"],
+    cons: ["Slower heat-up time", "Requires annual flush"],
+    bestFor: "Older Detroit brick homes and multi-story buildings.",
+  },
+  {
+    name: "Heat Pump",
+    image: "/icons/heatpump.png",
+    pros: ["Dual heating & cooling", "Energy efficient"],
+    cons: ["Reduced output in extreme cold"],
+    bestFor: "Newer energy-efficient homes or southern Michigan regions.",
+  },
+];
+---
+
+{slug === "duct-cleaning" && (
+  <section class="py-24 px-6 md:px-12 bg-gray-50">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <img src="/images/duct_before_after.jpg" alt="Before and after duct cleaning" class="rounded-2xl shadow-xl" />
+      <div>
+        <h2 class="text-3xl font-extrabold mb-6">See the Difference: Before & After Cleaning</h2>
+        <p class="text-gray-700 mb-4">Most Michigan homes collect pounds of dust, dander, and debris in their ducts each year. Cleaning improves airflow and indoor air quality.</p>
+        <ul class="text-gray-600 space-y-2">
+          <li>✅ Less dust on surfaces</li>
+          <li>✅ Improved allergy control</li>
+          <li>✅ More efficient heating</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+)}
+
+{(slug === "furnace-repair" || slug === "furnace-installation" || slug === "maintenance" || slug === "emergency-hvac") && (
+  <!-- 🔥 Heating System Types Comparison -->
+  <section class="py-24 px-6 md:px-12 bg-white">
+    <div class="max-w-6xl mx-auto text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Which System Heats Your Michigan Home?</h2>
+      <p class="text-gray-600 text-lg">Understand your options and find the perfect system for your home's age, size, and comfort needs.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {heatingSystems.map((sys) => (
+        <div class="bg-gray-50 border rounded-2xl p-8 text-left hover:shadow-lg transition">
+          <img src={sys.image} alt={sys.name} class="h-20 mb-4 mx-auto" />
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">{sys.name}</h3>
+          <div class="text-sm mb-4">
+            <p class="font-semibold text-gray-700">Pros:</p>
+            <ul class="list-disc list-inside text-gray-600 mb-2">
+              {sys.pros.map((p) => <li>{p}</li>)}
+            </ul>
+            <p class="font-semibold text-gray-700">Cons:</p>
+            <ul class="list-disc list-inside text-gray-600">
+              {sys.cons.map((c) => <li>{c}</li>)}
+            </ul>
+          </div>
+          <p class="text-gray-700 text-sm italic">{sys.bestFor}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+)}
+
+<!-- SERVICE-SPECIFIC MODULES -->
+{slug === "furnace-repair" && (
+  <Fragment>
+    <section class="bg-gray-900 text-white py-24 px-6 md:px-12">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl font-extrabold mb-6">Common Michigan Furnace Failures Explained</h2>
+          <p class="text-gray-300 mb-6">Ignition failures, dirty flame sensors, and blower motor issues are the top causes of no-heat calls. Knowing these helps you act before a full breakdown.</p>
+          <ul class="space-y-3 text-gray-200">
+            <li>🔥 Igniter or pilot light won’t stay lit</li>
+            <li>🌀 Blower runs constantly</li>
+            <li>⚙️ Thermostat misreads temperature</li>
+          </ul>
+        </div>
+        <img src="/images/furnace_cutaway.jpg" alt="Furnace diagram" class="rounded-2xl shadow-xl border-4 border-red-600" />
+      </div>
+    </section>
+
+    <section class="py-20 bg-red-600 text-white text-center">
+      <h3 class="text-3xl font-bold mb-4">Repair or Replace?</h3>
+      <p class="text-lg mb-6 max-w-2xl mx-auto">If your furnace is over 15 years old or keeps breaking down, it may be time to upgrade. We’ll guide you with a clear, honest recommendation.</p>
+      <a href="/furnace-diagnosis" class="bg-white text-red-600 font-bold px-8 py-4 rounded-lg hover:bg-gray-100 transition">Start Diagnosis Quiz</a>
+    </section>
+  </Fragment>
+)}
+
+{slug === "furnace-installation" && (
+  <section class="py-24 px-6 md:px-12 bg-white">
+    <div class="max-w-6xl mx-auto text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Choosing the Right Furnace</h2>
+      <p class="text-gray-600 text-lg mb-10">Not all furnaces are built the same. Here’s how to choose the best system for your home and budget.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="border rounded-2xl p-8 text-left bg-gray-50 hover:shadow-lg transition">
+        <h3 class="text-xl font-bold mb-3">Gas Furnace</h3>
+        <p class="text-gray-700 text-sm mb-4">Efficient, affordable, and ideal for Michigan winters. Requires proper venting.</p>
+      </div>
+      <div class="border rounded-2xl p-8 text-left bg-gray-50 hover:shadow-lg transition">
+        <h3 class="text-xl font-bold mb-3">Electric Furnace</h3>
+        <p class="text-gray-700 text-sm mb-4">Lower upfront cost but higher long-term energy use. Perfect for homes without gas lines.</p>
+      </div>
+      <div class="border rounded-2xl p-8 text-left bg-gray-50 hover:shadow-lg transition">
+        <h3 class="text-xl font-bold mb-3">High-Efficiency</h3>
+        <p class="text-gray-700 text-sm mb-4">Up to 98% AFUE. Save big on utilities and qualify for rebates or credits.</p>
+      </div>
+    </div>
+  </section>
+)}
+
+{slug === "emergency-hvac-service" && (
+  <section class="py-24 px-6 md:px-12 bg-gray-900 text-white">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl font-extrabold mb-6">Before We Arrive: Quick DIY Checks</h2>
+        <ul class="space-y-3">
+          <li>🔌 Check your circuit breaker</li>
+          <li>🧊 Replace dirty filters</li>
+          <li>🔥 Verify thermostat batteries</li>
+          <li>🌬️ Ensure vents are open</li>
+        </ul>
+      </div>
+      <img src="/images/emergency_hvac.jpg" alt="Emergency HVAC tech" class="rounded-2xl shadow-2xl border-4 border-red-600" />
+    </div>
+  </section>
+)}
+
+{slug === "maintenance-tune-ups" && (
+  <section class="py-24 px-6 md:px-12 bg-gray-50">
+    <div class="max-w-6xl mx-auto text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Seasonal Maintenance Planner</h2>
+      <p class="text-gray-600 text-lg mb-10">Stay ahead of costly breakdowns with simple, scheduled care.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="p-6 bg-white rounded-2xl border">
+        <h3 class="font-bold mb-3 text-gray-900">Winter</h3>
+        <p class="text-gray-600 text-sm">Check vents for blockages, test carbon monoxide detector, and inspect pilot light.</p>
+      </div>
+      <div class="p-6 bg-white rounded-2xl border">
+        <h3 class="font-bold mb-3 text-gray-900">Spring</h3>
+        <p class="text-gray-600 text-sm">Clean ducts, replace filters, and inspect blower motors.</p>
+      </div>
+      <div class="p-6 bg-white rounded-2xl border">
+        <h3 class="font-bold mb-3 text-gray-900">Fall</h3>
+        <p class="text-gray-600 text-sm">Schedule a professional tune-up and check gas connections for leaks.</p>
+      </div>
+    </div>
+  </section>
+)}
+
+{slug === "boiler-repair" && (
+  <section class="py-24 px-6 md:px-12 bg-gray-900 text-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-extrabold mb-6">Boiler vs. Furnace — What’s the Difference?</h2>
+      <p class="text-gray-300 mb-6">Boilers use hot water or steam to heat your home, while furnaces heat air. Both need annual maintenance to run efficiently.</p>
+      <ul class="grid md:grid-cols-2 gap-4 text-gray-200">
+        <li>🔥 Furnace = Forced air</li>
+        <li>💧 Boiler = Hydronic heat</li>
+        <li>🧰 Boiler systems need flushing and pressure checks</li>
+      </ul>
+    </div>
+  </section>
+)}
+
+{slug === "air-quality-solutions" && (
+  <section class="py-24 px-6 md:px-12 bg-gray-50">
+    <div class="max-w-6xl mx-auto text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">What’s Hiding in Your Air?</h2>
+      <p class="text-gray-600 text-lg mb-10">Dust, pet dander, mold spores, and pollutants can circulate unseen. Our systems keep your indoor air healthy year-round.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="border rounded-2xl p-8 bg-white">
+        <h3 class="text-xl font-bold mb-3">Air Purifiers</h3>
+        <p class="text-gray-600 text-sm">Eliminate fine particles and odors using HEPA filtration and ionization.</p>
+      </div>
+      <div class="border rounded-2xl p-8 bg-white">
+        <h3 class="text-xl font-bold mb-3">UV Light Systems</h3>
+        <p class="text-gray-600 text-sm">Destroy airborne bacteria and viruses at the source.</p>
+      </div>
+      <div class="border rounded-2xl p-8 bg-white">
+        <h3 class="text-xl font-bold mb-3">Humidifiers</h3>
+        <p class="text-gray-600 text-sm">Balance dry Michigan air for better comfort and skin health.</p>
+      </div>
+    </div>
+  </section>
+)}

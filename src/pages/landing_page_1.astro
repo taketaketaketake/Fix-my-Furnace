@@ -1,5 +1,71 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import UniversalForm from "../components/UniversalForm.astro";
+
+// Form fields for landing page 1
+const landingPage1Fields = [
+  {
+    name: 'zip',
+    type: 'text',
+    label: 'ZIP Code',
+    placeholder: 'e.g. 48226',
+    required: true,
+    maxlength: 5
+  },
+  {
+    name: 'issue',
+    type: 'select',
+    label: "What's happening with your furnace?",
+    required: true,
+    options: [
+      { value: '', label: 'Select an issue...' },
+      { value: 'wont_turn_on', label: "It won't turn on" },
+      { value: 'cold_air', label: "It's blowing cold air" },
+      { value: 'strange_noises', label: 'Strange noises' },
+      { value: 'old_unreliable', label: 'Old or unreliable' },
+      { value: 'not_sure', label: 'Not sure' }
+    ]
+  },
+  {
+    name: 'urgency',
+    type: 'select',
+    label: 'When do you need service?',
+    required: true,
+    options: [
+      { value: '', label: 'Select...' },
+      { value: 'today', label: 'Today' },
+      { value: 'tomorrow', label: 'Tomorrow' },
+      { value: 'this_week', label: 'This week' },
+      { value: 'within_30_days', label: 'Within the next 30 days' },
+      { value: 'within_90_days', label: 'Within the next 90 days' },
+      { value: 'just_quotes', label: 'Just getting quotes' }
+    ]
+  },
+  {
+    name: 'name',
+    type: 'text',
+    label: 'Full Name',
+    placeholder: 'Full Name',
+    required: true,
+    autoComplete: 'name'
+  },
+  {
+    name: 'phone',
+    type: 'tel',
+    label: 'Phone Number',
+    placeholder: 'Phone Number',
+    required: true,
+    autoComplete: 'tel'
+  },
+  {
+    name: 'email',
+    type: 'email',
+    label: 'Email Address',
+    placeholder: 'Email Address',
+    required: false,
+    autoComplete: 'email'
+  }
+];
 ---
 
 <Layout title="Fix My Furnace Detroit | Same-Day Furnace Repair">
@@ -24,104 +90,18 @@ import Layout from "../layouts/Layout.astro";
     </div>
 
     <!-- 🧾 Lead Form -->
-    <form
-      id="leadForm"
-      class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md text-left border border-gray-100"
-    >
-      <!-- Step 1 -->
-      <div id="step1" class="space-y-5">
-        <div>
-          <label
-            for="zip"
-            class="block font-bold text-gray-800 mb-2 text-sm uppercase tracking-wide"
-            >Enter Your ZIP Code</label
-          >
-          <input
-            type="text"
-            id="zip"
-            maxlength="5"
-            placeholder="e.g. 48226"
-            class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-red-500 focus:border-red-500 text-base"
-          />
-        </div>
-
-        <button
-          type="button"
-          id="nextStep"
-          class="w-full bg-red-600 text-white font-bold py-3 rounded-lg shadow hover:bg-red-700 active:scale-[0.98] transition"
-        >
-          Check Availability
-        </button>
-      </div>
-
-      <!-- Step 2 -->
-      <div id="step2" class="hidden space-y-4">
-        <div>
-          <label
-            class="block font-bold text-gray-800 mb-2 text-sm uppercase tracking-wide"
-            >What’s happening with your furnace?</label
-          >
-          <select
-            id="issue"
-            class="w-full border border-gray-300 rounded-lg p-3 text-base focus:ring-2 focus:ring-red-500 focus:border-red-500"
-          >
-            <option value="">Select an issue...</option>
-            <option>It won't turn on</option>
-            <option>It's blowing cold air</option>
-            <option>Strange noises</option>
-            <option>Old or unreliable</option>
-            <option>Not sure</option>
-          </select>
-        </div>
-
-        <div>
-          <label
-            class="block font-bold text-gray-800 mb-2 text-sm uppercase tracking-wide"
-            >When do you need service?</label
-          >
-          <select
-            id="urgency"
-            class="w-full border border-gray-300 rounded-lg p-3 text-base focus:ring-2 focus:ring-red-500 focus:border-red-500"
-          >
-            <option value="">Select...</option>
-            <option>Today</option>
-            <option>Tomorrow</option>
-            <option>This week</option>
-            <option>Within the next 30 days</option>
-            <option>Within the next 90 days</option>
-            <option>Just getting quotes</option>
-          </select>
-        </div>
-
-        <input
-          type="text"
-          id="name"
-          placeholder="Full Name"
-          class="w-full border border-gray-300 rounded-lg p-3 text-base focus:ring-2 focus:ring-red-500 focus:border-red-500"
-        />
-
-        <input
-          type="tel"
-          id="phone"
-          placeholder="Phone Number"
-          class="w-full border border-gray-300 rounded-lg p-3 text-base focus:ring-2 focus:ring-red-500 focus:border-red-500"
-        />
-
-        <input
-          type="email"
-          id="email"
-          placeholder="Email Address"
-          class="w-full border border-gray-300 rounded-lg p-3 text-base focus:ring-2 focus:ring-red-500 focus:border-red-500"
-        />
-
-        <button
-          type="submit"
-          class="w-full bg-red-600 text-white font-bold py-3 rounded-lg shadow hover:bg-red-700 active:scale-[0.98] transition"
-        >
-          Get My Furnace Fixed
-        </button>
-      </div>
-    </form>
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md text-left border border-gray-100">
+      <UniversalForm
+        formId="landing-page-1-form"
+        formSource="landing_page_1"
+        apiEndpoint="/api/submit-form"
+        title="Get Your Furnace Fixed Fast"
+        description="Fill out the form below and we'll get back to you shortly."
+        fields={landingPage1Fields}
+        submitText="Get My Furnace Fixed"
+        className=""
+      />
+    </div>
 
     <!-- ✅ Trust Bar -->
     <div
@@ -150,29 +130,3 @@ import Layout from "../layouts/Layout.astro";
   </footer>
 </Layout>
 
-<!-- 🧠 Script -->
-<script>
-  const zipInput = document.getElementById("zip");
-  const step1 = document.getElementById("step1");
-  const step2 = document.getElementById("step2");
-  const nextStep = document.getElementById("nextStep");
-  const form = document.getElementById("leadForm");
-
-  nextStep.addEventListener("click", () => {
-    const zip = zipInput.value.trim();
-    if (!zip || zip.length !== 5) {
-      alert("Please enter a valid ZIP code.");
-      return;
-    }
-    step1.classList.add("hidden");
-    step2.classList.remove("hidden");
-  });
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert("Thanks! A local tech will reach out shortly.");
-    form.reset();
-    step2.classList.add("hidden");
-    step1.classList.remove("hidden");
-  });
-</script>

@@ -1,6 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { services } from "../../data/services.js";
+import ServiceExtras from "../../components/ServiceExtras.astro";
+import UniversalForm from "../../components/UniversalForm.astro";
 
 // 🔹 Enable prerendering for better performance
 export const prerender = true;
@@ -15,6 +17,41 @@ export async function getStaticPaths() {
 
 // 🔹 Load the props for the current service
 const { title, subtitle, description, heroImage, features } = Astro.props;
+
+// Form fields for the service quote form
+const serviceQuoteFields = [
+  {
+    name: 'name',
+    type: 'text',
+    label: 'Full Name',
+    placeholder: 'John Doe',
+    required: true,
+    autoComplete: 'name'
+  },
+  {
+    name: 'phone',
+    type: 'tel',
+    label: 'Phone Number',
+    placeholder: '(833) 494-8669',
+    required: true,
+    autoComplete: 'tel'
+  },
+  {
+    name: 'address',
+    type: 'address',
+    label: 'Service Address',
+    placeholder: 'Enter your address',
+    required: true,
+    autoComplete: 'street-address'
+  },
+  {
+    name: 'message',
+    type: 'textarea',
+    label: 'How can we help?',
+    placeholder: 'Describe your issue...',
+    required: false
+  }
+];
 
 ---
 
@@ -65,14 +102,31 @@ const { title, subtitle, description, heroImage, features } = Astro.props;
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      {features.map((f) => (
-        <div class="p-8 bg-gray-50 border rounded-2xl hover:shadow-lg transition transform hover:-translate-y-1">
-          <i data-lucide={f.icon} class="w-10 h-10 text-red-600 mb-4"></i>
-          <h3 class="text-xl font-bold mb-2 text-gray-900">{f.title}</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">{f.text}</p>
-        </div>
-      ))}
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- Form on left -->
+      <div class="bg-gray-50 border rounded-2xl p-8">
+        <UniversalForm
+          formId={`service-quote-${Astro.params.slug}`}
+          formSource={`service_${Astro.params.slug}_form`}
+          apiEndpoint="/api/submit-form"
+          title="Get Your Free Quote"
+          description="Fill out the form below and we'll get back to you with a personalized quote for your service needs."
+          fields={serviceQuoteFields}
+          submitText="Get Free Quote"
+          className=""
+        />
+      </div>
+
+      <!-- Cards on right -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {features.map((f) => (
+          <div class="p-6 bg-gray-50 border rounded-2xl hover:shadow-lg transition transform hover:-translate-y-1">
+            <i data-lucide={f.icon} class="w-8 h-8 text-red-600 mb-3"></i>
+            <h3 class="text-lg font-bold mb-2 text-gray-900">{f.title}</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">{f.text}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -107,21 +161,9 @@ const { title, subtitle, description, heroImage, features } = Astro.props;
     </div>
   </section>
 
-  <!-- 🚀 CTA -->
-  <section class="relative bg-red-600 text-white text-center py-20 px-6">
-    <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
-      Ready to Fix Your {title}?
-    </h2>
-    <p class="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-      No matter the issue, we’re standing by to get your home warm again — fast, honest, and locally driven.
-    </p>
-    <a
-      href="/furnace-diagnosis"
-      class="inline-block bg-white text-red-600 font-bold px-8 py-4 rounded-lg text-lg hover:bg-gray-100 transition"
-    >
-      Request Your Quote
-    </a>
-  </section>
+  <ServiceExtras slug={Astro.params.slug} />
+  
+
 </Layout>
 
 <!-- Lucide Icons -->
