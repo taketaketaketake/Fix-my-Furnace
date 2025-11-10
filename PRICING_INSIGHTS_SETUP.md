@@ -1,8 +1,8 @@
 # Pricing Insights Feature - Setup Guide
 
-## Phase 1, 2 & 3 Complete! ✅
+## Phase 1, 2, 3 & 4 Complete! ✅
 
-You now have a fully working contract upload and public display system. Here's what was implemented and what you need to do to activate it.
+You now have a fully working contract upload, public display, and admin moderation system. Here's what was implemented and what you need to do to activate it.
 
 ---
 
@@ -52,6 +52,24 @@ You now have a fully working contract upload and public display system. Here's w
 - Mobile-responsive design
 - Call-to-action to encourage more submissions
 
+### 7. Admin Moderation API (Phase 4)
+**Files:** `src/pages/api/moderate-contract.js` & `src/pages/api/get-pending-contracts.js`
+- Password-protected admin endpoints
+- Fetch pending/approved/rejected contracts
+- Approve or reject contracts with one click
+- Add optional admin notes
+- Real-time statistics (pending, approved, rejected counts)
+
+### 8. Admin Moderation Interface (Phase 4)
+**File:** `src/pages/admin/moderate-contracts.astro`
+- Simple password-protected admin panel at `/admin/moderate-contracts`
+- View all pending contracts with images and details
+- Quick approve/reject buttons
+- Filter by status (pending, approved, rejected, all)
+- Statistics dashboard
+- No database setup needed - uses existing table
+- Session-based authentication (password stored in browser)
+
 ---
 
 ## 🚀 Setup Steps (Do This Next)
@@ -96,7 +114,23 @@ TO public
 USING (bucket_id = 'contract-images');
 ```
 
-### Step 4: Test the Upload
+### Step 4: Set Admin Password (Phase 4)
+
+1. Add `ADMIN_PASSWORD` to your environment variables:
+
+**For local development (.env file):**
+```
+ADMIN_PASSWORD=your-secure-password-here
+```
+
+**For production (Netlify/Vercel):**
+- Go to your hosting dashboard
+- Add environment variable: `ADMIN_PASSWORD` with your chosen password
+- Redeploy your site
+
+**Important:** Choose a strong password! This protects your admin panel.
+
+### Step 5: Test the Upload
 
 1. Start your dev server: `npm run dev`
 2. Visit: `http://localhost:4321/pricing-insights`
@@ -105,13 +139,23 @@ USING (bucket_id = 'contract-images');
    - **Storage** > `contract-images` should have your uploaded file
    - **Table Editor** > `service_contracts` should have a new row
 
-### Step 5: Deploy
+### Step 6: Test Admin Moderation (Phase 4)
+
+1. Visit: `http://localhost:4321/admin/moderate-contracts`
+2. Enter your admin password
+3. You should see your pending contract
+4. Click "Approve" to approve it
+5. Visit `/pricing-transparency` to see it live
+
+### Step 7: Deploy
 
 Once tested locally:
 ```bash
 npm run build
 # Deploy to your hosting (Netlify, Vercel, etc.)
 ```
+
+**Don't forget to set `ADMIN_PASSWORD` in your production environment!**
 
 ---
 
@@ -158,10 +202,14 @@ Contract Image: [Upload any JPG/PNG image]
 Privacy Checkbox: ✓ Checked
 ```
 
-### Approving Contracts for Testing (Until Phase 4 Admin Interface)
+### Approving Contracts
 
-To see contracts on the public page, you need to manually approve them:
+**Option 1: Use Admin Panel (Recommended - Phase 4)**
+1. Visit `/admin/moderate-contracts`
+2. Enter your admin password
+3. Click "Approve" or "Reject" buttons
 
+**Option 2: Manual Approval in Supabase**
 1. Go to **Supabase Dashboard** > **Table Editor**
 2. Open the `service_contracts` table
 3. Find the pending contract (status = 'pending')
@@ -169,7 +217,6 @@ To see contracts on the public page, you need to manually approve them:
    - `status` from `pending` to `approved`
    - Optionally set `verified` to `true`
 5. Save the changes
-6. Visit `/pricing-transparency` to see your approved contract
 
 **Quick SQL to approve all pending contracts:**
 ```sql
@@ -217,17 +264,19 @@ WHERE status = 'pending';
 
 ---
 
-## 🎯 What's Next (Phase 4+)
+## 🎯 What's Next (Phase 5+)
 
 After testing the current system, you can implement:
 
 1. ✅ **Phase 1-2:** Upload system (COMPLETE)
 2. ✅ **Phase 3:** Public display page showing approved contracts (COMPLETE)
-3. **Phase 4:** Admin moderation interface to approve/reject submissions
-4. **Phase 5:** Advanced filtering and provider search
-5. **Phase 6:** Analytics dashboard and pricing trends
-6. **Phase 7:** Privacy protection (auto-blur sensitive info)
+3. ✅ **Phase 4:** Admin moderation interface to approve/reject submissions (COMPLETE)
+4. **Phase 5:** Advanced filtering and provider search autocomplete
+5. **Phase 6:** Analytics dashboard with pricing trends over time
+6. **Phase 7:** Privacy protection (auto-blur sensitive info in images)
 7. **Phase 8:** Integration with main site navigation and footer
+8. **Phase 9:** Email notifications for new submissions (optional)
+9. **Phase 10:** Bulk actions in admin panel (approve/reject multiple)
 
 ---
 
@@ -255,6 +304,24 @@ After testing the current system, you can implement:
 - Check server logs for errors
 - Test with smaller file size
 
+### Admin panel shows "Invalid password"
+- Check `ADMIN_PASSWORD` environment variable is set
+- Verify password matches exactly (case-sensitive)
+- For local dev: ensure `.env` file has `ADMIN_PASSWORD`
+- For production: check hosting dashboard environment variables
+
+### Admin panel doesn't show contracts
+- Verify you're logged in with correct password
+- Check browser console for errors
+- Ensure contracts exist in database (check Supabase)
+- Try clicking "Refresh" button
+
+### Can't approve/reject contracts
+- Check browser console for errors
+- Verify `ADMIN_PASSWORD` is still valid in session
+- Try logging out and back in
+- Check API endpoint `/api/moderate-contract` is accessible
+
 ---
 
 ## 📞 Support
@@ -269,15 +336,22 @@ If you run into issues:
 
 ## ✨ Ready to Go!
 
-Once you complete the 4 setup steps above, your pricing insights feature will be live!
+Once you complete the setup steps above, your complete pricing insights system is live!
 
-**Two pages are now available:**
+**Three pages are now available:**
 - **Upload Form:** `https://yourdomain.com/pricing-insights`
 - **Public Display:** `https://yourdomain.com/pricing-transparency`
+- **Admin Panel:** `https://yourdomain.com/admin/moderate-contracts`
 
-**Next Steps:**
-1. Upload a test contract at `/pricing-insights`
-2. Manually approve it in Supabase (see testing section above)
-3. View it on `/pricing-transparency`
-4. Add navigation links to both pages in your Header/Footer
-5. Consider implementing Phase 4 (Admin Moderation Interface)
+**Complete Workflow:**
+1. Homeowner uploads contract at `/pricing-insights`
+2. Admin reviews and approves at `/admin/moderate-contracts`
+3. Public can view approved contracts at `/pricing-transparency`
+
+**Recommended Next Steps:**
+1. Set `ADMIN_PASSWORD` in your environment
+2. Upload a test contract
+3. Approve it via admin panel
+4. Verify it appears on public page
+5. Add navigation links to both public pages in your Header/Footer
+6. Consider implementing Phase 5+ features (advanced filtering, analytics, etc.)
