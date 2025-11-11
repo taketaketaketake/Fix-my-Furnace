@@ -99,19 +99,26 @@ import FurnaceDiagnosisScript from "../components/FurnaceDiagnosisScript.astro";
 
           <!-- Step 1: Problem Description & Photo Upload -->
           <div id="step1" class="space-y-6">
-            <!-- Problem Description -->
+            <!-- Last Service -->
             <div>
-              <label for="message" class="block text-sm font-bold text-gray-800 mb-2">
-                Describe the Problem <span class="text-red-500">*</span>
+              <label for="last_service" class="block text-sm font-bold text-gray-800 mb-2">
+                When was the last time your furnace was serviced? <span class="text-red-500">*</span>
               </label>
-              <textarea
-                id="message"
-                name="message"
+              <select
+                id="last_service"
+                name="last_service"
                 required
-                rows="4"
-                placeholder="Tell us what's happening with your furnace... Any error codes? Strange noises? When did it start?"
-                class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition resize-vertical"
-              ></textarea>
+                class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+              >
+                <option value="">Select timeframe</option>
+                <option value="0-6_months">Within the last 6 months</option>
+                <option value="6-12_months">6-12 months ago</option>
+                <option value="1-2_years">1-2 years ago</option>
+                <option value="3-5_years">3-5 years ago</option>
+                <option value="5_years_plus">More than 5 years ago</option>
+                <option value="never">Never serviced</option>
+                <option value="unsure">I'm not sure</option>
+              </select>
             </div>
 
             <!-- Photo Upload -->

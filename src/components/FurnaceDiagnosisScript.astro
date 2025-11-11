@@ -144,7 +144,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
     const step1 = document.getElementById('step1');
     const step2 = document.getElementById('step2');
     const nextStepBtn = document.getElementById('next-step-btn');
-    const messageInput = document.getElementById('message');
+    const lastServiceInput = document.getElementById('last_service');
 
     const formMessages = document.getElementById('form-messages');
     const successMessage = document.getElementById('success-message');
@@ -321,6 +321,12 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
     function displayPhotoPreview(files) {
       photoPreview.innerHTML = '';
       
+      if (files.length > 0) {
+        photoPreview.classList.remove('hidden');
+      } else {
+        photoPreview.classList.add('hidden');
+      }
+      
       Array.from(files).forEach((file, index) => {
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -351,15 +357,19 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
       photoInput.files = dt.files;
       displayPhotoPreview(selectedFiles);
       
+      if (selectedFiles.length === 0) {
+        photoPreview.classList.add('hidden');
+      }
+      
       // Update next step button
       updateNextStepButton();
     };
 
     function updateNextStepButton() {
       const hasPhotos = selectedFiles.length > 0;
-      const hasMessage = messageInput.value.trim().length > 0;
+      const hasLastService = lastServiceInput.value.trim().length > 0;
       
-      if (hasPhotos || hasMessage) {
+      if (hasPhotos || hasLastService) {
         nextStepBtn.disabled = false;
         nextStepBtn.classList.remove('opacity-50', 'cursor-not-allowed');
         nextStepBtn.classList.add('hover:bg-blue-700');
@@ -388,8 +398,8 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
       updateNextStepButton();
     });
 
-    // Message input handler
-    messageInput.addEventListener('input', updateNextStepButton);
+    // Last service input handler
+    lastServiceInput.addEventListener('change', updateNextStepButton);
 
     // Step navigation
     nextStepBtn.addEventListener('click', () => {
@@ -445,7 +455,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
         const name = formData.get('name')?.trim();
         const phone = formData.get('phone')?.trim();
         const address = formData.get('address')?.trim();
-        const message = formData.get('message')?.trim();
+        const lastService = formData.get('last_service')?.trim();
         
         // Validation
         if (!name || !phone) {
@@ -456,8 +466,8 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
           throw new Error('Please enter a valid phone number');
         }
         
-        if (selectedFiles.length === 0 && !message) {
-          throw new Error('Please upload at least one photo or describe your issue');
+        if (selectedFiles.length === 0 && !lastService) {
+          throw new Error('Please upload at least one photo or select when your furnace was last serviced');
         }
         
         let photoUrls = [];
@@ -465,6 +475,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
         
         // Upload photos if any
         if (selectedFiles.length > 0) {
+          uploadProgress.innerHTML = '<div class="w-full bg-gray-200 rounded-full h-2.5 mb-4"><div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div></div><span class="text-sm text-gray-600">Uploading photos... 0%</span>';
           uploadProgress.classList.remove('hidden');
           
           for (let i = 0; i < selectedFiles.length; i++) {
@@ -473,13 +484,13 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
             
             try {
               const { data, error } = await supabase.storage
-                .from('furnace-photos')
+                .from('Furnace Diagnosis Images')
                 .upload(fileName, file);
               
               if (error) throw error;
               
               const { data: urlData } = supabase.storage
-                .from('furnace-photos')
+                .from('Furnace Diagnosis Images')
                 .getPublicUrl(fileName);
               
               photoUrls.push(urlData.publicUrl);
@@ -492,6 +503,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
               
             } catch (uploadError) {
               console.error('Photo upload error:', uploadError);
+              console.error('Upload error details:', uploadError.message, uploadError.error);
               // Continue with other photos
             }
           }
@@ -507,7 +519,8 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
               full_name: name,
               phone_number: phone,
               service_address: address || '',
-              furnace_issue: message || 'Photos uploaded for diagnosis',
+              last_service: lastService || 'Not specified',
+              furnace_issue: 'Photos uploaded for diagnosis',
               photo_count: photoUrls.length,
               photo_urls: photoUrls,
               form_source: 'furnace_diagnosis'
@@ -516,7 +529,8 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
         
         if (error) {
           console.error('Database error:', error);
-          throw new Error('Failed to submit form');
+          console.error('Error details:', error.message, error.details, error.hint);
+          throw new Error(`Database error: ${error.message}`);
         }
         
         // Success
@@ -525,6 +539,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
         form.reset();
         selectedFiles = [];
         photoPreview.innerHTML = '';
+        photoPreview.classList.add('hidden');
         
         // Reset to step 1
         step2.classList.add('hidden');
