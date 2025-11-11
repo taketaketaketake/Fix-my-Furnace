@@ -138,7 +138,7 @@ const {
     {!hideHeader && <Header />}
 
     <!-- 📄 Page Content -->
-    <main id="main-content" class={`transition-all duration-300 ${hideTopBanner ? 'pt-[100px]' : 'pt-[160px]'}`}>
+    <main id="main-content" class={`transition-all duration-300 ${hideHeader && hideTopBanner ? '' : hideTopBanner ? 'pt-[100px]' : 'pt-[160px]'}`}>
       <slot />
     </main>
 
