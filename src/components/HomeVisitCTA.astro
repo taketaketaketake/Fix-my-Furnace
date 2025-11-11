@@ -3,6 +3,7 @@
  * HomeVisitCTA.astro
  * High-converting call-to-action for $125 home visit diagnosis
  */
+const phoneNumber = import.meta.env.TELNYX_PHONE_NUMBER || '+18334948669';
 ---
 
 <section class="relative bg-gradient-to-br from-red-600 via-red-700 to-orange-600 py-20 px-6 overflow-hidden">
@@ -69,7 +70,7 @@
             </svg>
           </a>
           <a
-            href="tel:+18334948669"
+            href={`tel:${phoneNumber}`}
             class="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-red-600 transition-all text-center"
           >
             Call (833) FIX-IT-NOW

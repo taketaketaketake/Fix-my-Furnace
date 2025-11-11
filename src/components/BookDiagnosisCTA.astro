@@ -3,6 +3,7 @@
  * BookDiagnosisCTA.astro
  * Reusable CTA component for booking $125 professional diagnosis
  */
+const phoneNumber = import.meta.env.TELNYX_PHONE_NUMBER || '+18334948669';
 ---
 
 <div class="bg-gradient-to-br from-red-600 via-red-700 to-orange-600 rounded-2xl p-8 md:p-12 text-white text-center">
@@ -20,7 +21,7 @@
       Book My $125 Diagnosis →
     </a>
     <p class="text-sm text-red-100 mt-4">
-      Or call: <a href="tel:+18334948669" class="underline hover:text-white font-bold">(833) 494-8669</a>
+      Or call: <a href={`tel:${phoneNumber}`} class="underline hover:text-white font-bold">(833) FIX-IT-NOW</a>
     </p>
   </div>
 

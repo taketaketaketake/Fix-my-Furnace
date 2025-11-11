@@ -3,6 +3,7 @@
  * ModernHeroHeader.astro
  * High-converting hero with full-width background image and overlay content
  */
+const phoneNumber = import.meta.env.TELNYX_PHONE_NUMBER || '+18334948669';
 ---
 
 <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
@@ -72,7 +73,7 @@
 
         <!-- Secondary CTA -->
         <a
-          href="tel:+18334948669"
+          href={`tel:${phoneNumber}`}
           class="group bg-white/10 backdrop-blur-md border-2 border-white text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white hover:text-red-600 transition-all duration-300 w-full sm:w-auto text-center flex items-center justify-center gap-3"
         >
           <svg class="w-6 h-6 group-hover:animate-bounce" fill="currentColor" viewBox="0 0 20 20">

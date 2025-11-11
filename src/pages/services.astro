@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const phoneNumber = import.meta.env.TELNYX_PHONE_NUMBER || '+18334948669';
 ---
 
 <Layout 
@@ -181,7 +182,7 @@ import Layout from "../layouts/Layout.astro";
       Call our local team for same-day furnace service anywhere in Michigan.
     </p>
     <a
-      href="tel:+18334948669"
+      href={`tel:${phoneNumber}`}
       class="bg-white text-red-600 font-extrabold px-8 py-4 rounded-lg text-lg hover:bg-gray-100 transition shadow-lg"
     >
       Call (833) FIX-IT-NOW

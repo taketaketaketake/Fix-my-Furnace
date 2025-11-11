@@ -3,6 +3,7 @@
  * TopBarCTA.astro
  * Fixed slim CTA banner above the header.
  */
+const phoneNumber = import.meta.env.TELNYX_PHONE_NUMBER || '+18334948669';
 ---
 
 <section
@@ -20,7 +21,7 @@
 
     <!-- ✅ Cleaned phone link for proper mobile dialing -->
     <a
-      href="tel:+18334948669"
+      href={`tel:${phoneNumber}`}
       class="inline-block bg-white text-red-600 font-bold px-4 py-1.5 rounded-md hover:bg-gray-100 transition whitespace-nowrap text-sm sm:text-base"
     >
       Call (833) FIX-IT-NOW

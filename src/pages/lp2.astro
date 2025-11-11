@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import ServiceAreasSection from "../components/ServiceAreasSection.astro";
 import UniversalForm from "../components/UniversalForm.astro";
 
+const phoneNumber = import.meta.env.TELNYX_PHONE_NUMBER || '+18334948669';
+
 // Form fields for landing page 2
 const landingPage2Fields = [
   {
@@ -200,7 +202,7 @@ const landingPage2Fields = [
     <p class="mb-6 text-white/90">Call now or get your free quote in under a minute.</p>
     <div class="flex flex-col sm:flex-row justify-center gap-4">
       <a
-        href="tel:+18334948669"
+        href={`tel:${phoneNumber}`}
         class="bg-white text-red-600 font-semibold px-8 py-4 rounded-lg text-lg hover:bg-gray-100 transition"
       >
         Call (833) FIX-IT-NOW

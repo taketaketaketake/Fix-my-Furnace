@@ -3,6 +3,7 @@
  * ProblemSection.astro
  * Highlights customer pain points and creates urgency
  */
+const phoneNumber = import.meta.env.TELNYX_PHONE_NUMBER || '+18334948669';
 ---
 
 <section class="py-20 bg-white">
@@ -75,7 +76,7 @@
         <a href="/home-visit" class="bg-white text-red-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-yellow-300 transition-colors">
           Get Expert Help Now
         </a>
-        <a href="tel:+18334948669" class="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-colors">
+        <a href={`tel:${phoneNumber}`} class="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-colors">
           Call (833) FIX-IT-NOW
         </a>
       </div>

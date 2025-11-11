@@ -11,6 +11,8 @@ import FAQSection from "../components/FAQSection.astro";
 import HomeVisitCTA from "../components/HomeVisitCTA.astro";
 import ServiceAreasSection from "../components/ServiceAreasSection.astro";
 import HeroHeader from "../components/HeroHeader.astro";
+
+const phoneNumber = import.meta.env.TELNYX_PHONE_NUMBER || '+18334948669';
 ---
 
 <Layout
@@ -25,7 +27,7 @@ import HeroHeader from "../components/HeroHeader.astro";
     primaryBtnText="Schedule an Appointment Now!"
     primaryBtnLink="/landing_page_1"
     secondaryBtnText="Text Us"
-    secondaryBtnLink="tel:+18334948669"
+    secondaryBtnLink={`tel:${phoneNumber}`}
     imageSrc="/Fix_My_Furnace_Hero_Image.png"
   />
   

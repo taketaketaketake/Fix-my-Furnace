@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import UniversalForm from "../components/UniversalForm.astro";
 
+const phoneNumber = import.meta.env.TELNYX_PHONE_NUMBER || '+18334948669';
+
 const fields = [
   {
     name: 'name',
@@ -103,7 +105,7 @@ const fields = [
           </li>
           <li class="flex items-center gap-3">
             <i data-lucide="phone" class="w-5 h-5 text-red-600"></i>
-            <a href="tel:+18334948669" class="hover:text-red-600">(833) FIX-IT-NOW</a>
+            <a href={`tel:${phoneNumber}`} class="hover:text-red-600">(833) FIX-IT-NOW</a>
           </li>
           <li class="flex items-center gap-3">
             <i data-lucide="mail" class="w-5 h-5 text-red-600"></i>
@@ -230,7 +232,7 @@ const fields = [
           Can't find your city listed? Don't worry — our network of licensed technicians covers every corner of Michigan.
         </p>
         <p class="text-gray-800 font-bold text-xl">
-          <a href="tel:+18334948669" class="text-red-600 hover:text-red-700 transition-colors">Call (833) FIX-IT-NOW today</a> to get your local tech scheduled.
+          <a href={`tel:${phoneNumber}`} class="text-red-600 hover:text-red-700 transition-colors">Call (833) FIX-IT-NOW today</a> to get your local tech scheduled.
         </p>
       </div>
     </div>
@@ -241,7 +243,7 @@ const fields = [
     <h3 class="text-3xl font-bold mb-3">Emergency? Don’t Wait — Call Us Now.</h3>
     <p class="mb-6 text-white/90">Same-day service available 7 days a week across Michigan.</p>
     <a
-      href="tel:+18334948669"
+      href={`tel:${phoneNumber}`}
       class="bg-white text-red-600 font-semibold px-8 py-4 rounded-lg text-lg hover:bg-gray-100 transition"
     >
       Call (833) FIX-IT-NOW

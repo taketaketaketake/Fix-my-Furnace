@@ -6,6 +6,8 @@
  */
 import Layout from "../layouts/Layout.astro";
 import UniversalForm from "../components/UniversalForm.astro";
+
+const phoneNumber = import.meta.env.TELNYX_PHONE_NUMBER || '+18334948669';
 ---
 
 <Layout
@@ -236,7 +238,7 @@ import UniversalForm from "../components/UniversalForm.astro";
         </div>
 
         <p class="text-center text-gray-500 text-sm mt-6">
-          Or call us at <a href="tel:+18334948669" class="text-red-600 font-bold underline">(833) 494-8669</a>
+          Or call us at <a href={`tel:${phoneNumber}`} class="text-red-600 font-bold underline">(833) 494-8669</a>
         </p>
 
       </div>
