@@ -134,90 +134,36 @@ const services = [
     <div class="absolute bottom-0 left-0 w-full h-2 bg-red-600"></div>
   </section>
 
-  <!-- 🏆 WHY CHOOSE OUR NETWORK -->
-  <section class="py-16 bg-white">
-    <div class="max-w-6xl mx-auto px-6 md:px-10">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
-          Why Choose Contractors from Our <span class="text-red-600">Verified Network?</span>
-        </h2>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          Skip the guesswork. Every HVAC professional in our network meets strict standards for quality and reliability.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        <!-- Benefit 1 -->
-        <div class="text-center">
-          <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="shield-check" class="w-8 h-8 text-red-600"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Pre-Screened & Licensed</h3>
-          <p class="text-gray-700">
-            All contractors are Michigan-licensed, background-checked, and carry current insurance. No surprises.
-          </p>
-        </div>
-
-        <!-- Benefit 2 -->
-        <div class="text-center">
-          <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="star" class="w-8 h-8 text-blue-600"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Quality Guaranteed</h3>
-          <p class="text-gray-700">
-            We monitor customer feedback and only work with contractors who maintain high standards for service quality.
-          </p>
-        </div>
-
-        <!-- Benefit 3 -->
-        <div class="text-center">
-          <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="map-pin" class="w-8 h-8 text-green-600"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Local Experts</h3>
-          <p class="text-gray-700">
-            Find contractors who know your area, understand Michigan weather, and provide fast response times.
-          </p>
-        </div>
-      </div>
-
-      <!-- Cities Coverage -->
-      <div class="mt-12 bg-gray-50 rounded-2xl p-8">
-        <h3 class="text-2xl font-bold text-gray-900 text-center mb-6">
-          Serving HVAC Needs Across Michigan
-        </h3>
-        <div class="flex flex-wrap justify-center gap-3 text-sm">
-          {michiganCities.slice(1, 17).map(city => (
-            <span class="bg-white border border-gray-200 text-gray-700 px-3 py-2 rounded-lg font-medium">
-              {city}
-            </span>
-          ))}
-          <span class="bg-red-600 text-white px-3 py-2 rounded-lg font-medium">
-            + More Cities
-          </span>
-        </div>
-        <p class="text-center text-gray-600 mt-4">
-          Professional furnace repair, installation, and emergency HVAC services available statewide.
-        </p>
-      </div>
-    </div>
-  </section>
 
   <!-- 🔍 FILTERS -->
-  <section class="bg-white py-12 px-6 md:px-10 border-b border-gray-200">
+  <section class="bg-white py-12 px-6 md:px-10">
     <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row gap-6 items-center justify-center">
+      <!-- Search and Filter Row -->
+      <div class="flex flex-col lg:flex-row gap-4 items-stretch">
+        <!-- Search by Name -->
+        <div class="flex-1 lg:flex-[2]">
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <i data-lucide="search" class="h-5 w-5 text-gray-400"></i>
+            </div>
+            <input
+              type="text"
+              id="name-search"
+              placeholder="Find a contractor by name"
+              class="w-full pl-12 pr-4 py-4 border-3 border-black rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition-all text-lg"
+            />
+          </div>
+        </div>
+
         <!-- Service Filter -->
-        <div class="w-full md:w-auto">
-          <label for="service-filter" class="block text-sm font-semibold text-gray-700 mb-2">
-            Filter by Service:
-          </label>
+        <div class="flex-1">
           <select
             id="service-filter"
-            class="w-full md:w-64 border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition"
+            class="w-full px-4 py-4 border-3 border-black rounded-xl text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition-all text-lg bg-white"
           >
-            {services.map(service => (
-              <option value={service === 'All Services' ? 'all' : service.toLowerCase()}>
+            <option value="all">All Services</option>
+            {services.slice(1).map(service => (
+              <option value={service.toLowerCase()}>
                 {service}
               </option>
             ))}
@@ -225,16 +171,14 @@ const services = [
         </div>
 
         <!-- Area Filter -->
-        <div class="w-full md:w-auto">
-          <label for="area-filter" class="block text-sm font-semibold text-gray-700 mb-2">
-            Filter by Area:
-          </label>
+        <div class="flex-1">
           <select
             id="area-filter"
-            class="w-full md:w-64 border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition"
+            class="w-full px-4 py-4 border-3 border-black rounded-xl text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition-all text-lg bg-white"
           >
-            {michiganCities.map(city => (
-              <option value={city === 'All Areas' ? 'all' : city.toLowerCase()}>
+            <option value="all">All Areas</option>
+            {michiganCities.slice(1).map(city => (
+              <option value={city.toLowerCase()}>
                 {city}
               </option>
             ))}
@@ -242,12 +186,12 @@ const services = [
         </div>
 
         <!-- Reset Button -->
-        <div class="w-full md:w-auto md:mt-7">
+        <div class="flex-shrink-0">
           <button
             id="reset-filters"
-            class="w-full md:w-auto bg-gray-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-gray-700 transition"
+            class="w-full lg:w-auto bg-gray-600 text-white font-semibold px-6 py-4 rounded-xl border-2 border-black hover:bg-gray-700 transition-all text-lg"
           >
-            Reset Filters
+            Reset
           </button>
         </div>
       </div>
@@ -306,26 +250,6 @@ const services = [
     </div>
   </section>
 
-  <!-- 🚀 CTA Footer Bar -->
-  <section class="bg-red-600 text-white py-16 text-center">
-    <h3 class="text-3xl font-bold mb-3">Need Expert HVAC Service Today?</h3>
-    <p class="mb-6 text-white/90">Get connected with a trusted, licensed contractor in your area within minutes.</p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a
-        href="/furnace/diagnosis"
-        class="bg-white text-red-600 font-semibold px-8 py-4 rounded-lg text-lg hover:bg-gray-100 transition inline-block"
-      >
-        Get Free Diagnosis
-      </a>
-      <a
-        href={`tel:${phoneNumber}`}
-        class="border-2 border-white text-white font-semibold px-8 py-4 rounded-lg text-lg hover:bg-white/10 transition inline-block"
-      >
-        Call (833) 494-8669
-      </a>
-    </div>
-    <p class="text-sm text-white/80 mt-4">Available 24/7 for emergency service across Michigan</p>
-  </section>
 
   <!-- Lucide Icons -->
   <script type="module" src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -336,13 +260,15 @@ const services = [
     let allProviders = [];
     let currentFilters = {
       service: 'all',
-      area: 'all'
+      area: 'all',
+      name: ''
     };
 
     // DOM Elements
     const loadingState = document.getElementById('loading-state');
     const emptyState = document.getElementById('empty-state');
     const providersGrid = document.getElementById('providers-grid');
+    const nameSearch = document.getElementById('name-search');
     const serviceFilter = document.getElementById('service-filter');
     const areaFilter = document.getElementById('area-filter');
     const resetButton = document.getElementById('reset-filters');
@@ -394,6 +320,15 @@ const services = [
     function filterProviders() {
       let filtered = allProviders;
 
+      // Filter by name
+      if (currentFilters.name.trim() !== '') {
+        const searchTerm = currentFilters.name.toLowerCase().trim();
+        filtered = filtered.filter(provider =>
+          provider.business_name.toLowerCase().includes(searchTerm) ||
+          provider.contact_name.toLowerCase().includes(searchTerm)
+        );
+      }
+
       // Filter by service
       if (currentFilters.service !== 'all') {
         filtered = filtered.filter(provider =>
@@ -441,20 +376,7 @@ const services = [
             ${provider.business_name}
           </h3>
 
-          <!-- Description -->
-          ${provider.description
-            ? `<p class="text-gray-700 mb-4 line-clamp-3">${provider.description}</p>`
-            : '<p class="text-gray-700 mb-4">Trusted HVAC professional serving Michigan.</p>'
-          }
 
-          <!-- Years in Business -->
-          ${provider.years_in_business
-            ? `<div class="flex items-center gap-2 mb-4 text-gray-800">
-                 <i data-lucide="calendar" class="w-4 h-4 text-red-600"></i>
-                 <span class="text-sm font-semibold">${provider.years_in_business} years in business</span>
-               </div>`
-            : ''
-          }
 
           <!-- Service Areas -->
           <div class="mb-4">
@@ -464,12 +386,12 @@ const services = [
             </div>
             <div class="flex flex-wrap gap-2">
               ${provider.service_areas.slice(0, 4).map(area => `
-                <span class="bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">
+                <span class="bg-blue-50 text-blue-700 text-sm font-semibold px-3 py-2 rounded-full">
                   ${area}
                 </span>
               `).join('')}
               ${provider.service_areas.length > 4
-                ? `<span class="bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">
+                ? `<span class="bg-blue-50 text-blue-700 text-sm font-semibold px-3 py-2 rounded-full">
                      +${provider.service_areas.length - 4} more
                    </span>`
                 : ''
@@ -485,12 +407,12 @@ const services = [
             </div>
             <div class="flex flex-wrap gap-2">
               ${provider.services_offered.slice(0, 3).map(service => `
-                <span class="bg-red-50 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">
+                <span class="bg-red-50 text-red-700 text-sm font-semibold px-3 py-2 rounded-full">
                   ${service}
                 </span>
               `).join('')}
               ${provider.services_offered.length > 3
-                ? `<span class="bg-red-50 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">
+                ? `<span class="bg-red-50 text-red-700 text-sm font-semibold px-3 py-2 rounded-full">
                      +${provider.services_offered.length - 3} more
                    </span>`
                 : ''
@@ -518,6 +440,11 @@ const services = [
     }
 
     // Event listeners
+    nameSearch.addEventListener('input', (e) => {
+      currentFilters.name = e.target.value;
+      filterProviders();
+    });
+
     serviceFilter.addEventListener('change', (e) => {
       currentFilters.service = e.target.value;
       filterProviders();
@@ -529,14 +456,16 @@ const services = [
     });
 
     resetButton.addEventListener('click', () => {
-      currentFilters = { service: 'all', area: 'all' };
+      currentFilters = { service: 'all', area: 'all', name: '' };
+      nameSearch.value = '';
       serviceFilter.value = 'all';
       areaFilter.value = 'all';
       renderProviders(allProviders);
     });
 
     resetEmptyButton.addEventListener('click', () => {
-      currentFilters = { service: 'all', area: 'all' };
+      currentFilters = { service: 'all', area: 'all', name: '' };
+      nameSearch.value = '';
       serviceFilter.value = 'all';
       areaFilter.value = 'all';
       renderProviders(allProviders);

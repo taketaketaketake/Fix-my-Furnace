@@ -24,7 +24,7 @@ Fix My Furnace is Michigan's most trusted HVAC service network, connecting homeo
 ## ⭐ Platform Features
 
 - **Smart Lead Capture System** - Advanced forms with phone validation, address autocomplete, and spam protection
-- **Provider Directory** - Searchable network of verified HVAC contractors
+- **Advanced Provider Directory** - Searchable network with real-time filtering and professional profiles
 - **Contractor Application Portal** - Streamlined onboarding for new service providers
 - **Free Furnace Diagnosis** - Photo-based troubleshooting system
 - **Pricing Transparency System** - Real contract database where homeowners can upload and view actual service contracts
@@ -238,6 +238,113 @@ Revolutionary pricing transparency platform where homeowners can upload actual s
 - Admin password protection for moderation interface
 - Supabase RLS policies for data access control
 - Input sanitization and spam protection
+
+---
+
+## 🏢 Provider Directory System (ENHANCED)
+
+### Overview
+Professional contractor directory with advanced search capabilities, allowing homeowners to find verified HVAC contractors across Michigan. Features real-time filtering, professional profiles, and mobile-optimized design inspired by leading directory platforms.
+
+### Key Features
+- **Advanced Search Interface** (`/partners`) - Professional search bar with real-time filtering
+- **Multi-Dimensional Filtering** - Search by contractor name, service type, and service area simultaneously
+- **Professional Contractor Profiles** - Comprehensive business information, service areas, and specializations
+- **Verified Network Display** - Clear indicators for licensed, insured, and background-checked contractors
+- **Responsive Grid Layout** - Mobile-first design with professional card layouts
+- **Real-time Results** - Instant filtering without page reloads
+
+### Search Capabilities
+**Name Search:**
+- Real-time search as you type
+- Searches both business names and contact names
+- Case-insensitive matching
+- Instant results display
+
+**Service Filtering:**
+- Furnace Repair & Installation
+- Boiler Services
+- Emergency HVAC
+- Duct Cleaning
+- Maintenance & Tune-ups
+- Air Quality Solutions
+
+**Geographic Coverage:**
+- All major Michigan cities included
+- Detroit, Ann Arbor, Grand Rapids, Warren, Sterling Heights
+- Lansing, Dearborn, Livonia, Flint, Troy, Kalamazoo
+- Plus 16+ additional service areas
+
+### Professional Profiles
+Each contractor listing includes:
+- **Business Information** - Company name, contact details, years in business
+- **Service Areas** - Geographic coverage with city listings
+- **Specializations** - Specific HVAC services offered
+- **Verification Status** - Licensed, insured, and background-check indicators
+- **Website Links** - Direct connection to contractor websites
+- **Professional Imagery** - Business logos and professional presentation
+
+### User Experience Design
+**Clean Filter Interface:**
+- Full-width search bar with search icon
+- Horizontal layout with equal-width dropdowns
+- Professional styling with rounded corners
+- Consistent focus states and hover effects
+- Mobile-responsive with vertical stacking
+
+**Results Display:**
+- Professional card layout with company branding
+- Clear service area and specialization tags
+- Loading states and empty state handling
+- Smooth transitions and professional animations
+
+### Database Integration
+**Provider Data Structure:**
+```sql
+- business_name, contact_name, email, phone
+- website, business_address, description
+- service_areas[], services_offered[]
+- years_in_business, license_number
+- logo_url, status, admin_notes
+```
+
+**API Endpoints:**
+- `/api/get-providers` - Fetch all verified contractors
+- Real-time client-side filtering
+- Optimized data loading with caching
+
+### Technical Implementation
+**Frontend Features:**
+- JavaScript-powered real-time search
+- Multiple simultaneous filter conditions
+- Professional loading and empty states
+- Lucide icon integration for professional appearance
+- Responsive design patterns
+
+**Performance Optimizations:**
+- Client-side filtering for instant results
+- Efficient data structures for large contractor lists
+- Lazy loading for contractor images
+- Minimal JavaScript footprint
+
+### Business Value
+**For Homeowners:**
+- Easy discovery of local HVAC professionals
+- Verified contractor information builds trust
+- Multiple search methods accommodate different preferences
+- Professional presentation increases confidence
+
+**For Contractors:**
+- Professional online presence in trusted network
+- Lead generation through directory visibility
+- Quality association with verified network
+- Mobile-optimized profiles for on-the-go customers
+
+### Integration with Main Platform
+- **Seamless Navigation** - Integrated with main site navigation
+- **Consistent Branding** - Matches site design and user experience
+- **Lead Capture** - Direct connection to quote request systems
+- **Trust Building** - Supports verified network messaging
 
 ---
 

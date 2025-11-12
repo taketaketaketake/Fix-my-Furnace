@@ -1,0 +1,95 @@
+---
+/**
+ * VerifiedNetworkSection.astro
+ * Reusable component explaining why to choose contractors from the verified network
+ */
+
+// Define common Michigan cities for the coverage section
+const michiganCities = [
+  'Detroit',
+  'Ann Arbor',
+  'Grand Rapids',
+  'Warren',
+  'Sterling Heights',
+  'Lansing',
+  'Dearborn',
+  'Livonia',
+  'Flint',
+  'Troy',
+  'Kalamazoo',
+  'Holland',
+  'Traverse City',
+  'Saginaw',
+  'Muskegon',
+  'Battle Creek'
+];
+---
+
+<!-- 🏆 WHY CHOOSE OUR NETWORK -->
+<section class="py-16 bg-white">
+  <div class="max-w-6xl mx-auto px-6 md:px-10">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+        Why Choose Contractors from Our <span class="text-red-600">Verified Network?</span>
+      </h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Skip the guesswork. Every HVAC professional in our network meets strict standards for quality and reliability.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Benefit 1 -->
+      <div class="text-center">
+        <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="shield-check" class="w-8 h-8 text-red-600"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-3">Pre-Screened & Licensed</h3>
+        <p class="text-gray-700">
+          All contractors are Michigan-licensed, background-checked, and carry current insurance. No surprises.
+        </p>
+      </div>
+
+      <!-- Benefit 2 -->
+      <div class="text-center">
+        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="star" class="w-8 h-8 text-blue-600"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-3">Quality Guaranteed</h3>
+        <p class="text-gray-700">
+          We monitor customer feedback and only work with contractors who maintain high standards for service quality.
+        </p>
+      </div>
+
+      <!-- Benefit 3 -->
+      <div class="text-center">
+        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="map-pin" class="w-8 h-8 text-green-600"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-3">Local Experts</h3>
+        <p class="text-gray-700">
+          Find contractors who know your area, understand Michigan weather, and provide fast response times.
+        </p>
+      </div>
+    </div>
+
+    <!-- Cities Coverage -->
+    <div class="mt-12 bg-gray-50 rounded-2xl p-8">
+      <h3 class="text-2xl font-bold text-gray-900 text-center mb-6">
+        Serving HVAC Needs Across Michigan
+      </h3>
+      <div class="flex flex-wrap justify-center gap-3 text-sm">
+        {michiganCities.map(city => (
+          <span class="bg-white border border-gray-200 text-gray-700 px-3 py-2 rounded-lg font-medium">
+            {city}
+          </span>
+        ))}
+        <span class="bg-red-600 text-white px-3 py-2 rounded-lg font-medium">
+          + More Cities
+        </span>
+      </div>
+      <p class="text-center text-gray-600 mt-4">
+        Professional furnace repair, installation, and emergency HVAC services available statewide.
+      </p>
+    </div>
+  </div>
+</section>
