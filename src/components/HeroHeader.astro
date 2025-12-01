@@ -14,7 +14,7 @@ const phoneNumber = import.meta.env.TELNYX_PHONE_NUMBER || '+18334948669';
   primaryBtnText = "Get a Free Quote",
   secondaryBtnText = "Call Now",
   secondaryBtnLink = `tel:${phoneNumber}`,
-  imageSrc = "/fixmyfurnacewoman.png"
+  imageSrc = "/Licensed HVAC Technician Ready to Help.png"
 } = Astro.props;
 
 // Form fields for the hero modal form
@@ -75,7 +75,7 @@ const heroModalFields = [
     <!-- 🔧 Right: Image -->
     <div class="relative w-full flex items-center justify-center bg-white py-6 md:py-0">
       <img
-        src="fixmyfurnacewoman.png"
+        src={imageSrc}
         alt="Professional Michigan HVAC technician providing furnace repair and installation services across Detroit, Grand Rapids, Ann Arbor, and all Michigan cities"
         class="w-full max-w-[700px] h-auto object-contain"
         loading="eager"
