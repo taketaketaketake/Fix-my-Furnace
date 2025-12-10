@@ -3,6 +3,7 @@
  * BenefitsSection.astro
  * Why choose us - USPs and differentiators
  */
+import BenefitCard from "./BenefitCard.astro";
 ---
 
 <section class="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-red-900 text-white relative overflow-hidden">
@@ -26,109 +27,36 @@
 
     <!-- Benefits Grid -->
     <div class="grid md:grid-cols-2 gap-8 mb-12">
+      
+      <BenefitCard 
+        title="Lightning-Fast Response"
+        description="Average response time under 2 hours. When you're freezing, we don't make you wait days for an appointment."
+      />
 
-      <!-- Benefit 1 -->
-      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-xl font-bold mb-2">Lightning-Fast Response</h3>
-            <p class="text-gray-300">
-              Average response time under 2 hours. When you're freezing, we don't make you wait days for an appointment.
-            </p>
-          </div>
-        </div>
-      </div>
+      <BenefitCard 
+        title="Licensed & Certified Experts"
+        description="Every technician is Michigan-licensed, background-checked, and continuously trained on the latest HVAC technology."
+      />
 
-      <!-- Benefit 2 -->
-      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-xl font-bold mb-2">Licensed & Certified Experts</h3>
-            <p class="text-gray-300">
-              Every technician is Michigan-licensed, background-checked, and continuously trained on the latest HVAC technology.
-            </p>
-          </div>
-        </div>
-      </div>
+      <BenefitCard 
+        title="Transparent, Upfront Pricing"
+        description="No hidden fees. No surprise charges. You'll know exactly what it costs before we start any work."
+      />
 
-      <!-- Benefit 3 -->
-      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-xl font-bold mb-2">Transparent, Upfront Pricing</h3>
-            <p class="text-gray-300">
-              No hidden fees. No surprise charges. You'll know exactly what it costs before we start any work.
-            </p>
-          </div>
-        </div>
-      </div>
+      <BenefitCard 
+        title="Quality Guaranteed"
+        description="We stand behind our work with comprehensive warranties. If it's not right, we make it right — no questions asked."
+      />
 
-      <!-- Benefit 4 -->
-      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-xl font-bold mb-2">Quality Guaranteed</h3>
-            <p class="text-gray-300">
-              We stand behind our work with comprehensive warranties. If it's not right, we make it right — no questions asked.
-            </p>
-          </div>
-        </div>
-      </div>
+      <BenefitCard 
+        title="Michigan-Born & Based"
+        description="We live here. We work here. We understand Michigan winters and we're invested in keeping our neighbors warm."
+      />
 
-      <!-- Benefit 5 -->
-      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-xl font-bold mb-2">Michigan-Born & Based</h3>
-            <p class="text-gray-300">
-              We live here. We work here. We understand Michigan winters and we're invested in keeping our neighbors warm.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Benefit 6 -->
-      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-xl font-bold mb-2">4.9/5 Star Customer Rating</h3>
-            <p class="text-gray-300">
-              Over 1,200 five-star reviews from happy Michigan homeowners. Real people, real results.
-            </p>
-          </div>
-        </div>
-      </div>
+      <BenefitCard 
+        title="4.9/5 Star Customer Rating"
+        description="Over 1,200 five-star reviews from happy Michigan homeowners. Real people, real results."
+      />
 
     </div>
 

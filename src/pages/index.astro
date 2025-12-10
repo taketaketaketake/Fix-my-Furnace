@@ -11,6 +11,7 @@ import FAQSection from "../components/FAQSection.astro";
 import HomeVisitCTA from "../components/HomeVisitCTA.astro";
 import ServiceAreasSection from "../components/ServiceAreasSection.astro";
 import HeroHeader from "../components/HeroHeader.astro";
+import NewHeroHeader from "../components/NewHeroHeader.astro";
 
 const phoneNumber = import.meta.env.TELNYX_PHONE_NUMBER || '+18334948669';
 ---
@@ -28,11 +29,13 @@ const phoneNumber = import.meta.env.TELNYX_PHONE_NUMBER || '+18334948669';
     primaryBtnLink="/landing_page_1"
     secondaryBtnText="Text Us"
     secondaryBtnLink={`tel:${phoneNumber}`}
-    imageSrc="/Licensed HVAC Technician Ready to Help.png"
+    imageSrc="/fix-my-furnace-logo-full.png"
   />
   
   <!-- 🗺️ Service Areas -->
-  <ServiceAreasSection />
+  <div class="relative z-0">
+    <ServiceAreasSection />
+  </div>
 
   <!-- 🛠️ Services Overview -->
   <ServicesGrid />

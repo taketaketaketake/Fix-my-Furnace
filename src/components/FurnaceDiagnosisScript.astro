@@ -536,6 +536,12 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
         // Success
         setLoadingState(false);
         showMessage('success');
+        
+        // Track conversion
+        if (typeof gtag_report_conversion === 'function') {
+          gtag_report_conversion();
+        }
+        
         form.reset();
         selectedFiles = [];
         photoPreview.innerHTML = '';

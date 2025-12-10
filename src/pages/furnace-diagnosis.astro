@@ -9,6 +9,22 @@ import FurnaceDiagnosisScript from "../components/FurnaceDiagnosisScript.astro";
 
 <Layout title="Upload Photos & Get Expert Callback | Fix My Furnace - Michigan" hideHeader={true} hideTopBanner={true}>
 
+  <!-- Google Ads Conversion Tracking -->
+  <script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-17780039581/eZh_CJW6ncwbEJ2_l55C',
+        'event_callback': callback
+    });
+    return false;
+  }
+  </script>
+
   <!-- Hero Section -->
   <section class="bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white py-16 px-6">
     <div class="container mx-auto max-w-5xl text-center">

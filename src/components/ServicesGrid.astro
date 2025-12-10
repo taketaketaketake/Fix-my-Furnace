@@ -5,8 +5,29 @@
  */
 ---
 
-<section class="py-20 bg-white">
-  <div class="container mx-auto px-6 max-w-7xl">
+<section class="py-20 bg-gradient-to-br from-blue-50 via-blue-100/30 to-white relative overflow-hidden">
+  <!-- Semi-transparent blue overlay for winter theme -->
+  <div class="absolute inset-0 bg-blue-600/10"></div>
+  
+  <!-- Falling snowflakes -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    <div class="snowflake" style="left: 10%; animation-delay: 0s; animation-duration: 3s;">❄</div>
+    <div class="snowflake" style="left: 20%; animation-delay: 0.5s; animation-duration: 3.5s;">❄</div>
+    <div class="snowflake" style="left: 30%; animation-delay: 1s; animation-duration: 4s;">❄</div>
+    <div class="snowflake" style="left: 40%; animation-delay: 1.5s; animation-duration: 3.2s;">❄</div>
+    <div class="snowflake" style="left: 50%; animation-delay: 2s; animation-duration: 3.8s;">❄</div>
+    <div class="snowflake" style="left: 60%; animation-delay: 0.3s; animation-duration: 4.2s;">❄</div>
+    <div class="snowflake" style="left: 70%; animation-delay: 1.8s; animation-duration: 3.5s;">❄</div>
+    <div class="snowflake" style="left: 80%; animation-delay: 0.8s; animation-duration: 4.5s;">❄</div>
+    <div class="snowflake" style="left: 90%; animation-delay: 2.5s; animation-duration: 3.3s;">❄</div>
+    <div class="snowflake" style="left: 15%; animation-delay: 3s; animation-duration: 3.7s;">❄</div>
+    <div class="snowflake" style="left: 35%; animation-delay: 0.2s; animation-duration: 4.1s;">❄</div>
+    <div class="snowflake" style="left: 55%; animation-delay: 1.2s; animation-duration: 3.4s;">❄</div>
+    <div class="snowflake" style="left: 75%; animation-delay: 2.8s; animation-duration: 3.9s;">❄</div>
+    <div class="snowflake" style="left: 85%; animation-delay: 0.7s; animation-duration: 4.3s;">❄</div>
+  </div>
+  
+  <div class="container mx-auto px-6 max-w-7xl relative z-10">
 
     <!-- Header -->
     <div class="text-center mb-16">
@@ -23,7 +44,7 @@
 
       <!-- Service 1 -->
       <a href="/services/emergency-hvac" class="group">
-        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
+        <div class="bg-gradient-to-br from-red-700 to-red-500 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-red-600">
           <div class="relative aspect-square overflow-hidden">
             <img
               src="/repair.png"
@@ -36,25 +57,16 @@
             </div>
           </div>
           <div class="p-3 md:p-6">
-            <h3 class="text-lg md:text-2xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-red-600 transition-colors">
+            <h3 class="text-lg md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-gray-100 transition-colors">
               Emergency Repairs
             </h3>
-            <p class="text-gray-600 mb-3 md:mb-4 leading-relaxed text-sm md:text-base">
-              Furnace quit in the middle of winter? We respond fast with same-day emergency service to get your heat back on.
-            </p>
-            <span class="hidden md:inline-flex text-red-600 font-bold items-center gap-2 group-hover:gap-3 transition-all">
-              Learn More
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </span>
           </div>
         </div>
       </a>
 
       <!-- Service 2 -->
       <a href="/services/furnace-installation" class="group">
-        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
+        <div class="bg-gradient-to-br from-red-700 to-red-500 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-red-600">
           <div class="relative aspect-square overflow-hidden">
             <img
               src="/furnace_installation_michigan.png"
@@ -64,25 +76,16 @@
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           </div>
           <div class="p-3 md:p-6">
-            <h3 class="text-lg md:text-2xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-red-600 transition-colors">
+            <h3 class="text-lg md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-gray-100 transition-colors">
               Furnace Installation
             </h3>
-            <p class="text-gray-600 mb-3 md:mb-4 leading-relaxed text-sm md:text-base">
-              New construction or replacement? We install high-efficiency furnaces with expert precision and warranty protection.
-            </p>
-            <span class="hidden md:inline-flex text-red-600 font-bold items-center gap-2 group-hover:gap-3 transition-all">
-              Learn More
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </span>
           </div>
         </div>
       </a>
 
       <!-- Service 3 -->
       <a href="/services/maintenance" class="group">
-        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
+        <div class="bg-gradient-to-br from-red-700 to-red-500 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-red-600">
           <div class="relative aspect-square overflow-hidden">
             <img
               src="/maintenance.png"
@@ -92,25 +95,16 @@
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           </div>
           <div class="p-3 md:p-6">
-            <h3 class="text-lg md:text-2xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-red-600 transition-colors">
+            <h3 class="text-lg md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-gray-100 transition-colors">
               Maintenance & Tune-Ups
             </h3>
-            <p class="text-gray-600 mb-3 md:mb-4 leading-relaxed text-sm md:text-base">
-              Prevent breakdowns before they happen. Our seasonal tune-ups keep your system running efficiently all year.
-            </p>
-            <span class="hidden md:inline-flex text-red-600 font-bold items-center gap-2 group-hover:gap-3 transition-all">
-              Learn More
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </span>
           </div>
         </div>
       </a>
 
       <!-- Service 4 -->
       <a href="/services/boiler-repair" class="group">
-        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
+        <div class="bg-gradient-to-br from-red-700 to-red-500 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-red-600">
           <div class="relative aspect-square overflow-hidden">
             <img
               src="/hvac_pros.png"
@@ -120,25 +114,16 @@
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           </div>
           <div class="p-3 md:p-6">
-            <h3 class="text-lg md:text-2xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-red-600 transition-colors">
+            <h3 class="text-lg md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-gray-100 transition-colors">
               Boiler Services
             </h3>
-            <p class="text-gray-600 mb-3 md:mb-4 leading-relaxed text-sm md:text-base">
-              Steam or hot water boilers? We repair, service, and replace all types with licensed expertise.
-            </p>
-            <span class="hidden md:inline-flex text-red-600 font-bold items-center gap-2 group-hover:gap-3 transition-all">
-              Learn More
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </span>
           </div>
         </div>
       </a>
 
       <!-- Service 5 -->
       <a href="/services/duct-cleaning" class="group">
-        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
+        <div class="bg-gradient-to-br from-red-700 to-red-500 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-red-600">
           <div class="relative aspect-square overflow-hidden">
             <img
               src="/duct_cleaning_detroit.png"
@@ -148,25 +133,16 @@
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           </div>
           <div class="p-3 md:p-6">
-            <h3 class="text-lg md:text-2xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-red-600 transition-colors">
+            <h3 class="text-lg md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-gray-100 transition-colors">
               Duct Cleaning
             </h3>
-            <p class="text-gray-600 mb-3 md:mb-4 leading-relaxed text-sm md:text-base">
-              Improve air quality and system efficiency with professional duct cleaning and sanitization services.
-            </p>
-            <span class="hidden md:inline-flex text-red-600 font-bold items-center gap-2 group-hover:gap-3 transition-all">
-              Learn More
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </span>
           </div>
         </div>
       </a>
 
       <!-- Service 6 -->
       <a href="/home-visit" class="group">
-        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
+        <div class="bg-gradient-to-br from-red-700 to-red-500 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-red-600">
           <div class="relative aspect-square overflow-hidden">
             <img
               src="/pros.png"
@@ -179,18 +155,9 @@
             </div>
           </div>
           <div class="p-3 md:p-6">
-            <h3 class="text-lg md:text-2xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-red-600 transition-colors">
+            <h3 class="text-lg md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-gray-100 transition-colors">
               $125 Home Diagnosis
             </h3>
-            <p class="text-gray-600 mb-3 md:mb-4 leading-relaxed text-sm md:text-base">
-              Not sure what's wrong? Get a complete system analysis with transparent pricing. Fee credited toward repairs.
-            </p>
-            <span class="hidden md:inline-flex text-red-600 font-bold items-center gap-2 group-hover:gap-3 transition-all">
-              Book Now
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </span>
           </div>
         </div>
       </a>
@@ -199,3 +166,38 @@
 
   </div>
 </section>
+
+<style>
+.snowflake {
+  position: absolute;
+  top: -15px;
+  color: #ffffff;
+  font-size: 2.2em;
+  animation: fall linear infinite;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(173, 216, 230, 0.6);
+  font-weight: bold;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-15px) rotate(0deg);
+    opacity: 1;
+  }
+  40% {
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.7;
+  }
+  75% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateY(450px) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
