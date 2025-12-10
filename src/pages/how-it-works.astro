@@ -1,0 +1,96 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import HomeVisitCTA from "../components/HomeVisitCTA.astro";
+
+const phoneNumber = import.meta.env.TELNYX_PHONE_NUMBER || '+18334948669';
+---
+
+<Layout 
+  title="How It Works | Fix My Furnace Michigan | Simple 3-Step Process"
+  description="See how easy it is to get your furnace fixed. Our simple 3-step process: Call or book online, licensed tech arrives fast, fixed right the first time. Serving all of Michigan."
+  keywords="how furnace repair works, HVAC process Michigan, furnace diagnosis steps, heating repair process Detroit, boiler service process Michigan"
+>
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-red-50 via-white to-orange-50 pt-28 pb-16 px-6 md:px-12 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+        How It <span class="text-red-600">Works</span>
+      </h1>
+      <p class="text-lg md:text-xl font-semibold text-gray-700 max-w-2xl mx-auto mb-8">
+        Getting your heat back shouldn't be complicated. Here's our simple, transparent process 
+        that's helped thousands of Michigan homeowners stay warm.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a 
+          href="/furnace-diagnosis" 
+          class="bg-red-600 text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-red-700 transition shadow-lg"
+        >
+          Start Free Photo Analysis
+        </a>
+        <a 
+          href="/home-visit" 
+          class="bg-white text-red-600 border-2 border-red-600 font-bold px-8 py-4 rounded-lg text-lg hover:bg-red-50 transition shadow-lg"
+        >
+          Schedule $125 Diagnosis
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Component -->
+  <HowItWorks />
+
+  <!-- Additional Value Props -->
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Why Choose Our Process?
+        </h2>
+        <p class="text-lg text-gray-600">
+          We've streamlined furnace repair to be fast, fair, and stress-free.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Transparent Pricing -->
+        <div class="text-center p-6 rounded-lg border border-gray-200">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">No Hidden Fees</h3>
+          <p class="text-gray-600">You'll know exactly what you're paying before any work begins. No surprise charges.</p>
+        </div>
+
+        <!-- Licensed Pros -->
+        <div class="text-center p-6 rounded-lg border border-gray-200">
+          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Licensed & Insured</h3>
+          <p class="text-gray-600">All our technicians are fully licensed, insured, and background checked for your safety.</p>
+        </div>
+
+        <!-- Fast Response -->
+        <div class="text-center p-6 rounded-lg border border-gray-200">
+          <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Same-Day Service</h3>
+          <p class="text-gray-600">Most repairs completed the same day. Emergency service available 24/7.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Home Visit CTA -->
+  <HomeVisitCTA />
+
+</Layout>

@@ -122,9 +122,6 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
 
     // Initial setup
     updateProgressiveCTA();
-    // Import Supabase
-    const { createClient } = window.supabase;
-    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     // Form elements
     const form = document.getElementById('photo-callback-form');
@@ -478,59 +475,79 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
           uploadProgress.innerHTML = '<div class="w-full bg-gray-200 rounded-full h-2.5 mb-4"><div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div></div><span class="text-sm text-gray-600">Uploading photos... 0%</span>';
           uploadProgress.classList.remove('hidden');
           
-          for (let i = 0; i < selectedFiles.length; i++) {
-            const file = selectedFiles[i];
-            const fileName = `${Date.now()}_${i}_${file.name}`;
-            
-            try {
-              const { data, error } = await supabase.storage
-                .from('Furnace Diagnosis Images')
-                .upload(fileName, file);
-              
-              if (error) throw error;
-              
-              const { data: urlData } = supabase.storage
-                .from('Furnace Diagnosis Images')
-                .getPublicUrl(fileName);
-              
-              photoUrls.push(urlData.publicUrl);
-              uploadedCount++;
-              
-              // Update progress
-              const progress = Math.round((uploadedCount / selectedFiles.length) * 100);
-              uploadProgress.querySelector('.bg-blue-600').style.width = `${progress}%`;
-              uploadProgress.querySelector('span').textContent = `Uploading photos... ${progress}%`;
-              
-            } catch (uploadError) {
-              console.error('Photo upload error:', uploadError);
-              console.error('Upload error details:', uploadError.message, uploadError.error);
-              // Continue with other photos
+          try {
+            // Create FormData for photo upload
+            const photoFormData = new FormData();
+            for (let i = 0; i < selectedFiles.length; i++) {
+              photoFormData.append('photos', selectedFiles[i]);
             }
+            
+            // Upload via API endpoint
+            const uploadResponse = await fetch('/api/upload-photos', {
+              method: 'POST',
+              body: photoFormData
+            });
+            
+            if (!uploadResponse.ok) {
+              const errorData = await uploadResponse.json();
+              throw new Error(errorData.error || 'Photo upload failed');
+            }
+            
+            const uploadResult = await uploadResponse.json();
+            if (!uploadResult.success) {
+              throw new Error(uploadResult.error || 'Photo upload failed');
+            }
+            
+            photoUrls = uploadResult.photoUrls;
+            uploadedCount = uploadResult.uploadedCount;
+            
+            // Update progress to 100%
+            uploadProgress.querySelector('.bg-blue-600').style.width = '100%';
+            uploadProgress.querySelector('span').textContent = `Uploaded ${uploadedCount} photos successfully`;
+            
+            // Show warnings if any uploads failed
+            if (uploadResult.warnings && uploadResult.warnings.length > 0) {
+              console.warn('Some photo uploads failed:', uploadResult.warnings);
+            }
+            
+          } catch (uploadError) {
+            console.error('Photo upload error:', uploadError);
+            throw new Error(`Photo upload failed: ${uploadError.message}`);
           }
           
           uploadProgress.classList.add('hidden');
         }
         
-        // Save to database
-        const { data, error } = await supabase
-          .from('form_submissions')
-          .insert([
-            {
-              full_name: name,
-              phone_number: phone,
-              service_address: address || '',
-              last_service: lastService || 'Not specified',
-              furnace_issue: 'Photos uploaded for diagnosis',
-              photo_count: photoUrls.length,
-              photo_urls: photoUrls,
-              form_source: 'furnace_diagnosis'
-            }
-          ]);
-        
-        if (error) {
-          console.error('Database error:', error);
-          console.error('Error details:', error.message, error.details, error.hint);
-          throw new Error(`Database error: ${error.message}`);
+        // Save to database via API endpoint
+        const submissionPayload = {
+          formData: {
+            name: name,
+            phone: phone,
+            address: address || '',
+            message: lastService || 'Not specified',
+            issue: 'Photos uploaded for diagnosis'
+          },
+          formSource: 'furnace_diagnosis',
+          photoUrls: photoUrls,
+          photoCount: photoUrls.length
+        };
+
+        const submitResponse = await fetch('/api/submit-form', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(submissionPayload)
+        });
+
+        if (!submitResponse.ok) {
+          const errorData = await submitResponse.json();
+          throw new Error(errorData.error || 'Failed to submit form');
+        }
+
+        const submissionResult = await submitResponse.json();
+        if (!submissionResult.success) {
+          throw new Error(submissionResult.error || 'Form submission failed');
         }
         
         // Success
