@@ -1,0 +1,140 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import { supabase } from "../../../../lib/supabase.js";
+
+// Simple admin protection - check for admin password in URL params
+const url = new URL(Astro.request.url);
+const adminKey = url.searchParams.get('key');
+const ADMIN_KEY = 'hvac2024admin'; // In production, use environment variable
+
+if (adminKey !== ADMIN_KEY) {
+  return new Response('Unauthorized', { status: 401 });
+}
+
+const { id } = Astro.params;
+
+// Placeholder lead data — replace with real DB call later
+const lead = {
+  id: id,
+  name: "Sarah Jenkins",
+  phone: "(248) 555-0198",
+  email: "sarah@example.com",
+  address: "Royal Oak, MI",
+  source: "Google Ads",
+  type: "Photo Upload",
+  status: "New",
+  created_at: "2025-12-10 09:32 AM",
+  keyword: "furnace not heating",
+  campaign: "Fix My Furnace – Emergency / Michigan",
+  notes: [
+    { time: "2025-12-10 10:01 AM", text: "Lead arrived through website photo upload form." },
+    { time: "2025-12-10 10:15 AM", text: "Attempted call — no answer." },
+  ],
+  photos: [
+    "/sample-furnace-photo-1.jpg",
+    "/sample-furnace-photo-2.jpg"
+  ]
+};
+---
+
+<Layout title={`Lead #${lead.id} — Fix My Furnace`} hideHeader={true} hideTopBanner={true}>
+
+    <!-- Header -->
+    <header class="bg-red-600 text-white px-8 py-6 shadow-md flex items-center justify-between">
+      <h1 class="text-3xl font-bold tracking-wide">Lead Details</h1>
+      <a href={`/admin/dashboard?key=${adminKey}`} class="bg-white text-red-600 px-4 py-2 rounded font-semibold hover:bg-gray-200">
+        ← Back to Dashboard
+      </a>
+    </header>
+
+    <main class="p-8 max-w-5xl mx-auto">
+
+      <!-- Lead Summary Card -->
+      <section class="bg-white shadow-lg rounded-lg p-6 mb-8">
+        <h2 class="text-2xl font-bold mb-4">Lead #{lead.id}</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <div>
+            <p><span class="font-semibold">Name:</span> {lead.name}</p>
+            <p><span class="font-semibold">Phone:</span> {lead.phone}</p>
+            <p><span class="font-semibold">Email:</span> {lead.email}</p>
+            <p><span class="font-semibold">Address:</span> {lead.address}</p>
+            <p><span class="font-semibold">Lead Source:</span> {lead.source}</p>
+            <p><span class="font-semibold">Lead Type:</span> {lead.type}</p>
+          </div>
+
+          <div>
+            <p><span class="font-semibold">Status:</span>
+              <span class={`px-2 py-1 ml-2 rounded text-white ${
+                lead.status === "New"      ? "bg-red-500" :
+                lead.status === "Contacted" ? "bg-blue-500" :
+                lead.status === "Scheduled" ? "bg-green-600" : "bg-gray-600"
+              }`}>
+                {lead.status}
+              </span>
+            </p>
+            <p><span class="font-semibold">Created:</span> {lead.created_at}</p>
+            <p><span class="font-semibold">Ad Campaign:</span> {lead.campaign}</p>
+            <p><span class="font-semibold">Keyword Trigger:</span> {lead.keyword}</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Uploaded Photos -->
+      <section class="bg-white shadow-lg rounded-lg p-6 mb-8">
+        <h3 class="text-xl font-bold mb-4">Uploaded Photos</h3>
+
+        {lead.photos.length > 0 ? (
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {lead.photos.map(photo => (
+              <img src={photo} alt="Uploaded furnace photo" class="rounded shadow border" />
+            ))}
+          </div>
+        ) : (
+          <p class="text-gray-600">No photos uploaded.</p>
+        )}
+      </section>
+
+      <!-- Notes Section -->
+      <section class="bg-white shadow-lg rounded-lg p-6 mb-8">
+        <h3 class="text-xl font-bold mb-4">Activity & Notes</h3>
+
+        <div class="space-y-4 mb-6">
+          {lead.notes.map((note) => (
+            <div class="border-l-4 border-red-600 pl-4">
+              <p class="text-sm text-gray-500">{note.time}</p>
+              <p>{note.text}</p>
+            </div>
+          ))}
+        </div>
+
+        <form class="flex gap-3">
+          <input
+            type="text"
+            placeholder="Add a note…"
+            class="flex-1 border rounded px-4 py-2"
+          />
+          <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+            Add Note
+          </button>
+        </form>
+      </section>
+
+      <!-- Actions -->
+      <section class="bg-white shadow-lg rounded-lg p-6 mb-8 flex gap-4">
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+          Mark Contacted
+        </button>
+        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+          Mark Scheduled
+        </button>
+        <button class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
+          Archive Lead
+        </button>
+      </section>
+
+    </main>
+
+</Layout>

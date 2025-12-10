@@ -1,7 +1,7 @@
 export const services = [
     {
       slug: "furnace-repair",
-      title: "Furnace Repair",
+      title: "Same Day Heating Repair",
       subtitle: "Fast, Local, and Built on Trust.",
       description:
         "Whether it’s midnight or the middle of a Michigan blizzard, our certified techs are ready to get your furnace running again — same-day service available across the state.",
@@ -15,7 +15,7 @@ export const services = [
     },
     {
       slug: "furnace-installation",
-      title: "Furnace Installation",
+      title: "Furnace Replacement & Installation",
       subtitle: "Expert Installs Done Right.",
       description:
         "We don’t just drop off a unit — we handle every detail, from sizing to setup, ensuring your home heats evenly and efficiently all winter long.",
@@ -29,7 +29,7 @@ export const services = [
     },
     {
       slug: "boiler-repair",
-      title: "Boiler Repair",
+      title: "Free Furnace Diagnostics & Inspection",
       subtitle: "Heat That Never Quits.",
       description:
         "From Detroit to Traverse City, we fix boilers fast — restoring steady, reliable heat and keeping Michigan families comfortable through every cold front.",
@@ -43,7 +43,7 @@ export const services = [
     },
     {
       slug: "duct-cleaning",
-      title: "Duct Cleaning",
+      title: "Furnace Tune-Up & Maintenance",
       subtitle: "Breathe Cleaner, Healthier Air.",
       description:
         "Professional duct cleaning removes years of dust, allergens, and debris from your HVAC system — improving air quality and helping your furnace run more efficiently across Michigan.",
@@ -57,7 +57,7 @@ export const services = [
     },
     {
       slug: "emergency-hvac",
-      title: "Emergency HVAC Service",
+      title: "24/7 Heating Emergency",
       subtitle: "24/7 Emergency Response.",
       description:
         "When your heat goes out in the middle of a Michigan winter, we're here 24/7. Our emergency HVAC technicians respond fast to get your system running and your family warm again.",
@@ -71,7 +71,7 @@ export const services = [
     },
     {
       slug: "maintenance",
-      title: "Maintenance & Tune-Ups",
+      title: "Boiler Repair & Service",
       subtitle: "Keep Your System Running Strong.",
       description:
         "Regular maintenance keeps your furnace running safely, efficiently, and reliably. Our comprehensive tune-ups catch problems early and extend your system's life across Michigan's harsh winters.",
@@ -85,7 +85,7 @@ export const services = [
     },
     {
       slug: "air-quality",
-      title: "Air Quality Solutions",
+      title: "Heating System Cleaning",
       subtitle: "Pure Comfort for Your Home.",
       description:
         "Enhance your home's comfort with professional air quality solutions — humidifiers, purifiers, and advanced filtration systems that keep Michigan families breathing easy all year long.",
