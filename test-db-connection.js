@@ -75,9 +75,12 @@ async function testDatabaseConnection() {
     'pricing_insights'
   ];
 
+  const testClient = supabaseServiceRole ? createClient(supabaseUrl, supabaseServiceRole) : supabaseAnon;
+  console.log(`Using ${supabaseServiceRole ? 'service role' : 'anon'} key for table queries\n`);
+
   for (const table of tables) {
     try {
-      const { data, error, count } = await supabaseAnon
+      const { data, error, count } = await testClient
         .from(table)
         .select('*', { count: 'exact', head: true });
 
@@ -89,6 +92,28 @@ async function testDatabaseConnection() {
     } catch (err) {
       console.log(`❌ ${table}: ${err.message}`);
     }
+  }
+
+  // Get actual form_submissions data
+  console.log('\n📄 Recent form_submissions data:');
+  try {
+    const { data, error } = await testClient
+      .from('form_submissions')
+      .select('id, full_name, phone_number, created_at, form_source')
+      .order('created_at', { ascending: false })
+      .limit(3);
+
+    if (error) {
+      console.log(`❌ Error fetching form_submissions: ${error.message}`);
+    } else if (data && data.length > 0) {
+      data.forEach((record, index) => {
+        console.log(`${index + 1}. ${record.full_name} - ${record.phone_number} (${record.form_source})`);
+      });
+    } else {
+      console.log('No records found in form_submissions table');
+    }
+  } catch (err) {
+    console.log(`❌ Error: ${err.message}`);
   }
 
   console.log('\n🏁 Database connection test completed');

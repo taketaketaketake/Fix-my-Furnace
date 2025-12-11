@@ -1,6 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { supabase } from "../../lib/supabase.js";
+import { createClient } from '@supabase/supabase-js';
+
+// Use service role for admin dashboard access
+const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+const supabaseServiceKey = import.meta.env.SUPABASE_SERVICE_ROLE;
+const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 // Simple admin protection - check for admin password in URL params
 const url = new URL(Astro.request.url);
@@ -11,36 +16,78 @@ if (adminKey !== ADMIN_KEY) {
   return new Response('Unauthorized', { status: 401 });
 }
 
-const leads = [
-  // placeholder data - replace with real data later
-  {
-    id: "LD-1024",
-    name: "Sarah Jenkins",
-    phone: "(248) 555-0198",
-    source: "Google Ads",
-    type: "Photo Upload",
-    status: "New",
-    created_at: "2025-12-10 09:32 AM",
-  },
-  {
-    id: "LD-1025",
-    name: "Marcus Bell",
-    phone: "(313) 555-4421",
-    source: "Facebook Leads",
-    type: "Emergency Heat Issue",
-    status: "Contacted",
-    created_at: "2025-12-10 10:15 AM",
-  },
-  {
-    id: "LD-1026",
-    name: "Unknown",
-    phone: "(586) 555-2020",
-    source: "Website Form",
-    type: "Furnace Not Heating",
-    status: "Scheduled",
-    created_at: "2025-12-10 11:02 AM",
-  },
-];
+// Fetch leads directly from leads table
+async function getLeads() {
+  try {
+    const { data, error } = await supabase
+      .from('leads')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(50);
+
+    if (error) {
+      console.error('Error fetching leads:', error);
+      return [];
+    }
+
+    return data || [];
+  } catch (error) {
+    console.error('Database connection error:', error);
+    return [];
+  }
+}
+
+// Transform leads for dashboard display
+function transformLeadsForDisplay(leads) {
+  return leads.map(lead => ({
+    id: `LD-${lead.id.slice(0, 8)}`,
+    name: lead.name || 'Unknown',
+    phone: lead.phone || '',
+    email: lead.email || '',
+    source: mapLeadSource(lead.lead_source),
+    status: mapLeadStatus(lead.status),
+    created_at: formatDate(lead.created_at),
+    originalId: lead.id
+  }));
+}
+
+// Map lead source for display
+function mapLeadSource(leadSource) {
+  const sourceMap = {
+    'website_direct': 'Website Form',
+    'google_search': 'Google Ads',
+    'google_pmax': 'Google Ads',
+    'facebook': 'Facebook Leads'
+  };
+  return sourceMap[leadSource] || 'Website Form';
+}
+
+// Map lead status for display
+function mapLeadStatus(status) {
+  const statusMap = {
+    'new': 'New',
+    'contacted': 'Contacted',
+    'scheduled': 'Scheduled',
+    'completed': 'Completed',
+    'bad_lead': 'Bad Lead'
+  };
+  return statusMap[status] || 'New';
+}
+
+// Format date for display
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+}
+
+const leadsData = await getLeads();
+const leads = transformLeadsForDisplay(leadsData);
 ---
 
 <Layout title="Fix My Furnace – Lead Dashboard" hideHeader={true} hideTopBanner={true}>
@@ -55,27 +102,24 @@ const leads = [
 
     <!-- Filters -->
     <div class="px-8 py-4 flex gap-4 bg-white shadow-sm border-b">
-      <select class="px-4 py-2 border rounded">
-        <option>All Lead Sources</option>
-        <option>Google Ads</option>
-        <option>Facebook</option>
-        <option>Website Form</option>
+      <select id="sourceFilter" class="px-4 py-2 border rounded">
+        <option value="">All Lead Sources</option>
+        <option value="Google Ads">Google Ads</option>
+        <option value="Facebook Leads">Facebook Leads</option>
+        <option value="Website Form">Website Form</option>
       </select>
 
-      <select class="px-4 py-2 border rounded">
-        <option>All Statuses</option>
-        <option>New</option>
-        <option>Contacted</option>
-        <option>Scheduled</option>
-        <option>Completed</option>
+      <select id="statusFilter" class="px-4 py-2 border rounded">
+        <option value="">All Statuses</option>
+        <option value="New">New</option>
+        <option value="Contacted">Contacted</option>
+        <option value="Scheduled">Scheduled</option>
+        <option value="Completed">Completed</option>
       </select>
 
-      <select class="px-4 py-2 border rounded">
-        <option>All Types</option>
-        <option>Photo Upload</option>
-        <option>Emergency Issue</option>
-        <option>General Inquiry</option>
-      </select>
+      <button id="clearFilters" class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300">
+        Clear Filters
+      </button>
     </div>
 
     <!-- Lead Table -->
@@ -88,21 +132,19 @@ const leads = [
               <th class="px-6 py-3">Customer</th>
               <th class="px-6 py-3">Phone</th>
               <th class="px-6 py-3">Source</th>
-              <th class="px-6 py-3">Type</th>
               <th class="px-6 py-3">Status</th>
               <th class="px-6 py-3">Created</th>
               <th class="px-6 py-3">Actions</th>
             </tr>
           </thead>
 
-          <tbody>
+          <tbody id="leadsTableBody">
             {leads.map((lead) => (
-              <tr class="border-b hover:bg-gray-50 text-sm">
+              <tr class="border-b hover:bg-gray-50 text-sm lead-row" data-source={lead.source} data-status={lead.status}>
                 <td class="px-6 py-4 font-semibold">{lead.id}</td>
                 <td class="px-6 py-4">{lead.name}</td>
                 <td class="px-6 py-4">{lead.phone}</td>
                 <td class="px-6 py-4">{lead.source}</td>
-                <td class="px-6 py-4">{lead.type}</td>
                 <td class="px-6 py-4">
                   <span
                     class={`px-2 py-1 rounded text-white ${
@@ -120,7 +162,7 @@ const leads = [
                 </td>
                 <td class="px-6 py-4">{lead.created_at}</td>
                 <td class="px-6 py-4">
-                  <a href={`/admin/dashboard/lead/${lead.id}?key=${adminKey}`} class="text-red-600 font-semibold hover:underline">
+                  <a href={`/admin/dashboard/lead/${lead.originalId}?key=${adminKey}`} class="text-red-600 font-semibold hover:underline">
                     View Details →
                   </a>
                 </td>
@@ -130,5 +172,49 @@ const leads = [
         </table>
       </div>
     </main>
+
+    <script>
+      // Filter functionality
+      const sourceFilter = document.getElementById('sourceFilter');
+      const statusFilter = document.getElementById('statusFilter');
+      const clearFiltersBtn = document.getElementById('clearFilters');
+      const leadRows = document.querySelectorAll('.lead-row');
+
+      function filterLeads() {
+        const sourceValue = sourceFilter.value;
+        const statusValue = statusFilter.value;
+
+        leadRows.forEach(row => {
+          const rowSource = row.getAttribute('data-source');
+          const rowStatus = row.getAttribute('data-status');
+          
+          const sourceMatch = !sourceValue || rowSource === sourceValue;
+          const statusMatch = !statusValue || rowStatus === statusValue;
+          
+          if (sourceMatch && statusMatch) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+
+        // Update visible row count
+        const visibleRows = Array.from(leadRows).filter(row => row.style.display !== 'none');
+        console.log(`Showing ${visibleRows.length} of ${leadRows.length} leads`);
+      }
+
+      function clearFilters() {
+        sourceFilter.value = '';
+        statusFilter.value = '';
+        leadRows.forEach(row => {
+          row.style.display = '';
+        });
+      }
+
+      // Event listeners
+      sourceFilter.addEventListener('change', filterLeads);
+      statusFilter.addEventListener('change', filterLeads);
+      clearFiltersBtn.addEventListener('click', clearFilters);
+    </script>
 
 </Layout>

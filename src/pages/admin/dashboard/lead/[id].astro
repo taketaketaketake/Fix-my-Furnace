@@ -1,6 +1,11 @@
 ---
 import Layout from "../../../../layouts/Layout.astro";
-import { supabase } from "../../../../lib/supabase.js";
+import { createClient } from '@supabase/supabase-js';
+
+// Use service role for admin dashboard access
+const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+const supabaseServiceKey = import.meta.env.SUPABASE_SERVICE_ROLE;
+const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 // Simple admin protection - check for admin password in URL params
 const url = new URL(Astro.request.url);
@@ -13,28 +18,120 @@ if (adminKey !== ADMIN_KEY) {
 
 const { id } = Astro.params;
 
-// Placeholder lead data — replace with real DB call later
-const lead = {
-  id: id,
-  name: "Sarah Jenkins",
-  phone: "(248) 555-0198",
-  email: "sarah@example.com",
-  address: "Royal Oak, MI",
-  source: "Google Ads",
-  type: "Photo Upload",
-  status: "New",
-  created_at: "2025-12-10 09:32 AM",
-  keyword: "furnace not heating",
-  campaign: "Fix My Furnace – Emergency / Michigan",
-  notes: [
-    { time: "2025-12-10 10:01 AM", text: "Lead arrived through website photo upload form." },
-    { time: "2025-12-10 10:15 AM", text: "Attempted call — no answer." },
-  ],
-  photos: [
-    "/sample-furnace-photo-1.jpg",
-    "/sample-furnace-photo-2.jpg"
-  ]
-};
+// The ID passed is now the full UUID from originalId
+const originalId = id;
+
+// Fetch real lead data from leads table
+async function getLeadById(leadId) {
+  try {
+    // Find by exact UUID match
+    const { data, error } = await supabase
+      .from('leads')
+      .select('*')
+      .eq('id', leadId)
+      .single();
+
+    if (error) {
+      console.error('Error fetching lead:', error);
+      return null;
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Database connection error:', error);
+    return null;
+  }
+}
+
+// Transform lead data for display
+function transformLeadForDisplay(lead) {
+  if (!lead) return null;
+  
+  // Parse notes from JSON or legacy text
+  let notes = [];
+  if (lead.lead_notes) {
+    try {
+      notes = JSON.parse(lead.lead_notes);
+    } catch (error) {
+      // Legacy text note
+      notes = [{
+        timestamp: lead.created_at,
+        text: lead.lead_notes,
+        type: 'legacy'
+      }];
+    }
+  }
+  
+  return {
+    id: `LD-${lead.id.slice(0, 8)}`,
+    originalId: lead.id,
+    name: lead.name || 'Unknown',
+    phone: lead.phone || '',
+    email: lead.email || '',
+    address: lead.service_address || 'Not provided',
+    zipcode: lead.zip_code || 'Not provided',
+    source: mapLeadSource(lead.lead_source),
+    type: mapFormType(lead.form_type),
+    status: mapLeadStatus(lead.status),
+    created_at: formatDate(lead.created_at),
+    campaign: lead.ad_campaign || 'N/A',
+    keyword: lead.ad_set_keyword || 'N/A',
+    issue: lead.furnace_issue || lead.message || 'No details provided',
+    preferredTime: lead.preferred_visit_time || '',
+    photos: lead.photo_urls || [],
+    photoCount: lead.photo_count || 0,
+    notes: notes,
+    rawNotes: lead.lead_notes
+  };
+}
+
+function mapLeadSource(leadSource) {
+  const sourceMap = {
+    'website_direct': 'Website Form',
+    'google_search': 'Google Ads',
+    'google_pmax': 'Google Ads', 
+    'facebook': 'Facebook Leads'
+  };
+  return sourceMap[leadSource] || 'Website Form';
+}
+
+function mapLeadStatus(status) {
+  const statusMap = {
+    'new': 'New',
+    'contacted': 'Contacted', 
+    'scheduled': 'Scheduled',
+    'completed': 'Completed',
+    'bad_lead': 'Bad Lead'
+  };
+  return statusMap[status] || 'New';
+}
+
+function mapFormType(formType) {
+  const typeMap = {
+    'photo_upload': 'Photo Upload',
+    'contact_form': 'Contact Form',
+    'furnace_issue': 'Furnace Issue'
+  };
+  return typeMap[formType] || 'General Inquiry';
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: '2-digit', 
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+}
+
+const leadData = await getLeadById(originalId);
+const lead = transformLeadForDisplay(leadData);
+
+if (!lead) {
+  return new Response('Lead not found', { status: 404 });
+}
 ---
 
 <Layout title={`Lead #${lead.id} — Fix My Furnace`} hideHeader={true} hideTopBanner={true}>
@@ -60,6 +157,7 @@ const lead = {
             <p><span class="font-semibold">Phone:</span> {lead.phone}</p>
             <p><span class="font-semibold">Email:</span> {lead.email}</p>
             <p><span class="font-semibold">Address:</span> {lead.address}</p>
+            <p><span class="font-semibold">ZIP Code:</span> {lead.zipcode}</p>
             <p><span class="font-semibold">Lead Source:</span> {lead.source}</p>
             <p><span class="font-semibold">Lead Type:</span> {lead.type}</p>
           </div>
@@ -75,27 +173,35 @@ const lead = {
               </span>
             </p>
             <p><span class="font-semibold">Created:</span> {lead.created_at}</p>
-            <p><span class="font-semibold">Ad Campaign:</span> {lead.campaign}</p>
-            <p><span class="font-semibold">Keyword Trigger:</span> {lead.keyword}</p>
+            <p><span class="font-semibold">Issue:</span> {lead.issue}</p>
+            {lead.preferredTime && <p><span class="font-semibold">Preferred Time:</span> {lead.preferredTime}</p>}
           </div>
 
         </div>
       </section>
 
-      <!-- Uploaded Photos -->
-      <section class="bg-white shadow-lg rounded-lg p-6 mb-8">
-        <h3 class="text-xl font-bold mb-4">Uploaded Photos</h3>
 
-        {lead.photos.length > 0 ? (
+      <!-- Uploaded Photos -->
+      {lead.photos && lead.photos.length > 0 && (
+        <section class="bg-white shadow-lg rounded-lg p-6 mb-8">
+          <h3 class="text-xl font-bold mb-4">Uploaded Photos ({lead.photoCount})</h3>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {lead.photos.map(photo => (
-              <img src={photo} alt="Uploaded furnace photo" class="rounded shadow border" />
+            {lead.photos.map((photo, index) => (
+              <div class="relative">
+                <img 
+                  src={photo} 
+                  alt={`Uploaded furnace photo ${index + 1}`} 
+                  class="rounded shadow border w-full h-32 object-cover cursor-pointer hover:opacity-80" 
+                  onclick={`window.open('${photo}', '_blank')`}
+                />
+                <div class="absolute bottom-2 right-2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded">
+                  {index + 1} of {lead.photos.length}
+                </div>
+              </div>
             ))}
           </div>
-        ) : (
-          <p class="text-gray-600">No photos uploaded.</p>
-        )}
-      </section>
+        </section>
+      )}
 
       <!-- Notes Section -->
       <section class="bg-white shadow-lg rounded-lg p-6 mb-8">
@@ -110,13 +216,15 @@ const lead = {
           ))}
         </div>
 
-        <form class="flex gap-3">
+        <form id="noteForm" class="flex gap-3">
           <input
+            id="noteInput"
             type="text"
             placeholder="Add a note…"
             class="flex-1 border rounded px-4 py-2"
+            required
           />
-          <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+          <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
             Add Note
           </button>
         </form>
@@ -124,17 +232,106 @@ const lead = {
 
       <!-- Actions -->
       <section class="bg-white shadow-lg rounded-lg p-6 mb-8 flex gap-4">
-        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        <button data-status="contacted" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
           Mark Contacted
         </button>
-        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        <button data-status="scheduled" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
           Mark Scheduled
         </button>
-        <button class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
-          Archive Lead
+        <button data-status="completed" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
+          Mark Completed
+        </button>
+        <button data-status="bad_lead" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
+          Mark Bad Lead
         </button>
       </section>
 
     </main>
+
+    <script define:vars={{ leadId: lead.originalId, adminKey }}>
+      // Notes functionality
+      const noteForm = document.getElementById('noteForm');
+      const noteInput = document.getElementById('noteInput');
+      const notesContainer = document.querySelector('.space-y-4');
+
+      // Add note
+      noteForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const noteText = noteInput.value.trim();
+        if (!noteText) return;
+
+        try {
+          const response = await fetch('/api/lead-notes', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              leadId: leadId,
+              noteText: noteText,
+              noteType: 'manual'
+            })
+          });
+
+          const result = await response.json();
+          
+          if (result.success) {
+            // Add new note to UI
+            const noteDiv = document.createElement('div');
+            noteDiv.className = 'border-l-4 border-red-600 pl-4';
+            noteDiv.innerHTML = `
+              <p class="text-sm text-gray-500">${new Date().toLocaleString()}</p>
+              <p>${noteText}</p>
+            `;
+            notesContainer.appendChild(noteDiv);
+            
+            // Clear input
+            noteInput.value = '';
+          } else {
+            alert('Failed to add note: ' + result.error);
+          }
+        } catch (error) {
+          console.error('Error adding note:', error);
+          alert('Failed to add note');
+        }
+      });
+
+      // Status update buttons
+      const statusButtons = document.querySelectorAll('[data-status]');
+      statusButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+          const newStatus = button.dataset.status;
+          const confirmed = confirm(`Change status to "${newStatus}"?`);
+          
+          if (confirmed) {
+            try {
+              const response = await fetch('/api/lead-notes', {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  leadId: leadId,
+                  status: newStatus
+                })
+              });
+
+              const result = await response.json();
+              
+              if (result.success) {
+                // Reload page to show updated status
+                window.location.reload();
+              } else {
+                alert('Failed to update status: ' + result.error);
+              }
+            } catch (error) {
+              console.error('Error updating status:', error);
+              alert('Failed to update status');
+            }
+          }
+        });
+      });
+    </script>
 
 </Layout>
